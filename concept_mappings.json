@@ -1,0 +1,62 @@
+{
+  "Net Revenue": [
+    "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "RevenueFromContractWithCustomerIncludingAssessedTax",
+    "SalesRevenueNet",
+    "SalesRevenueGoodsNet",
+    "Revenues",
+    "NetSalesRevenue"
+  ],
+  "Cost of Goods": [
+    "CostOfGoodsAndServicesSold",
+    "CostOfGoodsSold",
+    "CostOfSalesAndRelatedBuyingAndOccupancyCosts",
+    "CostOfRevenue",
+    "CostOfGoodsSoldAndOccupancyExpenses",
+    "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+    "CostOfGoodsSoldExcludingDepreciationDepletionAndAmortization",
+    "CostOfMerchandiseSalesBuyingAndOccupancyCosts"
+  ],
+  "SG&A": [
+    "SellingGeneralAndAdministrativeExpense",
+    "SellingGeneralandAdministrativeExpenseIncludingImpairmentCharges",
+    "OtherSellingGeneralAndAdministrativeExpense",
+    "MarketingGeneralAndAdministrativeExpense",
+    "OperatingExpenses",
+    "OperatingGeneralAndAdministrativeExpense"
+  ],
+  "Operating Profit": [
+    "OperatingIncomeLoss",
+    "EarningsBeforeInterestAndIncomeTaxes",
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
+  ],
+  "Net Profit": [
+    "ProfitLoss",
+    "NetIncomeLoss",
+    "NetIncomeLossAvailableToCommonStockholdersBasic"
+  ],
+  "Inventory": [
+    "InventoryNet",
+    "InventoryFinishedGoods",
+    "RetailRelatedInventoryMerchandise",
+    "InventoryFinishedGoodsNetOfReserves",
+    "FIFOInventoryAmount"
+  ],
+  "Current Assets": [
+    "AssetsCurrent"
+  ],
+  "Total Assets": [
+    "Assets"
+  ],
+  "Current Liabilities": [
+    "LiabilitiesCurrent"
+  ],
+  "Total Shareholder Equity": [
+    "StockholdersEquity",
+    "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+  ],
+  "Total Liabilities and Shareholder Equity": [
+    "LiabilitiesAndStockholdersEquity"
+  ]
+}

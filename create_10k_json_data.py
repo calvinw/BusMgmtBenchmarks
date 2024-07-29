@@ -1,8 +1,8 @@
-
 import requests
 import json
 from collections import defaultdict
 import os
+import sys
 
 def get_10k_filings(cik, company_name=None):
     cik = cik.zfill(10)
@@ -148,15 +148,23 @@ def create_html_file(all_company_filings, filename='10ks.html'):
     print(f"HTML file '{filename}' has been created.")
 
 def main():
-    # Read CIK data from JSON file
+    # Check if correct number of arguments are provided
+    if len(sys.argv) != 3:
+        print("Usage: python script_name.py <input_cik_file> <output_json_file>")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+
+    # Read CIK data from input JSON file
     try:
-        with open('CIK.json', 'r') as f:
+        with open(input_file, 'r') as f:
             companies_dict = json.load(f)
     except FileNotFoundError:
-        print("Error: CIK.json file not found. Please ensure the file exists in the current directory.")
+        print(f"Error: {input_file} not found. Please ensure the file exists in the current directory.")
         return
     except json.JSONDecodeError:
-        print("Error: CIK.json file is not a valid JSON. Please check the file contents.")
+        print(f"Error: {input_file} is not a valid JSON. Please check the file contents.")
         return
 
     # Fetch 10-K filings for all companies
@@ -164,15 +172,12 @@ def main():
 
     if all_company_filings:
         # Write JSON file
-        with open('10ks.json', 'w') as f:
+        with open(output_file, 'w') as f:
             json.dump(all_company_filings, f, indent=2)
-        print("JSON file '10ks.json' has been created.")
+        print(f"JSON file '{output_file}' has been created.")
 
-        # Create HTML file
-        create_html_file(all_company_filings)
     else:
         print("Failed to retrieve filings for all companies.")
 
 if __name__ == "__main__":
     main()
-

@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Companies Financial Data and SEC Filings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .metric {
+            font-weight: bold;
+            text-align: left;
+            font-size: 0.8em;
+            width: 200px;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 10px;
+        }
+        .sec-filings {
+            margin-top: 20px;
+        }
+        .sec-filings th:first-child {
+            text-align: left;
+        }
+        .financial-table {
+            table-layout: fixed;
+        }
+        .financial-table th:first-child,
+        .financial-table td:first-child {
+            width: 200px;
+        }
+        .financial-table th:not(:first-child),
+        .financial-table td:not(:first-child) {
+            width: calc((100% - 200px) / 6);  /* Adjust the 6 if you have a different number of years */
+        }
+    </style>
+</head>
+<body>
+    <h1>Retail Companies Financial Data and SEC Filings</h1>
+
+    <h2>Quick Links</h2>
+    <ul>
+        <li><a href="#macys">Macys</a></li><li><a href="#target">Target</a></li>
+    </ul>
+
+    <div id="tables"></div>
+
+    <script>
+        const financialData = {"macys": {"2024": {"Net Revenue": 23092.0, "Cost of Goods": 14143.0, "SG&A": 8375.0, "Operating Profit": 382.0, "Net Profit": 105.0, "Inventory": 4361.0, "Current Assets": 6089.0, "Total Assets": 16246.0, "Current Liabilities": 4430.0, "Total Shareholder Equity": 4137.0, "Total Liabilities and Shareholder Equity": 16246.0}, "2023": {"Net Revenue": 24442.0, "Cost of Goods": 15306.0, "SG&A": 8317.0, "Operating Profit": 1730.0, "Net Profit": 1177.0, "Inventory": 4267.0, "Current Assets": 5853.0, "Total Assets": 16866.0, "Current Liabilities": 4861.0, "Total Shareholder Equity": 4082.0, "Total Liabilities and Shareholder Equity": 16866.0}, "2022": {"Net Revenue": 24460.0, "Cost of Goods": 14956.0, "SG&A": 8047.0, "Operating Profit": 2350.0, "Net Profit": 1430.0, "Inventory": 4383.0, "Current Assets": 6758.0, "Total Assets": 17590.0, "Current Liabilities": 5416.0, "Total Shareholder Equity": 3621.0, "Total Liabilities and Shareholder Equity": 17590.0}, "2021": {"Net Revenue": 17346.0, "Cost of Goods": 12286.0, "SG&A": 6767.0, "Operating Profit": -4475.0, "Net Profit": -3944.0, "Inventory": 3774.0, "Current Assets": 6184.0, "Total Assets": 17706.0, "Current Liabilities": 5357.0, "Total Shareholder Equity": 2553.0, "Total Liabilities and Shareholder Equity": 17706.0}, "2020": {"Net Revenue": 24560.0, "Cost of Goods": 15171.0, "SG&A": 8998.0, "Operating Profit": 970.0, "Net Profit": 564.0, "Inventory": 5188.0, "Current Assets": 6810.0, "Total Assets": 21172.0, "Current Liabilities": 5750.0, "Total Shareholder Equity": 6377.0, "Total Liabilities and Shareholder Equity": 21172.0}, "2019": {"Net Revenue": 24971.0, "Cost of Goods": 15215.0, "SG&A": 9039.0, "Operating Profit": 1738.0, "Net Profit": 1098.0, "Inventory": 5263.0, "Current Assets": 7445.0, "Total Assets": 19194.0, "Current Liabilities": 5232.0, "Total Shareholder Equity": 6436.0, "Total Liabilities and Shareholder Equity": 19194.0}}, "target": {"2024": {"Net Revenue": 107412.0, "Cost of Goods": 77736.0, "SG&A": 21554.0, "Operating Profit": 5707.0, "Net Profit": 4138.0, "Inventory": 11886.0, "Current Assets": 17498.0, "Total Assets": 55356.0, "Current Liabilities": 19304.0, "Total Shareholder Equity": 13432.0, "Total Liabilities and Shareholder Equity": 55356.0}, "2023": {"Net Revenue": 109120.0, "Cost of Goods": 82229.0, "SG&A": 20658.0, "Operating Profit": 3848.0, "Net Profit": 2780.0, "Inventory": 13499.0, "Current Assets": 17846.0, "Total Assets": 53335.0, "Current Liabilities": 19500.0, "Total Shareholder Equity": 11232.0, "Total Liabilities and Shareholder Equity": 53335.0}, "2022": {"Net Revenue": 106005.0, "Cost of Goods": 74963.0, "SG&A": 19752.0, "Operating Profit": 8946.0, "Net Profit": 6946.0, "Inventory": 13902.0, "Current Assets": 21573.0, "Total Assets": 53811.0, "Current Liabilities": 21747.0, "Total Shareholder Equity": 12827.0, "Total Liabilities and Shareholder Equity": 53811.0}, "2021": {"Net Revenue": 93561.0, "Cost of Goods": 66177.0, "SG&A": 18615.0, "Operating Profit": 6539.0, "Net Profit": 4368.0, "Inventory": 10653.0, "Current Assets": 20756.0, "Total Assets": 51248.0, "Current Liabilities": 20125.0, "Total Shareholder Equity": 14440.0, "Total Liabilities and Shareholder Equity": 51248.0}, "2020": {"Net Revenue": 78112.0, "Cost of Goods": 54864.0, "SG&A": 16233.0, "Operating Profit": 4658.0, "Net Profit": 3281.0, "Inventory": 8992.0, "Current Assets": 12902.0, "Total Assets": 42779.0, "Current Liabilities": 14487.0, "Total Shareholder Equity": 11833.0, "Total Liabilities and Shareholder Equity": 42779.0}, "2019": {"Net Revenue": 75356.0, "Cost of Goods": 53299.0, "SG&A": 15723.0, "Operating Profit": 4110.0, "Net Profit": 2937.0, "Inventory": 9497.0, "Current Assets": 12519.0, "Total Assets": 41290.0, "Current Liabilities": 15014.0, "Total Shareholder Equity": 11297.0, "Total Liabilities and Shareholder Equity": 41290.0}}};
+
+        const secFilings = {"macys": {"2024": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2024-03-22", "reportDate": "2024-02-03", "form": "10-K", "accessionNumber": "0001628280-24-012734", "primaryDocument": "m-20240203.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000162828024012734/0001628280-24-012734-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0001628280-24-012734&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000162828024012734/m-20240203_htm.xml"}], "2023": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2023-03-24", "reportDate": "2023-01-28", "form": "10-K", "accessionNumber": "0001628280-23-009154", "primaryDocument": "m-20230128.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000162828023009154/0001628280-23-009154-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0001628280-23-009154&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000162828023009154/m-20230128_htm.xml"}], "2022": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2022-03-25", "reportDate": "2022-01-29", "form": "10-K", "accessionNumber": "0001564590-22-011726", "primaryDocument": "m-10k_20220129.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000156459022011726/0001564590-22-011726-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0001564590-22-011726&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000156459022011726/m-10k_20220129_htm.xml"}], "2021": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2021-03-29", "reportDate": "2021-01-30", "form": "10-K", "accessionNumber": "0001564590-21-016119", "primaryDocument": "m-10k_20210130.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000156459021016119/0001564590-21-016119-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0001564590-21-016119&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000156459021016119/m-10k_20210130_htm.xml"}], "2020": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2020-03-30", "reportDate": "2020-02-01", "form": "10-K", "accessionNumber": "0000794367-20-000040", "primaryDocument": "m-0201202010xk.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000079436720000040/0000794367-20-000040-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0000794367-20-000040&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000079436720000040/m-0201202010xk_htm.xml"}], "2019": [{"cik": "794367", "name": "Macy's, Inc.", "ticker": "M", "filingDate": "2019-04-03", "reportDate": "2019-02-02", "form": "10-K", "accessionNumber": "0000794367-19-000038", "primaryDocument": "m-0202201910xk.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000794367/000079436719000038/0000794367-19-000038-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=794367&accession_number=0000794367-19-000038&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/794367/000079436719000038/m-20190202.xml"}]}, "target": {"2024": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2024-03-13", "reportDate": "2024-02-03", "form": "10-K", "accessionNumber": "0000027419-24-000032", "primaryDocument": "tgt-20240203.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741924000032/0000027419-24-000032-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-24-000032&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741924000032/tgt-20240203_htm.xml"}], "2023": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2023-03-08", "reportDate": "2023-01-28", "form": "10-K", "accessionNumber": "0000027419-23-000015", "primaryDocument": "tgt-20230128.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741923000015/0000027419-23-000015-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-23-000015&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741923000015/tgt-20230128_htm.xml"}], "2022": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2022-03-09", "reportDate": "2022-01-29", "form": "10-K", "accessionNumber": "0000027419-22-000007", "primaryDocument": "tgt-20220129.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741922000007/0000027419-22-000007-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-22-000007&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741922000007/tgt-20220129_htm.xml"}], "2021": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2021-03-10", "reportDate": "2021-01-30", "form": "10-K", "accessionNumber": "0000027419-21-000010", "primaryDocument": "tgt-20210130.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741921000010/0000027419-21-000010-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-21-000010&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741921000010/tgt-20210130_htm.xml"}], "2020": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2020-03-11", "reportDate": "2020-02-01", "form": "10-K", "accessionNumber": "0000027419-20-000008", "primaryDocument": "tgt-20200201.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741920000008/0000027419-20-000008-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-20-000008&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741920000008/tgt-20200201_htm.xml"}], "2019": [{"cik": "27419", "name": "TARGET CORP", "ticker": "TGT", "filingDate": "2019-03-13", "reportDate": "2019-02-02", "form": "10-K", "accessionNumber": "0000027419-19-000006", "primaryDocument": "tgt-20190202x10k.htm", "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000027419/000002741919000006/0000027419-19-000006-index.html", "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=27419&accession_number=0000027419-19-000006&xbrl_type=v", "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/27419/000002741919000006/tgt-20190202.xml"}]}};
+
+        function createTables() {
+            const tablesElement = document.getElementById('tables');
+
+            for (const [company, yearData] of Object.entries(financialData)) {
+                const container = document.createElement('div');
+                container.id = company;
+
+                const header = document.createElement('h2');
+                header.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                container.appendChild(header);
+
+                // Create financial data table
+                const financialTable = createFinancialTable(yearData);
+                container.appendChild(financialTable);
+
+                // Create SEC filings table
+                const filingsTable = createFilingsTable(company, Object.keys(yearData).length);
+                container.appendChild(filingsTable);
+
+                tablesElement.appendChild(container);
+            }
+        }
+
+        function createFinancialTable(yearData) {
+            const table = document.createElement('table');
+            table.className = 'financial-table';
+            const header = table.createTHead();
+            const headerRow = header.insertRow();
+
+            // Add "Metric" as the first header
+            const metricHeader = document.createElement('th');
+            metricHeader.textContent = 'Metric';
+            headerRow.appendChild(metricHeader);
+
+            // Get all years and sort them in descending order
+            const years = Object.keys(yearData).sort((a, b) => b - a);
+
+            // Add year headers
+            years.forEach(year => {
+                const th = document.createElement('th');
+                th.textContent = year;
+                headerRow.appendChild(th);
+            });
+
+            // Add data rows
+            const metrics = Object.keys(yearData[years[0]]);
+            metrics.forEach(metric => {
+                const row = table.insertRow();
+                const cell = row.insertCell();
+                cell.textContent = metric.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                cell.className = 'metric';
+
+                years.forEach(year => {
+                    const cell = row.insertCell();
+                    const value = yearData[year][metric];
+                    if (value === null) {
+                        cell.textContent = 'N/A';
+                    } else {
+                        cell.textContent = value;
+                    }
+                });
+            });
+
+            return table;
+        }
+
+        function createFilingsTable(company, columnCount) {
+            const table = document.createElement('table');
+            table.className = 'sec-filings';
+            const header = table.createTHead();
+            const headerRow = header.insertRow();
+
+            // Add "Year" as the first header
+            const yearHeader = document.createElement('th');
+            yearHeader.textContent = 'Year';
+            headerRow.appendChild(yearHeader);
+
+            const companyFilings = secFilings[company];
+            if (companyFilings) {
+                const years = Object.keys(companyFilings).sort((a, b) => b - a);
+                years.forEach(year => {
+                    const th = document.createElement('th');
+                    th.textContent = year;
+                    headerRow.appendChild(th);
+                });
+
+                // Add empty columns to match the financial table
+                for (let i = years.length; i < columnCount; i++) {
+                    const th = document.createElement('th');
+                    headerRow.appendChild(th);
+                }
+
+                const metrics = ['Filing Date', 'Report Date', 'SEC Index', 'Interactive Data', 'XBRL'];
+                metrics.forEach(metric => {
+                    const row = table.insertRow();
+                    const cell = row.insertCell();
+                    cell.textContent = metric;
+                    cell.className = 'metric';
+
+                    years.forEach(year => {
+                        const cell = row.insertCell();
+                        const filing = companyFilings[year][0];  // Assuming only one filing per year
+                        if (metric === 'Filing Date') {
+                            cell.textContent = filing.filingDate;
+                        } else if (metric === 'Report Date') {
+                            cell.textContent = filing.reportDate;
+                        } else if (metric === 'SEC Index') {
+                            cell.innerHTML = `<a href="${filing.secIndexUrl}" target="_blank">View</a>`;
+                        } else if (metric === 'Interactive Data') {
+                            cell.innerHTML = `<a href="${filing.interactiveDataUrl}" target="_blank">View</a>`;
+                        } else if (metric === 'XBRL') {
+                            cell.innerHTML = `<a href="${filing.xbrlUrl}" target="_blank">View</a>`;
+                        }
+                    });
+
+                    // Add empty cells to match the financial table
+                    for (let i = years.length; i < columnCount; i++) {
+                        row.insertCell();
+                    }
+                });
+            }
+
+            const container = document.createElement('div');
+            const header2 = document.createElement('h3');
+            header2.textContent = 'SEC Filings';
+            container.appendChild(header2);
+            container.appendChild(table);
+
+            return container;
+        }
+
+        // Call the function to create tables when the page loads
+        window.onload = createTables;
+    </script>
+</body>
+</html>

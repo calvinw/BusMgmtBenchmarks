@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import requests
 import json
 import os
+import sys
 from pprint import pprint
 from datetime import datetime
 
@@ -103,28 +104,29 @@ def download_xbrl(url, file_path):
     except requests.RequestException as e:
         print(f"Error downloading file from {url}: {e}")
         return False
-def parse_10ks():
-    # Load the 10ks.json file
+
+def parse_10ks(input_file, output_file):
+    # Load the input 10ks JSON file
     try:
-        with open('10ks.json', 'r') as f:
+        with open(input_file, 'r') as f:
             companies_data = json.load(f)
     except FileNotFoundError:
-        print("Error: 10ks.json file not found.")
+        print(f"Error: {input_file} not found.")
         return
     except json.JSONDecodeError:
-        print("Error: Invalid JSON in 10ks.json file.")
+        print(f"Error: Invalid JSON in {input_file}.")
         return
 
     # Load the generic concept mappings
     try:
-        with open("concept_mappings.json", 'r') as f:
+        with open("extracted_concept_mappings.json", 'r') as f:
             concept_mappings = json.load(f)
     except FileNotFoundError:
-        print(f"Mapping file concept_mapping.json not found")
-        return None
+        print("Mapping file extracted_concept_mappings.json not found")
+        return
     except json.JSONDecodeError:
-        print(f"Error decoding JSON from mapping file: concept_mappings.json")
-        return None
+        print("Error decoding JSON from mapping file: extracted_concept_mappings.json")
+        return
 
     # Dictionary to store all extracted data
     all_data = {}
@@ -163,13 +165,19 @@ def parse_10ks():
         print(f"Finished processing {company_name}")
         print("-------------------------")
 
-    # Write all data to data.json
-    with open('financial_data.json', 'w') as f:
+    # Write all data to the output file
+    with open(output_file, 'w') as f:
         json.dump(all_data, f, indent=4)
 
-    print("All data has been written to data.json")
+    print(f"All data has been written to {output_file}")
 
-
-# Example usage
+# Main execution
 if __name__ == "__main__":
-    parse_10ks()
+    if len(sys.argv) != 3:
+        print("Usage: python script_name.py <input_10ks_file> <output_extracted_data_file>")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+
+    parse_10ks(input_file, output_file)

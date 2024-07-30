@@ -1227,6 +1227,190 @@
       }
     ]
   },
+  "amazon": {
+    "2024": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2024-02-02",
+        "reportDate": "2023-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-24-000008",
+        "primaryDocument": "amzn-20231231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872424000008/0001018724-24-000008-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-24-000008&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2023-02-03",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-23-000004",
+        "primaryDocument": "amzn-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872423000004/0001018724-23-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-23-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2022-02-04",
+        "reportDate": "2021-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-22-000005",
+        "primaryDocument": "amzn-20211231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872422000005/0001018724-22-000005-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-22-000005&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2021-02-03",
+        "reportDate": "2020-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-21-000004",
+        "primaryDocument": "amzn-20201231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872421000004/0001018724-21-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-21-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/amzn-20201231_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2020-01-31",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-20-000004",
+        "primaryDocument": "amzn-20191231x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872420000004/0001018724-20-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-20-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/amzn-20191231x10k_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "1018724",
+        "name": "AMAZON COM INC",
+        "ticker": "AMZN",
+        "filingDate": "2019-02-01",
+        "reportDate": "2018-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001018724-19-000004",
+        "primaryDocument": "amzn-20181231x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872419000004/0001018724-19-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1018724&accession_number=0001018724-19-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231.xml"
+      }
+    ]
+  },
+  "wayfair": {
+    "2024": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2024-02-22",
+        "reportDate": "2023-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-24-000014",
+        "primaryDocument": "w-20231231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670724000014/0001616707-24-000014-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-24-000014&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670724000014/w-20231231_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2023-02-23",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-23-000037",
+        "primaryDocument": "w-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670723000037/0001616707-23-000037-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-23-000037&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670723000037/w-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2022-02-24",
+        "reportDate": "2021-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-22-000031",
+        "primaryDocument": "w-20211231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670722000031/0001616707-22-000031-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-22-000031&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670722000031/w-20211231_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2021-02-25",
+        "reportDate": "2020-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-21-000064",
+        "primaryDocument": "w-20201231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670721000064/0001616707-21-000064-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-21-000064&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670721000064/w-20201231_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2020-02-28",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-20-000025",
+        "primaryDocument": "a2019-12x31form10xk.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670720000025/0001616707-20-000025-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-20-000025&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670720000025/a2019-12x31form10xk_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "1616707",
+        "name": "Wayfair Inc.",
+        "ticker": "W",
+        "filingDate": "2019-02-25",
+        "reportDate": "2018-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001616707-19-000042",
+        "primaryDocument": "a2018-12x31form10xk.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001616707/000161670719000042/0001616707-19-000042-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1616707&accession_number=0001616707-19-000042&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670719000042/w-20181231.xml"
+      }
+    ]
+  },
   "chewy": {
     "2024": [
       {
@@ -2763,10 +2947,194 @@
       }
     ]
   },
+  "yeti": {
+    "2024": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2024-02-26",
+        "reportDate": "2023-12-30",
+        "form": "10-K",
+        "accessionNumber": "0001670592-24-000007",
+        "primaryDocument": "yeti-20231230.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000167059224000007/0001670592-24-000007-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001670592-24-000007&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000167059224000007/yeti-20231230_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2023-02-27",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0001670592-23-000006",
+        "primaryDocument": "yeti-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000167059223000006/0001670592-23-000006-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001670592-23-000006&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000167059223000006/yeti-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2022-02-28",
+        "reportDate": "2022-01-01",
+        "form": "10-K",
+        "accessionNumber": "0001670592-22-000009",
+        "primaryDocument": "yeti-20220101.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000167059222000009/0001670592-22-000009-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001670592-22-000009&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000167059222000009/yeti-20220101_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2021-03-01",
+        "reportDate": "2021-01-02",
+        "form": "10-K",
+        "accessionNumber": "0001670592-21-000004",
+        "primaryDocument": "yeti-20210102.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000167059221000004/0001670592-21-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001670592-21-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000167059221000004/yeti-20210102_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2020-02-18",
+        "reportDate": "2019-12-28",
+        "form": "10-K",
+        "accessionNumber": "0001628280-20-001627",
+        "primaryDocument": "yeti-20191228.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000162828020001627/0001628280-20-001627-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001628280-20-001627&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000162828020001627/yeti-20191228_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "1670592",
+        "name": "YETI Holdings, Inc.",
+        "ticker": "YETI",
+        "filingDate": "2019-03-20",
+        "reportDate": "2018-12-29",
+        "form": "10-K",
+        "accessionNumber": "0001558370-19-002297",
+        "primaryDocument": "yeti-20181229x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0001670592/000155837019002297/0001558370-19-002297-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=1670592&accession_number=0001558370-19-002297&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/1670592/000155837019002297/yeti-20181229.xml"
+      }
+    ]
+  },
+  "sherwin_williams": {
+    "2024": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2024-02-20",
+        "reportDate": "2023-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-24-000033",
+        "primaryDocument": "shw-20231231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980024000033/0000089800-24-000033-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-24-000033&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980024000033/shw-20231231_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2023-02-22",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-23-000007",
+        "primaryDocument": "shw-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980023000007/0000089800-23-000007-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-23-000007&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980023000007/shw-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2022-02-17",
+        "reportDate": "2021-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-22-000007",
+        "primaryDocument": "shw-20211231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980022000007/0000089800-22-000007-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-22-000007&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980022000007/shw-20211231_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2021-02-19",
+        "reportDate": "2020-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-21-000010",
+        "primaryDocument": "shw-20201231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980021000010/0000089800-21-000010-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-21-000010&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980021000010/shw-20201231_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2020-02-21",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-20-000005",
+        "primaryDocument": "shw-12312019x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980020000005/0000089800-20-000005-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-20-000005&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980020000005/shw-12312019x10k_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "89800",
+        "name": "SHERWIN WILLIAMS CO",
+        "ticker": "SHW",
+        "filingDate": "2019-02-22",
+        "reportDate": "2018-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000089800-19-000004",
+        "primaryDocument": "shw-12312018x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000089800/000008980019000004/0000089800-19-000004-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=89800&accession_number=0000089800-19-000004&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/89800/000008980019000004/shw-20181231.xml"
+      }
+    ]
+  },
   "rh": {
     "2024": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2024-03-28",
@@ -2781,7 +3149,7 @@
     ],
     "2023": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2023-03-29",
@@ -2796,7 +3164,7 @@
     ],
     "2022": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2022-03-30",
@@ -2811,7 +3179,7 @@
     ],
     "2021": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2021-03-30",
@@ -2826,7 +3194,7 @@
     ],
     "2020": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2020-03-30",
@@ -2841,7 +3209,7 @@
     ],
     "2019": [
       {
-        "cik": "1528849",
+        "cik": "0001528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2019-03-29",
@@ -3131,6 +3499,98 @@
       }
     ]
   },
+  "tractor_supply": {
+    "2024": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2024-02-23",
+        "reportDate": "2023-12-30",
+        "form": "10-K",
+        "accessionNumber": "0000916365-24-000046",
+        "primaryDocument": "tsco-20231230.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636524000046/0000916365-24-000046-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-24-000046&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636524000046/tsco-20231230_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2023-02-23",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000916365-23-000045",
+        "primaryDocument": "tsco-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636523000045/0000916365-23-000045-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-23-000045&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636523000045/tsco-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2022-02-17",
+        "reportDate": "2021-12-25",
+        "form": "10-K",
+        "accessionNumber": "0000916365-22-000049",
+        "primaryDocument": "tsco-20211225.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636522000049/0000916365-22-000049-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-22-000049&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636522000049/tsco-20211225_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2021-02-18",
+        "reportDate": "2020-12-26",
+        "form": "10-K",
+        "accessionNumber": "0000916365-21-000052",
+        "primaryDocument": "tsco-20201226.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636521000052/0000916365-21-000052-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-21-000052&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636521000052/tsco-20201226_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2020-02-20",
+        "reportDate": "2019-12-28",
+        "form": "10-K",
+        "accessionNumber": "0000916365-20-000050",
+        "primaryDocument": "tsco-20191228.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636520000050/0000916365-20-000050-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-20-000050&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636520000050/tsco-20191228_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "916365",
+        "name": "TRACTOR SUPPLY CO /DE/",
+        "ticker": "TSCO",
+        "filingDate": "2019-02-21",
+        "reportDate": "2018-12-29",
+        "form": "10-K",
+        "accessionNumber": "0000916365-19-000035",
+        "primaryDocument": "a2018q4form10-k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000916365/000091636519000035/0000916365-19-000035-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=916365&accession_number=0000916365-19-000035&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636519000035/tsco-20181229.xml"
+      }
+    ]
+  },
   "kroger": {
     "2024": [
       {
@@ -3392,10 +3852,102 @@
       }
     ]
   },
+  "cvs": {
+    "2024": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2024-02-07",
+        "reportDate": "2023-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-24-000007",
+        "primaryDocument": "cvs-20231231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480324000007/0000064803-24-000007-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-24-000007&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480324000007/cvs-20231231_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2023-02-08",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-23-000009",
+        "primaryDocument": "cvs-20221231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480323000009/0000064803-23-000009-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-23-000009&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480323000009/cvs-20221231_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2022-02-09",
+        "reportDate": "2021-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-22-000008",
+        "primaryDocument": "cvs-20211231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480322000008/0000064803-22-000008-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-22-000008&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480322000008/cvs-20211231_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2021-02-16",
+        "reportDate": "2020-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-21-000011",
+        "primaryDocument": "cvs-20201231.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480321000011/0000064803-21-000011-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-21-000011&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480321000011/cvs-20201231_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2020-02-18",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-20-000007",
+        "primaryDocument": "a2019form10-k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480320000007/0000064803-20-000007-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-20-000007&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480320000007/a2019form10-k_htm.xml"
+      }
+    ],
+    "2019": [
+      {
+        "cik": "64803",
+        "name": "CVS HEALTH Corp",
+        "ticker": "CVS",
+        "filingDate": "2019-02-28",
+        "reportDate": "2018-12-31",
+        "form": "10-K",
+        "accessionNumber": "0000064803-19-000013",
+        "primaryDocument": "cvs-2018231x10k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000064803/000006480319000013/0000064803-19-000013-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=64803&accession_number=0000064803-19-000013&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/64803/000006480319000013/cvs-20181231.xml"
+      }
+    ]
+  },
   "rite_aid": {
     "2023": [
       {
-        "cik": "84129",
+        "cik": "0000084129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2023-05-01",
@@ -3410,7 +3962,7 @@
     ],
     "2022": [
       {
-        "cik": "84129",
+        "cik": "0000084129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2022-04-25",
@@ -3425,7 +3977,7 @@
     ],
     "2021": [
       {
-        "cik": "84129",
+        "cik": "0000084129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2021-04-27",
@@ -3440,7 +3992,7 @@
     ],
     "2020": [
       {
-        "cik": "84129",
+        "cik": "0000084129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2020-04-27",
@@ -3455,7 +4007,7 @@
     ],
     "2019": [
       {
-        "cik": "84129",
+        "cik": "0000084129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2019-04-25",

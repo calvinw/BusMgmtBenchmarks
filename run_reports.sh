@@ -2,7 +2,7 @@
 
 # 1st arg is CIK json,
 # 2nd arg is SEC 10k links data
-python3 create_10k_json_data.py CIK-current.json 10ks.json
+python3 create_10k_json_data.py CIK.json 10ks.json
 
 # 1st arg is SEC 10k data,
 # 2nd arg is extracted json data

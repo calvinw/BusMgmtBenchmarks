@@ -6,7 +6,7 @@ import sys
 from pprint import pprint
 from datetime import datetime
 
-def is_valid_context(context, report_date):
+def is_valid_context(context, filing_year):
     # Check for non-null segment
     entity = context.find('.//{http://www.xbrl.org/2003/instance}entity')
     if entity is not None:
@@ -21,39 +21,39 @@ def is_valid_context(context, report_date):
         end_date = period.find('.//{http://www.xbrl.org/2003/instance}endDate')
         instant = period.find('.//{http://www.xbrl.org/2003/instance}instant')
 
-        report_date = datetime.strptime(report_date, "%Y-%m-%d")
-
         if start_date is not None and end_date is not None:
             start_date = datetime.strptime(start_date.text, "%Y-%m-%d")
             end_date = datetime.strptime(end_date.text, "%Y-%m-%d")
 
             # Check if the period spans approximately a year (allow for leap years)
             days_difference = (end_date - start_date).days
-            is_annual_period = 360 <= days_difference <= 370
+            if not (360 <= days_difference <= 370):
+                return False
 
-            # Check if the end date exactly matches the report date
-            is_matching_end_date = end_date == report_date
+            # Check if the context covers the most recent full year
+            #is_right_year = (start_date.year == filing_year - 1) and (end_date.year == filing_year)
+            is_right_year = (start_date.year == filing_year - 1)
 
-            return is_annual_period and is_matching_end_date
-
+            return is_right_year
         elif instant is not None:
-            instant_date = datetime.strptime(instant.text, "%Y-%m-%d")
+            instant_year = int(instant.text.split('-')[0])
 
-            # Check if the instant date exactly matches the report date
-            return instant_date == report_date
+            # Check if the instant is in the filing year
+            #return instant_year == filing_year -1
+            return instant_year == filing_year -1
 
     return False
 
-def extract_value(fact, root, report_date):
+def extract_value(fact, root, filing_year):
     if fact is not None:
         context_ref = fact.get('contextRef')
         if context_ref:
             context = root.find(f".//*[@id='{context_ref}']")
-            if context is not None and is_valid_context(context, report_date):
+            if context is not None and is_valid_context(context, filing_year):
                 return fact.text
     return None
 
-def parse_xbrl(file_path, concept_mappings, report_date):
+def parse_xbrl(file_path, concept_mappings, filing_year):
     # Parse the XBRL file
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -76,7 +76,7 @@ def parse_xbrl(file_path, concept_mappings, report_date):
                 xpath = f".//{{{uri}}}{concept}"
                 facts = root.findall(xpath)
                 for fact in facts:
-                    val = extract_value(fact, root, report_date)
+                    val = extract_value(fact, root, filing_year)
                     if val is not None:
                         try:
                             results[field] = round(float(val)/1000000, 2)  # Convert to millions and round to 2 decimal places
@@ -141,14 +141,14 @@ def parse_10ks(input_file, output_file):
             print(f"  Processing year: {year}")
             for filing in filings:
                 xbrl_url = filing['xbrlUrl']
-                report_date = filing['reportDate']
+                filing_year = int(filing['filingDate'][:4])
 
                 # Download the XBRL file
                 file_path = f"temp_{company_name}_{year}.xml"
                 if download_xbrl(xbrl_url, file_path):
                     try:
                         # Parse the XBRL file
-                        extracted_data = parse_xbrl(file_path, concept_mappings, report_date)
+                        extracted_data = parse_xbrl(file_path, concept_mappings, filing_year)
                         if extracted_data:
                             company_data[year] = extracted_data
                             print(f"    Successfully extracted data for {year}")

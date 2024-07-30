@@ -24,17 +24,10 @@ def is_valid_context(context, report_date):
         report_date = datetime.strptime(report_date, "%Y-%m-%d")
 
         if start_date is not None and end_date is not None:
-            start_date = datetime.strptime(start_date.text, "%Y-%m-%d")
             end_date = datetime.strptime(end_date.text, "%Y-%m-%d")
 
-            # Check if the period spans approximately a year (allow for leap years)
-            days_difference = (end_date - start_date).days
-            is_annual_period = 360 <= days_difference <= 370
-
             # Check if the end date exactly matches the report date
-            is_matching_end_date = end_date == report_date
-
-            return is_annual_period and is_matching_end_date
+            return end_date == report_date
 
         elif instant is not None:
             instant_date = datetime.strptime(instant.text, "%Y-%m-%d")

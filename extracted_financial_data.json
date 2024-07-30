@@ -1054,6 +1054,166 @@
             "Total Liabilities and Shareholder Equity": 12469.0
         }
     },
+    "amazon": {
+        "2024": {
+            "Net Revenue": 574785.0,
+            "Cost of Goods": 304739.0,
+            "SG&A": 11816.0,
+            "Operating Profit": 36852.0,
+            "Net Profit": 30425.0,
+            "Inventory": 33318.0,
+            "Current Assets": 172351.0,
+            "Total Assets": 527854.0,
+            "Current Liabilities": 164917.0,
+            "Total Shareholder Equity": 201875.0,
+            "Total Liabilities and Shareholder Equity": 527854.0
+        },
+        "2023": {
+            "Net Revenue": 513983.0,
+            "Cost of Goods": 288831.0,
+            "SG&A": 11891.0,
+            "Operating Profit": 12248.0,
+            "Net Profit": -2722.0,
+            "Inventory": 34405.0,
+            "Current Assets": 146791.0,
+            "Total Assets": 462675.0,
+            "Current Liabilities": 155393.0,
+            "Total Shareholder Equity": 146043.0,
+            "Total Liabilities and Shareholder Equity": 462675.0
+        },
+        "2022": {
+            "Net Revenue": 469822.0,
+            "Cost of Goods": 272344.0,
+            "SG&A": 8823.0,
+            "Operating Profit": 24879.0,
+            "Net Profit": 33364.0,
+            "Inventory": 32640.0,
+            "Current Assets": 161580.0,
+            "Total Assets": 420549.0,
+            "Current Liabilities": 142266.0,
+            "Total Shareholder Equity": 138245.0,
+            "Total Liabilities and Shareholder Equity": 420549.0
+        },
+        "2021": {
+            "Net Revenue": 386064.0,
+            "Cost of Goods": 233307.0,
+            "SG&A": 6668.0,
+            "Operating Profit": 22899.0,
+            "Net Profit": 21331.0,
+            "Inventory": 23795.0,
+            "Current Assets": 132733.0,
+            "Total Assets": 321195.0,
+            "Current Liabilities": 126385.0,
+            "Total Shareholder Equity": 93404.0,
+            "Total Liabilities and Shareholder Equity": 321195.0
+        },
+        "2020": {
+            "Net Revenue": 280522.0,
+            "Cost of Goods": 165536.0,
+            "SG&A": 5203.0,
+            "Operating Profit": 14541.0,
+            "Net Profit": 11588.0,
+            "Inventory": 20497.0,
+            "Current Assets": 96334.0,
+            "Total Assets": 225248.0,
+            "Current Liabilities": 87812.0,
+            "Total Shareholder Equity": 62060.0,
+            "Total Liabilities and Shareholder Equity": 225248.0
+        },
+        "2019": {
+            "Net Revenue": 232887.0,
+            "Cost of Goods": 139156.0,
+            "SG&A": 4336.0,
+            "Operating Profit": 12421.0,
+            "Net Profit": 10073.0,
+            "Inventory": 17174.0,
+            "Current Assets": 75101.0,
+            "Total Assets": 162648.0,
+            "Current Liabilities": 68391.0,
+            "Total Shareholder Equity": 43549.0,
+            "Total Liabilities and Shareholder Equity": 162648.0
+        }
+    },
+    "wayfair": {
+        "2024": {
+            "Net Revenue": 12003.0,
+            "Cost of Goods": 8336.0,
+            "SG&A": 4480.0,
+            "Operating Profit": -813.0,
+            "Net Profit": -738.0,
+            "Inventory": 75.0,
+            "Current Assets": 1855.0,
+            "Total Assets": 3474.0,
+            "Current Liabilities": 2183.0,
+            "Total Shareholder Equity": -2707.0,
+            "Total Liabilities and Shareholder Equity": 3474.0
+        },
+        "2023": {
+            "Net Revenue": 12218.0,
+            "Cost of Goods": 8802.0,
+            "SG&A": 4800.0,
+            "Operating Profit": -1384.0,
+            "Net Profit": -1331.0,
+            "Inventory": 90.0,
+            "Current Assets": 1933.0,
+            "Total Assets": 3580.0,
+            "Current Liabilities": 2072.0,
+            "Total Shareholder Equity": -2550.0,
+            "Total Liabilities and Shareholder Equity": 3580.0
+        },
+        "2022": {
+            "Net Revenue": 13708.0,
+            "Cost of Goods": 9813.0,
+            "SG&A": 3989.0,
+            "Operating Profit": -94.0,
+            "Net Profit": -131.0,
+            "Inventory": 69.0,
+            "Current Assets": 3012.0,
+            "Total Assets": 4570.0,
+            "Current Liabilities": 2217.0,
+            "Total Shareholder Equity": -1619.0,
+            "Total Liabilities and Shareholder Equity": 4570.0
+        },
+        "2021": {
+            "Net Revenue": 14145.16,
+            "Cost of Goods": 10032.99,
+            "SG&A": 3751.82,
+            "Operating Profit": 360.35,
+            "Net Profit": 185.0,
+            "Inventory": 52.15,
+            "Current Assets": 3045.8,
+            "Total Assets": 4569.93,
+            "Current Liabilities": 2165.59,
+            "Total Shareholder Equity": -1191.9,
+            "Total Liabilities and Shareholder Equity": 4569.93
+        },
+        "2020": {
+            "Net Revenue": 9127.06,
+            "Cost of Goods": 6979.73,
+            "SG&A": 3077.27,
+            "Operating Profit": -929.94,
+            "Net Profit": -984.58,
+            "Inventory": 61.69,
+            "Current Assets": 1377.14,
+            "Total Assets": 2953.05,
+            "Current Liabilities": 1611.52,
+            "Total Shareholder Equity": -944.21,
+            "Total Liabilities and Shareholder Equity": 2953.05
+        },
+        "2019": {
+            "Net Revenue": 6779.17,
+            "Cost of Goods": 5192.45,
+            "SG&A": 2060.0,
+            "Operating Profit": -473.28,
+            "Net Profit": -504.08,
+            "Inventory": 46.16,
+            "Current Assets": 1255.94,
+            "Total Assets": 1890.85,
+            "Current Liabilities": 1139.22,
+            "Total Shareholder Equity": -330.72,
+            "Total Liabilities and Shareholder Equity": 1890.85
+        }
+    },
     "chewy": {
         "2024": {
             "Net Revenue": 11147.72,
@@ -2377,6 +2537,166 @@
             "Total Liabilities and Shareholder Equity": 12901.0
         }
     },
+    "yeti": {
+        "2024": {
+            "Net Revenue": 1658.71,
+            "Cost of Goods": 715.53,
+            "SG&A": 717.73,
+            "Operating Profit": 225.46,
+            "Net Profit": 169.88,
+            "Inventory": 337.21,
+            "Current Assets": 914.4,
+            "Total Assets": 1297.19,
+            "Current Liabilities": 398.35,
+            "Total Shareholder Equity": 723.61,
+            "Total Liabilities and Shareholder Equity": 1297.19
+        },
+        "2023": {
+            "Net Revenue": 1595.22,
+            "Cost of Goods": 58.6,
+            "SG&A": 637.04,
+            "Operating Profit": 126.36,
+            "Net Profit": 89.69,
+            "Inventory": 371.41,
+            "Current Assets": 718.92,
+            "Total Assets": 1076.77,
+            "Current Liabilities": 409.04,
+            "Total Shareholder Equity": 526.48,
+            "Total Liabilities and Shareholder Equity": 1076.77
+        },
+        "2022": {
+            "Net Revenue": 1410.99,
+            "Cost of Goods": 594.88,
+            "SG&A": 541.17,
+            "Operating Profit": 274.94,
+            "Net Profit": 212.6,
+            "Inventory": 318.86,
+            "Current Assets": 770.17,
+            "Total Assets": 1096.36,
+            "Current Liabilities": 403.71,
+            "Total Shareholder Equity": 517.82,
+            "Total Liabilities and Shareholder Equity": 1096.36
+        },
+        "2021": {
+            "Net Revenue": 1091.72,
+            "Cost of Goods": 462.92,
+            "SG&A": 414.57,
+            "Operating Profit": 214.23,
+            "Net Profit": 155.8,
+            "Inventory": 140.11,
+            "Current Assets": 476.5,
+            "Total Assets": 737.07,
+            "Current Liabilities": 287.76,
+            "Total Shareholder Equity": 288.42,
+            "Total Liabilities and Shareholder Equity": 737.07
+        },
+        "2020": {
+            "Net Revenue": 913.73,
+            "Cost of Goods": 438.42,
+            "SG&A": 385.54,
+            "Operating Profit": 89.77,
+            "Net Profit": 50.43,
+            "Inventory": 185.7,
+            "Current Assets": 360.55,
+            "Total Assets": 629.54,
+            "Current Liabilities": 170.31,
+            "Total Shareholder Equity": 122.0,
+            "Total Liabilities and Shareholder Equity": 629.54
+        },
+        "2019": {
+            "Net Revenue": 778.83,
+            "Cost of Goods": 395.7,
+            "SG&A": 280.97,
+            "Operating Profit": 102.16,
+            "Net Profit": 57.76,
+            "Inventory": 145.42,
+            "Current Assets": 297.01,
+            "Total Assets": 514.21,
+            "Current Liabilities": 187.34,
+            "Total Shareholder Equity": 28.97,
+            "Total Liabilities and Shareholder Equity": 514.21
+        }
+    },
+    "sherwin_williams": {
+        "2024": {
+            "Net Revenue": 23051.9,
+            "Cost of Goods": 12293.8,
+            "SG&A": 7065.4,
+            "Operating Profit": 4161.7,
+            "Net Profit": 2388.8,
+            "Inventory": 2329.8,
+            "Current Assets": 5512.9,
+            "Total Assets": 22954.4,
+            "Current Liabilities": 6626.9,
+            "Total Shareholder Equity": 3715.8,
+            "Total Liabilities and Shareholder Equity": 22954.4
+        },
+        "2023": {
+            "Net Revenue": 22148.9,
+            "Cost of Goods": 12823.8,
+            "SG&A": 6014.5,
+            "Operating Profit": 3397.2,
+            "Net Profit": 2020.1,
+            "Inventory": 2626.5,
+            "Current Assets": 5907.7,
+            "Total Assets": 22594.0,
+            "Current Liabilities": 5960.7,
+            "Total Shareholder Equity": 3102.1,
+            "Total Liabilities and Shareholder Equity": 22594.0
+        },
+        "2022": {
+            "Net Revenue": 19944.6,
+            "Cost of Goods": 11401.9,
+            "SG&A": 5572.5,
+            "Operating Profit": 3083.7,
+            "Net Profit": 1864.4,
+            "Inventory": 1927.2,
+            "Current Assets": 5053.7,
+            "Total Assets": 20666.7,
+            "Current Liabilities": 5719.5,
+            "Total Shareholder Equity": 2437.2,
+            "Total Liabilities and Shareholder Equity": 20666.7
+        },
+        "2021": {
+            "Net Revenue": 18361.7,
+            "Cost of Goods": 9679.1,
+            "SG&A": 5477.9,
+            "Operating Profit": 3373.8,
+            "Net Profit": 2030.4,
+            "Inventory": 1804.1,
+            "Current Assets": 4591.4,
+            "Total Assets": 20401.6,
+            "Current Liabilities": 4594.4,
+            "Total Shareholder Equity": 3610.8,
+            "Total Liabilities and Shareholder Equity": 20401.6
+        },
+        "2020": {
+            "Net Revenue": 17900.8,
+            "Cost of Goods": 9864.7,
+            "SG&A": 5274.9,
+            "Operating Profit": 2808.8,
+            "Net Profit": 1541.3,
+            "Inventory": 1889.6,
+            "Current Assets": 4631.7,
+            "Total Assets": 20496.2,
+            "Current Liabilities": 4521.9,
+            "Total Shareholder Equity": 4123.3,
+            "Total Liabilities and Shareholder Equity": 20496.2
+        },
+        "2019": {
+            "Net Revenue": 17534.49,
+            "Cost of Goods": 10115.93,
+            "SG&A": 5033.78,
+            "Operating Profit": 2611.0,
+            "Net Profit": 1108.75,
+            "Inventory": 1815.28,
+            "Current Assets": 4344.49,
+            "Total Assets": 19134.0,
+            "Current Liabilities": 4297.75,
+            "Total Shareholder Equity": 3730.74,
+            "Total Liabilities and Shareholder Equity": 19134.28
+        }
+    },
     "rh": {
         "2024": {
             "Net Revenue": 3029.13,
@@ -2697,6 +3017,86 @@
             "Total Liabilities and Shareholder Equity": 34508.0
         }
     },
+    "tractor_supply": {
+        "2024": {
+            "Net Revenue": 14555.74,
+            "Cost of Goods": 9327.52,
+            "SG&A": 3356.26,
+            "Operating Profit": 1478.91,
+            "Net Profit": 1107.23,
+            "Inventory": 2645.85,
+            "Current Assets": 3263.94,
+            "Total Assets": 9188.15,
+            "Current Liabilities": 2177.08,
+            "Total Shareholder Equity": 2149.76,
+            "Total Liabilities and Shareholder Equity": 9188.15
+        },
+        "2023": {
+            "Net Revenue": 14204.72,
+            "Cost of Goods": 9232.51,
+            "SG&A": 3194.2,
+            "Operating Profit": 1434.94,
+            "Net Profit": 1088.71,
+            "Inventory": 2709.6,
+            "Current Assets": 3157.78,
+            "Total Assets": 8489.99,
+            "Current Liabilities": 2376.21,
+            "Total Shareholder Equity": 2042.42,
+            "Total Liabilities and Shareholder Equity": 8489.99
+        },
+        "2022": {
+            "Net Revenue": 12731.1,
+            "Cost of Goods": 8253.95,
+            "SG&A": 2900.3,
+            "Operating Profit": 1306.7,
+            "Net Profit": 997.11,
+            "Inventory": 2191.19,
+            "Current Assets": 3250.44,
+            "Total Assets": 7767.47,
+            "Current Liabilities": 2064.84,
+            "Total Shareholder Equity": 2002.66,
+            "Total Liabilities and Shareholder Equity": 7767.47
+        },
+        "2021": {
+            "Net Revenue": 10620.35,
+            "Cost of Goods": 6858.8,
+            "SG&A": 2478.52,
+            "Operating Profit": 996.93,
+            "Net Profit": 748.96,
+            "Inventory": 1783.27,
+            "Current Assets": 3258.68,
+            "Total Assets": 7049.12,
+            "Current Liabilities": 1743.8,
+            "Total Shareholder Equity": 1923.84,
+            "Total Liabilities and Shareholder Equity": 7049.12
+        },
+        "2020": {
+            "Net Revenue": 8351.93,
+            "Cost of Goods": 5480.16,
+            "SG&A": 1932.57,
+            "Operating Profit": 743.22,
+            "Net Profit": 562.35,
+            "Inventory": 1602.78,
+            "Current Assets": 1787.89,
+            "Total Assets": 5289.27,
+            "Current Liabilities": 1247.6,
+            "Total Shareholder Equity": 1567.12,
+            "Total Liabilities and Shareholder Equity": 5289.27
+        },
+        "2019": {
+            "Net Revenue": 7911.05,
+            "Cost of Goods": 5208.52,
+            "SG&A": 1823.44,
+            "Operating Profit": 701.74,
+            "Net Profit": 532.36,
+            "Inventory": 1589.54,
+            "Current Assets": 1794.4,
+            "Total Assets": 3085.26,
+            "Current Liabilities": 938.11,
+            "Total Shareholder Equity": 1561.82,
+            "Total Liabilities and Shareholder Equity": 3085.26
+        }
+    },
     "kroger": {
         "2024": {
             "Net Revenue": 150039.0,
@@ -2909,6 +3309,86 @@
             "Current Liabilities": 25769.0,
             "Total Shareholder Equity": 23512.0,
             "Total Liabilities and Shareholder Equity": 67598.0
+        }
+    },
+    "cvs": {
+        "2024": {
+            "Net Revenue": 357776.0,
+            "Cost of Goods": 217098.0,
+            "SG&A": 39832.0,
+            "Operating Profit": 13743.0,
+            "Net Profit": 8368.0,
+            "Inventory": 18025.0,
+            "Current Assets": 67858.0,
+            "Total Assets": 249728.0,
+            "Current Liabilities": 79189.0,
+            "Total Shareholder Equity": 76461.0,
+            "Total Liabilities and Shareholder Equity": 249728.0
+        },
+        "2023": {
+            "Net Revenue": 322467.0,
+            "Cost of Goods": 196892.0,
+            "SG&A": 38212.0,
+            "Operating Profit": 7746.0,
+            "Net Profit": 4165.0,
+            "Inventory": 19090.0,
+            "Current Assets": 65682.0,
+            "Total Assets": 228275.0,
+            "Current Liabilities": 69736.0,
+            "Total Shareholder Equity": 71015.0,
+            "Total Liabilities and Shareholder Equity": 228275.0
+        },
+        "2022": {
+            "Net Revenue": 292111.0,
+            "Cost of Goods": 175803.0,
+            "SG&A": 37066.0,
+            "Operating Profit": 13193.0,
+            "Net Profit": 7898.0,
+            "Inventory": 17760.0,
+            "Current Assets": 60008.0,
+            "Total Assets": 232999.0,
+            "Current Liabilities": 67807.0,
+            "Total Shareholder Equity": 75075.0,
+            "Total Liabilities and Shareholder Equity": 232999.0
+        },
+        "2021": {
+            "Net Revenue": 268706.0,
+            "Cost of Goods": 163981.0,
+            "SG&A": 35135.0,
+            "Operating Profit": 13911.0,
+            "Net Profit": 7192.0,
+            "Inventory": 18496.0,
+            "Current Assets": 56369.0,
+            "Total Assets": 230715.0,
+            "Current Liabilities": 62017.0,
+            "Total Shareholder Equity": 69389.0,
+            "Total Liabilities and Shareholder Equity": 230715.0
+        },
+        "2020": {
+            "Net Revenue": 256776.0,
+            "Cost of Goods": 158719.0,
+            "SG&A": 33541.0,
+            "Operating Profit": 11987.0,
+            "Net Profit": 6631.0,
+            "Inventory": 17516.0,
+            "Current Assets": 50302.0,
+            "Total Assets": 222449.0,
+            "Current Liabilities": 53303.0,
+            "Total Shareholder Equity": 63864.0,
+            "Total Liabilities and Shareholder Equity": 222449.0
+        },
+        "2019": {
+            "Net Revenue": 193919.0,
+            "Cost of Goods": 156447.0,
+            "SG&A": 21368.0,
+            "Operating Profit": 4021.0,
+            "Net Profit": -596.0,
+            "Inventory": 16450.0,
+            "Current Assets": 45243.0,
+            "Total Assets": 196456.0,
+            "Current Liabilities": 44009.0,
+            "Total Shareholder Equity": 58225.0,
+            "Total Liabilities and Shareholder Equity": 196456.0
         }
     },
     "rite_aid": {

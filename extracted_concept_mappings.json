@@ -23,7 +23,12 @@
     "OtherSellingGeneralAndAdministrativeExpense",
     "MarketingGeneralAndAdministrativeExpense",
     "OperatingExpenses",
-    "OperatingGeneralAndAdministrativeExpense"
+    "OperatingGeneralAndAdministrativeExpense",
+    "GeneralAndAdministrativeExpense",
+    "OtherCostAndExpenseOperating",
+    "OperatingExpensesExcludingStoreImpairmentsGoodwillImpairmentsLossOnAssetsHeldForSaleAndLossOnLitigationSettlement",
+    "OperatingExpensesExcludingStoreImpairmentsAndGoodwillImpairments",
+    "OperatingExpensesExcludingGoodwillImpairments"
   ],
   "Operating Profit": [
     "OperatingIncomeLoss",

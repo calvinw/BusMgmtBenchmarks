@@ -2701,6 +2701,83 @@
       }
     ]
   },
+  "levi": {
+    "2024": [
+      {
+        "cik": "94845",
+        "name": "LEVI STRAUSS & CO",
+        "ticker": "LEVI",
+        "filingDate": "2024-01-25",
+        "reportDate": "2023-11-26",
+        "form": "10-K",
+        "accessionNumber": "0000094845-24-000010",
+        "primaryDocument": "lvis-20231126.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000094845/000009484524000010/0000094845-24-000010-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=94845&accession_number=0000094845-24-000010&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484524000010/lvis-20231126_htm.xml"
+      }
+    ],
+    "2023": [
+      {
+        "cik": "94845",
+        "name": "LEVI STRAUSS & CO",
+        "ticker": "LEVI",
+        "filingDate": "2023-01-25",
+        "reportDate": "2022-11-27",
+        "form": "10-K",
+        "accessionNumber": "0000094845-23-000006",
+        "primaryDocument": "lvis-20221127.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000094845/000009484523000006/0000094845-23-000006-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=94845&accession_number=0000094845-23-000006&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484523000006/lvis-20221127_htm.xml"
+      }
+    ],
+    "2022": [
+      {
+        "cik": "94845",
+        "name": "LEVI STRAUSS & CO",
+        "ticker": "LEVI",
+        "filingDate": "2022-01-26",
+        "reportDate": "2021-11-28",
+        "form": "10-K",
+        "accessionNumber": "0000094845-22-000010",
+        "primaryDocument": "lvis-20211128.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000094845/000009484522000010/0000094845-22-000010-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=94845&accession_number=0000094845-22-000010&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484522000010/lvis-20211128_htm.xml"
+      }
+    ],
+    "2021": [
+      {
+        "cik": "94845",
+        "name": "LEVI STRAUSS & CO",
+        "ticker": "LEVI",
+        "filingDate": "2021-01-27",
+        "reportDate": "2020-11-29",
+        "form": "10-K",
+        "accessionNumber": "0000094845-21-000009",
+        "primaryDocument": "lvis-20201129.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000094845/000009484521000009/0000094845-21-000009-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=94845&accession_number=0000094845-21-000009&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484521000009/lvis-20201129_htm.xml"
+      }
+    ],
+    "2020": [
+      {
+        "cik": "94845",
+        "name": "LEVI STRAUSS & CO",
+        "ticker": "LEVI",
+        "filingDate": "2020-01-30",
+        "reportDate": "2019-11-24",
+        "form": "10-K",
+        "accessionNumber": "0000094845-20-000008",
+        "primaryDocument": "a2019yeform10-k.htm",
+        "secIndexUrl": "https://www.sec.gov/Archives/edgar/data/0000094845/000009484520000008/0000094845-20-000008-index.html",
+        "interactiveDataUrl": "https://www.sec.gov/cgi-bin/viewer?action=view&cik=94845&accession_number=0000094845-20-000008&xbrl_type=v",
+        "xbrlUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484520000008/a2019yeform10-k_htm.xml"
+      }
+    ]
+  },
   "dicks": {
     "2024": [
       {
@@ -3042,7 +3119,7 @@
   "sherwin_williams": {
     "2024": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2024-02-20",
@@ -3057,7 +3134,7 @@
     ],
     "2023": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2023-02-22",
@@ -3072,7 +3149,7 @@
     ],
     "2022": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2022-02-17",
@@ -3087,7 +3164,7 @@
     ],
     "2021": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2021-02-19",
@@ -3102,7 +3179,7 @@
     ],
     "2020": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2020-02-21",
@@ -3117,7 +3194,7 @@
     ],
     "2019": [
       {
-        "cik": "89800",
+        "cik": "0000089800",
         "name": "SHERWIN WILLIAMS CO",
         "ticker": "SHW",
         "filingDate": "2019-02-22",
@@ -3134,7 +3211,7 @@
   "rh": {
     "2024": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2024-03-28",
@@ -3149,7 +3226,7 @@
     ],
     "2023": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2023-03-29",
@@ -3164,7 +3241,7 @@
     ],
     "2022": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2022-03-30",
@@ -3179,7 +3256,7 @@
     ],
     "2021": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2021-03-30",
@@ -3194,7 +3271,7 @@
     ],
     "2020": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2020-03-30",
@@ -3209,7 +3286,7 @@
     ],
     "2019": [
       {
-        "cik": "0001528849",
+        "cik": "1528849",
         "name": "RH",
         "ticker": "RH",
         "filingDate": "2019-03-29",
@@ -3947,7 +4024,7 @@
   "rite_aid": {
     "2023": [
       {
-        "cik": "0000084129",
+        "cik": "84129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2023-05-01",
@@ -3962,7 +4039,7 @@
     ],
     "2022": [
       {
-        "cik": "0000084129",
+        "cik": "84129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2022-04-25",
@@ -3977,7 +4054,7 @@
     ],
     "2021": [
       {
-        "cik": "0000084129",
+        "cik": "84129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2021-04-27",
@@ -3992,7 +4069,7 @@
     ],
     "2020": [
       {
-        "cik": "0000084129",
+        "cik": "84129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2020-04-27",
@@ -4007,7 +4084,7 @@
     ],
     "2019": [
       {
-        "cik": "0000084129",
+        "cik": "84129",
         "name": "RITE AID CORP",
         "ticker": "RADCQ",
         "filingDate": "2019-04-25",

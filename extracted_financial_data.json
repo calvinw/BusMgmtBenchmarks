@@ -2323,6 +2323,60 @@
             "Total Liabilities and Shareholder Equity": 8049.0
         }
     },
+    "levi": {
+        "2024": {
+            "Net Revenue": 6179.0,
+            "Cost of Goods": 2663.3,
+            "SG&A": 3072.2,
+            "Operating Profit": 353.3,
+            "Net Profit": 249.6,
+            "Inventory": 1290.1,
+            "Current Assets": 2637.6,
+            "Total Assets": 6053.6,
+            "Current Liabilities": 1787.5,
+            "Total Shareholder Equity": 2046.4,
+            "Total Liabilities and Shareholder Equity": 6053.6
+        },
+        "2023": {
+            "Net Revenue": 6168.6,
+            "Cost of Goods": 2619.8,
+            "SG&A": 2893.2,
+            "Operating Profit": 646.5,
+            "Net Profit": 569.1,
+            "Inventory": 1416.8,
+            "Current Assets": 2827.9,
+            "Total Assets": 6037.8,
+            "Current Liabilities": 1981.6,
+            "Total Shareholder Equity": 1903.7,
+            "Total Liabilities and Shareholder Equity": 6037.8
+        },
+        "2022": {
+            "Net Revenue": 5763.94,
+            "Cost of Goods": 2417.22,
+            "SG&A": 2652.21,
+            "Operating Profit": 686.21,
+            "Net Profit": 553.54,
+            "Inventory": 897.95,
+            "Current Assets": 2709.9,
+            "Total Assets": 5900.07,
+            "Current Liabilities": 1869.62,
+            "Total Shareholder Equity": 1665.66,
+            "Total Liabilities and Shareholder Equity": 5900.07
+        },
+        "2021": {
+            "Net Revenue": 4452.61,
+            "Cost of Goods": 2099.68,
+            "SG&A": 2347.63,
+            "Operating Profit": -85.12,
+            "Net Profit": -127.14,
+            "Inventory": 817.69,
+            "Current Assets": 3126.24,
+            "Total Assets": 5641.24,
+            "Current Liabilities": 1548.88,
+            "Total Shareholder Equity": 1299.47,
+            "Total Liabilities and Shareholder Equity": 5641.24
+        }
+    },
     "dicks": {
         "2024": {
             "Net Revenue": 12984.4,

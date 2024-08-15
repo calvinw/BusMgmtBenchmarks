@@ -1,8 +1,10 @@
-import json
-from collections import OrderedDict
+import csv
 import sys
+from collections import OrderedDict
 
 def format_value(value, is_percentage=False):
+    if isinstance(value, str):
+        return value
     if is_percentage:
         return f"{value:.1f}%"
     else:
@@ -42,43 +44,48 @@ def calculate_financial_metrics(data):
     return metrics
 
 def process_financial_data(input_file, output_file):
-    # Read the input JSON file
     try:
         with open(input_file, 'r') as f:
-            data = json.load(f)
+            reader = csv.DictReader(f)
+            data = list(reader)
     except FileNotFoundError:
         print(f"Error: Input file '{input_file}' not found.")
         return
-    except json.JSONDecodeError:
-        print(f"Error: Invalid JSON in input file '{input_file}'.")
+    except csv.Error as e:
+        print(f"Error reading CSV file: {e}")
         return
 
-    # Process the data for each company
-    for company in data:
-        for year in data[company]:
-            # Create a new ordered dictionary with the updated fields
-            updated_year_data = OrderedDict()
-            metrics = calculate_financial_metrics(data[company][year])
+    output_data = []
+    fieldnames = list(data[0].keys()) + [
+        'Gross Margin', 'Liabilities', 'Cost of Goods Percentage', 'Gross Margin Percentage',
+        'SG&A Expense Percentage', 'Operating Profit Margin Percentage', 'Net Profit Margin Percentage',
+        'Inventory Turnover', 'Asset Turnover', 'Return on Assets Percentage', 'Current Ratio',
+        'Quick Ratio', 'Debt to Equity Ratio'
+    ]
 
-            for key, value in data[company][year].items():
-                updated_year_data[key] = format_value(float(value))
-                if key == 'Cost of Goods':
-                    updated_year_data['Gross Margin'] = metrics['Gross Margin']
-                elif key == 'Current Liabilities':
-                    updated_year_data['Liabilities'] = metrics['Liabilities']
+    for row in data:
+        metrics = calculate_financial_metrics(row)
+        updated_row = OrderedDict()
+        for key in fieldnames:
+            if key in row:
+                if key in ['company_name', 'year']:
+                    updated_row[key] = row[key]
+                else:
+                    try:
+                        updated_row[key] = format_value(float(row[key]))
+                    except ValueError:
+                        updated_row[key] = row[key]  # Keep the original value if it can't be converted to float
+            elif key in metrics:
+                updated_row[key] = metrics[key]
+            else:
+                updated_row[key] = ''
+        output_data.append(updated_row)
 
-            # Add the remaining new metrics to the updated data
-            for key, value in metrics.items():
-                if key not in updated_year_data:
-                    updated_year_data[key] = value
-
-            # Update the data with the new ordered dictionary
-            data[company][year] = updated_year_data
-
-    # Write the updated data to the output JSON file
     try:
-        with open(output_file, 'w') as f:
-            json.dump(data, f, indent=4)
+        with open(output_file, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(output_data)
         print(f"Processing complete. Updated data written to {output_file}")
     except IOError:
         print(f"Error: Unable to write to output file '{output_file}'.")

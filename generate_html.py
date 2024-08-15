@@ -1,16 +1,41 @@
+import csv
 import json
 import sys
+from collections import defaultdict
 
-def generate_html(financial_data_file, output_html_file, sec_filings_file=None):
+def read_csv(file_path):
+    with open(file_path, 'r') as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+def generate_html(financial_data_file, output_html_file, sec_filings_file):
     # Load the financial data
-    with open(financial_data_file, 'r') as f:
-        financial_data = json.load(f)
+    financial_data = read_csv(financial_data_file)
 
-    # Load the SEC filings data if provided
-    sec_filings = {}
-    if sec_filings_file:
-        with open(sec_filings_file, 'r') as f:
-            sec_filings = json.load(f)
+    # Load the SEC filings data
+    sec_filings = read_csv(sec_filings_file)
+
+    # Restructure the financial data
+    financial_data_dict = defaultdict(lambda: defaultdict(dict))
+    for row in financial_data:
+        company = row['company_name']
+        year = row['year']
+        for key, value in row.items():
+            if key not in ['company_name', 'year']:
+                financial_data_dict[company][year][key] = value
+
+    # Restructure the SEC filings data
+    sec_filings_dict = defaultdict(lambda: defaultdict(list))
+    for row in sec_filings:
+        company = row['company_name']
+        year = row['year']
+        sec_filings_dict[company][year].append({
+            'filingDate': row['filingDate'],
+            'reportDate': row['reportDate'],
+            'secIndexUrl': row['secIndexUrl'],
+            'interactiveDataUrl': row['interactiveDataUrl'],
+            'xbrlUrl': row['xbrlUrl']
+        })
 
     # Create the HTML content
     html_content = f'''
@@ -90,15 +115,15 @@ def generate_html(financial_data_file, output_html_file, sec_filings_file=None):
 
         <h2>Quick Links</h2>
         <ul>
-            {''.join(f'<li><a href="#{company}">{company.replace("_", " ").title()}</a></li>' for company in financial_data.keys())}
+            {''.join(f'<li><a href="#{company}">{company.replace("_", " ").title()}</a></li>' for company in financial_data_dict.keys())}
         </ul>
 
         <div id="tables"></div>
 
         <script>
-            const financialData = {json.dumps(financial_data)};
+            const financialData = {json.dumps(financial_data_dict)};
 
-            const secFilings = {json.dumps(sec_filings)};
+            const secFilings = {json.dumps(sec_filings_dict)};
 
             function createTables() {{
                 const tablesElement = document.getElementById('tables');
@@ -157,7 +182,7 @@ def generate_html(financial_data_file, output_html_file, sec_filings_file=None):
                     years.forEach(year => {{
                         const cell = row.insertCell();
                         const value = yearData[year][metric];
-                        if (value === null) {{
+                        if (value === null || value === '') {{
                             cell.textContent = 'N/A';
                         }} else {{
                             cell.textContent = value;
@@ -247,12 +272,12 @@ def generate_html(financial_data_file, output_html_file, sec_filings_file=None):
     print(f"HTML file has been generated: {output_html_file}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3 or len(sys.argv) > 4:
-        print("Usage: python generate_html.py <financial_data_file> <output_html_file> [sec_filings_file]")
+    if len(sys.argv) != 4:
+        print("Usage: python generate_html.py <financial_data_file> <sec_filings_file> <output_html_file>")
         sys.exit(1)
 
     financial_data_file = sys.argv[1]
-    output_html_file = sys.argv[2]
-    sec_filings_file = sys.argv[3] if len(sys.argv) == 4 else None
+    sec_filings_file = sys.argv[2]
+    output_html_file = sys.argv[3]
 
     generate_html(financial_data_file, output_html_file, sec_filings_file)

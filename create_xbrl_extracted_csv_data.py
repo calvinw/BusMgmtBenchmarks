@@ -1,18 +1,17 @@
+import csv
+import json
 import xml.etree.ElementTree as ET
 import requests
-import json
 import os
 import sys
-from pprint import pprint
 from datetime import datetime
 
 def is_valid_context(context, report_date):
-    # Check for non-null segment
     entity = context.find('.//{http://www.xbrl.org/2003/instance}entity')
     if entity is not None:
         segment = entity.find('.//{http://www.xbrl.org/2003/instance}segment')
         if segment is not None and len(segment) > 0:
-            return False  # Exclude contexts with non-null segments
+            return False
 
     period = context.find('.//{http://www.xbrl.org/2003/instance}period')
 
@@ -27,11 +26,9 @@ def is_valid_context(context, report_date):
             start_date = datetime.strptime(start_date.text, "%Y-%m-%d")
             end_date = datetime.strptime(end_date.text, "%Y-%m-%d")
 
-            # Check if the period spans approximately a year (allow for leap years)
             days_difference = (end_date - start_date).days
             is_annual_period = 360 <= days_difference <= 370
 
-            # Check if the end date exactly matches the report date
             is_matching_end_date = end_date == report_date
 
             return is_annual_period and is_matching_end_date
@@ -39,7 +36,6 @@ def is_valid_context(context, report_date):
         elif instant is not None:
             instant_date = datetime.strptime(instant.text, "%Y-%m-%d")
 
-            # Check if the instant date exactly matches the report date
             return instant_date == report_date
 
     return False
@@ -54,24 +50,18 @@ def extract_value(fact, root, report_date):
     return None
 
 def parse_xbrl(file_path, concept_mappings, report_date):
-    # Parse the XBRL file
     tree = ET.parse(file_path)
     root = tree.getroot()
 
-    # Extract the namespaces
     namespaces = dict([node for _, node in ET.iterparse(file_path, events=['start-ns'])])
 
-    # Dictionary to store the results
     results = {}
 
-    # Iterate through the concept mappings
     for field, concepts in concept_mappings.items():
-        # Ensure concepts is a list
         if isinstance(concepts, str):
             concepts = [concepts]
 
         for concept in concepts:
-            # Search for the concept in different namespaces
             for prefix, uri in namespaces.items():
                 xpath = f".//{{{uri}}}{concept}"
                 facts = root.findall(xpath)
@@ -79,11 +69,11 @@ def parse_xbrl(file_path, concept_mappings, report_date):
                     val = extract_value(fact, root, report_date)
                     if val is not None:
                         try:
-                            results[field] = round(float(val)/1000000, 2)  # Convert to millions and round to 2 decimal places
+                            results[field] = round(float(val)/1000000, 2)
                             break
                         except ValueError:
                             print(f"Warning: Could not convert value '{val}' to float for field '{field}'")
-                            results[field] = val  # Store the original value if conversion fails
+                            results[field] = val
                 if field in results:
                     break
             if field in results:
@@ -108,18 +98,7 @@ def download_xbrl(url, file_path):
         return False
 
 def parse_10ks(input_file, output_file):
-    # Load the input 10ks JSON file
-    try:
-        with open(input_file, 'r') as f:
-            companies_data = json.load(f)
-    except FileNotFoundError:
-        print(f"Error: {input_file} not found.")
-        return
-    except json.JSONDecodeError:
-        print(f"Error: Invalid JSON in {input_file}.")
-        return
-
-    # Load the generic concept mappings
+    # Load the concept mappings
     try:
         with open("extracted_concept_mappings.json", 'r') as f:
             concept_mappings = json.load(f)
@@ -133,50 +112,57 @@ def parse_10ks(input_file, output_file):
     # Dictionary to store all extracted data
     all_data = {}
 
-    # Process each company
-    for company_name, years_data in companies_data.items():
-        print(f"Processing company: {company_name}")
-        company_data = {}
-        for year, filings in years_data.items():
-            print(f"  Processing year: {year}")
-            for filing in filings:
-                xbrl_url = filing['xbrlUrl']
-                report_date = filing['reportDate']
+    # Read the input CSV file
+    with open(input_file, 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            company_name = row['company_name']
+            year = row['year']
+            xbrl_url = row['xbrlUrl']
+            report_date = row['reportDate']
 
-                # Download the XBRL file
-                file_path = f"temp_{company_name}_{year}.xml"
-                if download_xbrl(xbrl_url, file_path):
-                    try:
-                        # Parse the XBRL file
-                        extracted_data = parse_xbrl(file_path, concept_mappings, report_date)
-                        if extracted_data:
-                            company_data[year] = extracted_data
-                            print(f"    Successfully extracted data for {year}")
-                        else:
-                            print(f"    No data extracted for {year}")
-                    except Exception as e:
-                        print(f"    Error parsing XBRL file for {company_name} ({year}): {e}")
-                    finally:
-                        # Remove the temporary file
-                        os.remove(file_path)
-                else:
-                    print(f"    Failed to download XBRL file for {company_name} ({year})")
+            print(f"Processing {company_name} for year {year}")
 
-        if company_data:
-            all_data[company_name] = company_data
-        print(f"Finished processing {company_name}")
-        print("-------------------------")
+            if company_name not in all_data:
+                all_data[company_name] = {}
 
-    # Write all data to the output file
-    with open(output_file, 'w') as f:
-        json.dump(all_data, f, indent=4)
+            # Download the XBRL file
+            file_path = f"temp_{company_name}_{year}.xml"
+            if download_xbrl(xbrl_url, file_path):
+                try:
+                    # Parse the XBRL file
+                    extracted_data = parse_xbrl(file_path, concept_mappings, report_date)
+                    if extracted_data:
+                        all_data[company_name][year] = extracted_data
+                        print(f"  Successfully extracted data for {year}")
+                    else:
+                        print(f"  No data extracted for {year}")
+                except Exception as e:
+                    print(f"  Error parsing XBRL file for {company_name} ({year}): {e}")
+                finally:
+                    # Remove the temporary file
+                    os.remove(file_path)
+            else:
+                print(f"  Failed to download XBRL file for {company_name} ({year})")
+
+    # Write all data to the output CSV file
+    with open(output_file, 'w', newline='') as csvfile:
+        fieldnames = ['company_name', 'year'] + list(concept_mappings.keys())
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for company_name, years_data in all_data.items():
+            for year, data in years_data.items():
+                row = {'company_name': company_name, 'year': year}
+                row.update(data)
+                writer.writerow(row)
 
     print(f"All data has been written to {output_file}")
 
 # Main execution
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python script_name.py <input_10ks_file> <output_extracted_data_file>")
+        print("Usage: python script_name.py <input_10ks_file.csv> <output_extracted_data_file.csv>")
         sys.exit(1)
 
     input_file = sys.argv[1]

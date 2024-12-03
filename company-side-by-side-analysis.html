@@ -1,231 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Previous head section remains the same -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Financial Data</title>
+    <title>Financial Data Dashboard</title>
     <style>
+        /* Previous styles remain the same */
         body {
             font-family: Arial, sans-serif;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .controls {
-            margin-bottom: 20px;
-            background-color: #1a237e;
-            padding: 20px;
-            border-radius: 8px;
-            color: white;
-        }
-        select {
-            padding: 8px 12px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            width: 200px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            overflow: hidden;
+            margin: 20px 0;
         }
         th, td {
-            padding: 12px 15px;
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #f8f9fa;
-            color: #333;
-            font-weight: bold;
-        }
-        tr:hover {
             background-color: #f5f5f5;
         }
-        .metric-category {
+        .section-header {
+            background-color: #e0e0e0;
             font-weight: bold;
-            background-color: #e3f2fd;
         }
-        .value {
+        .number {
             text-align: right;
         }
-        .percentage {
-            text-align: right;
-            color: #1565c0;
+        .selectors {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        .loading {
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Company Financial Data</h1>
+    <h1>Retail Financial Analysis Dashboard</h1>
+    <div class="selectors">
+        <div>
+            <label for="companySelect">Select Company: </label>
+            <select id="companySelect" onchange="updateYearOptions()"></select>
+        </div>
+        <div>
+            <label for="yearSelect">Select Year: </label>
+            <select id="yearSelect" onchange="updateDisplay()"></select>
+        </div>
     </div>
-    <div class="controls">
-        <label for="companySelect">Select Company: </label>
-        <select id="companySelect"></select>
-    </div>
-    <table id="financialTable">
-        <thead>
-            <tr>
-                <th>Metric</th>
-                <th>Value (thousands)</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div id="dataContainer"><div class="loading">Loading data...</div></div>
 
     <script>
-        function parseCSV(csv) {
-            const lines = csv.split('\n');
+        let globalData = [];
+        let companyYearMap = new Map();
+
+        async function fetchData() {
+            try {
+                const response = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv');
+                const text = await response.text();
+                globalData = parseCSV(text);
+                initializeSelectors();
+                updateDisplay();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('dataContainer').innerHTML = 'Error loading data';
+            }
+        }
+
+        function parseCSV(text) {
+            const lines = text.split('\n');
             const headers = lines[0].split(',');
-            const data = [];
+            const results = [];
             
-            for(let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',');
-                if(values.length === headers.length) {
-                    const row = {};
-                    headers.forEach((header, index) => {
-                        row[header] = values[index];
-                    });
-                    data.push(row);
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const currentLine = lines[i].split(',');
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    let value = currentLine[j]?.trim();
+                    // Convert numeric strings to numbers
+                    if (value && !isNaN(value) && j > 1) { // Skip conversion for company and year
+                        value = parseFloat(value);
+                    }
+                    // Store original header name
+                    obj[headers[j].trim()] = value;
+                }
+                if (obj.company_name) {
+                    results.push(obj);
                 }
             }
-            return data;
+            return results;
         }
 
-        function formatNumber(value) {
-            return new Intl.NumberFormat('en-US', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-            }).format(value * 1000);
-        }
-
-        function formatPercentage(value) {
-            return parseFloat(value).toFixed(1) + '%';
-        }
-
-        function formatRatio(value) {
-            return parseFloat(value).toFixed(2);
-        }
-
-        function addRow(metric, value, isCategory = false, isPercentage = false, isRatio = false) {
-            const tbody = document.querySelector('#financialTable tbody');
-            const row = document.createElement('tr');
-            if (isCategory) {
-                row.className = 'metric-category';
-            }
-            
-            const metricCell = document.createElement('td');
-            metricCell.textContent = metric;
-            
-            const valueCell = document.createElement('td');
-            valueCell.className = isPercentage || isRatio ? 'percentage' : 'value';
-            
-            if (isCategory) {
-                valueCell.textContent = '';
-            } else if (isPercentage) {
-                valueCell.textContent = formatPercentage(value);
-            } else if (isRatio) {
-                valueCell.textContent = formatRatio(value);
-            } else {
-                valueCell.textContent = formatNumber(value);
-            }
-            
-            row.appendChild(metricCell);
-            row.appendChild(valueCell);
-            tbody.appendChild(row);
-        }
-
-        function displayCompanyData(data) {
-            const tbody = document.querySelector('#financialTable tbody');
-            tbody.innerHTML = '';
-
-            const metrics = {
-                'Income Statement': {
-                    'Net Revenue': data['Net Revenue'],
-                    'Cost of Goods': data['Cost of Goods'],
-                    'SG&A': data['SG&A'],
-                    'Operating Profit': data['Operating Profit'],
-                    'Net Profit': data['Net Profit']
-                },
-                'Balance Sheet': {
-                    'Inventory': data['Inventory'],
-                    'Current Assets': data['Current Assets'],
-                    'Total Assets': data['Total Assets'],
-                    'Current Liabilities': data['Current Liabilities'],
-                    'Total Shareholder Equity': data['Total Shareholder Equity'],
-                    'Total Liabilities and Shareholder Equity': data['Total Liabilities and Shareholder Equity'],
-                    'Gross Margin': data['Gross Margin'],
-                    'Liabilities': data['Liabilities']
-                },
-                'Performance Metrics': {
-                    'Cost of Goods Percentage': data['Cost of Goods Percentage'].replace('%', ''),
-                    'Gross Margin Percentage': data['Gross Margin Percentage'].replace('%', ''),
-                    'SG&A Expense Percentage': data['SG&A Expense Percentage'].replace('%', ''),
-                    'Operating Profit Margin Percentage': data['Operating Profit Margin Percentage'].replace('%', ''),
-                    'Net Profit Margin Percentage': data['Net Profit Margin Percentage'].replace('%', '')
-                },
-                'Efficiency Ratios': {
-                    'Inventory Turnover': data['Inventory Turnover'],
-                    'Asset Turnover': data['Asset Turnover'],
-                    'Return on Assets Percentage': data['Return on Assets Percentage'].replace('%', ''),
-                    'Current Ratio': data['Current Ratio'],
-                    'Quick Ratio': data['Quick Ratio'],
-                    'Debt to Equity Ratio': data['Debt to Equity Ratio ']  // Note the space at the end
+        // Previous selector functions remain the same
+        function initializeSelectors() {
+            companyYearMap.clear();
+            globalData.forEach(row => {
+                if (!companyYearMap.has(row.company_name)) {
+                    companyYearMap.set(row.company_name, new Set());
                 }
-            };
+                companyYearMap.get(row.company_name).add(row.year);
+            });
 
-            for (const [category, categoryMetrics] of Object.entries(metrics)) {
-                addRow(category, '', true);
-                for (const [metric, value] of Object.entries(categoryMetrics)) {
-                    const isPercentage = metric.includes('Percentage');
-                    const isRatio = metric.includes('Ratio') || metric.includes('Turnover');
-                    addRow(metric, value, false, isPercentage, isRatio);
-                }
-            }
-        }
-
-        fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv')
-            .then(response => response.text())
-            .then(csv => {
-                const data = parseCSV(csv);
-                
-                const companies2024 = data
-                    .filter(row => row.year === '2024')
-                    .map(row => row.company_name)
-                    .sort();
-
-                const select = document.getElementById('companySelect');
-                companies2024.forEach(company => {
+            const companySelect = document.getElementById('companySelect');
+            companySelect.innerHTML = '';
+            Array.from(companyYearMap.keys())
+                .sort()
+                .forEach(company => {
                     const option = document.createElement('option');
                     option.value = company;
-                    option.textContent = company.split('_')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ');
-                    select.appendChild(option);
+                    option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    companySelect.appendChild(option);
                 });
 
-                const initialCompanyData = data.find(row => row.company_name === companies2024[0] && row.year === '2024');
-                displayCompanyData(initialCompanyData);
+            updateYearOptions();
+        }
 
-                select.addEventListener('change', (e) => {
-                    const selectedCompanyData = data.find(row => 
-                        row.company_name === e.target.value && row.year === '2024'
-                    );
-                    displayCompanyData(selectedCompanyData);
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        function updateYearOptions() {
+            const company = document.getElementById('companySelect').value;
+            const yearSelect = document.getElementById('yearSelect');
+            yearSelect.innerHTML = '';
+            
+            const years = Array.from(companyYearMap.get(company)).sort().reverse();
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+
+            updateDisplay();
+        }
+
+        function formatNumber(num) {
+            if (isNaN(num)) return 'N/A';
+            return new Intl.NumberFormat('en-US', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function formatCurrency(num) {
+            if (isNaN(num)) return 'N/A';
+            return '$' + formatNumber(num);
+        }
+
+        function formatPercentage(num) {
+            if (isNaN(num)) return 'N/A';
+            return new Intl.NumberFormat('en-US', {
+                style: 'percent',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function updateDisplay() {
+            const selectedCompany = document.getElementById('companySelect').value;
+            const selectedYear = document.getElementById('yearSelect').value;
+            
+            const data = globalData.find(d => 
+                d.company_name === selectedCompany && d.year === selectedYear
+            );
+
+            if (!data) {
+                document.getElementById('dataContainer').innerHTML = 'No data available for selected company and year';
+                return;
+            }
+
+            // Log the data object to see all available fields
+            console.log('Raw data:', data);
+
+            const netSales = data['Net Revenue'];
+            const cogs = data['Cost of Goods'];
+            const grossMargin = netSales - cogs;
+            const sgaExpense = data['SG&A Expense'] || data['SG&A'] || data['SGA'];  // Try different possible column names
+            const operatingProfit = data['Operating Profit'];
+            const netProfit = data['Net Profit'];
+            const inventory = data['Inventory'];
+            const totalAssets = data['Total Assets'];
+
+            const html = `
+                <table>
+                    <tr class="section-header">
+                        <td colspan="2">Financial Numbers Required for Analysis</td>
+                    </tr>
+                    <tr>
+                        <td>Net Sales or Total Net Revenue</td>
+                        <td class="number">${formatCurrency(netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>COGS $</td>
+                        <td class="number">${formatCurrency(cogs)}</td>
+                    </tr>
+                    <tr>
+                        <td>GM $</td>
+                        <td class="number">${formatCurrency(grossMargin)}</td>
+                    </tr>
+                    <tr>
+                        <td>SG&A $</td>
+                        <td class="number">${formatCurrency(sgaExpense)}</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Profit $</td>
+                        <td class="number">${formatCurrency(operatingProfit)}</td>
+                    </tr>
+                    <tr>
+                        <td>Net Profit $</td>
+                        <td class="number">${formatCurrency(netProfit)}</td>
+                    </tr>
+                    <tr>
+                        <td>Inventory $</td>
+                        <td class="number">${formatCurrency(inventory)}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Assets $</td>
+                        <td class="number">${formatCurrency(totalAssets)}</td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr class="section-header">
+                        <td colspan="2">Financial Indicators</td>
+                    </tr>
+                    <tr>
+                        <td>a. Cost of goods percentage (COGS/Net Sales)</td>
+                        <td class="number">${formatPercentage(cogs/netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>b. Gross margin percentage (GM/Net Sales)</td>
+                        <td class="number">${formatPercentage(grossMargin/netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>c. SG&A expense percentage (SG&A/Net Sales)</td>
+                        <td class="number">${formatPercentage(sgaExpense/netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>d. Operating profit margin percentage (Op.Profit/Net Sales)</td>
+                        <td class="number">${formatPercentage(operatingProfit/netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>e. Net profit margin percentage (Net Profit/Net Sales)</td>
+                        <td class="number">${formatPercentage(netProfit/netSales)}</td>
+                    </tr>
+                    <tr>
+                        <td>f. Inventory turnover (COGS/Inventory)</td>
+                        <td class="number">${formatNumber(cogs/inventory)}</td>
+                    </tr>
+                    <tr>
+                        <td>g. Asset turnover (Net Sales/Total Assets)</td>
+                        <td class="number">${formatNumber(netSales/totalAssets)}</td>
+                    </tr>
+                    <tr>
+                        <td>h. Return on assets (ROA) (Net profit Margin * Asset Turnover)</td>
+                        <td class="number">${formatPercentage((netProfit/netSales) * (netSales/totalAssets))}</td>
+                    </tr>
+                </table>
+            `;
+
+            document.getElementById('dataContainer').innerHTML = html;
+        }
+
+        // Initialize dashboard when page loads
+        fetchData();
     </script>
 </body>
 </html>

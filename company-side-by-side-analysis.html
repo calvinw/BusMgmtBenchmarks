@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Previous head section remains the same -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Data Dashboard</title>
+    <title>Financial Data Comparison Dashboard</title>
     <style>
-        /* Previous styles remain the same */
         body {
             font-family: Arial, sans-serif;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+        }
+        .selectors-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .company-section {
+            flex: 1;
         }
         table {
             width: 100%;
@@ -32,11 +38,10 @@
         }
         .number {
             text-align: right;
+            min-width: 120px;
         }
-        .selectors {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 20px;
+        .label-column {
+            min-width: 400px;
         }
         select {
             padding: 8px;
@@ -48,20 +53,40 @@
             font-style: italic;
             color: #666;
         }
+        .company-header {
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>Retail Financial Analysis Dashboard</h1>
-    <div class="selectors">
-        <div>
-            <label for="companySelect">Select Company: </label>
-            <select id="companySelect" onchange="updateYearOptions()"></select>
+    <h1>Retail Financial Analysis Comparison</h1>
+    <div class="selectors-container">
+        <div class="company-section">
+            <h3>Company 1</h3>
+            <div>
+                <label for="company1Select">Select Company: </label>
+                <select id="company1Select" onchange="updateYearOptions(1)"></select>
+            </div>
+            <div>
+                <label for="year1Select">Select Year: </label>
+                <select id="year1Select" onchange="updateDisplay()"></select>
+            </div>
         </div>
-        <div>
-            <label for="yearSelect">Select Year: </label>
-            <select id="yearSelect" onchange="updateDisplay()"></select>
+        
+        <div class="company-section">
+            <h3>Company 2</h3>
+            <div>
+                <label for="company2Select">Select Company: </label>
+                <select id="company2Select" onchange="updateYearOptions(2)"></select>
+            </div>
+            <div>
+                <label for="year2Select">Select Year: </label>
+                <select id="year2Select" onchange="updateDisplay()"></select>
+            </div>
         </div>
     </div>
+    
     <div id="dataContainer"><div class="loading">Loading data...</div></div>
 
     <script>
@@ -92,11 +117,9 @@
                 const obj = {};
                 for (let j = 0; j < headers.length; j++) {
                     let value = currentLine[j]?.trim();
-                    // Convert numeric strings to numbers
-                    if (value && !isNaN(value) && j > 1) { // Skip conversion for company and year
+                    if (value && !isNaN(value) && j > 1) {
                         value = parseFloat(value);
                     }
-                    // Store original header name
                     obj[headers[j].trim()] = value;
                 }
                 if (obj.company_name) {
@@ -106,7 +129,6 @@
             return results;
         }
 
-        // Previous selector functions remain the same
         function initializeSelectors() {
             companyYearMap.clear();
             globalData.forEach(row => {
@@ -116,23 +138,32 @@
                 companyYearMap.get(row.company_name).add(row.year);
             });
 
-            const companySelect = document.getElementById('companySelect');
-            companySelect.innerHTML = '';
-            Array.from(companyYearMap.keys())
-                .sort()
-                .forEach(company => {
-                    const option = document.createElement('option');
-                    option.value = company;
-                    option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    companySelect.appendChild(option);
-                });
+            [1, 2].forEach(companyNum => {
+                const companySelect = document.getElementById(`company${companyNum}Select`);
+                companySelect.innerHTML = '';
+                Array.from(companyYearMap.keys())
+                    .sort()
+                    .forEach(company => {
+                        const option = document.createElement('option');
+                        option.value = company;
+                        option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                        companySelect.appendChild(option);
+                    });
+            });
 
-            updateYearOptions();
+            // Set different initial companies if possible
+            const companies = Array.from(companyYearMap.keys()).sort();
+            if (companies.length > 1) {
+                document.getElementById('company2Select').value = companies[1];
+            }
+
+            updateYearOptions(1);
+            updateYearOptions(2);
         }
 
-        function updateYearOptions() {
-            const company = document.getElementById('companySelect').value;
-            const yearSelect = document.getElementById('yearSelect');
+        function updateYearOptions(companyNum) {
+            const company = document.getElementById(`company${companyNum}Select`).value;
+            const yearSelect = document.getElementById(`year${companyNum}Select`);
             yearSelect.innerHTML = '';
             
             const years = Array.from(companyYearMap.get(company)).sort().reverse();
@@ -169,105 +200,142 @@
             }).format(num);
         }
 
-        function updateDisplay() {
-            const selectedCompany = document.getElementById('companySelect').value;
-            const selectedYear = document.getElementById('yearSelect').value;
-            
-            const data = globalData.find(d => 
-                d.company_name === selectedCompany && d.year === selectedYear
-            );
+        function getCompanyData(companyNum) {
+            const selectedCompany = document.getElementById(`company${companyNum}Select`).value;
+            const selectedYear = document.getElementById(`year${companyNum}Select`).value;
+            return {
+                data: globalData.find(d => d.company_name === selectedCompany && d.year === selectedYear),
+                companyName: selectedCompany.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                year: selectedYear
+            };
+        }
 
-            if (!data) {
+        function updateDisplay() {
+            const company1 = getCompanyData(1);
+            const company2 = getCompanyData(2);
+
+            if (!company1.data || !company2.data) {
                 document.getElementById('dataContainer').innerHTML = 'No data available for selected company and year';
                 return;
             }
 
-            // Log the data object to see all available fields
-            console.log('Raw data:', data);
+            function getMetrics(data) {
+                const netSales = data['Net Revenue'];
+                const cogs = data['Cost of Goods'];
+                const grossMargin = netSales - cogs;
+                const sgaExpense = data['SG&A Expense'] || data['SG&A'] || data['SGA'];
+                const operatingProfit = data['Operating Profit'];
+                const netProfit = data['Net Profit'];
+                const inventory = data['Inventory'];
+                const totalAssets = data['Total Assets'];
 
-            const netSales = data['Net Revenue'];
-            const cogs = data['Cost of Goods'];
-            const grossMargin = netSales - cogs;
-            const sgaExpense = data['SG&A Expense'] || data['SG&A'] || data['SGA'];  // Try different possible column names
-            const operatingProfit = data['Operating Profit'];
-            const netProfit = data['Net Profit'];
-            const inventory = data['Inventory'];
-            const totalAssets = data['Total Assets'];
+                return {
+                    netSales, cogs, grossMargin, sgaExpense, operatingProfit,
+                    netProfit, inventory, totalAssets,
+                    cogsPercent: cogs/netSales,
+                    gmPercent: grossMargin/netSales,
+                    sgaPercent: sgaExpense/netSales,
+                    opProfitPercent: operatingProfit/netSales,
+                    netProfitPercent: netProfit/netSales,
+                    inventoryTurnover: cogs/inventory,
+                    assetTurnover: netSales/totalAssets,
+                    roa: (netProfit/netSales) * (netSales/totalAssets)
+                };
+            }
+
+            const metrics1 = getMetrics(company1.data);
+            const metrics2 = getMetrics(company2.data);
 
             const html = `
                 <table>
                     <tr class="section-header">
-                        <td colspan="2">Financial Numbers Required for Analysis</td>
+                        <td class="label-column">Financial Numbers</td>
+                        <td class="number company-header">${company1.companyName}<br>(${company1.year})</td>
+                        <td class="number company-header">${company2.companyName}<br>(${company2.year})</td>
                     </tr>
                     <tr>
                         <td>Net Sales or Total Net Revenue</td>
-                        <td class="number">${formatCurrency(netSales)}</td>
+                        <td class="number">${formatCurrency(metrics1.netSales)}</td>
+                        <td class="number">${formatCurrency(metrics2.netSales)}</td>
                     </tr>
                     <tr>
                         <td>COGS $</td>
-                        <td class="number">${formatCurrency(cogs)}</td>
+                        <td class="number">${formatCurrency(metrics1.cogs)}</td>
+                        <td class="number">${formatCurrency(metrics2.cogs)}</td>
                     </tr>
                     <tr>
                         <td>GM $</td>
-                        <td class="number">${formatCurrency(grossMargin)}</td>
+                        <td class="number">${formatCurrency(metrics1.grossMargin)}</td>
+                        <td class="number">${formatCurrency(metrics2.grossMargin)}</td>
                     </tr>
                     <tr>
                         <td>SG&A $</td>
-                        <td class="number">${formatCurrency(sgaExpense)}</td>
+                        <td class="number">${formatCurrency(metrics1.sgaExpense)}</td>
+                        <td class="number">${formatCurrency(metrics2.sgaExpense)}</td>
                     </tr>
                     <tr>
                         <td>Operating Profit $</td>
-                        <td class="number">${formatCurrency(operatingProfit)}</td>
+                        <td class="number">${formatCurrency(metrics1.operatingProfit)}</td>
+                        <td class="number">${formatCurrency(metrics2.operatingProfit)}</td>
                     </tr>
                     <tr>
                         <td>Net Profit $</td>
-                        <td class="number">${formatCurrency(netProfit)}</td>
+                        <td class="number">${formatCurrency(metrics1.netProfit)}</td>
+                        <td class="number">${formatCurrency(metrics2.netProfit)}</td>
                     </tr>
                     <tr>
                         <td>Inventory $</td>
-                        <td class="number">${formatCurrency(inventory)}</td>
+                        <td class="number">${formatCurrency(metrics1.inventory)}</td>
+                        <td class="number">${formatCurrency(metrics2.inventory)}</td>
                     </tr>
                     <tr>
                         <td>Total Assets $</td>
-                        <td class="number">${formatCurrency(totalAssets)}</td>
+                        <td class="number">${formatCurrency(metrics1.totalAssets)}</td>
+                        <td class="number">${formatCurrency(metrics2.totalAssets)}</td>
                     </tr>
-                </table>
 
-                <table>
                     <tr class="section-header">
-                        <td colspan="2">Financial Indicators</td>
+                        <td colspan="3">Financial Indicators</td>
                     </tr>
                     <tr>
                         <td>a. Cost of goods percentage (COGS/Net Sales)</td>
-                        <td class="number">${formatPercentage(cogs/netSales)}</td>
+                        <td class="number">${formatPercentage(metrics1.cogsPercent)}</td>
+                        <td class="number">${formatPercentage(metrics2.cogsPercent)}</td>
                     </tr>
                     <tr>
                         <td>b. Gross margin percentage (GM/Net Sales)</td>
-                        <td class="number">${formatPercentage(grossMargin/netSales)}</td>
+                        <td class="number">${formatPercentage(metrics1.gmPercent)}</td>
+                        <td class="number">${formatPercentage(metrics2.gmPercent)}</td>
                     </tr>
                     <tr>
                         <td>c. SG&A expense percentage (SG&A/Net Sales)</td>
-                        <td class="number">${formatPercentage(sgaExpense/netSales)}</td>
+                        <td class="number">${formatPercentage(metrics1.sgaPercent)}</td>
+                        <td class="number">${formatPercentage(metrics2.sgaPercent)}</td>
                     </tr>
                     <tr>
                         <td>d. Operating profit margin percentage (Op.Profit/Net Sales)</td>
-                        <td class="number">${formatPercentage(operatingProfit/netSales)}</td>
+                        <td class="number">${formatPercentage(metrics1.opProfitPercent)}</td>
+                        <td class="number">${formatPercentage(metrics2.opProfitPercent)}</td>
                     </tr>
                     <tr>
                         <td>e. Net profit margin percentage (Net Profit/Net Sales)</td>
-                        <td class="number">${formatPercentage(netProfit/netSales)}</td>
+                        <td class="number">${formatPercentage(metrics1.netProfitPercent)}</td>
+                        <td class="number">${formatPercentage(metrics2.netProfitPercent)}</td>
                     </tr>
                     <tr>
                         <td>f. Inventory turnover (COGS/Inventory)</td>
-                        <td class="number">${formatNumber(cogs/inventory)}</td>
+                        <td class="number">${formatNumber(metrics1.inventoryTurnover)}</td>
+                        <td class="number">${formatNumber(metrics2.inventoryTurnover)}</td>
                     </tr>
                     <tr>
                         <td>g. Asset turnover (Net Sales/Total Assets)</td>
-                        <td class="number">${formatNumber(netSales/totalAssets)}</td>
+                        <td class="number">${formatNumber(metrics1.assetTurnover)}</td>
+                        <td class="number">${formatNumber(metrics2.assetTurnover)}</td>
                     </tr>
                     <tr>
                         <td>h. Return on assets (ROA) (Net profit Margin * Asset Turnover)</td>
-                        <td class="number">${formatPercentage((netProfit/netSales) * (netSales/totalAssets))}</td>
+                        <td class="number">${formatPercentage(metrics1.roa)}</td>
+                        <td class="number">${formatPercentage(metrics2.roa)}</td>
                     </tr>
                 </table>
             `;

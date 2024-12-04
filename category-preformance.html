@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company vs Segment Comparison Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .selectors-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .section {
+            flex: 1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        .section-header {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        .number {
+            text-align: right;
+            min-width: 120px;
+        }
+        .label-column {
+            min-width: 400px;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        .loading {
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
+        }
+        .company-header {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Company vs Segment Comparison</h1>
+    <div class="selectors-container">
+        <div class="section">
+            <h3>Company</h3>
+            <div>
+                <label for="companySelect">Select Company: </label>
+                <select id="companySelect" onchange="updateYearOptions()"></select>
+            </div>
+            <div>
+                <label for="yearSelect">Select Year: </label>
+                <select id="yearSelect" onchange="updateDisplay()"></select>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Segment</h3>
+            <div>
+                <label for="segmentSelect">Select Segment: </label>
+                <select id="segmentSelect" onchange="updateDisplay()"></select>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dataContainer"><div class="loading">Loading data...</div></div>
+
+    <script>
+        let companyData = [];
+        let segmentData = [];
+        let companyYearMap = new Map();
+
+        async function fetchData() {
+            try {
+                const [companyResponse, segmentResponse] = await Promise.all([
+                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv'),
+                    fetch('segment_analysis_output.csv')
+                ]);
+                
+                const companyText = await companyResponse.text();
+                const segmentText = await segmentResponse.text();
+                
+                companyData = parseCSV(companyText);
+                segmentData = parseSegmentCSV(segmentText);
+                
+                initializeSelectors();
+                updateDisplay();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('dataContainer').innerHTML = 'Error loading data';
+            }
+        }
+
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const headers = lines[0].split(',');
+            const results = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const currentLine = lines[i].split(',');
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    let value = currentLine[j]?.trim();
+                    if (value && !isNaN(value) && j > 1) {
+                        value = parseFloat(value);
+                    }
+                    obj[headers[j].trim()] = value;
+                }
+                if (obj.company_name) {
+                    results.push(obj);
+                }
+            }
+            return results;
+        }
+
+        function parseSegmentCSV(text) {
+            const lines = text.split('\n');
+            const headers = lines[0].split(',');
+            const results = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const currentLine = lines[i].split(',');
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    let value = currentLine[j]?.trim();
+                    if (value) {
+                        // Remove % symbol and convert to decimal if it's a percentage
+                        if (value.endsWith('%')) {
+                            value = parseFloat(value.replace('%', '')) / 100;
+                        } else if (!isNaN(value)) {
+                            value = parseFloat(value);
+                        }
+                    }
+                    obj[headers[j].trim()] = value;
+                }
+                if (obj.segment) {
+                    results.push(obj);
+                }
+            }
+            return results;
+        }
+
+        function initializeSelectors() {
+            companyYearMap.clear();
+            companyData.forEach(row => {
+                if (!companyYearMap.has(row.company_name)) {
+                    companyYearMap.set(row.company_name, new Set());
+                }
+                companyYearMap.get(row.company_name).add(row.year);
+            });
+
+            // Initialize company select
+            const companySelect = document.getElementById('companySelect');
+            companySelect.innerHTML = '';
+            Array.from(companyYearMap.keys())
+                .sort()
+                .forEach(company => {
+                    const option = document.createElement('option');
+                    option.value = company;
+                    option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    companySelect.appendChild(option);
+                });
+
+            // Initialize segment select
+            const segmentSelect = document.getElementById('segmentSelect');
+            segmentSelect.innerHTML = '';
+            segmentData.forEach(segment => {
+                const option = document.createElement('option');
+                option.value = segment.segment;
+                option.textContent = segment.segment;
+                segmentSelect.appendChild(option);
+            });
+
+            updateYearOptions();
+        }
+
+        function updateYearOptions() {
+            const company = document.getElementById('companySelect').value;
+            const yearSelect = document.getElementById('yearSelect');
+            yearSelect.innerHTML = '';
+            
+            const years = Array.from(companyYearMap.get(company)).sort().reverse();
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+
+            updateDisplay();
+        }
+
+        function formatNumber(num) {
+            if (num === undefined || num === null || isNaN(num)) return 'N/A';
+            return new Intl.NumberFormat('en-US', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function formatPercentage(num) {
+            if (num === undefined || num === null || isNaN(num)) return 'N/A';
+            return new Intl.NumberFormat('en-US', {
+                style: 'percent',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function getCompanyData() {
+            const selectedCompany = document.getElementById('companySelect').value;
+            const selectedYear = document.getElementById('yearSelect').value;
+            return {
+                data: companyData.find(d => d.company_name === selectedCompany && d.year === selectedYear),
+                companyName: selectedCompany.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                year: selectedYear
+            };
+        }
+
+        function getSegmentData() {
+            const selectedSegment = document.getElementById('segmentSelect').value;
+            return {
+                data: segmentData.find(d => d.segment === selectedSegment),
+                segmentName: selectedSegment
+            };
+        }
+
+        function updateDisplay() {
+            const company = getCompanyData();
+            const segment = getSegmentData();
+
+            if (!company.data || !segment.data) {
+                document.getElementById('dataContainer').innerHTML = 'No data available for selected company and segment';
+                return;
+            }
+
+            function getCompanyMetrics(data) {
+                const netSales = data['Net Revenue'];
+                const cogs = data['Cost of Goods'];
+                const grossMargin = netSales - cogs;
+                const sgaExpense = data['SG&A Expense'] || data['SG&A'] || data['SGA'];
+                const netProfit = data['Net Profit'];
+                const inventory = data['Inventory'];
+                const totalAssets = data['Total Assets'];
+
+                return {
+                    gmPercent: grossMargin/netSales,
+                    sgaPercent: sgaExpense/netSales,
+                    netProfitPercent: netProfit/netSales,
+                    inventoryTurnover: cogs/inventory,
+                    roa: (netProfit/netSales) * (netSales/totalAssets)
+                };
+            }
+
+            const companyMetrics = getCompanyMetrics(company.data);
+            const segmentMetrics = {
+                gmPercent: segment.data['Gross Margin  %'],
+                sgaPercent: segment.data['SG&A  %'],
+                netProfitPercent: segment.data['Net Profit %'],
+                inventoryTurnover: segment.data['Inventory Turn'],
+                roa: segment.data['ROA']
+            };
+
+            const html = `
+                <table>
+                    <tr class="section-header">
+                        <td class="label-column">Financial Indicators</td>
+                        <td class="number company-header">${company.companyName}<br>(${company.year})</td>
+                        <td class="number company-header">${segment.segmentName}<br>Segment Average</td>
+                    </tr>
+                    <tr>
+                        <td>Gross margin percentage</td>
+                        <td class="number">${formatPercentage(companyMetrics.gmPercent)}</td>
+                        <td class="number">${formatPercentage(segmentMetrics.gmPercent)}</td>
+                    </tr>
+                    <tr>
+                        <td>SG&A expense percentage</td>
+                        <td class="number">${formatPercentage(companyMetrics.sgaPercent)}</td>
+                        <td class="number">${formatPercentage(segmentMetrics.sgaPercent)}</td>
+                    </tr>
+                    <tr>
+                        <td>Net profit margin percentage</td>
+                        <td class="number">${formatPercentage(companyMetrics.netProfitPercent)}</td>
+                        <td class="number">${formatPercentage(segmentMetrics.netProfitPercent)}</td>
+                    </tr>
+                    <tr>
+                        <td>Inventory turnover</td>
+                        <td class="number">${formatNumber(companyMetrics.inventoryTurnover)}</td>
+                        <td class="number">${formatNumber(segmentMetrics.inventoryTurnover)}</td>
+                    </tr>
+                    <tr>
+                        <td>Return on assets (ROA)</td>
+                        <td class="number">${formatPercentage(companyMetrics.roa)}</td>
+                        <td class="number">${formatPercentage(segmentMetrics.roa)}</td>
+                    </tr>
+                </table>
+            `;
+
+            document.getElementById('dataContainer').innerHTML = html;
+        }
+
+        // Initialize dashboard when page loads
+        fetchData();
+    </script>
+</body>
+</html>

@@ -94,7 +94,7 @@
             try {
                 const [companyResponse, segmentResponse] = await Promise.all([
                     fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv'),
-                    fetch('segment_analysis_output.csv')
+                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/segment_analysis_output.csv')
                 ]);
                 
                 const companyText = await companyResponse.text();

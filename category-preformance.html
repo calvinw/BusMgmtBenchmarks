@@ -63,6 +63,14 @@
     <h1>Company vs Segment Comparison</h1>
     <div class="selectors-container">
         <div class="section">
+            <h3>Segment</h3>
+            <div>
+                <label for="segmentSelect">Select Segment: </label>
+                <select id="segmentSelect" onchange="updateCompanyOptions()"></select>
+            </div>
+        </div>
+        
+        <div class="section">
             <h3>Company</h3>
             <div>
                 <label for="companySelect">Select Company: </label>
@@ -73,14 +81,6 @@
                 <select id="yearSelect" onchange="updateDisplay()"></select>
             </div>
         </div>
-        
-        <div class="section">
-            <h3>Segment</h3>
-            <div>
-                <label for="segmentSelect">Select Segment: </label>
-                <select id="segmentSelect" onchange="updateDisplay()"></select>
-            </div>
-        </div>
     </div>
     
     <div id="dataContainer"><div class="loading">Loading data...</div></div>
@@ -89,6 +89,7 @@
         let companyData = [];
         let segmentData = [];
         let companyYearMap = new Map();
+        let companySegmentMap = new Map();
 
         async function fetchData() {
             try {
@@ -102,6 +103,17 @@
                 
                 companyData = parseCSV(companyText);
                 segmentData = parseSegmentCSV(segmentText);
+                
+                // Create company-segment mapping
+                const structuredDataResponse = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/benchmarks_structured.csv');
+                const structuredDataText = await structuredDataResponse.text();
+                const structuredData = parseCSV(structuredDataText);
+                
+                structuredData.forEach(row => {
+                    if (row.company_name && row.segment) {
+                        companySegmentMap.set(row.company_name, row.segment);
+                    }
+                });
                 
                 initializeSelectors();
                 updateDisplay();
@@ -146,7 +158,6 @@
                 for (let j = 0; j < headers.length; j++) {
                     let value = currentLine[j]?.trim();
                     if (value) {
-                        // Remove % symbol and convert to decimal if it's a percentage
                         if (value.endsWith('%')) {
                             value = parseFloat(value.replace('%', '')) / 100;
                         } else if (!isNaN(value)) {
@@ -171,26 +182,38 @@
                 companyYearMap.get(row.company_name).add(row.year);
             });
 
-            // Initialize company select
-            const companySelect = document.getElementById('companySelect');
-            companySelect.innerHTML = '';
-            Array.from(companyYearMap.keys())
-                .sort()
-                .forEach(company => {
-                    const option = document.createElement('option');
-                    option.value = company;
-                    option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    companySelect.appendChild(option);
-                });
-
             // Initialize segment select
             const segmentSelect = document.getElementById('segmentSelect');
             segmentSelect.innerHTML = '';
-            segmentData.forEach(segment => {
+            const uniqueSegments = new Set(segmentData.map(segment => segment.segment));
+            Array.from(uniqueSegments)
+                .sort()
+                .forEach(segment => {
+                    const option = document.createElement('option');
+                    option.value = segment;
+                    option.textContent = segment;
+                    segmentSelect.appendChild(option);
+                });
+
+            updateCompanyOptions();
+        }
+
+        function updateCompanyOptions() {
+            const selectedSegment = document.getElementById('segmentSelect').value;
+            const companySelect = document.getElementById('companySelect');
+            companySelect.innerHTML = '';
+            
+            // Filter companies by selected segment
+            const companiesInSegment = Array.from(companySegmentMap.entries())
+                .filter(([_, segment]) => segment === selectedSegment)
+                .map(([company]) => company)
+                .sort();
+
+            companiesInSegment.forEach(company => {
                 const option = document.createElement('option');
-                option.value = segment.segment;
-                option.textContent = segment.segment;
-                segmentSelect.appendChild(option);
+                option.value = company;
+                option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                companySelect.appendChild(option);
             });
 
             updateYearOptions();
@@ -201,7 +224,7 @@
             const yearSelect = document.getElementById('yearSelect');
             yearSelect.innerHTML = '';
             
-            const years = Array.from(companyYearMap.get(company)).sort().reverse();
+            const years = Array.from(companyYearMap.get(company) || []).sort().reverse();
             years.forEach(year => {
                 const option = document.createElement('option');
                 option.value = year;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Previous head and style sections remain the same -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,8 +118,15 @@
                 const obj = {};
                 for (let j = 0; j < headers.length; j++) {
                     let value = currentLine[j]?.trim();
-                    if (value && !isNaN(value) && j > 1) {
-                        value = parseFloat(value);
+                    // Special handling for CAGR - keep it as is if empty
+                    if (headers[j].trim() === '3-Year Revenue CAGR') {
+                        if (value) {
+                            value = parseFloat(value.replace('%', ''));
+                        } else {
+                            value = null;
+                        }
+                    } else if (value && !isNaN(value.replace('%', '')) && j > 1) {
+                        value = parseFloat(value.replace('%', ''));
                     }
                     obj[headers[j].trim()] = value;
                 }
@@ -192,12 +200,12 @@
         }
 
         function formatPercentage(num) {
-            if (isNaN(num)) return 'N/A';
+            if (num === null || isNaN(num)) return 'N/A';
             return new Intl.NumberFormat('en-US', {
                 style: 'percent',
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
-            }).format(num);
+            }).format(num/100);
         }
 
         function getCompanyData(companyNum) {
@@ -223,15 +231,16 @@
                 const netSales = data['Net Revenue'];
                 const cogs = data['Cost of Goods'];
                 const grossMargin = netSales - cogs;
-                const sgaExpense = data['SG&A Expense'] || data['SG&A'] || data['SGA'];
+                const sgaExpense = data['SG&A'] || data['SG&A Expense'] || data['SGA'];
                 const operatingProfit = data['Operating Profit'];
                 const netProfit = data['Net Profit'];
                 const inventory = data['Inventory'];
                 const totalAssets = data['Total Assets'];
+                const cagr = data['3-Year Revenue CAGR'];
 
                 return {
                     netSales, cogs, grossMargin, sgaExpense, operatingProfit,
-                    netProfit, inventory, totalAssets,
+                    netProfit, inventory, totalAssets, cagr,
                     cogsPercent: cogs/netSales,
                     gmPercent: grossMargin/netSales,
                     sgaPercent: sgaExpense/netSales,
@@ -299,28 +308,28 @@
                     </tr>
                     <tr>
                         <td>a. Cost of goods percentage (COGS/Net Sales)</td>
-                        <td class="number">${formatPercentage(metrics1.cogsPercent)}</td>
-                        <td class="number">${formatPercentage(metrics2.cogsPercent)}</td>
+                        <td class="number">${formatPercentage(metrics1.cogsPercent * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.cogsPercent * 100)}</td>
                     </tr>
                     <tr>
                         <td>b. Gross margin percentage (GM/Net Sales)</td>
-                        <td class="number">${formatPercentage(metrics1.gmPercent)}</td>
-                        <td class="number">${formatPercentage(metrics2.gmPercent)}</td>
+                        <td class="number">${formatPercentage(metrics1.gmPercent * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.gmPercent * 100)}</td>
                     </tr>
                     <tr>
                         <td>c. SG&A expense percentage (SG&A/Net Sales)</td>
-                        <td class="number">${formatPercentage(metrics1.sgaPercent)}</td>
-                        <td class="number">${formatPercentage(metrics2.sgaPercent)}</td>
+                        <td class="number">${formatPercentage(metrics1.sgaPercent * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.sgaPercent * 100)}</td>
                     </tr>
                     <tr>
                         <td>d. Operating profit margin percentage (Op.Profit/Net Sales)</td>
-                        <td class="number">${formatPercentage(metrics1.opProfitPercent)}</td>
-                        <td class="number">${formatPercentage(metrics2.opProfitPercent)}</td>
+                        <td class="number">${formatPercentage(metrics1.opProfitPercent * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.opProfitPercent * 100)}</td>
                     </tr>
                     <tr>
                         <td>e. Net profit margin percentage (Net Profit/Net Sales)</td>
-                        <td class="number">${formatPercentage(metrics1.netProfitPercent)}</td>
-                        <td class="number">${formatPercentage(metrics2.netProfitPercent)}</td>
+                        <td class="number">${formatPercentage(metrics1.netProfitPercent * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.netProfitPercent * 100)}</td>
                     </tr>
                     <tr>
                         <td>f. Inventory turnover (COGS/Inventory)</td>
@@ -334,8 +343,14 @@
                     </tr>
                     <tr>
                         <td>h. Return on assets (ROA) (Net profit Margin * Asset Turnover)</td>
-                        <td class="number">${formatPercentage(metrics1.roa)}</td>
-                        <td class="number">${formatPercentage(metrics2.roa)}</td>
+                        <td class="number">${formatPercentage(metrics1.roa * 100)}</td>
+                        <td class="number">${formatPercentage(metrics2.roa * 100)}</td>
+                    </tr>
+                    <tr>
+                        <td>i. 3-Year Revenue CAGR</td>
+                        <td class="number">${formatPercentage(metrics1.cagr)}</td>
+                        <td class="number">${formatPercentage(metrics2.cagr
+                        )}</td>
                     </tr>
                 </table>
             `;

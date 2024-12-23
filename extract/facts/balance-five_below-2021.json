@@ -1,0 +1,195 @@
+{
+  "title": "Consolidated Balance Sheets - USD ($)$ in Thousands",
+  "headers": [
+    [
+      "Jan. 30, 2021",
+      "Feb. 01, 2020"
+    ]
+  ],
+  "Current assets:": [
+    {
+      "label": "Cash and cash equivalents",
+      "value": "268783",
+      "gaap_id": "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "definition": "Amount of cash and cash equivalents, and cash and cash equivalents restricted to withdrawal or usage. Excludes amount for disposal group and discontinued operations. Cash includes, but is not limited to, currency on hand, demand deposits with banks or financial institutions, and other accounts with general characteristics of demand deposits. Cash equivalents include, but are not limited to, short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates."
+    },
+    {
+      "label": "Short-term investment securities",
+      "value": "140928",
+      "gaap_id": "us-gaap_ShortTermInvestments",
+      "definition": "Amount of investments including trading securities, available-for-sale securities, held-to-maturity securities, and short-term investments classified as other and current."
+    },
+    {
+      "label": "Inventories",
+      "value": "281267",
+      "gaap_id": "us-gaap_InventoryNet",
+      "definition": "Amount after valuation and LIFO reserves of inventory expected to be sold, or consumed within one year or operating cycle, if longer."
+    },
+    {
+      "label": "Prepaid income taxes",
+      "value": "6350",
+      "gaap_id": "us-gaap_PrepaidTaxes",
+      "definition": "Amount of asset related to consideration paid in advance for income and other taxes that provide economic benefits within a future period of one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Prepaid expenses and other current assets",
+      "value": "58085",
+      "gaap_id": "us-gaap_PrepaidExpenseAndOtherAssetsCurrent",
+      "definition": "Amount of asset related to consideration paid in advance for costs that provide economic benefits in future periods, and amount of other assets that are expected to be realized or consumed within one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Total current assets",
+      "value": "755413",
+      "gaap_id": "us-gaap_AssetsCurrent",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are expected to be realized in cash, sold, or consumed within one year (or the normal operating cycle, if longer). Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    },
+    {
+      "label": "Property and equipment, net",
+      "value": "565351",
+      "gaap_id": "us-gaap_PropertyPlantAndEquipmentNet",
+      "definition": "Amount after accumulated depreciation, depletion and amortization of physical assets used in the normal conduct of business to produce goods and services and not intended for resale. Examples include, but are not limited to, land, buildings, machinery and equipment, office equipment, and furniture and fixtures."
+    },
+    {
+      "label": "Operating lease assets",
+      "value": "975862",
+      "gaap_id": "us-gaap_OperatingLeaseRightOfUseAsset",
+      "definition": "Amount of lessee's right to use underlying asset under operating lease."
+    },
+    {
+      "label": "Other assets",
+      "value": "18144",
+      "gaap_id": "us-gaap_OtherAssetsNoncurrent",
+      "definition": "Amount of noncurrent assets classified as other."
+    },
+    {
+      "label": "Total assets",
+      "value": "2314770",
+      "gaap_id": "us-gaap_Assets",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are recognized. Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    }
+  ],
+  "Current liabilities:": [
+    {
+      "label": "Line of credit",
+      "value": "0",
+      "gaap_id": "us-gaap_LinesOfCreditCurrent",
+      "definition": "The carrying value as of the balance sheet date of the current portion of long-term obligations drawn from a line of credit, which is a bank's commitment to make loans up to a specific amount. Examples of items that might be included in the application of this element may consist of letters of credit, standby letters of credit, and revolving credit arrangements, under which borrowings can be made up to a maximum amount as of any point in time conditional on satisfaction of specified terms before, as of and after the date of drawdowns on the line. Includes short-term obligations that would normally be classified as current liabilities but for which (a) postbalance sheet date issuance of a long term obligation to refinance the short term obligation on a long term basis, or (b) the enterprise has entered into a financing agreement that clearly permits the enterprise to refinance the short-term obligation on a long term basis and the following conditions are met (1) the agreement does not expire within 1 year and is not cancelable by the lender except for violation of an objectively determinable provision, (2) no violation exists at the BS date, and (3) the lender has entered into the financing agreement is expected to be financially capable of honoring the agreement."
+    },
+    {
+      "label": "Accounts payable",
+      "value": "138622",
+      "gaap_id": "us-gaap_AccountsPayableCurrent",
+      "definition": "Carrying value as of the balance sheet date of liabilities incurred (and for which invoices have typically been received) and payable to vendors for goods and services received that are used in an entity's business. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+    },
+    {
+      "label": "Income taxes payable",
+      "value": "2025",
+      "gaap_id": "us-gaap_AccruedIncomeTaxesCurrent",
+      "definition": "Carrying amount as of the balance sheet date of the unpaid sum of the known and estimated amounts payable to satisfy all currently due domestic and foreign income tax obligations."
+    },
+    {
+      "label": "Accrued salaries and wages",
+      "value": "43445",
+      "gaap_id": "us-gaap_EmployeeRelatedLiabilitiesCurrent",
+      "definition": "Total of the carrying values as of the balance sheet date of obligations incurred through that date and payable for obligations related to services received from employees, such as accrued salaries and bonuses, payroll taxes and fringe benefits. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+    },
+    {
+      "label": "Other accrued expenses",
+      "value": "108504",
+      "gaap_id": "us-gaap_AccruedLiabilitiesCurrent",
+      "definition": "Carrying value as of the balance sheet date of obligations incurred and payable, pertaining to costs that are statutory in nature, are incurred on contractual obligations, or accumulate over time and for which invoices have not yet been received or will not be rendered. Examples include taxes, interest, rent and utilities. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+    },
+    {
+      "label": "Operating lease liabilities",
+      "value": "143074",
+      "gaap_id": "us-gaap_OperatingLeaseLiabilityCurrent",
+      "definition": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as current."
+    },
+    {
+      "label": "Total current liabilities",
+      "value": "435670",
+      "gaap_id": "us-gaap_LiabilitiesCurrent",
+      "definition": "Total obligations incurred as part of normal operations that are expected to be paid during the following twelve months or within one business cycle, if longer."
+    },
+    {
+      "label": "Other long-term liabilities",
+      "value": "1048",
+      "gaap_id": "us-gaap_OtherLiabilitiesNoncurrent",
+      "definition": "Amount of liabilities classified as other, due after one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Deferred income taxes",
+      "value": "28911",
+      "gaap_id": "us-gaap_DeferredIncomeTaxLiabilitiesNet",
+      "definition": "Amount, after deferred tax asset, of deferred tax liability attributable to taxable differences with jurisdictional netting."
+    },
+    {
+      "label": "Long-term operating lease liabilities",
+      "value": "967255",
+      "gaap_id": "us-gaap_OperatingLeaseLiabilityNoncurrent",
+      "definition": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as noncurrent."
+    },
+    {
+      "label": "Total liabilities",
+      "value": "1432884",
+      "gaap_id": "us-gaap_Liabilities",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all liabilities that are recognized. Liabilities are probable future sacrifices of economic benefits arising from present obligations of an entity to transfer assets or provide services to other entities in the future."
+    }
+  ],
+  "Shareholders’ equity:": [
+    {
+      "label": "Common stock, $0.01 par value. Authorized 120,000,000 shares; issued and outstanding 55,935,237 and 55,712,067 shares, respectively.",
+      "value": "559",
+      "gaap_id": "us-gaap_CommonStockValue",
+      "definition": "Aggregate par or stated value of issued nonredeemable common stock (or common stock redeemable solely at the option of the issuer). This item includes treasury stock repurchased by the entity. Note: elements for number of nonredeemable common shares, par value and other disclosure concepts are in another section within stockholders' equity."
+    },
+    {
+      "label": "Additional paid-in capital",
+      "value": "321075",
+      "gaap_id": "us-gaap_AdditionalPaidInCapitalCommonStock",
+      "definition": "Value received from shareholders in common stock-related transactions that are in excess of par value or stated value and amounts received from other stock-related transactions. Includes only common stock transactions (excludes preferred stock transactions). May be called contributed capital, capital in excess of par, capital surplus, or paid-in capital."
+    },
+    {
+      "label": "Retained earnings",
+      "value": "560252",
+      "gaap_id": "us-gaap_RetainedEarningsAccumulatedDeficit",
+      "definition": "The cumulative amount of the reporting entity's undistributed earnings or deficit."
+    },
+    {
+      "label": "Total shareholders’ equity",
+      "value": "881886",
+      "gaap_id": "us-gaap_StockholdersEquity",
+      "definition": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates of the entity which are attributable to the parent. The amount of the economic entity's stockholders' equity attributable to the parent excludes the amount of stockholders' equity which is allocable to that ownership interest in subsidiary equity which is not attributable to the parent (noncontrolling interest, minority interest). This excludes temporary equity and is sometimes called permanent equity."
+    },
+    {
+      "label": "Total liabilities and shareholders' equity (deficit)",
+      "value": "2314770",
+      "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+      "definition": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests, if any."
+    },
+    {
+      "label": "Common stock, par value (in dollars per share)",
+      "value": "0.01",
+      "gaap_id": "us-gaap_CommonStockParOrStatedValuePerShare",
+      "definition": "Face amount or stated value per share of common stock."
+    },
+    {
+      "label": "Common Stock, Shares Authorized",
+      "value": "120000000",
+      "gaap_id": "us-gaap_CommonStockSharesAuthorized",
+      "definition": "The maximum number of common shares permitted to be issued by an entity's charter and bylaws."
+    },
+    {
+      "label": "Common stock, shares issued",
+      "value": "55935237",
+      "gaap_id": "us-gaap_CommonStockSharesIssued",
+      "definition": "Total number of common shares of an entity that have been sold or granted to shareholders (includes common shares that were issued, repurchased and remain in the treasury). These shares represent capital invested by the firm's shareholders and owners, and may be all or only a portion of the number of shares authorized. Shares issued include shares outstanding and shares held in the treasury."
+    },
+    {
+      "label": "Common stock, shares outstanding",
+      "value": "55935237",
+      "gaap_id": "us-gaap_CommonStockSharesOutstanding",
+      "definition": "Number of shares of common stock outstanding. Common stock represent the ownership interest in a corporation."
+    }
+  ]
+}

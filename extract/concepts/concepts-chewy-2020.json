@@ -1,0 +1,42 @@
+{
+  "Net Revenue": {
+    "label": "Net sales",
+    "value": "4,846,743",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+  },
+  "Cost of Goods": {
+    "label": "Cost of goods sold",
+    "value": "3,702,683",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative",
+    "value": "969,890",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
+  "Inventory": {
+    "label": "Inventories",
+    "value": "317,808",
+    "gaap_id": "us-gaap_InventoryNet"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "629,789",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total assets",
+    "value": "932,321",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "1,100,538",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities and stockholders\u2019 deficit",
+    "value": "932,321",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "title": "Consolidated Statements of Operations and Comprehensive Income (Loss) - USD ($)shares in Thousands, $ in Thousands",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 29, 2022",
+      "Jan. 30, 2021",
+      "Feb. 01, 2020"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net sales",
+      "value": "3712768",
+      "gaap_id": "us-gaap_Revenues",
+      "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
+    },
+    {
+      "label": "Cost of sales, exclusive of depreciation and amortization",
+      "value": "1400773",
+      "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+      "definition": "Cost of product sold and service rendered, excluding depreciation, depletion, and amortization."
+    },
+    {
+      "label": "Gross profit",
+      "value": "2311995",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Stores and distribution expense",
+      "value": "1429476",
+      "gaap_id": "anf_StoresAndDistributionExpense",
+      "definition": "Stores and distribution expense includes store payroll, store management, rent, utilities and other landlord expenses, depreciation and amortization, repairs and maintenance and other store support functions, as well as Direct-to-Consumer expense and Distribution Center (“DC”) expense."
+    },
+    {
+      "label": "Marketing, general and administrative expense",
+      "value": "536815",
+      "gaap_id": "anf_MarketingGeneralAndAdministrativeExpense",
+      "definition": "Marketing, general and administrative expense includes: photography and media ads; store marketing; home office compensation, except for those departments included in stores and distribution expense; information technology; outside services such as legal and consulting; relocation; recruiting; samples and travel expenses."
+    },
+    {
+      "label": "Total flagship store exit (benefits) charges",
+      "value": "(1153)",
+      "gaap_id": "anf_Flagshipstoreexitcharges",
+      "definition": "The Company's charges (benefits) related to certain flagship store closures."
+    },
+    {
+      "label": "Asset impairment, exclusive of flagship store exit charges",
+      "value": "12100",
+      "gaap_id": "anf_Assetimpairmentexclusiveofflagshipstoreexitcharges",
+      "definition": "Amount of write-down of assets recognized in the income statement excluding those related to flagship store exits. Includes, but is not limited to, losses from tangible assets, intangible assets and goodwill."
+    },
+    {
+      "label": "Other operating income, net",
+      "value": "(8327)",
+      "gaap_id": "us-gaap_OtherOperatingIncomeExpenseNet",
+      "definition": "The net amount of other operating income and expenses, the components of which are not separately disclosed on the income statement, from items that are associated with the entity's normal revenue producing operations."
+    },
+    {
+      "label": "Operating income (loss)",
+      "value": "343084",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "34110",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNet",
+      "definition": "The net amount of operating interest income (expense)."
+    },
+    {
+      "label": "Income (loss) before income taxes",
+      "value": "308974",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+    },
+    {
+      "label": "Income tax expense",
+      "value": "38908",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net income (loss)",
+      "value": "270066",
+      "gaap_id": "us-gaap_ProfitLoss",
+      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+    },
+    {
+      "label": "Less: Net income attributable to noncontrolling interests",
+      "value": "7056",
+      "gaap_id": "us-gaap_IncomeLossAttributableToNoncontrollingInterest",
+      "definition": "Amount, before tax, of income (loss) attributable to noncontrolling interest. Includes, but is not limited to, income (loss) from continuing operations, discontinued operations and equity method investments."
+    },
+    {
+      "label": "Net income (loss) attributable to A&F",
+      "value": "(114021)",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    },
+    {
+      "label": "Basic",
+      "value": "4.41",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted",
+      "value": "4.20",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Basic",
+      "value": "59597",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted",
+      "value": "62636",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    },
+    {
+      "label": "Dividends declared per share",
+      "value": "0.00",
+      "gaap_id": "us-gaap_CommonStockDividendsPerShareDeclared",
+      "definition": "Aggregate dividends declared during the period for each share of common stock outstanding."
+    },
+    {
+      "label": "Foreign currency translation, net of tax",
+      "value": "(22917)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments of gain (loss) on foreign currency translation adjustments, foreign currency transactions designated and effective as economic hedges of a net investment in a foreign entity and intra-entity foreign currency transactions that are of a long-term-investment nature."
+    },
+    {
+      "label": "Derivative financial instruments, net of tax",
+      "value": "10518",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossDerivativesQualifyingAsHedgesNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments, of increase (decrease) in accumulated gain (loss) from derivative instruments designated and qualifying as the effective portion of cash flow hedges and an entity's share of an equity investee's increase (decrease) in deferred hedging gain (loss)."
+    },
+    {
+      "label": "Other comprehensive (loss) income",
+      "value": "(12399)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments of other comprehensive income (loss)."
+    },
+    {
+      "label": "Comprehensive income (loss)",
+      "value": "257667",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Less: Comprehensive income attributable to noncontrolling interests",
+      "value": "7056",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount after tax of other comprehensive income (loss) attributable to noncontrolling interests."
+    },
+    {
+      "label": "Comprehensive Income (Loss), Net of Tax, Attributable to Parent",
+      "value": "250611",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Net sales",
+      "value": "3712768",
+      "gaap_id": "us-gaap_Revenues",
+      "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
+    },
+    {
+      "label": "Cost of Goods and Service, Excluding Depreciation, Depletion, and Amortization",
+      "value": "1400773",
+      "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+      "definition": "Cost of product sold and service rendered, excluding depreciation, depletion, and amortization."
+    },
+    {
+      "label": "Gross Profit",
+      "value": "2311995",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Stores And Distribution Expense",
+      "value": "1429476",
+      "gaap_id": "anf_StoresAndDistributionExpense",
+      "definition": "Stores and distribution expense includes store payroll, store management, rent, utilities and other landlord expenses, depreciation and amortization, repairs and maintenance and other store support functions, as well as Direct-to-Consumer expense and Distribution Center (“DC”) expense."
+    },
+    {
+      "label": "Marketing General And Administrative Expense",
+      "value": "536815",
+      "gaap_id": "anf_MarketingGeneralAndAdministrativeExpense",
+      "definition": "Marketing, general and administrative expense includes: photography and media ads; store marketing; home office compensation, except for those departments included in stores and distribution expense; information technology; outside services such as legal and consulting; relocation; recruiting; samples and travel expenses."
+    },
+    {
+      "label": "Total flagship store exit (benefits) charges",
+      "value": "(1153)",
+      "gaap_id": "anf_Flagshipstoreexitcharges",
+      "definition": "The Company's charges (benefits) related to certain flagship store closures."
+    },
+    {
+      "label": "Asset impairment, exclusive of flagship store exit charges",
+      "value": "12100",
+      "gaap_id": "anf_Assetimpairmentexclusiveofflagshipstoreexitcharges",
+      "definition": "Amount of write-down of assets recognized in the income statement excluding those related to flagship store exits. Includes, but is not limited to, losses from tangible assets, intangible assets and goodwill."
+    },
+    {
+      "label": "Other Operating Income (Expense), Net",
+      "value": "8327",
+      "gaap_id": "us-gaap_OtherOperatingIncomeExpenseNet",
+      "definition": "The net amount of other operating income and expenses, the components of which are not separately disclosed on the income statement, from items that are associated with the entity's normal revenue producing operations."
+    },
+    {
+      "label": "Operating Income (Loss)",
+      "value": "343084",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Interest Income (Expense), Net",
+      "value": "(34110)",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNet",
+      "definition": "The net amount of operating interest income (expense)."
+    },
+    {
+      "label": "Income from Continuing Operations Before Taxes",
+      "value": "308974",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+    },
+    {
+      "label": "Tax expense related to correction of errors",
+      "value": "38908",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net Income (Loss), Including Portion Attributable to Noncontrolling Interest",
+      "value": "270066",
+      "gaap_id": "us-gaap_ProfitLoss",
+      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+    },
+    {
+      "label": "Net income attributable to noncontrolling interests",
+      "value": "7056",
+      "gaap_id": "us-gaap_IncomeLossAttributableToNoncontrollingInterest",
+      "definition": "Amount, before tax, of income (loss) attributable to noncontrolling interest. Includes, but is not limited to, income (loss) from continuing operations, discontinued operations and equity method investments."
+    },
+    {
+      "label": "Net income attributable to A&F",
+      "value": "(114021)",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    },
+    {
+      "label": "Net income (loss) per basic share attributable to A&F",
+      "value": "4.41",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Net income (loss) per diluted share attributable to A&F",
+      "value": "4.20",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Basic",
+      "value": "59597",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Weighted Average Number of Shares Outstanding, Diluted",
+      "value": "62636",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    },
+    {
+      "label": "Foreign currency translation adjustments, net of tax",
+      "value": "(22917)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments of gain (loss) on foreign currency translation adjustments, foreign currency transactions designated and effective as economic hedges of a net investment in a foreign entity and intra-entity foreign currency transactions that are of a long-term-investment nature."
+    },
+    {
+      "label": "Derivative financial instruments, net of tax",
+      "value": "10518",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossDerivativesQualifyingAsHedgesNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments, of increase (decrease) in accumulated gain (loss) from derivative instruments designated and qualifying as the effective portion of cash flow hedges and an entity's share of an equity investee's increase (decrease) in deferred hedging gain (loss)."
+    },
+    {
+      "label": "Other Comprehensive Income (Loss)",
+      "value": "(12399)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments of other comprehensive income (loss)."
+    },
+    {
+      "label": "Comprehensive income (loss)",
+      "value": "257667",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Less: Comprehensive income attributable to noncontrolling interests",
+      "value": "7056",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount after tax of other comprehensive income (loss) attributable to noncontrolling interests."
+    },
+    {
+      "label": "Comprehensive income (loss) attributable to A&F",
+      "value": "250611",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Net income (loss) attributable to A&F",
+      "value": "263010",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    },
+    {
+      "label": "Net income attributable to A&F",
+      "value": "263010",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ]
+}

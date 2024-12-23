@@ -1,0 +1,57 @@
+{
+  "Net Revenue": {
+    "label": "Sales",
+    "value": "132,509,000",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+  },
+  "Cost of Goods": {
+    "label": "Cost of sales",
+    "value": "104,442,000",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "24,586,000",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
+  "Operating Profit": {
+    "label": "Operating income",
+    "value": "2,342,000",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net earnings",
+    "value": "2,512,000",
+    "gaap_id": "us-gaap_ProfitLoss"
+  },
+  "Inventory": {
+    "label": "Inventories",
+    "value": "8,159,000",
+    "gaap_id": "us-gaap_InventoryNet"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "15,814,000",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total assets",
+    "value": "81,285,000",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "22,054,000",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities",
+    "value": "57,145,000",
+    "gaap_id": "us-gaap_Liabilities"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total Walgreens Boots Alliance, Inc. shareholders\u2019 equity",
+    "value": "23,419,000",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  }
+}

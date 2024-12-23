@@ -1,0 +1,95 @@
+{
+  "title": "CONSOLIDATED STATEMENTS OF OPERATIONS - USD ($)shares in Thousands, $ in Thousands",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 31, 2021",
+      "Feb. 02, 2020",
+      "Feb. 03, 2019"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net sales",
+      "value": "7146264",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of goods sold",
+      "value": "5325457",
+      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+    },
+    {
+      "label": "Gross profit",
+      "value": "1820807",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    }
+  ],
+  "Operating expenses:": [
+    {
+      "label": "Selling, general and administrative",
+      "value": "1397969",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Advertising and marketing",
+      "value": "513302",
+      "gaap_id": "us-gaap_MarketingAndAdvertisingExpense",
+      "definition": "The total expense recognized in the period for promotion, public relations, and brand or product advertising."
+    },
+    {
+      "label": "Total operating expenses",
+      "value": "1911271",
+      "gaap_id": "us-gaap_OperatingExpenses",
+      "definition": "Generally recurring costs associated with normal operations except for the portion of these expenses which can be clearly related to production and included in cost of sales or services. Includes selling, general and administrative expense."
+    },
+    {
+      "label": "Loss from operations",
+      "value": "(90464)",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Interest (expense) income, net",
+      "value": "(2022)",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNonoperatingNet",
+      "definition": "The net amount of nonoperating interest income (expense)."
+    },
+    {
+      "label": "Loss before income tax provision",
+      "value": "(92486)",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Income tax provision",
+      "value": "0",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net loss",
+      "value": "(92486)",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    },
+    {
+      "label": "Net loss per share attributable to common Class A and Class B stockholders, basic and diluted (in dollars per share)",
+      "value": "(0.23)",
+      "gaap_id": "us-gaap_EarningsPerShareBasicAndDiluted",
+      "definition": "The amount of net income or loss for the period per each share in instances when basic and diluted earnings per share are the same amount and reported as a single line item on the face of the financial statements.  Basic earnings per share is the amount of net income or loss for the period per each share of common stock or unit outstanding during the reporting period.  Diluted earnings per share includes the amount of net income or loss for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Weighted average common shares used in computing net loss per share attributable to common Class A and Class B stockholders, basic and diluted (in shares)",
+      "value": "407240",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfShareOutstandingBasicAndDiluted",
+      "definition": "Average number of shares or units issued and outstanding that are used in calculating basic and diluted earnings per share (EPS)."
+    }
+  ]
+}

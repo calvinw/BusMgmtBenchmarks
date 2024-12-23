@@ -1,0 +1,932 @@
+Cleaning out statements and facts
+TARGET ------------------------------
+company: target
+year: 2024
+accession_number: 000002741924000032
+CIK: 27419
+ticker: tgt
+report_date: 20240203
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/27419/000002741924000032//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741924000032//tgt-20240203_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741924000032//tgt-20240203_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741924000032//tgt-20240203_lab.xml
+Income Worksheet: Consolidated Statements of Oper
+Balance Worksheet: Consolidated Statements of Fina
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-target-2024.csv
+    Consolidated Stateme... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Feb. 03, 2024  Jan. 28, 2023  Jan. 29, 2022
+1          Total revenue...             107412         109120         106005
+2          Cost of sales...              77736          82229          74963
+3   Selling, general and...              21554          20658          19752
+4   Depreciation and amo...               2415           2385           2344
+5       Operating income...               5707           3848           8946
+6   Net interest expense...                502            478            421
+7       Net other income...                -92            -48           -382
+8   Earnings before inco...               5297           3418           8907
+9   Provision for income...               1159            638           1961
+10          Net earnings...               4138           2780           6946
+11  Basic earnings per s...               8.96           6.02          14.23
+12  Diluted earnings per...               8.94           5.98           14.1
+13  Weighted average com...                                                 
+14     Basic (in shares)...          461500000      462100000      488100000
+15   Diluted (in shares)...          462800000      464700000      492700000
+16  Antidilutive shares ...            2100000        1100000              0
+17                 Sales...                                                 
+18         Total revenue...             105803         107588         104611
+19         Other revenue...                                                 
+20         Total revenue...               1609           1532           1394
+Created:  facts/facts-income-statement-target-2024.csv
+                   facts...      values...
+0                       ...  Feb. 03, 2024
+1   us-gaap_RevenueFromC...         107412
+2   us-gaap_CostOfGoodsA...          77736
+3   us-gaap_SellingGener...          21554
+4   us-gaap_Depreciation...           2415
+5   us-gaap_OperatingInc...           5707
+6   us-gaap_InterestExpe...            502
+7   us-gaap_OtherNonoper...            -92
+8   us-gaap_IncomeLossFr...           5297
+9   us-gaap_IncomeTaxExp...           1159
+10  us-gaap_NetIncomeLos...           4138
+11  us-gaap_EarningsPerS...           8.96
+12  us-gaap_EarningsPerS...           8.94
+13  us-gaap_WeightedAver...               
+14  us-gaap_WeightedAver...      461500000
+15  us-gaap_WeightedAver...      462800000
+16  us-gaap_Antidilutive...        2100000
+17  us-gaap_ProductMembe...               
+18  us-gaap_RevenueFromC...         105803
+19  tgt_OtherProductsand...               
+20  us-gaap_RevenueFromC...           1609
+Created:  statements/balance-statement-target-2024.csv
+    Consolidated Stateme... Feb. 03, 2024... Jan. 28, 2023...
+0                 Assets...                                  
+1   Cash and cash equiva...             3805             2229
+2              Inventory...            11886            13499
+3   Other current assets...             1807             2118
+4   Total current assets...            17498            17846
+5   Property and equipme...                                  
+6                   Land...             6547             6231
+7   Buildings and improv...            37066            34746
+8   Fixtures and equipme...             8765             7439
+9   Computer hardware an...             3428             3039
+10  Construction-in-prog...             1703             2688
+11  Accumulated deprecia...           -24413           -22631
+12  Property and equipme...            33096            31512
+13  Operating lease asse...             3362             2657
+14  Other noncurrent ass...             1400             1320
+15          Total assets...            55356            53335
+16  Liabilities and shar...                                  
+17      Accounts payable...            12098            13487
+18  Accrued and other cu...             6090             5883
+19  Current portion of l...             1116              130
+20  Total current liabil...            19304            19500
+21  Long-term debt and o...            14922            16009
+22  Noncurrent operating...             3279             2638
+23  Deferred income taxe...             2480             2196
+24  Other noncurrent lia...             1939             1760
+25  Total noncurrent lia...            22620            22603
+26  Shareholders' invest...                                  
+27          Common stock...               38               38
+28  Additional paid-in c...             6761             6608
+29     Retained earnings...             7093             5005
+30  Accumulated other co...             -460             -419
+31  Total shareholders' ...            13432            11232
+32  Total liabilities an...            55356            53335
+Created:  facts/facts-balance-statement-target-2024.csv
+                   facts... values...
+0   us-gaap_AssetsAbstra...          
+1   us-gaap_CashCashEqui...      3805
+2   us-gaap_DeferredTaxL...     11886
+3   us-gaap_OtherAssetsC...      1807
+4   us-gaap_AssetsCurren...     17498
+5   us-gaap_PropertyPlan...          
+6           us-gaap_Land...      6547
+7   us-gaap_BuildingAndB...     37066
+8   tgt_FixturesAndEquip...      8765
+9   us-gaap_ComputerEqui...      3428
+10  us-gaap_Construction...      1703
+11  us-gaap_PropertyPlan...    -24413
+12  us-gaap_PropertyPlan...     33096
+13  us-gaap_OperatingLea...      3362
+14  us-gaap_OtherAssetsN...      1400
+15        us-gaap_Assets...     55356
+16  us-gaap_LiabilitiesA...          
+17  us-gaap_IncreaseDecr...     12098
+18  us-gaap_AccruedLiabi...      6090
+19  us-gaap_LongTermDebt...      1116
+20  us-gaap_LiabilitiesC...     19304
+21  us-gaap_LongTermDebt...     14922
+22  us-gaap_OperatingLea...      3279
+23  us-gaap_DeferredInco...      2480
+24  us-gaap_OtherLiabili...      1939
+25  us-gaap_LiabilitiesN...     22620
+26  us-gaap_Stockholders...          
+27  us-gaap_CommonStockV...        38
+28  us-gaap_AdditionalPa...      6761
+29  us-gaap_RetainedEarn...      7093
+30  us-gaap_AccumulatedO...      -460
+31  us-gaap_Stockholders...     13432
+32  us-gaap_LiabilitiesA...     55356
+company: target
+year: 2019
+accession_number: 000002741919000006
+CIK: 27419
+ticker: tgt
+report_date: 20190202
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/27419/000002741919000006//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741919000006//tgt-20190202_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741919000006//tgt-20190202_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/27419/000002741919000006//tgt-20190202_lab.xml
+Income Worksheet: Consolidated Statements of Oper
+Balance Worksheet: Consolidated Statements of Fina
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-target-2019.csv
+    Consolidated Stateme...                                                                                                      Unnamed: 1... 12 Months Ended...  Unnamed: 3... Unnamed: 4...  Unnamed: 5... Unnamed: 6...
+0                    nan...                                                                                                                NaN      Feb. 02, 2019  Feb. 03, 2018           [1]  Jan. 28, 2017           [1]
+1          Total revenue...                                                                                                                NaN              75356          72714           NaN          70271           NaN
+2          Cost of sales...                                                                                                                NaN              53299          51125           NaN          49145           NaN
+3   Selling, general and...                                                                                                                NaN              15723          15140           NaN          14217           NaN
+4   Depreciation and amo...                                                                                                                NaN               2224           2225           NaN           2045           NaN
+5       Operating income...                                                                                                                NaN               4110           4224           NaN           4864           NaN
+6   Net interest expense...                                                                                                                NaN                461            653           NaN            991           NaN
+7   Net other (income) /...                                                                                                                NaN                -27            -59           NaN            -88           NaN
+8   Earnings from contin...                                                                                                                NaN               3676           3630           NaN           3961           NaN
+9   Provision for income...                                                                                                                NaN                746            722           NaN           1295           NaN
+10  Net earnings from co...                                                                                                                NaN               2930           2908           NaN           2666           NaN
+11  Discontinued operati...                                                                                                                NaN                  7              6           NaN             68           NaN
+12          Net earnings...                                                                                                                NaN               2937           2914           NaN           2734           NaN
+13  Basic earnings per s...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+14  Continuing operation...                                                                                                                [2]               5.54           5.32           NaN           4.61           NaN
+15  Discontinued operati...                                                                                                                [2]               0.01           0.01           NaN           0.12           NaN
+16  Net earnings per sha...                                                                                                                [2]               5.55           5.32           NaN           4.73           NaN
+17  Diluted earnings per...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+18  Continuing operation...                                                                                                                [2]                5.5           5.29           NaN           4.58           NaN
+19  Discontinued operati...                                                                                                                [2]               0.01           0.01           NaN           0.12           NaN
+20  Net earnings per sha...                                                                                                                [2]               5.51           5.29           NaN           4.69           NaN
+21  Weighted average com...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+22     Basic (in shares)...                                                                                                                NaN              528.6          546.8           NaN          577.6           NaN
+23   Diluted (in shares)...                                                                                                                NaN              533.2          550.3           NaN          582.5           NaN
+24  Antidilutive shares ...                                                                                                                NaN                  0            4.1           NaN            0.1           NaN
+25                 Sales...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+26         Total revenue...                                                                                                                NaN              74433          71786           NaN          69414           NaN
+27         Other revenue...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+28         Total revenue...                                                                                                                NaN                923            928           NaN            857           NaN
+29                   nan...                                                                                                                NaN                NaN            NaN           NaN            NaN           NaN
+30                   [1]...  Refer to Note 2 regarding the adoption of new accounting standards for revenue recognition, leases, and pensions.                NaN            NaN           NaN            NaN           NaN
+31                   [2]...                                                                     Per share amounts may not foot due to rounding                NaN            NaN           NaN            NaN           NaN
+Created:  facts/facts-income-statement-target-2019.csv
+                   facts...      values...
+0                       ...  Feb. 02, 2019
+1   us-gaap_RevenueFromC...          75356
+2   us-gaap_CostOfGoodsA...          53299
+3   us-gaap_SellingGener...          15723
+4   us-gaap_Depreciation...           2224
+5   us-gaap_OperatingInc...           4110
+6   us-gaap_InterestExpe...            461
+7   us-gaap_OtherNonoper...            -27
+8   us-gaap_IncomeLossFr...           3676
+9   us-gaap_IncomeTaxExp...            746
+10  us-gaap_IncomeLossFr...           2930
+11  us-gaap_IncomeLossFr...              7
+12  us-gaap_NetIncomeLos...           2937
+13  us-gaap_EarningsPerS...            NaN
+14  us-gaap_IncomeLossFr...           5.54
+15  us-gaap_Discontinued...           0.01
+16  us-gaap_EarningsPerS...           5.55
+17  us-gaap_EarningsPerS...            NaN
+18  us-gaap_IncomeLossFr...            5.5
+19  us-gaap_Discontinued...           0.01
+20  us-gaap_EarningsPerS...           5.51
+21  us-gaap_WeightedAver...            NaN
+22  us-gaap_WeightedAver...          528.6
+23  us-gaap_WeightedAver...          533.2
+24  us-gaap_Antidilutive...              0
+25  us-gaap_ProductMembe...            NaN
+26  us-gaap_RevenueFromC...          74433
+27  tgt_OtherProductsand...            NaN
+28  us-gaap_RevenueFromC...            923
+Created:  statements/balance-statement-target-2019.csv
+    Consolidated Stateme...                                                                                                   Feb. 02, 2019...  Feb. 03, 2018...  [1]...
+0                 Assets...                                                                                                                NaN               NaN     NaN
+1   Cash and cash equiva...                                                                                                               1556            2643.0     NaN
+2              Inventory...                                                                                                               9497            8597.0     NaN
+3   Other current assets...                                                                                                               1466            1300.0     NaN
+4   Total current assets...                                                                                                              12519           12540.0     NaN
+5   Property and equipme...                                                                                                                NaN               NaN     NaN
+6                   Land...                                                                                                               6064            6095.0     NaN
+7   Buildings and improv...                                                                                                              29240           28131.0     NaN
+8   Fixtures and equipme...                                                                                                               5912            5623.0     NaN
+9   Computer hardware an...                                                                                                               2544            2645.0     NaN
+10  Construction-in-prog...                                                                                                                460             440.0     NaN
+11  Accumulated deprecia...                                                                                                             -18687          -18398.0     NaN
+12  Property and equipme...                                                                                                              25533           24536.0     NaN
+13  Operating lease asse...                                                                                                               1965            1884.0     NaN
+14  Other noncurrent ass...                                                                                                               1273            1343.0     NaN
+15          Total assets...                                                                                                              41290           40303.0     NaN
+16  Liabilities and shar...                                                                                                                NaN               NaN     NaN
+17      Accounts payable...                                                                                                               9761            8677.0     NaN
+18  Accrued and other cu...                                                                                                               4201            4094.0     NaN
+19  Current portion of l...                                                                                                               1052             281.0     NaN
+20  Total current liabil...                                                                                                              15014           13052.0     NaN
+21  Long-term debt and o...                                                                                                              10223           11117.0     NaN
+22  Noncurrent operating...                                                                                                               2004            1924.0     NaN
+23  Deferred income taxe...                                                                                                                972             693.0     NaN
+24  Other noncurrent lia...                                                                                                               1780            1866.0     NaN
+25  Total noncurrent lia...                                                                                                              14979           15600.0     NaN
+26  Shareholders' invest...                                                                                                                NaN               NaN     NaN
+27          Common stock...                                                                                                                 43              45.0     NaN
+28  Additional paid-in c...                                                                                                               6042            5858.0     NaN
+29     Retained earnings...                                                                                                               6017            6495.0     NaN
+30  Accumulated other co...                                                                                                               -805            -747.0     NaN
+31  Total shareholders' ...                                                                                                              11297           11651.0     NaN
+32  Total liabilities an...                                                                                                              41290           40303.0     NaN
+33                   nan...                                                                                                                NaN               NaN     NaN
+34                   [1]...  Refer to Note 2 regarding the adoption of new accounting standards for revenue recognition, leases, and pensions.               NaN     NaN
+Created:  facts/facts-balance-statement-target-2019.csv
+                   facts... values...
+0   us-gaap_AssetsAbstra...       NaN
+1   us-gaap_CashCashEqui...      1556
+2   us-gaap_InventoryDis...      9497
+3   us-gaap_OtherAssetsC...      1466
+4   us-gaap_AssetsCurren...     12519
+5   us-gaap_PropertyPlan...       NaN
+6           us-gaap_Land...      6064
+7   us-gaap_BuildingsAnd...     29240
+8   us-gaap_FurnitureAnd...      5912
+9   us-gaap_CapitalizedC...      2544
+10  us-gaap_Construction...       460
+11  us-gaap_AccumulatedD...    -18687
+12  us-gaap_PropertyPlan...     25533
+13  us-gaap_OperatingLea...      1965
+14  us-gaap_OtherAssetsN...      1273
+15        us-gaap_Assets...     41290
+16  us-gaap_LiabilitiesA...       NaN
+17  us-gaap_AccountsPaya...      9761
+18  us-gaap_AccruedLiabi...      4201
+19  us-gaap_LongTermDebt...      1052
+20  us-gaap_LiabilitiesC...     15014
+21  us-gaap_LongTermDebt...     10223
+22  us-gaap_OperatingLea...      2004
+23  us-gaap_DeferredInco...       972
+24  us-gaap_OtherLiabili...      1780
+25  us-gaap_LiabilitiesN...     14979
+26  us-gaap_Stockholders...       NaN
+27  us-gaap_CommonStockV...        43
+28  us-gaap_AdditionalPa...      6042
+29  us-gaap_RetainedEarn...      6017
+30  us-gaap_AccumulatedO...      -805
+31  us-gaap_Stockholders...     11297
+32  us-gaap_LiabilitiesA...     41290
+WALMART ------------------------------
+company: walmart
+year: 2024
+accession_number: 000010416924000056
+CIK: 104169
+ticker: wmt
+report_date: 20240131
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/104169/000010416924000056//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/104169/000010416924000056//wmt-20240131_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/104169/000010416924000056//wmt-20240131_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/104169/000010416924000056//wmt-20240131_lab.xml
+Income Worksheet: Consolidated Statements of Inco
+Balance Worksheet: Consolidated Balance Sheets
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-walmart-2024.csv
+    Consolidated Stateme... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Jan. 31, 2024  Jan. 31, 2023  Jan. 31, 2022
+1              Revenues:...                                                 
+2              Net sales...             642637         605881         567762
+3   Membership and other...               5488           5408           4992
+4         Total revenues...             648125         611289         572754
+5    Costs and expenses:...                                                 
+6          Cost of sales...             490142         463721         429000
+7   Operating, selling, ...             130971         127140         117812
+8       Operating income...              27012          20428          25942
+9              Interest:...                                                 
+10                  Debt...               2259           1787           1674
+11         Finance lease...                424            341            320
+12       Interest income...               -546           -254           -158
+13         Interest, net...               2137           1874           1836
+14  Loss on extinguishme...                  0              0           2410
+15  Other (gains) and lo...               3027           1538           3000
+16  Income before income...              21848          17016          18696
+17  Provision for income...               5578           5724           4756
+18  Consolidated net inc...              16270          11292          13940
+19  Consolidated net (in...               -759            388           -267
+20  Consolidated net inc...              15511          11680          13673
+21  Net income per commo...                                                 
+22  Basic net income per...               1.92           1.43           1.63
+23  Diluted net income p...               1.91           1.42           1.62
+24  Weighted-average com...                                                 
+25     Basic (in shares)...               8077           8171           8376
+26   Diluted (in shares)...               8108           8202           8415
+27  Dividends declared p...               0.76         0.7467         0.7333
+Created:  facts/facts-income-statement-walmart-2024.csv
+                   facts...      values...
+0                       ...  Jan. 31, 2024
+1   us-gaap_RevenuesAbst...               
+2   us-gaap_RevenueFromC...         642637
+3    us-gaap_OtherIncome...           5488
+4       us-gaap_Revenues...         648125
+5   us-gaap_CostsAndExpe...               
+6   us-gaap_CostOfRevenu...         490142
+7   us-gaap_SellingGener...         130971
+8   us-gaap_OperatingInc...          27012
+9   us-gaap_InterestInco...               
+10  us-gaap_InterestExpe...           2259
+11  wmt_FinanceLeaseAndF...            424
+12  us-gaap_InvestmentIn...           -546
+13  us-gaap_InterestInco...           2137
+14  us-gaap_GainsLossesO...              0
+15  us-gaap_Nonoperating...           3027
+16  us-gaap_IncomeLossFr...          21848
+17  us-gaap_IncomeTaxExp...           5578
+18    us-gaap_ProfitLoss...          16270
+19  us-gaap_NetIncomeLos...           -759
+20  us-gaap_NetIncomeLos...          15511
+21  us-gaap_EarningsPerS...               
+22  us-gaap_EarningsPerS...           1.92
+23  us-gaap_EarningsPerS...           1.91
+24  us-gaap_WeightedAver...               
+25  us-gaap_WeightedAver...           8077
+26  us-gaap_WeightedAver...           8108
+27  us-gaap_CommonStockD...           0.76
+Created:  statements/balance-statement-walmart-2024.csv
+    Consolidated Balance... Jan. 31, 2024... Jan. 31, 2023...
+0        Current assets:...                                  
+1   Cash and cash equiva...             9867             8625
+2       Receivables, net...             8796             7933
+3            Inventories...            54892            56576
+4   Prepaid expenses and...             3322             2521
+5   Total current assets...            76877            75655
+6   Property and equipme...           110810           100760
+7   Operating lease righ...            13673            13555
+8   Finance lease right-...             5855             4919
+9               Goodwill...            28113            28174
+10  Other long-term asse...            17071            20134
+11          Total assets...           252399           243197
+12  Current liabilities:...                                  
+13  Short-term borrowing...              878              372
+14      Accounts payable...            56812            53742
+15   Accrued liabilities...            28759            31126
+16  Accrued income taxes...              307              727
+17  Long-term debt due w...             3447             4191
+18  Operating lease obli...             1487             1473
+19  Finance lease obliga...              725              567
+20  Total current liabil...            92415            92198
+21        Long-term debt...            36132            34649
+22  Long-term operating ...            12943            12828
+23  Long-term finance le...             5709             4843
+24  Deferred income taxe...            14629            14688
+25  Commitments and cont...                                  
+26  Redeemable noncontro...              222              237
+27               Equity:...                                  
+28          Common stock...              805              808
+29  Capital in excess of...             4544             4430
+30     Retained earnings...            89814            83135
+31  Accumulated other co...           -11302           -11680
+32  Total Walmart shareh...            83861            76693
+33  Noncontrolling inter...             6488             7061
+34          Total equity...            90349            83754
+35  Total liabilities, r...           252399           243197
+Created:  facts/facts-balance-statement-walmart-2024.csv
+                   facts... values...
+0   us-gaap_AssetsCurren...          
+1   us-gaap_CashAndCashE...      9867
+2   us-gaap_ReceivablesN...      8796
+3   us-gaap_InventoryPol...     54892
+4   us-gaap_PrepaidExpen...      3322
+5   us-gaap_AssetsCurren...     76877
+6   us-gaap_PropertyPlan...    110810
+7   us-gaap_OperatingLea...     13673
+8   us-gaap_FinanceLease...      5855
+9       us-gaap_Goodwill...     28113
+10  us-gaap_DeferredTaxA...     17071
+11        us-gaap_Assets...    252399
+12  us-gaap_LiabilitiesC...          
+13  us-gaap_ShortTermBor...       878
+14  us-gaap_IncreaseDecr...     56812
+15  us-gaap_AccruedLiabi...     28759
+16  us-gaap_IncreaseDecr...       307
+17  us-gaap_LongTermDebt...      3447
+18  us-gaap_OperatingLea...      1487
+19  us-gaap_FinanceLease...       725
+20  us-gaap_LiabilitiesC...     92415
+21  us-gaap_LongTermDebt...     36132
+22  us-gaap_OperatingLea...     12943
+23  us-gaap_FinanceLease...      5709
+24  us-gaap_DeferredInco...     14629
+25  us-gaap_CommitmentsA...          
+26  us-gaap_RedeemableNo...       222
+27  us-gaap_Stockholders...          
+28  us-gaap_CommonStockV...       805
+29  us-gaap_AdditionalPa...      4544
+30  us-gaap_RetainedEarn...     89814
+31  us-gaap_AccumulatedO...    -11302
+32  us-gaap_ParentMember...     83861
+33  us-gaap_MinorityInte...      6488
+34  us-gaap_Stockholders...     90349
+35  us-gaap_LiabilitiesA...    252399
+DOLLAR GENERAL ------------------------------
+company: dollar_general
+year: 2024
+accession_number: 000155837024003813
+CIK: 0000029534
+ticker: dg
+report_date: 20240202
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837024003813//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837024003813//dg-20240202_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837024003813//dg-20240202_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837024003813//dg-20240202_lab.xml
+Income Worksheet: CONSOLIDATED STATEMENTS OF INCO
+Balance Worksheet: CONSOLIDATED BALANCE SHEETS
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-dollar_general-2024.csv
+    CONSOLIDATED STATEME... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Feb. 02, 2024  Feb. 03, 2023  Jan. 28, 2022
+1   CONSOLIDATED STATEME...                                                 
+2              Net sales...           38691609       37844863       34220449
+3     Cost of goods sold...           26972585       26024765       23407443
+4           Gross profit...           11719024       11820098       10813006
+5   Selling, general and...            9272724        8491796        7592331
+6       Operating profit...            2446300        3328302        3220675
+7       Interest expense...             326781         211273         157526
+8   Other (income) expen...                               415               
+9   Income before income...            2119519        3116614        3063149
+10    Income tax expense...             458245         700625         663917
+11            Net income...            1661274        2415989        2399232
+12   Earnings per share:...                                                 
+13  Basic (in dollars pe...               7.57          10.73          10.24
+14  Diluted (in dollars ...               7.55          10.68          10.17
+15  Weighted average sha...                                                 
+16     Basic (in shares)...             219415         225148         234261
+17   Diluted (in shares)...             219938         226297         235812
+18   Dividends per share...               2.36            2.2           1.68
+Created:  facts/facts-income-statement-dollar_general-2024.csv
+                   facts...      values...
+0                       ...  Feb. 02, 2024
+1   us-gaap_IncomeStatem...               
+2   us-gaap_RevenueFromC...       38691609
+3   us-gaap_CostOfGoodsA...       26972585
+4    us-gaap_GrossProfit...       11719024
+5   us-gaap_SellingGener...        9272724
+6   us-gaap_OperatingInc...        2446300
+7   us-gaap_InterestExpe...         326781
+8   us-gaap_OtherNonoper...               
+9   us-gaap_IncomeLossFr...        2119519
+10  us-gaap_IncomeTaxExp...         458245
+11  us-gaap_NetIncomeLos...        1661274
+12  us-gaap_EarningsPerS...               
+13  us-gaap_EarningsPerS...           7.57
+14  us-gaap_EarningsPerS...           7.55
+15  us-gaap_WeightedAver...               
+16  us-gaap_WeightedAver...         219415
+17  us-gaap_WeightedAver...         219938
+18  us-gaap_CommonStockD...           2.36
+Created:  statements/balance-statement-dollar_general-2024.csv
+    CONSOLIDATED BALANCE... Feb. 02, 2024... Feb. 03, 2023...
+0        Current assets:...                                  
+1   Cash and cash equiva...           537283           381576
+2   Merchandise inventor...          6994266          6760733
+3   Income taxes receiva...           112262           135775
+4   Prepaid expenses and...           366913           302925
+5   Total current assets...          8010724          7581009
+6   Net property and equ...          6087722          5236309
+7   Operating lease asse...         11098228         10670014
+8               Goodwill...          4338589          4338589
+9   Other intangible ass...          1199700          1199700
+10     Other assets, net...            60628            57746
+11          Total assets...         30795591         29083367
+12  Current liabilities:...                                  
+13  Current portion of l...           768645                 
+14  Current portion of o...          1387083          1288939
+15      Accounts payable...          3587374          3552991
+16  Accrued expenses and...           971890          1036919
+17  Income taxes payable...            10709             8919
+18  Total current liabil...          6725701          5887768
+19  Long-term obligation...          6231539          7009399
+20  Long-term operating ...          9703499          9362761
+21  Deferred income taxe...          1133784          1060906
+22     Other liabilities...           251949           220761
+23  Commitments and cont...                                  
+24  Shareholders' equity...                                  
+25       Preferred stock...                                  
+26  Common stock; $0.875...           192206           191718
+27  Additional paid-in c...          3757005          3693871
+28     Retained earnings...          2799415          1656140
+29  Accumulated other co...              493               43
+30  Total shareholders' ...          6749119          5541772
+31  Total liabilities an...         30795591         29083367
+Created:  facts/facts-balance-statement-dollar_general-2024.csv
+                   facts... values...
+0   us-gaap_AssetsCurren...          
+1   us-gaap_CashAndCashE...    537283
+2   us-gaap_InventoryNet...   6994266
+3   us-gaap_IncomeTaxesR...    112262
+4   us-gaap_PrepaidExpen...    366913
+5   us-gaap_AssetsCurren...   8010724
+6   us-gaap_PropertyPlan...   6087722
+7   us-gaap_OperatingLea...  11098228
+8       us-gaap_Goodwill...   4338589
+9   us-gaap_IntangibleAs...   1199700
+10  us-gaap_OtherAssetsN...     60628
+11        us-gaap_Assets...  30795591
+12  us-gaap_LiabilitiesC...          
+13  us-gaap_LongTermDebt...    768645
+14  us-gaap_OperatingLea...   1387083
+15  us-gaap_AccountsPaya...   3587374
+16  us-gaap_AccruedLiabi...    971890
+17  us-gaap_AccruedIncom...     10709
+18  us-gaap_LiabilitiesC...   6725701
+19  us-gaap_LongTermDebt...   6231539
+20  us-gaap_OperatingLea...   9703499
+21  us-gaap_DeferredInco...   1133784
+22  us-gaap_OtherLiabili...    251949
+23  us-gaap_CommitmentsA...          
+24  us-gaap_Stockholders...          
+25  us-gaap_PreferredSto...          
+26  us-gaap_CommonStockV...    192206
+27  us-gaap_AdditionalPa...   3757005
+28  us-gaap_RetainedEarn...   2799415
+29  us-gaap_AccumulatedO...       493
+30  us-gaap_Stockholders...   6749119
+31  us-gaap_LiabilitiesA...  30795591
+company: dollar_general
+year: 2019
+accession_number: 000155837019002383
+CIK: 0000029534
+ticker: dg
+report_date: 20190201
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837019002383//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837019002383//dg-20190201_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837019002383//dg-20190201_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/0000029534/000155837019002383//dg-20190201_lab.xml
+Income Worksheet: CONSOLIDATED STATEMENTS OF INCO
+Balance Worksheet: CONSOLIDATED BALANCE SHEETS
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-dollar_general-2019.csv
+    CONSOLIDATED STATEME... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Feb. 01, 2019  Feb. 02, 2018  Feb. 03, 2017
+1   CONSOLIDATED STATEME...                NaN            NaN            NaN
+2              Net sales...           25625043       23470967       21986598
+3     Cost of goods sold...           17821173       16249608       15203960
+4           Gross profit...            7803870        7221359        6782638
+5   Selling, general and...            5687564        5213541        4719189
+6       Operating profit...            2116306        2007818        2063449
+7       Interest expense...              99871          97036          97821
+8   Other (income) expen...               1019           3502            NaN
+9   Income before income...            2015416        1907280        1965628
+10    Income tax expense...             425944         368320         714495
+11            Net income...            1589472        1538960        1251133
+12   Earnings per share:...                NaN            NaN            NaN
+13  Basic (in dollars pe...               5.99           5.64           4.45
+14  Diluted (in dollars ...               5.97           5.63           4.43
+15  Weighted average sha...                NaN            NaN            NaN
+16     Basic (in shares)...             265155         272751         281317
+17   Diluted (in shares)...             266105         273362         282261
+18  Dividends per share ...               1.16           1.04              1
+Created:  facts/facts-income-statement-dollar_general-2019.csv
+                   facts...      values...
+0                       ...  Feb. 01, 2019
+1   us-gaap_IncomeStatem...            NaN
+2   us-gaap_RevenueFromC...       25625043
+3   us-gaap_CostOfGoodsA...       17821173
+4    us-gaap_GrossProfit...        7803870
+5   us-gaap_SellingGener...        5687564
+6   us-gaap_OperatingInc...        2116306
+7   us-gaap_InterestExpe...          99871
+8   us-gaap_OtherNonoper...           1019
+9   us-gaap_IncomeLossFr...        2015416
+10  us-gaap_IncomeTaxExp...         425944
+11  us-gaap_NetIncomeLos...        1589472
+12  us-gaap_EarningsPerS...            NaN
+13  us-gaap_EarningsPerS...           5.99
+14  us-gaap_EarningsPerS...           5.97
+15  us-gaap_WeightedAver...            NaN
+16  us-gaap_WeightedAver...         265155
+17  us-gaap_WeightedAver...         266105
+18  us-gaap_CommonStockD...           1.16
+Created:  statements/balance-statement-dollar_general-2019.csv
+    CONSOLIDATED BALANCE... Feb. 01, 2019... Feb. 02, 2018...
+0        Current assets:...              NaN              NaN
+1   Cash and cash equiva...           235487           267441
+2   Merchandise inventor...          4097004          3609025
+3   Income taxes receiva...            57804           108265
+4   Prepaid expenses and...           272725           263121
+5   Total current assets...          4663020          4247852
+6   Net property and equ...          2970806          2701282
+7               Goodwill...          4338589          4338589
+8   Other intangible ass...          1200217          1200428
+9      Other assets, net...            31406            28760
+10          Total assets...         13204038         12516911
+11  Current liabilities:...              NaN              NaN
+12  Current portion of l...             1950           401345
+13      Accounts payable...          2385469          2009771
+14  Accrued expenses and...           618405           549658
+15  Income taxes payable...            10033             4104
+16  Total current liabil...          3015857          2964878
+17  Long-term obligation...          2862740          2604613
+18  Deferred income taxe...           609687           515702
+19     Other liabilities...           298361           305944
+20  Commitments and cont...                                  
+21  Shareholders' equity...              NaN              NaN
+22       Preferred stock...                                  
+23  Common stock; $0.875...           227072           235141
+24  Additional paid-in c...          3252421          3196462
+25     Retained earnings...          2941107          2698352
+26  Accumulated other co...            -3207            -4181
+27  Total shareholders' ...          6417393          6125774
+28  Total liabilities an...         13204038         12516911
+Created:  facts/facts-balance-statement-dollar_general-2019.csv
+                   facts... values...
+0   us-gaap_AssetsCurren...       NaN
+1   us-gaap_CashAndCashE...    235487
+2   us-gaap_InventoryNet...   4097004
+3   us-gaap_IncomeTaxesR...     57804
+4   us-gaap_PrepaidExpen...    272725
+5   us-gaap_AssetsCurren...   4663020
+6   us-gaap_PropertyPlan...   2970806
+7       us-gaap_Goodwill...   4338589
+8   us-gaap_IntangibleAs...   1200217
+9   us-gaap_OtherAssetsN...     31406
+10        us-gaap_Assets...  13204038
+11  us-gaap_LiabilitiesC...       NaN
+12  us-gaap_LongTermDebt...      1950
+13  us-gaap_AccountsPaya...   2385469
+14  us-gaap_AccruedLiabi...    618405
+15  us-gaap_AccruedIncom...     10033
+16  us-gaap_LiabilitiesC...   3015857
+17  us-gaap_LongTermDebt...   2862740
+18  us-gaap_DeferredTaxL...    609687
+19  us-gaap_OtherLiabili...    298361
+20  us-gaap_CommitmentsA...          
+21  us-gaap_Stockholders...       NaN
+22  us-gaap_PreferredSto...          
+23  us-gaap_CommonStockV...    227072
+24  us-gaap_AdditionalPa...   3252421
+25  us-gaap_RetainedEarn...   2941107
+26  us-gaap_AccumulatedO...     -3207
+27  us-gaap_Stockholders...   6417393
+28  us-gaap_LiabilitiesA...  13204038
+DOLLAR TREE ------------------------------
+company: dollar_tree
+year: 2024
+accession_number: 000093570324000011
+CIK: 935703
+ticker: dltr
+report_date: 20240203
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/935703/000093570324000011//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570324000011//dltr-20240203_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570324000011//dltr-20240203_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570324000011//dltr-20240203_lab.xml
+Income Worksheet: CONSOLIDATED INCOME STATEMENTS
+Balance Worksheet: CONSOLIDATED BALANCE SHEETS
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-dollar_tree-2024.csv
+    CONSOLIDATED INCOME ... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Feb. 03, 2024  Jan. 28, 2023  Jan. 29, 2022
+1   Income Statement [Ab...                                                 
+2              Net sales...            30581.6        28318.2        26309.8
+3          Other revenue...               22.2           13.5           11.4
+4          Total revenue...            30603.8        28331.7        26321.2
+5          Cost of sales...              21272        19396.3        18583.9
+6   Selling, general and...             9144.6         6699.1         5925.9
+7    Goodwill impairment...               1069              0              0
+8   Selling, general and...            10213.6         6699.1         5925.9
+9   Operating income (lo...             -881.8         2236.3         1811.4
+10  Interest expense, ne...              106.8          125.3          178.9
+11    Other expense, net...                0.1            0.4            0.3
+12  Income (loss) before...             -988.7         2110.6         1632.2
+13  Provision for income...                9.7          495.2          304.3
+14     Net income (loss)...             -998.4         1615.4         1327.9
+15  Net income per share...                                                 
+16  Basic net income per...              -4.55           7.24           5.83
+17  Diluted net income p...              -4.55           7.21            5.8
+Created:  facts/facts-income-statement-dollar_tree-2024.csv
+                   facts...      values...
+0                       ...  Feb. 03, 2024
+1   us-gaap_IncomeStatem...               
+2   us-gaap_RevenueFromC...        30581.6
+3   us-gaap_RevenueNotFr...           22.2
+4       us-gaap_Revenues...        30603.8
+5   us-gaap_CostOfGoodsA...          21272
+6   us-gaap_SellingGener...         9144.6
+7   us-gaap_GoodwillImpa...           1069
+8   us-gaap_SellingGener...        10213.6
+9   us-gaap_OperatingInc...         -881.8
+10  us-gaap_InterestInco...          106.8
+11  us-gaap_OtherNonoper...            0.1
+12  us-gaap_IncomeLossFr...         -988.7
+13  us-gaap_IncomeTaxExp...            9.7
+14  us-gaap_NetIncomeLos...         -998.4
+15  us-gaap_EarningsPerS...               
+16  us-gaap_EarningsPerS...          -4.55
+17  us-gaap_EarningsPerS...          -4.55
+Created:  statements/balance-statement-dollar_tree-2024.csv
+    CONSOLIDATED BALANCE... Feb. 03, 2024... Jan. 28, 2023...
+0        Current assets:...                                  
+1   Cash and cash equiva...            684.9            642.8
+2   Merchandise inventor...           5112.8           5449.3
+3   Other current assets...              335              275
+4   Total current assets...           6132.7           6367.1
+5   Property, plant and ...           6144.1           4972.2
+6        Restricted cash...             72.3             68.5
+7   Operating lease righ...           6488.3             6458
+8               Goodwill...            913.8           1983.1
+9   Trade name intangibl...             2150             3100
+10    Deferred tax asset...                9               15
+11          Other assets...            113.3             58.2
+12          Total assets...          22023.5          23022.1
+13  Current liabilities:...                                  
+14  Current portion of o...             1513           1449.6
+15      Accounts payable...           2063.8           1899.8
+16  Income taxes payable...             52.7             58.1
+17  Other current liabil...           1067.2            817.7
+18  Total current liabil...           4696.7           4225.2
+19   Long-term debt, net...           3426.3           3421.6
+20  Operating lease liab...           5447.6           5255.3
+21  Deferred income taxe...            841.1           1105.7
+22  Income taxes payable...               22             17.4
+23     Other liabilities...            276.7            245.4
+24     Total liabilities...          14710.4          14270.6
+25  Commitments and cont...                                  
+26  Shareholders’ equity...                                  
+27  Common stock, par va...              2.2              2.2
+28  Additional paid-in c...            229.9            667.5
+29  Accumulated other co...            -43.6            -41.2
+30     Retained earnings...           7124.6             8123
+31  Total shareholders’ ...           7313.1           8751.5
+32  Total liabilities an...          22023.5          23022.1
+Created:  facts/facts-balance-statement-dollar_tree-2024.csv
+                   facts... values...
+0   us-gaap_AssetsCurren...          
+1   us-gaap_CashAndCashE...     684.9
+2   us-gaap_IncreaseDecr...    5112.8
+3   us-gaap_OtherAssetsC...       335
+4   us-gaap_AssetsCurren...    6132.7
+5   us-gaap_PropertyPlan...    6144.1
+6   us-gaap_RestrictedCa...      72.3
+7   us-gaap_OperatingLea...    6488.3
+8       us-gaap_Goodwill...     913.8
+9   us-gaap_IndefiniteLi...      2150
+10  us-gaap_DeferredInco...         9
+11  us-gaap_IncreaseDecr...     113.3
+12        us-gaap_Assets...   22023.5
+13  us-gaap_LiabilitiesC...          
+14  us-gaap_OperatingLea...      1513
+15  us-gaap_AccountsPaya...    2063.8
+16  us-gaap_AccruedIncom...      52.7
+17  us-gaap_OtherLiabili...    1067.2
+18  us-gaap_LiabilitiesC...    4696.7
+19  us-gaap_LongTermDebt...    3426.3
+20  us-gaap_OperatingLea...    5447.6
+21  us-gaap_DeferredInco...     841.1
+22  us-gaap_AccruedIncom...        22
+23  us-gaap_IncreaseDecr...     276.7
+24   us-gaap_Liabilities...   14710.4
+25  us-gaap_CommitmentsA...          
+26  us-gaap_Stockholders...          
+27  us-gaap_CommonStockV...       2.2
+28  us-gaap_AdditionalPa...     229.9
+29  us-gaap_AccumulatedO...     -43.6
+30  us-gaap_RetainedEarn...    7124.6
+31  us-gaap_Stockholders...    7313.1
+32  us-gaap_LiabilitiesA...   22023.5
+company: dollar_tree
+year: 2019
+accession_number: 000093570319000024
+CIK: 935703
+ticker: dltr
+report_date: 20190202
+excel_10k_url: https://www.sec.gov/Archives/edgar/data/935703/000093570319000024//Financial_Report.xlsx
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570319000024//dltr-20190202_lab.xml
+presentation_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570319000024//dltr-20190202_pre.xml
+labels_xml_url: https://www.sec.gov/Archives/edgar/data/935703/000093570319000024//dltr-20190202_lab.xml
+Income Worksheet: CONSOLIDATED INCOME STATEMENTS
+Balance Worksheet: CONSOLIDATED BALANCE SHEETS
+Downloaded  Financial_Report.xlsx
+Downloaded  labels.xml
+Downloaded  presentation.xml
+Created:  statements/income-statement-dollar_tree-2019.csv
+    CONSOLIDATED INCOME ... 12 Months Ended...  Unnamed: 2...  Unnamed: 3...
+0                    nan...      Feb. 02, 2019  Feb. 03, 2018  Jan. 28, 2017
+1   Income Statement [Ab...                NaN            NaN            NaN
+2        Total net sales...            22823.3        22245.5        20719.2
+3   Cost of Goods and Se...            15875.8        15223.6        14324.5
+4           Gross profit...             6947.5         7021.9         6394.7
+5   Selling, general and...               5160         5004.3         4689.9
+6    Goodwill impairment...               2727              0              0
+7   Receivable impairmen...                  0           18.5              0
+8   Selling, general and...               7887         5022.8         4689.9
+9   Operating income (lo...             -939.5         1999.1         1704.8
+10  Interest expense, ne...                370          301.8          375.5
+11     Other income, net...               -0.5           -6.7           -0.1
+12  Income (loss) before...              -1309           1704         1329.4
+13  Provision for income...              281.8          -10.3          433.2
+14     Net income (loss)...            -1590.8         1714.3          896.2
+15  Net income per share...                NaN            NaN            NaN
+16  Basic net income per...              -6.69           7.24            3.8
+17  Diluted net income p...              -6.66           7.21           3.78
+Created:  facts/facts-income-statement-dollar_tree-2019.csv
+                   facts...      values...
+0                       ...  Feb. 02, 2019
+1   us-gaap_IncomeStatem...            NaN
+2   us-gaap_RevenueFromC...        22823.3
+3   us-gaap_CostOfGoodsA...        15875.8
+4    us-gaap_GrossProfit...         6947.5
+5   dltr_SellingGenerala...           5160
+6   us-gaap_GoodwillImpa...           2727
+7   us-gaap_AssetImpairm...              0
+8   us-gaap_SellingGener...           7887
+9   us-gaap_OperatingInc...         -939.5
+10  us-gaap_InterestInco...            370
+11  us-gaap_OtherNonoper...           -0.5
+12  us-gaap_IncomeLossFr...          -1309
+13  us-gaap_IncomeTaxExp...          281.8
+14  us-gaap_NetIncomeLos...        -1590.8
+15  us-gaap_EarningsPerS...            NaN
+16  us-gaap_EarningsPerS...          -6.69
+17  us-gaap_EarningsPerS...          -6.66
+Created:  statements/balance-statement-dollar_tree-2019.csv
+    CONSOLIDATED BALANCE... Feb. 02, 2019... Feb. 03, 2018...
+0        Current assets:...              NaN              NaN
+1   Cash and cash equiva...            422.1           1097.8
+2   Merchandise inventor...             3536           3169.3
+3   Other current assets...            335.2            309.2
+4   Total current assets...           4293.3           4576.3
+5   Property, plant and ...           3445.3           3200.7
+6        Restricted cash...             24.6                0
+7               Goodwill...           2296.6           5025.2
+8   Favorable lease righ...            288.7            375.3
+9   Trade name intangibl...             3100             3100
+10          Other assets...             52.7             55.3
+11          Total assets...          13501.2          16332.8
+12  Current liabilities:...              NaN              NaN
+13  Current portion of l...                0            915.9
+14      Accounts payable...           1416.4           1174.8
+15  Other current liabil...            619.3            736.9
+16  Income taxes payable...               60             31.5
+17  Total current liabil...           2095.7           2859.1
+18  Long-term debt, net,...           4265.3           4762.1
+19  Unfavorable lease ri...             78.8              100
+20  Deferred income taxe...            973.2            985.2
+21  Income taxes payable...             35.4             43.8
+22     Other liabilities...            409.9            400.3
+23     Total liabilities...           7858.3           9150.5
+24  Commitments and cont...                                  
+25  Shareholders’ equity...              NaN              NaN
+26  Common stock, par va...              2.4              2.4
+27  Additional paid-in c...           2602.7           2545.3
+28  Accumulated other co...            -38.3            -32.3
+29     Retained earnings...           3076.1           4666.9
+30  Total shareholders’ ...           5642.9           7182.3
+31  Total liabilities an...          13501.2          16332.8
+Created:  facts/facts-balance-statement-dollar_tree-2019.csv
+                   facts... values...
+0   us-gaap_AssetsCurren...       NaN
+1   us-gaap_CashAndCashE...     422.1
+2   us-gaap_RetailRelate...      3536
+3   us-gaap_PrepaidExpen...     335.2
+4   us-gaap_AssetsCurren...    4293.3
+5   us-gaap_PropertyPlan...    3445.3
+6   us-gaap_RestrictedCa...      24.6
+7       us-gaap_Goodwill...    2296.6
+8   us-gaap_FiniteLivedI...     288.7
+9   us-gaap_FiniteLivedT...      3100
+10  us-gaap_OtherAssetsN...      52.7
+11        us-gaap_Assets...   13501.2
+12  us-gaap_LiabilitiesC...       NaN
+13  us-gaap_LongTermDebt...         0
+14  us-gaap_AccountsPaya...    1416.4
+15  us-gaap_OtherLiabili...     619.3
+16  us-gaap_AccruedIncom...        60
+17  us-gaap_LiabilitiesC...    2095.7
+18  us-gaap_LongTermDebt...    4265.3
+19  us-gaap_OffMarketLea...      78.8
+20  us-gaap_DeferredInco...     973.2
+21  us-gaap_AccruedIncom...      35.4
+22  us-gaap_OtherLiabili...     409.9
+23   us-gaap_Liabilities...    7858.3
+24  us-gaap_CommitmentsA...          
+25  us-gaap_Stockholders...       NaN
+26  us-gaap_CommonStockV...       2.4
+27  us-gaap_AdditionalPa...    2602.7
+28  us-gaap_AccumulatedO...     -38.3
+29  us-gaap_RetainedEarn...    3076.1
+30  us-gaap_Stockholders...    5642.9
+31  us-gaap_LiabilitiesA...   13501.2
+Finshed

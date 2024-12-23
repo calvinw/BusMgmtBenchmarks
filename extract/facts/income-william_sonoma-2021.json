@@ -1,0 +1,95 @@
+{
+  "title": "Consolidated Statements of Earnings - USD ($)shares in Thousands, $ in Thousands",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 31, 2021",
+      "Feb. 02, 2020",
+      "Feb. 03, 2019"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net revenues",
+      "value": "6783189",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of goods sold",
+      "value": "4146920",
+      "gaap_id": "wsm_CostOfGoodsSoldAndOccupancyExpenses",
+      "definition": "Total of 1) costs related to goods sold during the reporting period, including inbound freight and inventory related costs 2) all occupancy related costs including rent, depreciation, common area maintenance and other occupancy costs and 3) shipping costs consisting of third party delivery services and shipping materials."
+    },
+    {
+      "label": "Gross profit",
+      "value": "2636269",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Selling, general and administrative expenses",
+      "value": "1725572",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Operating income",
+      "value": "910697",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "16231",
+      "gaap_id": "wsm_NetInterestIncomeAndExpense",
+      "definition": "The net amount of interest (income) and expense."
+    },
+    {
+      "label": "Earnings before income taxes",
+      "value": "894466",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Income taxes",
+      "value": "213752",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net earnings",
+      "value": "680714",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    },
+    {
+      "label": "Basic earnings per share",
+      "value": "8.81",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted earnings per share",
+      "value": "8.61",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Shares used in calculation of earnings per share:": [
+    {
+      "label": "Basic",
+      "value": "77260",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted",
+      "value": "79055",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "Net Revenue": {
+    "label": "Sales",
+    "value": "150,039,000",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+  },
+  "Cost of Goods": {
+    "label": "Merchandise costs, including advertising, warehousing, and transportation, excluding items shown separately below",
+    "value": "116,675,000",
+    "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"
+  },
+  "SG&A": {
+    "label": "Operating, general and administrative",
+    "value": "26,252,000",
+    "gaap_id": "kr_OperatingGeneralAndAdministrativeExpense"
+  },
+  "Operating Profit": {
+    "label": "Operating profit",
+    "value": "3,096,000",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net earnings attributable to The Kroger Co.",
+    "value": "2,164,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
+  "Inventory": {
+    "label": "FIFO inventory",
+    "value": "9,414,000",
+    "gaap_id": "us-gaap_FIFOInventoryAmount"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "12,948,000",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total Assets",
+    "value": "50,505,000",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "16,058,000",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total Shareowners' Equity - The Kroger Co.",
+    "value": "11,615,000",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total Liabilities and Equity",
+    "value": "50,505,000",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+  }
+}

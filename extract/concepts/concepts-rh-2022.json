@@ -1,0 +1,52 @@
+{
+  "Net Revenue": {
+    "label": "Net revenues",
+    "value": "3,758,820",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax"
+  },
+  "Cost of Goods": {
+    "label": "Cost of goods sold",
+    "value": "1,903,409",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "Operating Profit": {
+    "label": "Income from operations",
+    "value": "927,181",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net income",
+    "value": "688,546",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "928,230",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "3,091,442",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total assets",
+    "value": "5,540,470",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "1,063,758",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities and stockholders' equity",
+    "value": "5,540,470",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total stockholders' equity",
+    "value": "1,170,277",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  }
+}

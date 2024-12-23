@@ -1,0 +1,155 @@
+{
+  "title": "Consolidated Statements of Operations - USD ($)shares in Millions, $ in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Feb. 02, 2019",
+      "Feb. 03, 2018",
+      "[1]",
+      "Jan. 28, 2017",
+      "[1]"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Total revenue",
+      "value": "75356",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of sales",
+      "value": "53299",
+      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+    },
+    {
+      "label": "Selling, general and administrative expenses",
+      "value": "15723",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Depreciation and amortization (exclusive of depreciation included in cost of sales)",
+      "value": "2224",
+      "gaap_id": "us-gaap_DepreciationAndAmortization",
+      "definition": "The current period expense charged against earnings on long-lived, physical assets not used in production, and which are not intended for resale, to allocate or recognize the cost of such assets over their useful lives; or to record the reduction in book value of an intangible asset over the benefit period of such asset; or to reflect consumption during the period of an asset that is not used in production."
+    },
+    {
+      "label": "Operating income",
+      "value": "4110",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Net interest expense",
+      "value": "461",
+      "gaap_id": "us-gaap_InterestExpense",
+      "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
+    },
+    {
+      "label": "Net other (income) / expense",
+      "value": "(27)",
+      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+    },
+    {
+      "label": "Earnings from continuing operations before income taxes",
+      "value": "3676",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+    },
+    {
+      "label": "Provision for income taxes",
+      "value": "746",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net earnings from continuing operations",
+      "value": "2930",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperations",
+      "definition": "Amount after tax of income (loss) from continuing operations attributable to the parent."
+    },
+    {
+      "label": "Discontinued operations, net of tax",
+      "value": "7",
+      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToReportingEntity",
+      "definition": "Amount after tax of income (loss) from a discontinued operation attributable to the parent. Includes, but is not limited to, the income (loss) from operations during the phase-out period, gain (loss) on disposal, gain (loss) for reversal of write-down (write-down) to fair value, less cost to sell, and adjustments to a prior period gain (loss) on disposal."
+    },
+    {
+      "label": "Net earnings",
+      "value": "2937",
+      "gaap_id": "us-gaap_NetIncomeLossAvailableToCommonStockholdersBasic",
+      "definition": "Amount, after deduction of tax, noncontrolling interests, dividends on preferred stock and participating securities; of income (loss) available to common shareholders."
+    },
+    {
+      "label": "Continuing operations (in dollars per share)",
+      "value": "5.54",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicShare",
+      "definition": "The amount of net income (loss) from continuing operations per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Discontinued operations (in dollars per share)",
+      "value": "0.01",
+      "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerBasicShare",
+      "definition": "Per basic share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
+    },
+    {
+      "label": "Net earnings per share (in dollars per share)",
+      "value": "5.55",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Continuing operations (in dollars per share)",
+      "value": "5.50",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare",
+      "definition": "The amount of net income (loss) derived from continuing operations during the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Discontinued operations (in dollars per share)",
+      "value": "0.01",
+      "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerDilutedShare",
+      "definition": "Per diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
+    },
+    {
+      "label": "Net earnings per share (in dollars per share)",
+      "value": "5.51",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Basic (in shares)",
+      "value": "528.6",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted (in shares)",
+      "value": "533.2",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    },
+    {
+      "label": "Antidilutive shares (in shares)",
+      "value": "0.0",
+      "gaap_id": "us-gaap_AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount",
+      "definition": "Securities (including those issuable pursuant to contingent stock agreements) that could potentially dilute basic earnings per share (EPS) or earnings per unit (EPU) in the future that were not included in the computation of diluted EPS or EPU because to do so would increase EPS or EPU amounts or decrease loss per share or unit amounts for the period presented."
+    },
+    {
+      "label": "Total revenue",
+      "value": "74433",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Total revenue",
+      "value": "923",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    }
+  ]
+}

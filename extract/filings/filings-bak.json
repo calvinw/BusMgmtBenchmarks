@@ -1,0 +1,1701 @@
+{
+  "walmart": {
+    "cik": "104169",
+    "segment": "Discount",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-01-31",
+        "filingDate": "2024-03-15",
+        "accessionNumber": "000010416924000056"
+      },
+      {
+        "reportDate": "2023-01-31",
+        "filingDate": "2023-03-17",
+        "accessionNumber": "000010416923000020"
+      },
+      {
+        "reportDate": "2022-01-31",
+        "filingDate": "2022-03-18",
+        "accessionNumber": "000010416922000012"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-03-19",
+        "accessionNumber": "000010416921000033"
+      },
+      {
+        "reportDate": "2020-01-31",
+        "filingDate": "2020-03-20",
+        "accessionNumber": "000010416920000011"
+      },
+      {
+        "reportDate": "2019-01-31",
+        "filingDate": "2019-03-28",
+        "accessionNumber": "000010416919000016"
+      }
+    ]
+  },
+  "target": {
+    "cik": "27419",
+    "segment": "Discount",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-13",
+        "accessionNumber": "000002741924000032"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-08",
+        "accessionNumber": "000002741923000015"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-09",
+        "accessionNumber": "000002741922000007"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-10",
+        "accessionNumber": "000002741921000010"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-11",
+        "accessionNumber": "000002741920000008"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-13",
+        "accessionNumber": "000002741919000006"
+      }
+    ]
+  },
+  "dollar_general": {
+    "cik": "29534",
+    "segment": "Discount",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-02",
+        "filingDate": "2024-03-25",
+        "accessionNumber": "000155837024003813"
+      },
+      {
+        "reportDate": "2023-02-03",
+        "filingDate": "2023-03-24",
+        "accessionNumber": "000155837023004574"
+      },
+      {
+        "reportDate": "2022-01-28",
+        "filingDate": "2022-03-18",
+        "accessionNumber": "000155837022003921"
+      },
+      {
+        "reportDate": "2021-01-29",
+        "filingDate": "2021-03-19",
+        "accessionNumber": "000155837021003245"
+      },
+      {
+        "reportDate": "2020-01-31",
+        "filingDate": "2020-03-19",
+        "accessionNumber": "000155837020002915"
+      },
+      {
+        "reportDate": "2019-02-01",
+        "filingDate": "2019-03-22",
+        "accessionNumber": "000155837019002383"
+      }
+    ]
+  },
+  "dollar_tree": {
+    "cik": "935703",
+    "segment": "Discount",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-20",
+        "accessionNumber": "000093570324000011"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-10",
+        "accessionNumber": "000093570323000016"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-15",
+        "accessionNumber": "000093570322000020"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-16",
+        "accessionNumber": "000093570321000014"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-20",
+        "accessionNumber": "000093570320000006"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-27",
+        "accessionNumber": "000093570319000024"
+      }
+    ]
+  },
+  "five_below": {
+    "cik": "1177609",
+    "segment": "Discount",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-21",
+        "accessionNumber": "000117760924000008"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-16",
+        "accessionNumber": "000117760923000009"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-30",
+        "accessionNumber": "000117760922000010"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-18",
+        "accessionNumber": "000117760921000011"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-19",
+        "accessionNumber": "000117760920000009"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-28",
+        "accessionNumber": "000117760919000010"
+      }
+    ]
+  },
+  "costco": {
+    "cik": "909832",
+    "segment": "Warehouse Clubs",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-09-01",
+        "filingDate": "2024-10-09",
+        "accessionNumber": "000090983224000049"
+      },
+      {
+        "reportDate": "2023-09-03",
+        "filingDate": "2023-10-11",
+        "accessionNumber": "000090983223000042"
+      },
+      {
+        "reportDate": "2022-08-28",
+        "filingDate": "2022-10-05",
+        "accessionNumber": "000090983222000021"
+      },
+      {
+        "reportDate": "2021-08-29",
+        "filingDate": "2021-10-06",
+        "accessionNumber": "000090983221000014"
+      },
+      {
+        "reportDate": "2020-08-30",
+        "filingDate": "2020-10-07",
+        "accessionNumber": "000090983220000017"
+      },
+      {
+        "reportDate": "2019-09-01",
+        "filingDate": "2019-10-11",
+        "accessionNumber": "000090983219000019"
+      }
+    ]
+  },
+  "bjs": {
+    "cik": "1531152",
+    "segment": "Warehouse Clubs",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-18",
+        "accessionNumber": "000153115224000026"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-16",
+        "accessionNumber": "000153115223000026"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-17",
+        "accessionNumber": "000153115222000007"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-19",
+        "accessionNumber": "000143774921006555"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-19",
+        "accessionNumber": "000153115220000014"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-25",
+        "accessionNumber": "000153115219000010"
+      }
+    ]
+  },
+  "tj_maxx": {
+    "cik": "109198",
+    "segment": "Off Price",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-04-03",
+        "accessionNumber": "000010919824000014"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-29",
+        "accessionNumber": "000010919823000004"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-30",
+        "accessionNumber": "000010919822000008"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-31",
+        "accessionNumber": "000010919821000006"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-27",
+        "accessionNumber": "000010919820000004"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-03",
+        "accessionNumber": "000162828019003834"
+      }
+    ]
+  },
+  "ross": {
+    "cik": "745732",
+    "segment": "Off Price",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-04-02",
+        "accessionNumber": "000074573224000009"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-28",
+        "accessionNumber": "000074573223000013"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000074573222000014"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000074573221000017"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-31",
+        "accessionNumber": "000074573220000016"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-02",
+        "accessionNumber": "000074573219000009"
+      }
+    ]
+  },
+  "burlington": {
+    "cik": "1579298",
+    "segment": "Off Price",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-15",
+        "accessionNumber": "000095017024032207"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-13",
+        "accessionNumber": "000095017023007586"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-16",
+        "accessionNumber": "000095017022003963"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-15",
+        "accessionNumber": "000156459021013162"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-13",
+        "accessionNumber": "000156459020010835"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-20",
+        "accessionNumber": "000156459019008656"
+      }
+    ]
+  },
+  "macys": {
+    "cik": "794367",
+    "segment": "Department Store",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-22",
+        "accessionNumber": "000162828024012734"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-24",
+        "accessionNumber": "000162828023009154"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-25",
+        "accessionNumber": "000156459022011726"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-29",
+        "accessionNumber": "000156459021016119"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-30",
+        "accessionNumber": "000079436720000040"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-03",
+        "accessionNumber": "000079436719000038"
+      }
+    ]
+  },
+  "nordstrom": {
+    "cik": "72333",
+    "segment": "Department Store",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-19",
+        "accessionNumber": "000007233324000031"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-10",
+        "accessionNumber": "000007233323000037"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-11",
+        "accessionNumber": "000007233322000060"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-16",
+        "accessionNumber": "000007233321000099"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-20",
+        "accessionNumber": "000007233320000078"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-18",
+        "accessionNumber": "000007233319000060"
+      }
+    ]
+  },
+  "dillards": {
+    "cik": "28917",
+    "segment": "Department Store",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-29",
+        "accessionNumber": "000002891724000011"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-27",
+        "accessionNumber": "000002891723000007"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000002891722000009"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-29",
+        "accessionNumber": "000002891721000066"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-31",
+        "accessionNumber": "000002891720000041"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-29",
+        "accessionNumber": "000002891719000078"
+      }
+    ]
+  },
+  "kohls": {
+    "cik": "885639",
+    "segment": "Department Store",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-21",
+        "accessionNumber": "000095017024034691"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-16",
+        "accessionNumber": "000095017023008444"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-17",
+        "accessionNumber": "000095017022004076"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-18",
+        "accessionNumber": "000156459021014145"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-18",
+        "accessionNumber": "000156459020011512"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-22",
+        "accessionNumber": "000156459019009005"
+      }
+    ]
+  },
+  "amazon": {
+    "cik": "1018724",
+    "segment": "Online",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2023-12-31",
+        "filingDate": "2024-02-02",
+        "accessionNumber": "000101872424000008"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-03",
+        "accessionNumber": "000101872423000004"
+      },
+      {
+        "reportDate": "2021-12-31",
+        "filingDate": "2022-02-04",
+        "accessionNumber": "000101872422000005"
+      },
+      {
+        "reportDate": "2020-12-31",
+        "filingDate": "2021-02-03",
+        "accessionNumber": "000101872421000004"
+      },
+      {
+        "reportDate": "2019-12-31",
+        "filingDate": "2020-01-31",
+        "accessionNumber": "000101872420000004"
+      },
+      {
+        "reportDate": "2018-12-31",
+        "filingDate": "2019-02-01",
+        "accessionNumber": "000101872419000004"
+      }
+    ]
+  },
+  "wayfair": {
+    "cik": "1616707",
+    "segment": "Online",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2023-12-31",
+        "filingDate": "2024-02-22",
+        "accessionNumber": "000161670724000014"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-23",
+        "accessionNumber": "000161670723000037"
+      },
+      {
+        "reportDate": "2021-12-31",
+        "filingDate": "2022-02-24",
+        "accessionNumber": "000161670722000031"
+      },
+      {
+        "reportDate": "2020-12-31",
+        "filingDate": "2021-02-25",
+        "accessionNumber": "000161670721000064"
+      },
+      {
+        "reportDate": "2019-12-31",
+        "filingDate": "2020-02-28",
+        "accessionNumber": "000161670720000025"
+      },
+      {
+        "reportDate": "2018-12-31",
+        "filingDate": "2019-02-25",
+        "accessionNumber": "000161670719000042"
+      }
+    ]
+  },
+  "chewy": {
+    "cik": "1766502",
+    "segment": "Online",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-01-28",
+        "filingDate": "2024-03-20",
+        "accessionNumber": "000176650224000014"
+      },
+      {
+        "reportDate": "2023-01-29",
+        "filingDate": "2023-03-22",
+        "accessionNumber": "000176650223000011"
+      },
+      {
+        "reportDate": "2022-01-30",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000176650222000008"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000176650221000008"
+      },
+      {
+        "reportDate": "2020-02-02",
+        "filingDate": "2020-04-02",
+        "accessionNumber": "000176650220000007"
+      }
+    ]
+  },
+  "ulta_beauty": {
+    "cik": "1403568",
+    "segment": "Specialty",
+    "subsegment": "Beauty",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-26",
+        "accessionNumber": "000155837024003941"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-24",
+        "accessionNumber": "000155837023004581"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-25",
+        "accessionNumber": "000155837022004330"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-26",
+        "accessionNumber": "000155837021003523"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-27",
+        "accessionNumber": "000155837020003272"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-02",
+        "accessionNumber": "000155837019002739"
+      }
+    ]
+  },
+  "bbb": {
+    "cik": "886158",
+    "segment": "Specialty",
+    "subsegment": "Beauty",
+    "filings": [
+      {
+        "reportDate": "2023-02-25",
+        "filingDate": "2023-06-14",
+        "accessionNumber": "000088615823000059"
+      },
+      {
+        "reportDate": "2022-02-26",
+        "filingDate": "2022-04-21",
+        "accessionNumber": "000088615822000047"
+      },
+      {
+        "reportDate": "2021-02-27",
+        "filingDate": "2021-04-22",
+        "accessionNumber": "000088615821000015"
+      },
+      {
+        "reportDate": "2020-02-29",
+        "filingDate": "2020-04-29",
+        "accessionNumber": "000088615820000008"
+      },
+      {
+        "reportDate": "2019-03-02",
+        "filingDate": "2019-04-30",
+        "accessionNumber": "000088615819000012"
+      }
+    ]
+  },
+  "victorias_secret": {
+    "cik": "1856437",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-22",
+        "accessionNumber": "000185643724000005"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-17",
+        "accessionNumber": "000185643723000013"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-18",
+        "accessionNumber": "000185643722000007"
+      }
+    ]
+  },
+  "signet_jewelers": {
+    "cik": "832988",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-21",
+        "accessionNumber": "000083298824000083"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-16",
+        "accessionNumber": "000083298823000032"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-17",
+        "accessionNumber": "000083298822000019"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-19",
+        "accessionNumber": "000083298821000025"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-26",
+        "accessionNumber": "000083298820000018"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-03",
+        "accessionNumber": "000083298819000003"
+      }
+    ]
+  },
+  "tapestry": {
+    "cik": "1116132",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-06-29",
+        "filingDate": "2024-08-15",
+        "accessionNumber": "000111613224000018"
+      },
+      {
+        "reportDate": "2023-07-01",
+        "filingDate": "2023-08-17",
+        "accessionNumber": "000111613223000020"
+      },
+      {
+        "reportDate": "2022-07-02",
+        "filingDate": "2022-08-18",
+        "accessionNumber": "000111613222000018"
+      },
+      {
+        "reportDate": "2021-07-03",
+        "filingDate": "2021-08-19",
+        "accessionNumber": "000111613221000020"
+      },
+      {
+        "reportDate": "2020-06-27",
+        "filingDate": "2020-08-13",
+        "accessionNumber": "000111613220000022"
+      },
+      {
+        "reportDate": "2019-06-29",
+        "filingDate": "2019-08-15",
+        "accessionNumber": "000111613219000016"
+      }
+    ]
+  },
+  "capri_holdings": {
+    "cik": "1530721",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-03-30",
+        "filingDate": "2024-05-29",
+        "accessionNumber": "000153072124000041"
+      },
+      {
+        "reportDate": "2023-04-01",
+        "filingDate": "2023-05-31",
+        "accessionNumber": "000153072123000087"
+      },
+      {
+        "reportDate": "2022-04-02",
+        "filingDate": "2022-06-01",
+        "accessionNumber": "000153072122000054"
+      },
+      {
+        "reportDate": "2021-03-27",
+        "filingDate": "2021-05-26",
+        "accessionNumber": "000153072121000057"
+      },
+      {
+        "reportDate": "2020-03-28",
+        "filingDate": "2020-07-08",
+        "accessionNumber": "000153072120000062"
+      },
+      {
+        "reportDate": "2019-03-30",
+        "filingDate": "2019-05-29",
+        "accessionNumber": "000153072119000023"
+      }
+    ]
+  },
+  "lululemon": {
+    "cik": "1397187",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-01-28",
+        "filingDate": "2024-03-21",
+        "accessionNumber": "000139718724000010"
+      },
+      {
+        "reportDate": "2023-01-29",
+        "filingDate": "2023-03-28",
+        "accessionNumber": "000139718723000012"
+      },
+      {
+        "reportDate": "2022-01-30",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000139718722000014"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000139718721000009"
+      },
+      {
+        "reportDate": "2020-02-02",
+        "filingDate": "2020-03-26",
+        "accessionNumber": "000139718720000012"
+      },
+      {
+        "reportDate": "2019-02-03",
+        "filingDate": "2019-03-27",
+        "accessionNumber": "000139718719000011"
+      }
+    ]
+  },
+  "boot_barn": {
+    "cik": "1610250",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-03-30",
+        "filingDate": "2024-05-15",
+        "accessionNumber": "000155837024008176"
+      },
+      {
+        "reportDate": "2023-04-01",
+        "filingDate": "2023-05-18",
+        "accessionNumber": "000155837023010209"
+      },
+      {
+        "reportDate": "2022-03-26",
+        "filingDate": "2022-05-12",
+        "accessionNumber": "000155837022008393"
+      },
+      {
+        "reportDate": "2021-03-27",
+        "filingDate": "2021-05-13",
+        "accessionNumber": "000155837021007103"
+      },
+      {
+        "reportDate": "2020-03-28",
+        "filingDate": "2020-05-22",
+        "accessionNumber": "000155837020006925"
+      },
+      {
+        "reportDate": "2019-03-30",
+        "filingDate": "2019-05-24",
+        "accessionNumber": "000155837019005281"
+      }
+    ]
+  },
+  "footlocker": {
+    "cik": "850209",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-28",
+        "accessionNumber": "000143774924009866"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-27",
+        "accessionNumber": "000085020923000006"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-24",
+        "accessionNumber": "000085020922000003"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-25",
+        "accessionNumber": "000085020921000003"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-27",
+        "accessionNumber": "000085020920000007"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-02",
+        "accessionNumber": "000155837019002753"
+      }
+    ]
+  },
+  "nike": {
+    "cik": "320187",
+    "segment": "Specialty",
+    "subsegment": "Accessories and Shoes",
+    "filings": [
+      {
+        "reportDate": "2024-05-31",
+        "filingDate": "2024-07-25",
+        "accessionNumber": "000032018724000044"
+      },
+      {
+        "reportDate": "2023-05-31",
+        "filingDate": "2023-07-20",
+        "accessionNumber": "000032018723000039"
+      },
+      {
+        "reportDate": "2022-05-31",
+        "filingDate": "2022-07-21",
+        "accessionNumber": "000032018722000038"
+      },
+      {
+        "reportDate": "2021-05-31",
+        "filingDate": "2021-07-20",
+        "accessionNumber": "000032018721000028"
+      },
+      {
+        "reportDate": "2020-05-31",
+        "filingDate": "2020-07-24",
+        "accessionNumber": "000032018720000047"
+      },
+      {
+        "reportDate": "2019-05-31",
+        "filingDate": "2019-07-23",
+        "accessionNumber": "000032018719000051"
+      }
+    ]
+  },
+  "af": {
+    "cik": "1018840",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-04-01",
+        "accessionNumber": "000101884024000019"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-27",
+        "accessionNumber": "000101884023000011"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-28",
+        "accessionNumber": "000101884022000011"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-29",
+        "accessionNumber": "000101884021000023"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-31",
+        "accessionNumber": "000101884020000021"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-01",
+        "accessionNumber": "000101884019000018"
+      }
+    ]
+  },
+  "american_eagle": {
+    "cik": "919012",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-15",
+        "accessionNumber": "000095017024032294"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-13",
+        "accessionNumber": "000095017023007604"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-14",
+        "accessionNumber": "000095017022003587"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-11",
+        "accessionNumber": "000156459021012543"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-12",
+        "accessionNumber": "000156459020010469"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-14",
+        "accessionNumber": "000156459019007828"
+      }
+    ]
+  },
+  "urban_outfitters": {
+    "cik": "912615",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-01-31",
+        "filingDate": "2024-04-01",
+        "accessionNumber": "000095017024039320"
+      },
+      {
+        "reportDate": "2023-01-31",
+        "filingDate": "2023-04-03",
+        "accessionNumber": "000095017023011597"
+      },
+      {
+        "reportDate": "2022-01-31",
+        "filingDate": "2022-04-01",
+        "accessionNumber": "000156459022013232"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-04-01",
+        "accessionNumber": "000156459021017306"
+      },
+      {
+        "reportDate": "2020-01-31",
+        "filingDate": "2020-03-31",
+        "accessionNumber": "000156459020014397"
+      },
+      {
+        "reportDate": "2019-01-31",
+        "filingDate": "2019-04-01",
+        "accessionNumber": "000156459019010433"
+      }
+    ]
+  },
+  "gap": {
+    "cik": "39911",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-19",
+        "accessionNumber": "000003991124000066"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-14",
+        "accessionNumber": "000003991123000015"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-15",
+        "accessionNumber": "000003991122000012"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-16",
+        "accessionNumber": "000003991121000021"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-17",
+        "accessionNumber": "000003991120000019"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-19",
+        "accessionNumber": "000003991119000023"
+      }
+    ]
+  },
+  "levi": {
+    "cik": "94845",
+    "segment": "Specialty",
+    "subsegment": "Apparel",
+    "filings": [
+      {
+        "reportDate": "2023-11-26",
+        "filingDate": "2024-01-25",
+        "accessionNumber": "000009484524000010"
+      },
+      {
+        "reportDate": "2022-11-27",
+        "filingDate": "2023-01-25",
+        "accessionNumber": "000009484523000006"
+      },
+      {
+        "reportDate": "2021-11-28",
+        "filingDate": "2022-01-26",
+        "accessionNumber": "000009484522000010"
+      },
+      {
+        "reportDate": "2020-11-29",
+        "filingDate": "2021-01-27",
+        "accessionNumber": "000009484521000009"
+      },
+      {
+        "reportDate": "2019-11-24",
+        "filingDate": "2020-01-30",
+        "accessionNumber": "000009484520000008"
+      },
+      {
+        "reportDate": "2018-11-25",
+        "filingDate": "2019-02-05",
+        "accessionNumber": "000009484519000006"
+      }
+    ]
+  },
+  "dicks": {
+    "cik": "1089063",
+    "segment": "Specialty",
+    "subsegment": "Category Killer",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-28",
+        "accessionNumber": "000108906324000037"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-23",
+        "accessionNumber": "000108906323000023"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-23",
+        "accessionNumber": "000108906322000031"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-24",
+        "accessionNumber": "000108906321000036"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-20",
+        "accessionNumber": "000108906320000014"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-29",
+        "accessionNumber": "000108906319000017"
+      }
+    ]
+  },
+  "academy_sports": {
+    "cik": "1817358",
+    "segment": "Specialty",
+    "subsegment": "Category Killer",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-21",
+        "accessionNumber": "000181735824000042"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-16",
+        "accessionNumber": "000181735823000062"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000181735822000039"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-04-07",
+        "accessionNumber": "000181735821000059"
+      }
+    ]
+  },
+  "best_buy": {
+    "cik": "764478",
+    "segment": "Specialty",
+    "subsegment": "Category Killer",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-15",
+        "accessionNumber": "000076447824000010"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-17",
+        "accessionNumber": "000076447823000006"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-18",
+        "accessionNumber": "000076447822000008"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-19",
+        "accessionNumber": "000076447821000024"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-23",
+        "accessionNumber": "000076447820000017"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-28",
+        "accessionNumber": "000076447819000009"
+      }
+    ]
+  },
+  "yeti": {
+    "cik": "1670592",
+    "segment": "Specialty",
+    "subsegment": "Home",
+    "filings": [
+      {
+        "reportDate": "2023-12-30",
+        "filingDate": "2024-02-26",
+        "accessionNumber": "000167059224000007"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-27",
+        "accessionNumber": "000167059223000006"
+      },
+      {
+        "reportDate": "2022-01-01",
+        "filingDate": "2022-02-28",
+        "accessionNumber": "000167059222000009"
+      },
+      {
+        "reportDate": "2021-01-02",
+        "filingDate": "2021-03-01",
+        "accessionNumber": "000167059221000004"
+      },
+      {
+        "reportDate": "2019-12-28",
+        "filingDate": "2020-02-18",
+        "accessionNumber": "000162828020001627"
+      },
+      {
+        "reportDate": "2018-12-29",
+        "filingDate": "2019-03-20",
+        "accessionNumber": "000155837019002297"
+      }
+    ]
+  },
+  "sherwin_williams": {
+    "cik": "89800",
+    "segment": "Specialty",
+    "subsegment": "Home",
+    "filings": [
+      {
+        "reportDate": "2023-12-31",
+        "filingDate": "2024-02-20",
+        "accessionNumber": "000008980024000033"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-22",
+        "accessionNumber": "000008980023000007"
+      },
+      {
+        "reportDate": "2021-12-31",
+        "filingDate": "2022-02-17",
+        "accessionNumber": "000008980022000007"
+      },
+      {
+        "reportDate": "2020-12-31",
+        "filingDate": "2021-02-19",
+        "accessionNumber": "000008980021000010"
+      },
+      {
+        "reportDate": "2019-12-31",
+        "filingDate": "2020-02-21",
+        "accessionNumber": "000008980020000005"
+      },
+      {
+        "reportDate": "2018-12-31",
+        "filingDate": "2019-02-22",
+        "accessionNumber": "000008980019000004"
+      }
+    ]
+  },
+  "rh": {
+    "cik": "1528849",
+    "segment": "Specialty",
+    "subsegment": "Home",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-03-28",
+        "accessionNumber": "000155837024004248"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-29",
+        "accessionNumber": "000155837023004942"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-30",
+        "accessionNumber": "000155837022004753"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000155837021003728"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-03-30",
+        "accessionNumber": "000155837020003383"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-03-29",
+        "accessionNumber": "000156459019010132"
+      }
+    ]
+  },
+  "william_sonoma": {
+    "cik": "719955",
+    "segment": "Specialty",
+    "subsegment": "Home",
+    "filings": [
+      {
+        "reportDate": "2024-01-28",
+        "filingDate": "2024-03-20",
+        "accessionNumber": "000162828024012221"
+      },
+      {
+        "reportDate": "2023-01-29",
+        "filingDate": "2023-03-24",
+        "accessionNumber": "000162828023009175"
+      },
+      {
+        "reportDate": "2022-01-30",
+        "filingDate": "2022-03-28",
+        "accessionNumber": "000162828022007494"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000119312521100319"
+      },
+      {
+        "reportDate": "2020-02-02",
+        "filingDate": "2020-03-27",
+        "accessionNumber": "000119312520088937"
+      },
+      {
+        "reportDate": "2019-02-03",
+        "filingDate": "2019-04-04",
+        "accessionNumber": "000119312519097973"
+      }
+    ]
+  },
+  "home_depot": {
+    "cik": "354950",
+    "segment": "Home Improvement",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-01-28",
+        "filingDate": "2024-03-13",
+        "accessionNumber": "000035495024000062"
+      },
+      {
+        "reportDate": "2023-01-29",
+        "filingDate": "2023-03-15",
+        "accessionNumber": "000035495023000059"
+      },
+      {
+        "reportDate": "2022-01-30",
+        "filingDate": "2022-03-23",
+        "accessionNumber": "000035495022000070"
+      },
+      {
+        "reportDate": "2021-01-31",
+        "filingDate": "2021-03-24",
+        "accessionNumber": "000035495021000089"
+      },
+      {
+        "reportDate": "2020-02-02",
+        "filingDate": "2020-03-25",
+        "accessionNumber": "000035495020000015"
+      },
+      {
+        "reportDate": "2019-02-03",
+        "filingDate": "2019-03-28",
+        "accessionNumber": "000035495019000010"
+      }
+    ]
+  },
+  "lowes": {
+    "cik": "60667",
+    "segment": "Home Improvement",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-02",
+        "filingDate": "2024-03-25",
+        "accessionNumber": "000006066724000033"
+      },
+      {
+        "reportDate": "2023-02-03",
+        "filingDate": "2023-03-27",
+        "accessionNumber": "000006066723000034"
+      },
+      {
+        "reportDate": "2022-01-28",
+        "filingDate": "2022-03-21",
+        "accessionNumber": "000006066722000038"
+      },
+      {
+        "reportDate": "2021-01-29",
+        "filingDate": "2021-03-22",
+        "accessionNumber": "000006066721000026"
+      },
+      {
+        "reportDate": "2020-01-31",
+        "filingDate": "2020-03-23",
+        "accessionNumber": "000006066720000036"
+      },
+      {
+        "reportDate": "2019-02-01",
+        "filingDate": "2019-04-02",
+        "accessionNumber": "000006066719000042"
+      }
+    ]
+  },
+  "tractor_supply": {
+    "cik": "916365",
+    "segment": "Home Improvement",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2023-12-30",
+        "filingDate": "2024-02-23",
+        "accessionNumber": "000091636524000046"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-23",
+        "accessionNumber": "000091636523000045"
+      },
+      {
+        "reportDate": "2021-12-25",
+        "filingDate": "2022-02-17",
+        "accessionNumber": "000091636522000049"
+      },
+      {
+        "reportDate": "2020-12-26",
+        "filingDate": "2021-02-18",
+        "accessionNumber": "000091636521000052"
+      },
+      {
+        "reportDate": "2019-12-28",
+        "filingDate": "2020-02-20",
+        "accessionNumber": "000091636520000050"
+      },
+      {
+        "reportDate": "2018-12-29",
+        "filingDate": "2019-02-21",
+        "accessionNumber": "000091636519000035"
+      }
+    ]
+  },
+  "kroger": {
+    "cik": "56873",
+    "segment": "Grocery",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-03",
+        "filingDate": "2024-04-02",
+        "accessionNumber": "000155837024004603"
+      },
+      {
+        "reportDate": "2023-01-28",
+        "filingDate": "2023-03-28",
+        "accessionNumber": "000155837023004767"
+      },
+      {
+        "reportDate": "2022-01-29",
+        "filingDate": "2022-03-29",
+        "accessionNumber": "000155837022004595"
+      },
+      {
+        "reportDate": "2021-01-30",
+        "filingDate": "2021-03-30",
+        "accessionNumber": "000155837021003706"
+      },
+      {
+        "reportDate": "2020-02-01",
+        "filingDate": "2020-04-01",
+        "accessionNumber": "000155837020003501"
+      },
+      {
+        "reportDate": "2019-02-02",
+        "filingDate": "2019-04-02",
+        "accessionNumber": "000155837019002756"
+      }
+    ]
+  },
+  "albertsons": {
+    "cik": "1646972",
+    "segment": "Grocery",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-02-24",
+        "filingDate": "2024-04-22",
+        "accessionNumber": "000164697224000060"
+      },
+      {
+        "reportDate": "2023-02-25",
+        "filingDate": "2023-04-25",
+        "accessionNumber": "000164697223000045"
+      },
+      {
+        "reportDate": "2022-02-26",
+        "filingDate": "2022-04-26",
+        "accessionNumber": "000164697222000031"
+      },
+      {
+        "reportDate": "2021-02-27",
+        "filingDate": "2021-04-28",
+        "accessionNumber": "000164697221000026"
+      },
+      {
+        "reportDate": "2020-02-29",
+        "filingDate": "2020-05-13",
+        "accessionNumber": "000164697220000022"
+      },
+      {
+        "reportDate": "2019-02-23",
+        "filingDate": "2019-04-24",
+        "accessionNumber": "000164697219000036"
+      }
+    ]
+  },
+  "walgreens": {
+    "cik": "1618921",
+    "segment": "Health & Pharmacy",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2024-08-31",
+        "filingDate": "2024-10-15",
+        "accessionNumber": "000161892124000084"
+      },
+      {
+        "reportDate": "2023-08-31",
+        "filingDate": "2023-10-12",
+        "accessionNumber": "000161892123000062"
+      },
+      {
+        "reportDate": "2022-08-31",
+        "filingDate": "2022-10-13",
+        "accessionNumber": "000161892122000064"
+      },
+      {
+        "reportDate": "2021-08-31",
+        "filingDate": "2021-10-14",
+        "accessionNumber": "000161892121000085"
+      },
+      {
+        "reportDate": "2020-08-31",
+        "filingDate": "2020-10-15",
+        "accessionNumber": "000161892120000082"
+      },
+      {
+        "reportDate": "2019-08-31",
+        "filingDate": "2019-10-28",
+        "accessionNumber": "000161892119000069"
+      }
+    ]
+  },
+  "cvs": {
+    "cik": "64803",
+    "segment": "Health & Pharmacy",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2023-12-31",
+        "filingDate": "2024-02-07",
+        "accessionNumber": "000006480324000007"
+      },
+      {
+        "reportDate": "2022-12-31",
+        "filingDate": "2023-02-08",
+        "accessionNumber": "000006480323000009"
+      },
+      {
+        "reportDate": "2021-12-31",
+        "filingDate": "2022-02-09",
+        "accessionNumber": "000006480322000008"
+      },
+      {
+        "reportDate": "2020-12-31",
+        "filingDate": "2021-02-16",
+        "accessionNumber": "000006480321000011"
+      },
+      {
+        "reportDate": "2019-12-31",
+        "filingDate": "2020-02-18",
+        "accessionNumber": "000006480320000007"
+      },
+      {
+        "reportDate": "2018-12-31",
+        "filingDate": "2019-02-28",
+        "accessionNumber": "000006480319000013"
+      }
+    ]
+  },
+  "rite_aid": {
+    "cik": "84129",
+    "segment": "Health & Pharmacy",
+    "subsegment": "",
+    "filings": [
+      {
+        "reportDate": "2023-03-04",
+        "filingDate": "2023-05-01",
+        "accessionNumber": "000155837023007488"
+      },
+      {
+        "reportDate": "2022-02-26",
+        "filingDate": "2022-04-25",
+        "accessionNumber": "000155837022005866"
+      },
+      {
+        "reportDate": "2021-02-27",
+        "filingDate": "2021-04-27",
+        "accessionNumber": "000155837021004887"
+      },
+      {
+        "reportDate": "2020-02-29",
+        "filingDate": "2020-04-27",
+        "accessionNumber": "000155837020004365"
+      },
+      {
+        "reportDate": "2019-03-02",
+        "filingDate": "2019-04-25",
+        "accessionNumber": "000104746919002567"
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "title": "Consolidated Statements Of Earnings - USD ($)shares in Millions, $ in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 29, 2022",
+      "Jan. 30, 2021",
+      "Feb. 01, 2020"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net sales",
+      "value": "14402",
+      "gaap_id": "jwn_NetSalesRevenue",
+      "definition": "Total revenue from sale of goods and services during the reporting period, in the normal course of business, reduced by sales returns and allowances, and sales discounts."
+    },
+    {
+      "label": "Credit card revenues, net",
+      "value": "387",
+      "gaap_id": "jwn_CreditCardRevenuesnet",
+      "definition": "Interest and fee income from credit card balances due from individuals. Such loans are considered revolving credit arrangements. Also, pursuant to the program agreement with TD Bank, amount includes Nordstrom's portion of the ongoing credit card revenue (net of credit losses) from both the sold and newly generated credit card receivables, asset amortization and deferred revenue recognition of the assets and liabilities recorded as part of the transaction."
+    },
+    {
+      "label": "Total revenues",
+      "value": "14789",
+      "gaap_id": "us-gaap_Revenues",
+      "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
+    },
+    {
+      "label": "Cost of sales and related buying and occupancy costs",
+      "value": "(9344)",
+      "gaap_id": "jwn_CostOfSalesAndRelatedBuyingAndOccupancyCosts",
+      "definition": "The aggregate of cost of sales, buying and occupancy costs during the reporting period. Buying costs consist primarily of compensation and other costs incurred by our merchandise and product development groups. Occupancy costs include rent, depreciation, property taxes and facility operating costs of our retail, corporate center and distribution operations."
+    },
+    {
+      "label": "Selling, general and administrative expenses",
+      "value": "(4953)",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Earnings (loss) before interest and income taxes",
+      "value": "492",
+      "gaap_id": "jwn_EarningsBeforeInterestAndIncomeTaxes",
+      "definition": "This element represents the income or loss from continuing operations (before interest income and interest expense) attributable to the economic entity which may also be defined as revenue less expenses from ongoing operations, after income or loss from equity method investments, but before interest income, interest expense, income taxes and extraordinary items."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "(246)",
+      "gaap_id": "us-gaap_InterestExpense",
+      "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
+    },
+    {
+      "label": "Earnings (loss) before income taxes",
+      "value": "246",
+      "gaap_id": "jwn_EarningsBeforeIncomeTaxes",
+      "definition": "This element represents the income or loss from continuing operations attributable to the economic entity which may also be defined as revenue less expenses from ongoing operations, after income or loss from equity method investments, but before income taxes and extraordinary items."
+    },
+    {
+      "label": "Income tax (expense) benefit",
+      "value": "(68)",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net earnings (loss)",
+      "value": "178",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Earnings (loss) per share:": [
+    {
+      "label": "Basic (in dollars per share)",
+      "value": "1.12",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted (in dollars per share)",
+      "value": "1.10",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Weighted-average shares outstanding:": [
+    {
+      "label": "Basic (in shares)",
+      "value": "159.0",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted (in shares)",
+      "value": "162.5",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ]
+}

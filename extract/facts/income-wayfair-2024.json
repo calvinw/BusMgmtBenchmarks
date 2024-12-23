@@ -1,0 +1,141 @@
+{
+  "title": "CONSOLIDATED STATEMENTS OF OPERATIONS - USD ($)shares in Thousands, $ in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Dec. 31, 2023",
+      "Dec. 31, 2022",
+      "Dec. 31, 2021"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net revenue",
+      "value": "12003",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of goods sold",
+      "value": "8336",
+      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+    },
+    {
+      "label": "Gross profit",
+      "value": "3667",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    }
+  ],
+  "Operating expenses:": [
+    {
+      "label": "Customer service and merchant fees",
+      "value": "557",
+      "gaap_id": "w_CustomerServiceAndMerchantFees",
+      "definition": "Represents information pertaining to expenses related to customer service and merchant fees incurred during the period."
+    },
+    {
+      "label": "Advertising",
+      "value": "1397",
+      "gaap_id": "us-gaap_AdvertisingExpense",
+      "definition": "Amount charged to advertising expense for the period, which are expenses incurred with the objective of increasing revenue for a specified brand, product or product line."
+    },
+    {
+      "label": "Selling, operations, technology, general and administrative",
+      "value": "2447",
+      "gaap_id": "w_SellingTechnologyOperationsGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total of expenses of technology, operations and managing and administering the affairs of an entity, including affiliates of the reporting entity, which are not directly or indirectly associated with the manufacture, sale or creation of a product or product line."
+    },
+    {
+      "label": "Impairment and other related net charges",
+      "value": "14",
+      "gaap_id": "us-gaap_OtherAssetImpairmentCharges",
+      "definition": "The charge against earnings resulting from the write down of long lived assets other than goodwill due to the difference between the carrying value and lower fair value."
+    },
+    {
+      "label": "Restructuring charges",
+      "value": "65",
+      "gaap_id": "us-gaap_RestructuringCharges",
+      "definition": "Amount of expenses associated with exit or disposal activities pursuant to an authorized plan. Excludes expenses related to a discontinued operation or an asset retirement obligation."
+    },
+    {
+      "label": "Total operating expenses",
+      "value": "4480",
+      "gaap_id": "us-gaap_OperatingExpenses",
+      "definition": "Generally recurring costs associated with normal operations except for the portion of these expenses which can be clearly related to production and included in cost of sales or services. Includes selling, general and administrative expense."
+    },
+    {
+      "label": "Loss from operations",
+      "value": "(813)",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "(17)",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNonoperatingNet",
+      "definition": "The net amount of nonoperating interest income (expense)."
+    },
+    {
+      "label": "Other income (expense), net",
+      "value": "1",
+      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+    },
+    {
+      "label": "Gain on debt extinguishment",
+      "value": "100",
+      "gaap_id": "us-gaap_GainsLossesOnExtinguishmentOfDebt",
+      "definition": "Difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity."
+    },
+    {
+      "label": "Loss before income taxes",
+      "value": "(729)",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Provision for income taxes, net",
+      "value": "9",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net loss",
+      "value": "(738)",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Loss per share:": [
+    {
+      "label": "Basic (in dollars per share)",
+      "value": "(6.47)",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted (in dollars per shares)",
+      "value": "(6.47)",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Weighted-average number of shares of common stock outstanding used in computing per share amounts:": [
+    {
+      "label": "Basic (in shares)",
+      "value": "114000",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted (in shares)",
+      "value": "114000",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FilingSummary>
+  <Version>3.22.1</Version>
+  <ProcessingTime />
+  <ReportFormat>html</ReportFormat>
+  <ContextCount>173</ContextCount>
+  <ElementCount>297</ElementCount>
+  <EntityCount>1</EntityCount>
+  <FootnotesReported>false</FootnotesReported>
+  <SegmentCount>65</SegmentCount>
+  <ScenarioCount>0</ScenarioCount>
+  <TuplesReported>false</TuplesReported>
+  <UnitCount>9</UnitCount>
+  <MyReports>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R1.htm</HtmlFileName>
+      <LongName>0001001 - Document - Cover Page</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CoverPage</Role>
+      <ShortName>Cover Page</ShortName>
+      <MenuCategory>Cover</MenuCategory>
+      <Position>1</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R2.htm</HtmlFileName>
+      <LongName>0002002 - Document - Audit Information</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/AuditInformation</Role>
+      <ShortName>Audit Information</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>2</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R3.htm</HtmlFileName>
+      <LongName>1001003 - Statement - CONSOLIDATED BALANCE SHEETS</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CONSOLIDATEDBALANCESHEETS</Role>
+      <ShortName>CONSOLIDATED BALANCE SHEETS</ShortName>
+      <MenuCategory>Uncategorized</MenuCategory>
+      <Position>3</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R4.htm</HtmlFileName>
+      <LongName>1002004 - Statement - CONSOLIDATED BALANCE SHEETS (Parenthetical)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CONSOLIDATEDBALANCESHEETSParenthetical</Role>
+      <ShortName>CONSOLIDATED BALANCE SHEETS (Parenthetical)</ShortName>
+      <MenuCategory>Cover</MenuCategory>
+      <Position>4</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R5.htm</HtmlFileName>
+      <LongName>1003005 - Statement - CONSOLIDATED STATEMENTS OF OPERATIONS</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CONSOLIDATEDSTATEMENTSOFOPERATIONS</Role>
+      <ShortName>CONSOLIDATED STATEMENTS OF OPERATIONS</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>5</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R6.htm</HtmlFileName>
+      <LongName>1004006 - Statement - CONSOLIDATED STATEMENTS OF STOCKHOLDERS??? EQUITY (DEFICIT)</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CONSOLIDATEDSTATEMENTSOFSTOCKHOLDERSEQUITYDEFICIT</Role>
+      <ShortName>CONSOLIDATED STATEMENTS OF STOCKHOLDERS??? EQUITY (DEFICIT)</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>6</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R7.htm</HtmlFileName>
+      <LongName>1005007 - Statement - CONSOLIDATED STATEMENTS OF CASH FLOWS</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/CONSOLIDATEDSTATEMENTSOFCASHFLOWS</Role>
+      <ShortName>CONSOLIDATED STATEMENTS OF CASH FLOWS</ShortName>
+      <MenuCategory>Statements</MenuCategory>
+      <Position>7</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R8.htm</HtmlFileName>
+      <LongName>2101101 - Disclosure - Description of Business</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/DescriptionofBusiness</Role>
+      <ShortName>Description of Business</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>8</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R9.htm</HtmlFileName>
+      <LongName>2102102 - Disclosure - Basis of Presentation and Significant Accounting Policies</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/BasisofPresentationandSignificantAccountingPolicies</Role>
+      <ShortName>Basis of Presentation and Significant Accounting Policies</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>9</Position>
+    </Report>
+    <Report instance="chwy-20220130.htm">
+      <IsDefault>false</IsDefault>
+      <HasEmbeddedReports>false</HasEmbeddedReports>
+      <HtmlFileName>R10.htm</HtmlFileName>
+      <LongName>2109103 - Disclosure - Property and Equipment, net</LongName>
+      <ReportType>Sheet</ReportType>
+      <Role>http://www.chewy.com/role/PropertyandEquipmentnet</Role>
+      <ShortName>Property and Equipment, net</ShortName>
+      <MenuCategory>Notes</MenuCategory>
+      <Position>10</Position>
+    </Report>
+    </MyReports>
+  <InputFiles>
+    <File doctype="10-K" original="chwy-20220130.htm">chwy-20220130.htm</File>
+    <File>chwy-20220130.xsd</File>
+    <File>chwy-20220130_cal.xml</File>
+    <File>chwy-20220130_def.xml</File>
+    <File>chwy-20220130_lab.xml</File>
+    <File>chwy-20220130_pre.xml</File>
+    <File>exhibit211significantsubsi.htm</File>
+    <File>exhibit231consentofindepen.htm</File>
+    <File>exhibit311certificateofchi.htm</File>
+    <File>exhibit312certificateofchi.htm</File>
+    <File>exhibit321certificateofchi.htm</File>
+  </InputFiles>
+  <SupplementalFiles>
+    <File>chwy-20220130_g1.jpg</File>
+    <File>chwy-20220130_g2.jpg</File>
+  </SupplementalFiles>
+  <BaseTaxonomies>
+    <BaseTaxonomy items="605">http://fasb.org/us-gaap/2021-01-31</BaseTaxonomy>
+    <BaseTaxonomy items="39">http://xbrl.sec.gov/dei/2021q4</BaseTaxonomy>
+  </BaseTaxonomies>
+  <HasPresentationLinkbase>true</HasPresentationLinkbase>
+  <HasCalculationLinkbase>true</HasCalculationLinkbase>
+</FilingSummary>

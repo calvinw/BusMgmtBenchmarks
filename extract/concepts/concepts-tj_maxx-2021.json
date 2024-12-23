@@ -1,0 +1,57 @@
+{
+  "Net Revenue": {
+    "label": "Net sales",
+    "value": "32,136,962",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax"
+  },
+  "Cost of Goods": {
+    "label": "Cost of sales, including buying and occupancy costs",
+    "value": "24,533,815",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "7,020,917",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
+  "Operating Profit": {
+    "label": "Income before income taxes",
+    "value": "89,263",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+  },
+  "Net Profit": {
+    "label": "Net income",
+    "value": "90,470",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
+  "Inventory": {
+    "label": "Merchandise inventories",
+    "value": "4,337,389",
+    "gaap_id": "us-gaap_InventoryNet"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "15,739,337",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "TOTAL ASSETS",
+    "value": "30,813,555",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "10,803,668",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total shareholders\u2019 equity",
+    "value": "5,832,684",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "TOTAL LIABILITIES AND SHAREHOLDERS\u2019 EQUITY",
+    "value": "30,813,555",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+  }
+}

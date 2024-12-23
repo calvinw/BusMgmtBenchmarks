@@ -1,0 +1,211 @@
+{
+  "title": "Consolidated Balance Sheets - USD ($)$ in Millions",
+  "headers": [
+    [
+      "Jan. 31, 2019",
+      "Jan. 31, 2018"
+    ]
+  ],
+  "Current assets:": [
+    {
+      "label": "Cash and cash equivalents",
+      "value": "7722",
+      "gaap_id": "us-gaap_CashAndCashEquivalentsAtCarryingValue",
+      "definition": "Amount of currency on hand as well as demand deposits with banks or financial institutions. Includes other kinds of accounts that have the general characteristics of demand deposits. Also includes short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates. Excludes cash and cash equivalents within disposal group and discontinued operation."
+    },
+    {
+      "label": "Receivables, net",
+      "value": "6283",
+      "gaap_id": "us-gaap_ReceivablesNetCurrent",
+      "definition": "The total amount due to the entity within one year of the balance sheet date (or one operating cycle, if longer) from outside sources, including trade accounts receivable, notes and loans receivable, as well as any other types of receivables, net of allowances established for the purpose of reducing such receivables to an amount that approximates their net realizable value."
+    },
+    {
+      "label": "Inventories",
+      "value": "44269",
+      "gaap_id": "us-gaap_InventoryNet",
+      "definition": "Amount after valuation and LIFO reserves of inventory expected to be sold, or consumed within one year or operating cycle, if longer."
+    },
+    {
+      "label": "Prepaid expenses and other",
+      "value": "3623",
+      "gaap_id": "us-gaap_PrepaidExpenseAndOtherAssetsCurrent",
+      "definition": "Amount of asset related to consideration paid in advance for costs that provide economic benefits in future periods, and amount of other assets that are expected to be realized or consumed within one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Total current assets",
+      "value": "61897",
+      "gaap_id": "us-gaap_AssetsCurrent",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are expected to be realized in cash, sold, or consumed within one year (or the normal operating cycle, if longer). Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    }
+  ],
+  "Property and equipment:": [
+    {
+      "label": "Property and equipment",
+      "value": "185810",
+      "gaap_id": "us-gaap_PropertyPlantAndEquipmentGross",
+      "definition": "Amount before accumulated depreciation, depletion and amortization of physical assets used in the normal conduct of business and not intended for resale. Examples include, but are not limited to, land, buildings, machinery and equipment, office equipment, and furniture and fixtures."
+    },
+    {
+      "label": "Less accumulated depreciation",
+      "value": "(81493)",
+      "gaap_id": "us-gaap_AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+      "definition": "Amount of accumulated depreciation, depletion and amortization for physical assets used in the normal conduct of business to produce goods and services."
+    },
+    {
+      "label": "Property and equipment, net",
+      "value": "104317",
+      "gaap_id": "us-gaap_PropertyPlantAndEquipmentNet",
+      "definition": "Amount after accumulated depreciation, depletion and amortization of physical assets used in the normal conduct of business to produce goods and services and not intended for resale. Examples include, but are not limited to, land, buildings, machinery and equipment, office equipment, and furniture and fixtures."
+    }
+  ],
+  "Property under capital lease and financing obligations:": [
+    {
+      "label": "Property under capital lease and financing obligations",
+      "value": "12760",
+      "gaap_id": "us-gaap_CapitalLeasedAssetsGross",
+      "definition": "Amount before accumulated depreciation of leased physical assets used in the normal conduct of business to produce goods and services."
+    },
+    {
+      "label": "Less accumulated amortization",
+      "value": "(5682)",
+      "gaap_id": "us-gaap_CapitalLeasesLesseeBalanceSheetAssetsByMajorClassAccumulatedDeprecation",
+      "definition": "The total charge for the use of long-lived depreciable assets subject to a lease meeting the criteria for capitalization."
+    },
+    {
+      "label": "Property under capital lease and financing obligations, net",
+      "value": "7078",
+      "gaap_id": "us-gaap_CapitalLeasesBalanceSheetAssetsByMajorClassNet",
+      "definition": "The total gross amount less the charge for the use of the long-lived depreciable assets subject to a lease meeting the criteria for capitalization."
+    },
+    {
+      "label": "Goodwill",
+      "value": "31181",
+      "gaap_id": "us-gaap_Goodwill",
+      "definition": "Amount after accumulated impairment loss of an asset representing future economic benefits arising from other assets acquired in a business combination that are not individually identified and separately recognized."
+    },
+    {
+      "label": "Other long-term assets",
+      "value": "14822",
+      "gaap_id": "us-gaap_OtherAssetsNoncurrent",
+      "definition": "Amount of noncurrent assets classified as other."
+    },
+    {
+      "label": "Total assets",
+      "value": "219295",
+      "gaap_id": "us-gaap_Assets",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are recognized. Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    }
+  ],
+  "Current liabilities:": [
+    {
+      "label": "Short-term borrowings",
+      "value": "5225",
+      "gaap_id": "us-gaap_ShortTermBorrowings",
+      "definition": "Reflects the total carrying amount as of the balance sheet date of debt having initial terms less than one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Accounts payable",
+      "value": "47060",
+      "gaap_id": "us-gaap_AccountsPayableCurrent",
+      "definition": "Carrying value as of the balance sheet date of liabilities incurred (and for which invoices have typically been received) and payable to vendors for goods and services received that are used in an entity's business. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+    },
+    {
+      "label": "Accrued liabilities",
+      "value": "22159",
+      "gaap_id": "us-gaap_AccruedLiabilitiesCurrent",
+      "definition": "Carrying value as of the balance sheet date of obligations incurred and payable, pertaining to costs that are statutory in nature, are incurred on contractual obligations, or accumulate over time and for which invoices have not yet been received or will not be rendered. Examples include taxes, interest, rent and utilities. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+    },
+    {
+      "label": "Accrued income taxes",
+      "value": "428",
+      "gaap_id": "us-gaap_AccruedIncomeTaxesCurrent",
+      "definition": "Carrying amount as of the balance sheet date of the unpaid sum of the known and estimated amounts payable to satisfy all currently due domestic and foreign income tax obligations."
+    },
+    {
+      "label": "Long-term debt due within one year",
+      "value": "1876",
+      "gaap_id": "us-gaap_LongTermDebtCurrent",
+      "definition": "Amount, after unamortized (discount) premium and debt issuance costs, of long-term debt, classified as current. Includes, but not limited to, notes payable, bonds payable, debentures, mortgage loans and commercial paper. Excludes capital lease obligations."
+    },
+    {
+      "label": "Capital lease and financing obligations due within one year",
+      "value": "729",
+      "gaap_id": "us-gaap_CapitalLeaseObligationsCurrent",
+      "definition": "Amount of capital lease obligation due within one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Total current liabilities",
+      "value": "77477",
+      "gaap_id": "us-gaap_LiabilitiesCurrent",
+      "definition": "Total obligations incurred as part of normal operations that are expected to be paid during the following twelve months or within one business cycle, if longer."
+    },
+    {
+      "label": "Long-term debt",
+      "value": "43520",
+      "gaap_id": "us-gaap_LongTermDebtNoncurrent",
+      "definition": "Amount after unamortized (discount) premium and debt issuance costs of long-term debt classified as noncurrent and excluding amounts to be repaid within one year or the normal operating cycle, if longer. Includes, but not limited to, notes payable, bonds payable, debentures, mortgage loans and commercial paper. Excludes capital lease obligations."
+    },
+    {
+      "label": "Long-term capital lease and financing obligations",
+      "value": "6683",
+      "gaap_id": "us-gaap_CapitalLeaseObligationsNoncurrent",
+      "definition": "Amount equal to the present value (the principal) at the beginning of the lease term of minimum lease payments during the lease term (excluding that portion of the payments representing executory costs such as insurance, maintenance, and taxes to be paid by the lessor, together with any profit thereon) net of payments or other amounts applied to the principal, through the balance sheet date and due to be paid more than one year (or one operating cycle, if longer) after the balance sheet date."
+    },
+    {
+      "label": "Deferred income taxes and other",
+      "value": "11981",
+      "gaap_id": "us-gaap_DeferredIncomeTaxesAndOtherLiabilitiesNoncurrent",
+      "definition": "Amount of deferred tax liability attributable to taxable temporary differences, after deferred tax asset, and other liabilities expected to be paid after one year or operating cycle, if longer."
+    }
+  ],
+  "Equity:": [
+    {
+      "label": "Common stock",
+      "value": "288",
+      "gaap_id": "us-gaap_CommonStockValue",
+      "definition": "Aggregate par or stated value of issued nonredeemable common stock (or common stock redeemable solely at the option of the issuer). This item includes treasury stock repurchased by the entity. Note: elements for number of nonredeemable common shares, par value and other disclosure concepts are in another section within stockholders' equity."
+    },
+    {
+      "label": "Capital in excess of par value",
+      "value": "2965",
+      "gaap_id": "us-gaap_AdditionalPaidInCapital",
+      "definition": "Excess of issue price over par or stated value of the entity's capital stock and amounts received from other transactions involving the entity's stock or stockholders. Includes adjustments to additional paid in capital. Some examples of such adjustments include recording the issuance of debt with a beneficial conversion feature and certain tax consequences of equity instruments awarded to employees. Use this element for the aggregate amount of additional paid-in capital associated with common and preferred stock. For additional paid-in capital associated with only common stock, use the element additional paid in capital, common stock. For additional paid-in capital associated with only preferred stock, use the element additional paid in capital, preferred stock."
+    },
+    {
+      "label": "Retained earnings",
+      "value": "80785",
+      "gaap_id": "us-gaap_RetainedEarningsAccumulatedDeficit",
+      "definition": "The cumulative amount of the reporting entity's undistributed earnings or deficit."
+    },
+    {
+      "label": "Accumulated other comprehensive loss",
+      "value": "(11542)",
+      "gaap_id": "us-gaap_AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+      "definition": "Accumulated change in equity from transactions and other events and circumstances from non-owner sources, net of tax effect, at period end. Excludes Net Income (Loss), and accumulated changes in equity from transactions resulting from investments by owners and distributions to owners. Includes foreign currency translation items, certain pension adjustments, unrealized gains and losses on certain investments in debt and equity securities, other than temporary impairment (OTTI) losses related to factors other than credit losses on available-for-sale and held-to-maturity debt securities that an entity does not intend to sell and it is not more likely than not that the entity will be required to sell before recovery of the amortized cost basis, as well as changes in the fair value of derivatives related to the effective portion of a designated cash flow hedge."
+    },
+    {
+      "label": "Total Walmart shareholders' equity",
+      "value": "72496",
+      "gaap_id": "us-gaap_StockholdersEquity",
+      "definition": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates of the entity which are attributable to the parent. The amount of the economic entity's stockholders' equity attributable to the parent excludes the amount of stockholders' equity which is allocable to that ownership interest in subsidiary equity which is not attributable to the parent (noncontrolling interest, minority interest). This excludes temporary equity and is sometimes called permanent equity."
+    },
+    {
+      "label": "Noncontrolling interest",
+      "value": "7138",
+      "gaap_id": "us-gaap_MinorityInterest",
+      "definition": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates of the entity which is directly or indirectly attributable to that ownership interest in subsidiary equity which is not attributable to the parent (that is, noncontrolling interest, previously referred to as minority interest)."
+    },
+    {
+      "label": "Total equity",
+      "value": "79634",
+      "gaap_id": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount of stockholders' equity (deficit), net of receivables from officers, directors, owners, and affiliates of the entity, attributable to both the parent and noncontrolling interests. Amount excludes temporary equity. Alternate caption for the concept is permanent equity."
+    },
+    {
+      "label": "Total liabilities and equity",
+      "value": "219295",
+      "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+      "definition": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests, if any."
+    }
+  ]
+}

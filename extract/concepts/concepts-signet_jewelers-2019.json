@@ -1,0 +1,37 @@
+{
+  "Net Revenue": {
+    "label": "Sales",
+    "value": "2,154,700",
+    "gaap_id": "us-gaap_Revenues"
+  },
+  "Inventory": {
+    "label": "Inventories",
+    "value": "2,386,900",
+    "gaap_id": "us-gaap_InventoryNet"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "2,855,800",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total assets",
+    "value": "4,420,100",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "1,033,000",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total shareholders\u2019 equity",
+    "value": "1,201,600",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities",
+    "value": "2,603,200",
+    "gaap_id": "us-gaap_Liabilities"
+  }
+}

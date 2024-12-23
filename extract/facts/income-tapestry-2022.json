@@ -1,0 +1,115 @@
+{
+  "title": "CONSOLIDATED STATEMENTS OF OPERATIONS - USD ($)shares in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jul. 02, 2022",
+      "Jul. 03, 2021",
+      "Jun. 27, 2020"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net sales",
+      "value": "6684500000",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of sales",
+      "value": "2034100000",
+      "gaap_id": "us-gaap_CostOfRevenue",
+      "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
+    },
+    {
+      "label": "Gross profit",
+      "value": "4650400000",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Other selling, general and administrative expenses",
+      "value": "3474600000",
+      "gaap_id": "us-gaap_OtherSellingGeneralAndAdministrativeExpense",
+      "definition": "Amount of selling, general and administrative expense classified as other."
+    },
+    {
+      "label": "Impairment of goodwill and intangible assets",
+      "value": "0",
+      "gaap_id": "us-gaap_GoodwillAndIntangibleAssetImpairment",
+      "definition": "Total loss recognized during the period from the impairment of goodwill plus the loss recognized in the period resulting from the impairment of the carrying amount of intangible assets, other than goodwill."
+    },
+    {
+      "label": "Operating income (loss)",
+      "value": "1175800000",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Loss on extinguishment of debt",
+      "value": "53700000",
+      "gaap_id": "us-gaap_GainsLossesOnExtinguishmentOfDebt",
+      "definition": "Difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "58700000",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNet",
+      "definition": "The net amount of operating interest income (expense)."
+    },
+    {
+      "label": "Other expense (income)",
+      "value": "16400000",
+      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+    },
+    {
+      "label": "Income (loss) before provision for income taxes",
+      "value": "1047000000",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Provision for income taxes",
+      "value": "190700000",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net income (loss)",
+      "value": "856300000",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Net income (loss) per share:": [
+    {
+      "label": "Basic (USD per share)",
+      "value": "3.24",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted (USD per share)",
+      "value": "3.17",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Shares used in computing net income (loss) per share:": [
+    {
+      "label": "Basic (shares)",
+      "value": "264.3",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted (shares)",
+      "value": "270.1",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ]
+}

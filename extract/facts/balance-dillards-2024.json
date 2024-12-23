@@ -1,0 +1,215 @@
+{
+  "title": "Consolidated Balance Sheets - USD ($)$ in Thousands",
+  "headers": [
+    [
+      "Feb. 03, 2024",
+      "Jan. 28, 2023"
+    ]
+  ],
+  "Current assets:": [
+    {
+      "label": "Cash and cash equivalents",
+      "value": "808287",
+      "gaap_id": "us-gaap_CashAndCashEquivalentsAtCarryingValue",
+      "definition": "Amount of currency on hand as well as demand deposits with banks or financial institutions. Includes other kinds of accounts that have the general characteristics of demand deposits. Also includes short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates. Excludes cash and cash equivalents within disposal group and discontinued operation."
+    },
+    {
+      "label": "Restricted cash",
+      "value": "9995",
+      "gaap_id": "us-gaap_RestrictedCashCurrent",
+      "definition": "Amount of cash restricted as to withdrawal or usage, classified as current. Cash includes, but is not limited to, currency on hand, demand deposits with banks or financial institutions, and other accounts with general characteristics of demand deposits."
+    },
+    {
+      "label": "Accounts receivable",
+      "value": "60547",
+      "gaap_id": "us-gaap_AccountsReceivableNetCurrent",
+      "definition": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current."
+    },
+    {
+      "label": "Short-term investments",
+      "value": "148036",
+      "gaap_id": "us-gaap_DebtSecuritiesHeldToMaturityAmortizedCostAfterAllowanceForCreditLossCurrent",
+      "definition": "Amount, after allowance for credit loss, of investment in debt security measured at amortized cost (held-to-maturity), classified as current."
+    },
+    {
+      "label": "Merchandise inventories",
+      "value": "1093999",
+      "gaap_id": "us-gaap_RetailRelatedInventoryMerchandise",
+      "definition": "Carrying amount as of the balance sheet date of merchandise inventory purchased by a retailer, wholesaler or distributor and held for future sale."
+    },
+    {
+      "label": "Other current assets",
+      "value": "97341",
+      "gaap_id": "us-gaap_OtherAssetsCurrent",
+      "definition": "Amount of current assets classified as other."
+    },
+    {
+      "label": "Total current assets",
+      "value": "2208210",
+      "gaap_id": "us-gaap_AssetsCurrent",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are expected to be realized in cash, sold, or consumed within one year (or the normal operating cycle, if longer). Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    }
+  ],
+  "Property and equipment:": [
+    {
+      "label": "Land and land improvements",
+      "value": "47183",
+      "gaap_id": "us-gaap_Land",
+      "definition": "Amount before accumulated depletion of real estate held for productive use, excluding land held for sale."
+    },
+    {
+      "label": "Buildings and leasehold improvements",
+      "value": "3063322",
+      "gaap_id": "us-gaap_BuildingsAndImprovementsGross",
+      "definition": "Amount before accumulated depreciation of building structures held for productive use including addition, improvement, or renovation to the structure, including, but not limited to, interior masonry, interior flooring, electrical, and plumbing."
+    },
+    {
+      "label": "Furniture, fixtures and equipment",
+      "value": "547150",
+      "gaap_id": "us-gaap_FurnitureAndFixturesGross",
+      "definition": "Amount before accumulated depreciation of equipment commonly used in offices and stores that have no permanent connection to the structure of a building or utilities. Examples include, but are not limited to, desks, chairs, tables, and bookcases."
+    },
+    {
+      "label": "Buildings under construction",
+      "value": "54816",
+      "gaap_id": "us-gaap_ConstructionInProgressGross",
+      "definition": "Amount of structure or a modification to a structure under construction. Includes recently completed structures or modifications to structures that have not been placed into service."
+    },
+    {
+      "label": "Less accumulated depreciation and amortization",
+      "value": "(2638167)",
+      "gaap_id": "us-gaap_PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAccumulatedDepreciationAndAmortization",
+      "definition": "Amount of accumulated depreciation and amortization from plant, property, and equipment and right-of-use asset from finance lease."
+    },
+    {
+      "label": "Property and equipment, net",
+      "value": "1074304",
+      "gaap_id": "us-gaap_PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
+      "definition": "Amount, after accumulated depreciation and amortization, of property, plant, and equipment and finance lease right-of-use asset."
+    },
+    {
+      "label": "Operating lease assets",
+      "value": "42681",
+      "gaap_id": "us-gaap_OperatingLeaseRightOfUseAsset",
+      "definition": "Amount of lessee's right to use underlying asset under operating lease."
+    },
+    {
+      "label": "Deferred income taxes",
+      "value": "63951",
+      "gaap_id": "us-gaap_DeferredIncomeTaxAssetsNet",
+      "definition": "Amount, after allocation of valuation allowances and deferred tax liability, of deferred tax asset attributable to deductible differences and carryforwards, with jurisdictional netting."
+    },
+    {
+      "label": "Other assets",
+      "value": "59760",
+      "gaap_id": "us-gaap_OtherAssetsNoncurrent",
+      "definition": "Amount of noncurrent assets classified as other."
+    },
+    {
+      "label": "Total assets",
+      "value": "3448906",
+      "gaap_id": "us-gaap_Assets",
+      "definition": "Sum of the carrying amounts as of the balance sheet date of all assets that are recognized. Assets are probable future economic benefits obtained or controlled by an entity as a result of past transactions or events."
+    }
+  ],
+  "Current liabilities:": [
+    {
+      "label": "Trade accounts payable and accrued expenses",
+      "value": "782545",
+      "gaap_id": "us-gaap_AccountsPayableAndAccruedLiabilitiesCurrent",
+      "definition": "Sum of the carrying values as of the balance sheet date of obligations incurred through that date and due within one year (or the operating cycle, if longer), including liabilities incurred (and for which invoices have typically been received) and payable to vendors for goods and services received, taxes, interest, rent and utilities, accrued salaries and bonuses, payroll taxes and fringe benefits."
+    },
+    {
+      "label": "Current portion of operating lease liabilities",
+      "value": "11252",
+      "gaap_id": "us-gaap_OperatingLeaseLiabilityCurrent",
+      "definition": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as current."
+    },
+    {
+      "label": "Federal and state income taxes",
+      "value": "33959",
+      "gaap_id": "us-gaap_AccruedIncomeTaxesCurrent",
+      "definition": "Carrying amount as of the balance sheet date of the unpaid sum of the known and estimated amounts payable to satisfy all currently due domestic and foreign income tax obligations."
+    },
+    {
+      "label": "Total current liabilities",
+      "value": "827756",
+      "gaap_id": "us-gaap_LiabilitiesCurrent",
+      "definition": "Total obligations incurred as part of normal operations that are expected to be paid during the following twelve months or within one business cycle, if longer."
+    },
+    {
+      "label": "Long-term debt",
+      "value": "321461",
+      "gaap_id": "us-gaap_OtherLongTermDebtNoncurrent",
+      "definition": "Amount of long-term debt classified as other, payable after one year or the operating cycle, if longer."
+    },
+    {
+      "label": "Operating lease liabilities",
+      "value": "31728",
+      "gaap_id": "us-gaap_OperatingLeaseLiabilityNoncurrent",
+      "definition": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as noncurrent."
+    },
+    {
+      "label": "Other liabilities",
+      "value": "370893",
+      "gaap_id": "us-gaap_OtherLiabilitiesNoncurrent",
+      "definition": "Amount of liabilities classified as other, due after one year or the normal operating cycle, if longer."
+    },
+    {
+      "label": "Subordinated debentures",
+      "value": "200000",
+      "gaap_id": "us-gaap_JuniorSubordinatedDebentureOwedToUnconsolidatedSubsidiaryTrustNoncurrent",
+      "definition": "The noncurrent portion of the carrying value of junior subordinated long-term debt owed to unconsolidated subsidiary trusts as of the balance sheet date. Such debt places a lender in a lien position behind debt having a higher priority of repayment in liquidation of the entity's assets and was initially scheduled to be repaid after one year or beyond the normal operating cycle if longer."
+    }
+  ],
+  "Stockholders' equity:": [
+    {
+      "label": "Additional paid-in capital",
+      "value": "967348",
+      "gaap_id": "us-gaap_AdditionalPaidInCapitalCommonStock",
+      "definition": "Value received from shareholders in common stock-related transactions that are in excess of par value or stated value and amounts received from other stock-related transactions. Includes only common stock transactions (excludes preferred stock transactions). May be called contributed capital, capital in excess of par, capital surplus, or paid-in capital."
+    },
+    {
+      "label": "Accumulated other comprehensive loss",
+      "value": "(87208)",
+      "gaap_id": "us-gaap_AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+      "definition": "Amount, after tax, of accumulated increase (decrease) in equity from transaction and other event and circumstance from nonowner source."
+    },
+    {
+      "label": "Retained earnings",
+      "value": "6048288",
+      "gaap_id": "us-gaap_RetainedEarningsAccumulatedDeficit",
+      "definition": "Amount of accumulated undistributed earnings (deficit)."
+    },
+    {
+      "label": "Less treasury stock, at cost, Class A- 107,822.863 and 106,905,211 shares",
+      "value": "(5232600)",
+      "gaap_id": "us-gaap_TreasuryStockCommonValue",
+      "definition": "Amount allocated to previously issued common shares repurchased by the issuing entity and held in treasury."
+    },
+    {
+      "label": "Total stockholders' equity",
+      "value": "1697068",
+      "gaap_id": "us-gaap_StockholdersEquity",
+      "definition": "Amount of equity (deficit) attributable to parent. Excludes temporary equity and equity attributable to noncontrolling interest."
+    },
+    {
+      "label": "Total liabilities and stockholders' equity",
+      "value": "3448906",
+      "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+      "definition": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests, if any."
+    },
+    {
+      "label": "Common stock",
+      "value": "1200",
+      "gaap_id": "us-gaap_CommonStockValue",
+      "definition": "Aggregate par or stated value of issued nonredeemable common stock (or common stock redeemable solely at the option of the issuer). This item includes treasury stock repurchased by the entity. Note: elements for number of nonredeemable common shares, par value and other disclosure concepts are in another section within stockholders' equity."
+    },
+    {
+      "label": "Common stock",
+      "value": "40",
+      "gaap_id": "us-gaap_CommonStockValue",
+      "definition": "Aggregate par or stated value of issued nonredeemable common stock (or common stock redeemable solely at the option of the issuer). This item includes treasury stock repurchased by the entity. Note: elements for number of nonredeemable common shares, par value and other disclosure concepts are in another section within stockholders' equity."
+    }
+  ]
+}

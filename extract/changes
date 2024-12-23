@@ -1,0 +1,11 @@
+create_filings_json.py:from download_accession_numbers import download_accession_numbers
+create_filings_json.py:            accession_numbers = download_accession_numbers(cik)
+create_filings_json.py:                "filings": accession_numbers
+download_accession_numbers.py:def download_accession_numbers(cik: str, year: str = None) -> List[str]:
+download_accession_numbers.py:    filings_info = download_accession_numbers(args.cik, args.year)
+download_all_income_and_balance.py:from accession_numbers import get_company_name
+download_filing_summary.py:from download_accession_numbers import download_accession_numbers
+download_filing_summary.py:from accession_numbers import get_accession_number
+find_income_and_balance.py:from download_accession_numbers import download_accession_numbers 
+find_income_and_balance.py:from accession_numbers import get_accession_number
+find_income_and_balance.py:from accession_numbers import get_company_name

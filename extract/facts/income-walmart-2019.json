@@ -1,0 +1,155 @@
+{
+  "title": "Consolidated Statements of Income - USD ($)shares in Millions, $ in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 31, 2019",
+      "Jan. 31, 2018",
+      "Jan. 31, 2017"
+    ]
+  ],
+  "Revenues:": [
+    {
+      "label": "Net Sales",
+      "value": "510329",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Membership and other income",
+      "value": "4076",
+      "gaap_id": "us-gaap_OtherIncome",
+      "definition": "Amount of revenue and income classified as other."
+    },
+    {
+      "label": "Total revenues",
+      "value": "514405",
+      "gaap_id": "us-gaap_Revenues",
+      "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
+    }
+  ],
+  "Costs and expenses:": [
+    {
+      "label": "Cost of sales",
+      "value": "385301",
+      "gaap_id": "us-gaap_CostOfRevenue",
+      "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
+    },
+    {
+      "label": "Operating, selling, general and administrative expenses",
+      "value": "107147",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Operating income",
+      "value": "21957",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    }
+  ],
+  "Interest:": [
+    {
+      "label": "Debt",
+      "value": "1975",
+      "gaap_id": "us-gaap_InterestExpenseDebt",
+      "definition": "Amount of the cost of borrowed funds accounted for as interest expense for debt."
+    },
+    {
+      "label": "Capital lease and financing obligations",
+      "value": "371",
+      "gaap_id": "us-gaap_InterestExpenseLesseeAssetsUnderCapitalLease",
+      "definition": "The amount, during the lease term, of each minimum [capital] lease payment allocated to interest expense so as to produce a constant periodic rate of interest on the remaining balance of the capital lease obligation."
+    },
+    {
+      "label": "Interest income",
+      "value": "(217)",
+      "gaap_id": "us-gaap_InvestmentIncomeInterest",
+      "definition": "Amount before accretion (amortization) of purchase discount (premium) of interest income on nonoperating securities."
+    },
+    {
+      "label": "Interest, net",
+      "value": "2129",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNet",
+      "definition": "The net amount of operating interest income (expense)."
+    },
+    {
+      "label": "Loss on extinguishment of debt",
+      "value": "0",
+      "gaap_id": "us-gaap_GainsLossesOnExtinguishmentOfDebt",
+      "definition": "Difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity."
+    },
+    {
+      "label": "Other (gains) and losses",
+      "value": "8368",
+      "gaap_id": "us-gaap_NonoperatingIncomeExpense",
+      "definition": "The aggregate amount of income or expense from ancillary business-related activities (that is to say, excluding major activities considered part of the normal operations of the business)."
+    },
+    {
+      "label": "Income before income taxes",
+      "value": "11460",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+    },
+    {
+      "label": "Provision for income taxes",
+      "value": "4281",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Consolidated net income",
+      "value": "7179",
+      "gaap_id": "us-gaap_ProfitLoss",
+      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+    },
+    {
+      "label": "Consolidated net income attributable to noncontrolling interest",
+      "value": "(509)",
+      "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+      "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Consolidated net income attributable to Walmart",
+      "value": "6670",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Net income per common share:": [
+    {
+      "label": "Basic net income per common share attributable to Walmart",
+      "value": "2.28",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted net income per common share attributable to Walmart",
+      "value": "2.26",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Weighted-average common shares outstanding:": [
+    {
+      "label": "Basic",
+      "value": "2929",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted",
+      "value": "2945",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    },
+    {
+      "label": "Dividends declared per common share",
+      "value": "2.08",
+      "gaap_id": "us-gaap_CommonStockDividendsPerShareDeclared",
+      "definition": "Aggregate dividends declared during the period for each share of common stock outstanding."
+    }
+  ]
+}

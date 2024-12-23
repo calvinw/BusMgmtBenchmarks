@@ -1,0 +1,183 @@
+{
+  "title": "CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE INCOME - USD ($)$ in Millions",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Mar. 30, 2019",
+      "Mar. 31, 2018",
+      "Apr. 01, 2017"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Total revenue",
+      "value": "5238",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of goods sold",
+      "value": "2058",
+      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+    },
+    {
+      "label": "Gross profit",
+      "value": "3180",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Selling, general and administrative expenses",
+      "value": "2075",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Depreciation and amortization",
+      "value": "225",
+      "gaap_id": "us-gaap_DepreciationAndAmortization",
+      "definition": "The current period expense charged against earnings on long-lived, physical assets not used in production, and which are not intended for resale, to allocate or recognize the cost of such assets over their useful lives; or to record the reduction in book value of an intangible asset over the benefit period of such asset; or to reflect consumption during the period of an asset that is not used in production."
+    },
+    {
+      "label": "Impairment of long-lived assets",
+      "value": "21",
+      "gaap_id": "us-gaap_AssetImpairmentCharges",
+      "definition": "Amount of write-down of assets recognized in the income statement. Includes, but is not limited to, losses from tangible assets, intangible assets and goodwill."
+    },
+    {
+      "label": "Restructuring and other charges",
+      "value": "124",
+      "gaap_id": "cpri_RestructuringChargesAndBusinessCombinationAcquisitionAndIntegrationRelatedCosts",
+      "definition": "Restructuring Charges And Business Combination, Acquisition And Integration Related Costs"
+    },
+    {
+      "label": "Total operating expenses",
+      "value": "2445",
+      "gaap_id": "us-gaap_OperatingExpenses",
+      "definition": "Generally recurring costs associated with normal operations except for the portion of these expenses which can be clearly related to production and included in cost of sales or services. Includes selling, general and administrative expense."
+    },
+    {
+      "label": "Income from operations",
+      "value": "735",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Other income, net",
+      "value": "(4)",
+      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+    },
+    {
+      "label": "Interest expense, net",
+      "value": "38",
+      "gaap_id": "us-gaap_InterestIncomeExpenseNet",
+      "definition": "The net amount of operating interest income (expense)."
+    },
+    {
+      "label": "Foreign currency loss (gain)",
+      "value": "80",
+      "gaap_id": "us-gaap_ForeignCurrencyTransactionGainLossBeforeTax",
+      "definition": "Amount before tax of foreign currency transaction realized and unrealized gain (loss) recognized in the income statement."
+    },
+    {
+      "label": "Income before provision for income taxes",
+      "value": "621",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+    },
+    {
+      "label": "Provision for income taxes",
+      "value": "79",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net income",
+      "value": "542",
+      "gaap_id": "us-gaap_ProfitLoss",
+      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+    },
+    {
+      "label": "Less: Net loss attributable to noncontrolling interest and redeemable noncontrolling interest",
+      "value": "(1)",
+      "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+      "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Net income attributable to Capri",
+      "value": "543",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Weighted average ordinary shares outstanding:": [
+    {
+      "label": "Basic (in shares)",
+      "value": "149765468",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted (in shares)",
+      "value": "151614350",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ],
+  "Net income per ordinary share attributable to Capri:": [
+    {
+      "label": "Basic (in dollars per share)",
+      "value": "3.62",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted (in dollars per share)",
+      "value": "3.58",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    }
+  ],
+  "Statements of Comprehensive Income:": [
+    {
+      "label": "Net income",
+      "value": "542",
+      "gaap_id": "us-gaap_ProfitLoss",
+      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+    },
+    {
+      "label": "Foreign currency translation adjustments",
+      "value": "(134)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax",
+      "definition": "Amount after tax and reclassification adjustments of gain (loss) on foreign currency translation adjustments, foreign currency transactions designated and effective as economic hedges of a net investment in a foreign entity and intra-entity foreign currency transactions that are of a long-term-investment nature."
+    },
+    {
+      "label": "Net gain (loss) on derivatives",
+      "value": "17",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossDerivativeExcludedComponentIncreaseDecreaseAfterAdjustmentsAndTax",
+      "definition": "Amount, after tax and adjustments, of gain (loss) from increase (decrease) in value of excluded component of derivative designated and qualifying as hedge. Adjustments include, but are not limited to, reclassifications for sale and settlement, and amounts recognized under systematic and rational method."
+    },
+    {
+      "label": "Comprehensive income",
+      "value": "425",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Less: Net loss attributable to noncontrolling interest and redeemable noncontrolling interest",
+      "value": "(1)",
+      "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+      "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Comprehensive income attributable to Capri",
+      "value": "426",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    }
+  ]
+}

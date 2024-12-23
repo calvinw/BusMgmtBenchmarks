@@ -1,0 +1,47 @@
+{
+  "Net Revenue": {
+    "label": "Net sales",
+    "value": "15,480,000",
+    "gaap_id": "jwn_NetSalesRevenue"
+  },
+  "Operating Profit": {
+    "label": "Earnings before interest and income taxes",
+    "value": "837,000",
+    "gaap_id": "jwn_EarningsBeforeInterestAndIncomeTaxes"
+  },
+  "Net Profit": {
+    "label": "Net earnings",
+    "value": "564,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
+  "Inventory": {
+    "label": "Merchandise inventories",
+    "value": "1,978,000",
+    "gaap_id": "us-gaap_InventoryNet"
+  },
+  "Current Assets": {
+    "label": "Total current assets",
+    "value": "3,374,000",
+    "gaap_id": "us-gaap_AssetsCurrent"
+  },
+  "Total Assets": {
+    "label": "Total assets",
+    "value": "7,886,000",
+    "gaap_id": "us-gaap_Assets"
+  },
+  "Current Liabilities": {
+    "label": "Total current liabilities",
+    "value": "3,381,000",
+    "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total shareholders\u2019 equity",
+    "value": "873,000",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities and shareholders\u2019 equity",
+    "value": "7,886,000",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+  }
+}

@@ -1,0 +1,11 @@
+Net Revenue
+Cost of Goods
+SG&A
+Operating Profit
+Net Profit
+Inventory
+Current Assets
+Total Assets
+Current Liabilities
+Total Shareholder Equity
+Total Liabilities and Shareholder Equity

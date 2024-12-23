@@ -1,0 +1,131 @@
+{
+  "title": "CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE INCOME - USD ($)shares in Thousands, $ in Thousands",
+  "headers": [
+    [
+      "12 Months Ended"
+    ],
+    [
+      "Jan. 30, 2022",
+      "Jan. 31, 2021",
+      "Feb. 02, 2020"
+    ]
+  ],
+  "null": [
+    {
+      "label": "Net revenue",
+      "value": "6256617",
+      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+    },
+    {
+      "label": "Cost of goods sold",
+      "value": "2648052",
+      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+    },
+    {
+      "label": "Gross profit",
+      "value": "3608565",
+      "gaap_id": "us-gaap_GrossProfit",
+      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+    },
+    {
+      "label": "Selling, general and administrative expenses",
+      "value": "2225034",
+      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+    },
+    {
+      "label": "Amortization of intangible assets",
+      "value": "8782",
+      "gaap_id": "us-gaap_AmortizationOfIntangibleAssets",
+      "definition": "The aggregate expense charged against earnings to allocate the cost of intangible assets (nonphysical assets not used in production) in a systematic and rational manner to the periods expected to benefit from such assets. As a noncash expense, this element is added back to net income when calculating cash provided by or used in operations using the indirect method."
+    },
+    {
+      "label": "Acquisition-related expenses",
+      "value": "41394",
+      "gaap_id": "us-gaap_BusinessCombinationAcquisitionRelatedCosts",
+      "definition": "This element represents acquisition-related costs incurred to effect a business combination which costs have been expensed during the period. Such costs include finder's fees; advisory, legal, accounting, valuation, and other professional or consulting fees; general administrative costs, including the costs of maintaining an internal acquisitions department; and may include costs of registering and issuing debt and equity securities."
+    },
+    {
+      "label": "Income from operations",
+      "value": "1333355",
+      "gaap_id": "us-gaap_OperatingIncomeLoss",
+      "definition": "The net result for the period of deducting operating expenses from operating revenues."
+    },
+    {
+      "label": "Other income (expense), net",
+      "value": "514",
+      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+    },
+    {
+      "label": "Income before income tax expense",
+      "value": "1333869",
+      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+    },
+    {
+      "label": "Income tax expense",
+      "value": "358547",
+      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+    },
+    {
+      "label": "Net income",
+      "value": "975322",
+      "gaap_id": "us-gaap_NetIncomeLoss",
+      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+    }
+  ],
+  "Other comprehensive income (loss), net of tax:": [
+    {
+      "label": "Foreign currency translation adjustment",
+      "value": "(28494)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeForeignCurrencyTransactionAndTranslationAdjustmentNetOfTaxPortionAttributableToParent",
+      "definition": "Amount after tax and reclassification adjustments of gain (loss) on foreign currency translation adjustments, foreign currency transactions designated and effective as economic hedges of a net investment in a foreign entity and intra-entity foreign currency transactions that are of a long-term-investment nature, attributable to parent entity."
+    },
+    {
+      "label": "Net investment hedge gains (losses)",
+      "value": "9732",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossCashFlowHedgeGainLossAfterReclassificationAndTax",
+      "definition": "Amount, after tax and reclassification, of gain (loss) from derivative instrument designated and qualifying as cash flow hedge included in assessment of hedge effectiveness."
+    },
+    {
+      "label": "Other comprehensive income (loss), net of tax",
+      "value": "(18762)",
+      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent",
+      "definition": "Amount after tax of other comprehensive income (loss) attributable to parent entity."
+    },
+    {
+      "label": "Comprehensive income",
+      "value": "956560",
+      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
+      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+    },
+    {
+      "label": "Basic earnings per share (in dollars per share)",
+      "value": "7.52",
+      "gaap_id": "us-gaap_EarningsPerShareBasic",
+      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+    },
+    {
+      "label": "Diluted earnings per share (in dollars per share)",
+      "value": "7.49",
+      "gaap_id": "us-gaap_EarningsPerShareDiluted",
+      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+    },
+    {
+      "label": "Basic weighted-average number of shares outstanding (in shares)",
+      "value": "129768",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+    },
+    {
+      "label": "Diluted weighted-average number of shares outstanding (in shares)",
+      "value": "130295",
+      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+    }
+  ]
+}

@@ -15,9 +15,9 @@
     "gaap_id": "us-gaap_OperatingIncomeLoss"
   },
   "Net Profit": {
-    "label": "Income from continuing operations",
+    "label": "Net income",
     "value": "7,898,000",
-    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest"
+    "gaap_id": "us-gaap_ProfitLoss"
   },
   "Inventory": {
     "label": "Inventories",

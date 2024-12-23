@@ -9,6 +9,11 @@
     "value": "1,781,700",
     "gaap_id": "us-gaap_CostOfRevenue"
   },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "3,749,400",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
   "Operating Profit": {
     "label": "Operating income (loss)",
     "value": "1,140,100",
@@ -18,11 +23,6 @@
     "label": "Net income (loss)",
     "value": "816,000",
     "gaap_id": "us-gaap_NetIncomeLoss"
-  },
-  "SG&A": {
-    "label": "Selling, general and administrative expenses",
-    "value": "3,749,400",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   "Inventory": {
     "label": "Inventories",
@@ -50,8 +50,8 @@
     "gaap_id": "us-gaap_StockholdersEquity"
   },
   "Total Liabilities and Shareholder Equity": {
-    "label": "Total liabilities",
-    "value": "10,499,400",
-    "gaap_id": "us-gaap_Liabilities"
+    "label": "Total liabilities and stockholders\u2019 equity",
+    "value": "13,396,300",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 }

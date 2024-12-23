@@ -9,6 +9,16 @@
     "value": "10,257,000",
     "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
   },
+  "Operating Profit": {
+    "label": "Operating income (loss)",
+    "value": "-69,000",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net income (loss)",
+    "value": "-202,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
   "SG&A": {
     "label": "Operating expenses",
     "value": "5,428,000",

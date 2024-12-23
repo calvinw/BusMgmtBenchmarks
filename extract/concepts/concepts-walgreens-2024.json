@@ -14,6 +14,16 @@
     "value": "28,113,000",
     "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
+  "Operating Profit": {
+    "label": "Operating (loss) income",
+    "value": "-14,076,000",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net (loss) earnings attributable to Walgreens Boots Alliance, Inc.",
+    "value": "-8,636,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
   "Inventory": {
     "label": "Inventories",
     "value": "8,320,000",

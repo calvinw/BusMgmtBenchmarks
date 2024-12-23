@@ -9,6 +9,16 @@
     "value": "1,234,179",
     "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"
   },
+  "Operating Profit": {
+    "label": "Operating Income (Loss)",
+    "value": "-20,469",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net Income (Loss), Including Portion Attributable to Noncontrolling Interest",
+    "value": "-108,954",
+    "gaap_id": "us-gaap_ProfitLoss"
+  },
   "Inventory": {
     "label": "Inventories",
     "value": "404,053",

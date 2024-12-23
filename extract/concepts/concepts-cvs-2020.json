@@ -15,9 +15,14 @@
     "gaap_id": "us-gaap_OperatingIncomeLoss"
   },
   "Net Profit": {
-    "label": "Net income (loss) attributable to CVS Health",
-    "value": "6,634,000",
-    "gaap_id": "us-gaap_NetIncomeLoss"
+    "label": "Net income (loss)",
+    "value": "6,631,000",
+    "gaap_id": "us-gaap_ProfitLoss"
+  },
+  "SG&A": {
+    "label": "Operating expenses",
+    "value": "33,541,000",
+    "gaap_id": "us-gaap_OperatingExpenses"
   },
   "Inventory": {
     "label": "Inventories",

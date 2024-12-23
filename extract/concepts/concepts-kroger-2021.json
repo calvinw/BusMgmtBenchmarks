@@ -14,6 +14,16 @@
     "value": "6,338,000",
     "gaap_id": "kr_OperatingGeneralAndAdministrativeExpense"
   },
+  "Operating Profit": {
+    "label": "Operating profit",
+    "value": "-158,000",
+    "gaap_id": "us-gaap_OperatingIncomeLoss"
+  },
+  "Net Profit": {
+    "label": "Net earnings attributable to The Kroger Co.",
+    "value": "-77,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
   "Inventory": {
     "label": "FIFO inventory",
     "value": "8,436,000",

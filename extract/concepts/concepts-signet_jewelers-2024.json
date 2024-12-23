@@ -4,6 +4,16 @@
     "value": "7,171,100",
     "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
+  "Cost of Goods": {
+    "label": "Cost of sales",
+    "value": "-4,345,700",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "-2,197,700",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
   "Operating Profit": {
     "label": "Operating income",
     "value": "621,500",
@@ -34,14 +44,14 @@
     "value": "1,976,000",
     "gaap_id": "us-gaap_LiabilitiesCurrent"
   },
-  "Total Liabilities and Shareholder Equity": {
-    "label": "Total liabilities",
-    "value": "3,991,200",
-    "gaap_id": "us-gaap_Liabilities"
-  },
   "Total Shareholder Equity": {
     "label": "Total shareholders\u2019 equity",
     "value": "2,166,500",
     "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities, redeemable convertible preferred shares and shareholders\u2019 equity",
+    "value": "6,813,200",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 }

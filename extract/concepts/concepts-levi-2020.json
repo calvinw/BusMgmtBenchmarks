@@ -20,9 +20,9 @@
     "gaap_id": "us-gaap_OperatingIncomeLoss"
   },
   "Net Profit": {
-    "label": "Net income",
-    "value": "95,805",
-    "gaap_id": "us-gaap_ProfitLoss"
+    "label": "Net income attributable to Levi Strauss & Co.",
+    "value": "95,296",
+    "gaap_id": "us-gaap_NetIncomeLoss"
   },
   "Inventory": {
     "label": "Inventories:",

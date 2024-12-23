@@ -20,9 +20,9 @@
     "gaap_id": "us-gaap_OperatingIncomeLoss"
   },
   "Net Profit": {
-    "label": "Net earnings including noncontrolling interests",
-    "value": "319,000",
-    "gaap_id": "us-gaap_ProfitLoss"
+    "label": "Net earnings attributable to The Kroger Co.",
+    "value": "327,000",
+    "gaap_id": "us-gaap_NetIncomeLoss"
   },
   "Inventory": {
     "label": "FIFO inventory",

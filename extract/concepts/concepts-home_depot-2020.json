@@ -44,6 +44,11 @@
     "value": "18,375,000",
     "gaap_id": "us-gaap_LiabilitiesCurrent"
   },
+  "Total Shareholder Equity": {
+    "label": "Total stockholders\u2019 (deficit) equity",
+    "value": "-3,116,000",
+    "gaap_id": "us-gaap_StockholdersEquity"
+  },
   "Total Liabilities and Shareholder Equity": {
     "label": "Total liabilities and stockholders\u2019 equity",
     "value": "51,236,000",

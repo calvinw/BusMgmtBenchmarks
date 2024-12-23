@@ -19,6 +19,11 @@
     "value": "142,000",
     "gaap_id": "us-gaap_OperatingIncomeLoss"
   },
+  "Net Profit": {
+    "label": "Net (loss) income",
+    "value": "-330,000",
+    "gaap_id": "us-gaap_ProfitLoss"
+  },
   "Inventory": {
     "label": "Merchandise inventories",
     "value": "1,509,000",

@@ -4,6 +4,16 @@
     "value": "6,137,100",
     "gaap_id": "us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax"
   },
+  "Cost of Goods": {
+    "label": "Cost of sales",
+    "value": "-3,904,200",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+  },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "-1,918,200",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
   "Operating Profit": {
     "label": "Operating income (loss)",
     "value": "158,300",

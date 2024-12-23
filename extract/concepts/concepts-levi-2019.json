@@ -48,5 +48,10 @@
     "label": "Total stockholders\u2019 equity",
     "value": "667,459",
     "gaap_id": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+  },
+  "Inventory": {
+    "label": "Inventories",
+    "value": "883,773",
+    "gaap_id": "us-gaap_InventoryNet"
   }
 }

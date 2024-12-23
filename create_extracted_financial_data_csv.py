@@ -12,9 +12,18 @@ def clean_number(value_str):
 def write_financial_data_to_csv(output_file='new_extracted_financial_data.csv'):
     # Define CSV headers
     headers = [
-        'company_name', 'year', 'Net Revenue', 'Cost of Goods', 'SG&A',
-        'Operating Profit', 'Net Profit', 'Inventory', 'Current Assets',
-        'Total Assets', 'Current Liabilities', 'Total Shareholder Equity',
+        'company_name', 
+        'year', 
+        'Net Revenue', 
+        'Cost of Goods', 
+        'SG&A',
+        'Operating Profit', 
+        'Net Profit', 
+        'Inventory', 
+        'Current Assets', 
+        'Total Assets', 
+        'Current Liabilities', 
+        'Total Shareholder Equity',
         'Total Liabilities and Shareholder Equity'
     ]
     

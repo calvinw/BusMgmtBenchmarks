@@ -24,6 +24,11 @@
     "value": "928,230",
     "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
+  "Inventory": {
+    "label": "Merchandise inventories",
+    "value": "734,289",
+    "gaap_id": "us-gaap_RetailRelatedInventoryMerchandise"
+  },
   "Current Assets": {
     "label": "Total current assets",
     "value": "3,091,442",
@@ -39,14 +44,14 @@
     "value": "1,063,758",
     "gaap_id": "us-gaap_LiabilitiesCurrent"
   },
-  "Total Liabilities and Shareholder Equity": {
-    "label": "Total liabilities and stockholders' equity",
-    "value": "5,540,470",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
-  },
   "Total Shareholder Equity": {
     "label": "Total stockholders' equity",
     "value": "1,170,277",
     "gaap_id": "us-gaap_StockholdersEquity"
+  },
+  "Total Liabilities and Shareholder Equity": {
+    "label": "Total liabilities and stockholders' equity",
+    "value": "5,540,470",
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 }

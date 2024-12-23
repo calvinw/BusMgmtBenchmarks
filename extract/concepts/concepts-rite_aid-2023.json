@@ -14,6 +14,11 @@
     "value": "4,902,087",
     "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
+  "Net Profit": {
+    "label": "Net loss",
+    "value": "-749,936",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
   "Inventory": {
     "label": "Inventories, net",
     "value": "1,900,744",
@@ -33,6 +38,11 @@
     "label": "Total current liabilities",
     "value": "2,727,875",
     "gaap_id": "us-gaap_LiabilitiesCurrent"
+  },
+  "Total Shareholder Equity": {
+    "label": "Total stockholders' (deficit) equity",
+    "value": "-641,776",
+    "gaap_id": "us-gaap_StockholdersEquity"
   },
   "Total Liabilities and Shareholder Equity": {
     "label": "Total liabilities and stockholders' (deficit) equity",

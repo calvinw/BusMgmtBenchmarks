@@ -14,6 +14,16 @@
     "value": "4,587,336",
     "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
+  "Operating Profit": {
+    "label": "(Loss) income from continuing operations before income taxes",
+    "value": "-81,612",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+  },
+  "Net Profit": {
+    "label": "Net (loss) income",
+    "value": "-452,174",
+    "gaap_id": "us-gaap_NetIncomeLoss"
+  },
   "Inventory": {
     "label": "Inventories, net",
     "value": "1,921,604",

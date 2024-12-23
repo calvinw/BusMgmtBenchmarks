@@ -9,6 +9,11 @@
     "value": "4,447,051",
     "gaap_id": "wsm_CostOfGoodsSoldAndOccupancyExpenses"
   },
+  "SG&A": {
+    "label": "Selling, general and administrative expenses",
+    "value": "2,059,408",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+  },
   "Operating Profit": {
     "label": "Operating income",
     "value": "1,244,193",
@@ -18,11 +23,6 @@
     "label": "Net earnings",
     "value": "949,762",
     "gaap_id": "us-gaap_NetIncomeLoss"
-  },
-  "SG&A": {
-    "label": "Selling, general and administrative expenses",
-    "value": "2,059,408",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   "Inventory": {
     "label": "Merchandise inventories, net",

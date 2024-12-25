@@ -1,135 +1,102 @@
-{
-  "title": "Consolidated Statements of Operations - USD ($)$ in Millions",
-  "headers": [
-    [
-      "12 Months Ended"
-    ],
-    [
-      "Jan. 30, 2021",
-      "Feb. 01, 2020",
-      "Feb. 02, 2019"
-    ]
-  ],
-  "null": [
-    {
-      "label": "Net sales",
-      "value": "17346",
-      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
-      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
-    },
-    {
-      "label": "Credit card revenues, net",
-      "value": "751",
-      "gaap_id": "m_NetEarningsFromCreditOperations",
-      "definition": "Net Earnings from Credit Operations"
-    },
-    {
-      "label": "Cost of sales",
-      "value": "(12286)",
-      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
-      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
-    },
-    {
-      "label": "Selling, general and administrative expenses",
-      "value": "(6767)",
-      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
-      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
-    },
-    {
-      "label": "Gains on sale of real estate",
-      "value": "60",
-      "gaap_id": "us-gaap_GainLossOnDispositionOfAssets",
-      "definition": "Amount of gain (loss) on sale or disposal of property, plant and equipment assets, excluding oil and gas property and timber property."
-    },
-    {
-      "label": "Restructuring, impairment, store closing and other costs",
-      "value": "(3579)",
-      "gaap_id": "us-gaap_RestructuringSettlementAndImpairmentProvisions",
-      "definition": "Amount of restructuring charges, remediation cost, and asset impairment loss."
-    },
-    {
-      "label": "Operating income (loss)",
-      "value": "(4475)",
-      "gaap_id": "us-gaap_OperatingIncomeLoss",
-      "definition": "The net result for the period of deducting operating expenses from operating revenues."
-    },
-    {
-      "label": "Benefit plan income, net",
-      "value": "54",
-      "gaap_id": "us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent",
-      "definition": "Amount of expense (reversal of expense) for net periodic benefit cost components, excluding service cost component, of defined benefit plan. Amount includes, but is not limited to, interest cost, expected (return) loss on plan asset, amortization of prior service cost (credit), amortization of (gain) loss, amortization of transition (asset) obligation, settlement (gain) loss, curtailment (gain) loss and certain termination benefits."
-    },
-    {
-      "label": "Settlement charges",
-      "value": "(84)",
-      "gaap_id": "m_DefinedBenefitPlanSettlementCharges",
-      "definition": "Defined benefit plan settlement charges."
-    },
-    {
-      "label": "Interest expense",
-      "value": "(284)",
-      "gaap_id": "us-gaap_InterestExpense",
-      "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
-    },
-    {
-      "label": "Financing costs",
-      "value": "(5)",
-      "gaap_id": "m_FinancingCosts",
-      "definition": "Financing costs."
-    },
-    {
-      "label": "Losses on early retirement of debt",
-      "value": "0",
-      "gaap_id": "us-gaap_GainsLossesOnExtinguishmentOfDebt",
-      "definition": "Difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity."
-    },
-    {
-      "label": "Interest income",
-      "value": "4",
-      "gaap_id": "us-gaap_InvestmentIncomeInterest",
-      "definition": "Amount before accretion (amortization) of purchase discount (premium) of interest income on nonoperating securities."
-    },
-    {
-      "label": "Income (loss) before income taxes",
-      "value": "(4790)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
-      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
-    },
-    {
-      "label": "Federal, state and local income tax benefit (expense)",
-      "value": "846",
-      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
-      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
-    },
-    {
-      "label": "Net income (loss)",
-      "value": "(3944)",
-      "gaap_id": "us-gaap_ProfitLoss",
-      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
-    },
-    {
-      "label": "Net loss attributable to noncontrolling interest",
-      "value": "0",
-      "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
-      "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
-    },
-    {
-      "label": "Net income (loss) attributable to Macy's, Inc. shareholders",
-      "value": "(3944)",
-      "gaap_id": "us-gaap_NetIncomeLoss",
-      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
-    },
-    {
-      "label": "Basic earnings (loss) per share attributable to Macy's, Inc. shareholders",
-      "value": "(12.68)",
-      "gaap_id": "us-gaap_EarningsPerShareBasic",
-      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
-    },
-    {
-      "label": "Diluted earnings (loss) per share attributable to Macy's, Inc. shareholders",
-      "value": "(12.68)",
-      "gaap_id": "us-gaap_EarningsPerShareDiluted",
-      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    }
-  ]
-}
+[
+  {
+    "label": "Net sales",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+  },
+  {
+    "label": "Credit card revenues, net",
+    "gaap_id": "m_NetEarningsFromCreditOperations",
+    "definition": "Net Earnings from Credit Operations"
+  },
+  {
+    "label": "Cost of sales",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+    "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+  },
+  {
+    "label": "Selling, general and administrative expenses",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+  },
+  {
+    "label": "Gains on sale of real estate",
+    "gaap_id": "us-gaap_GainLossOnDispositionOfAssets",
+    "definition": "Amount of gain (loss) on sale or disposal of property, plant and equipment assets, excluding oil and gas property and timber property."
+  },
+  {
+    "label": "Restructuring, impairment, store closing and other costs",
+    "gaap_id": "us-gaap_RestructuringSettlementAndImpairmentProvisions",
+    "definition": "Amount of restructuring charges, remediation cost, and asset impairment loss."
+  },
+  {
+    "label": "Operating income (loss)",
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "definition": "The net result for the period of deducting operating expenses from operating revenues."
+  },
+  {
+    "label": "Benefit plan income, net",
+    "gaap_id": "us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent",
+    "definition": "Amount of expense (reversal of expense) for net periodic benefit cost components, excluding service cost component, of defined benefit plan. Amount includes, but is not limited to, interest cost, expected (return) loss on plan asset, amortization of prior service cost (credit), amortization of (gain) loss, amortization of transition (asset) obligation, settlement (gain) loss, curtailment (gain) loss and certain termination benefits."
+  },
+  {
+    "label": "Settlement charges",
+    "gaap_id": "m_DefinedBenefitPlanSettlementCharges",
+    "definition": "Defined benefit plan settlement charges."
+  },
+  {
+    "label": "Interest expense",
+    "gaap_id": "us-gaap_InterestExpense",
+    "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
+  },
+  {
+    "label": "Financing costs",
+    "gaap_id": "m_FinancingCosts",
+    "definition": "Financing costs."
+  },
+  {
+    "label": "Losses on early retirement of debt",
+    "gaap_id": "us-gaap_GainsLossesOnExtinguishmentOfDebt",
+    "definition": "Difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity."
+  },
+  {
+    "label": "Interest income",
+    "gaap_id": "us-gaap_InvestmentIncomeInterest",
+    "definition": "Amount before accretion (amortization) of purchase discount (premium) of interest income on nonoperating securities."
+  },
+  {
+    "label": "Income (loss) before income taxes",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+  },
+  {
+    "label": "Federal, state and local income tax benefit (expense)",
+    "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+    "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+  },
+  {
+    "label": "Net income (loss)",
+    "gaap_id": "us-gaap_ProfitLoss",
+    "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+  },
+  {
+    "label": "Net loss attributable to noncontrolling interest",
+    "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+    "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
+  },
+  {
+    "label": "Net income (loss) attributable to Macy's, Inc. shareholders",
+    "gaap_id": "us-gaap_NetIncomeLoss",
+    "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+  },
+  {
+    "label": "Basic earnings (loss) per share attributable to Macy's, Inc. shareholders",
+    "gaap_id": "us-gaap_EarningsPerShareBasic",
+    "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Diluted earnings (loss) per share attributable to Macy's, Inc. shareholders",
+    "gaap_id": "us-gaap_EarningsPerShareDiluted",
+    "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  }
+]

@@ -74,7 +74,10 @@ Return just the names of the files on two lines like this:
         )
 
         response = client.chat.completions.create(
-            model="openai/gpt-4o-mini",
+            #model="openai/gpt-4o-mini",
+            #model="google/gemini-2.0-flash-exp:free",
+            model="google/gemini-flash-1.5",
+            #model="google/gemini-flash-1.5-8b",
             messages=[
                 {"role": "system", "content": "You are a financial document expert assistant."},
                 {"role": "user", "content": prompt}
@@ -122,7 +125,8 @@ def download_and_extract(filename, base_url, report_name):
     write_xml_file(filename, html)
 
 def download_income_and_balance_html(company_name, cik, year, accession_number):
-    base_url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
+    accession_number_without_dashes = accession_number.replace("-","");
+    base_url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number_without_dashes}"
 
     xml_string = read_xml_file(g_filing_summary)
     result = find_statement_reports(xml_string)

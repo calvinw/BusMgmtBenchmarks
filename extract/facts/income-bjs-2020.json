@@ -1,173 +1,127 @@
-{
-  "title": "Consolidated Statements Of Operations And Comprehensive Income - USD ($)$ in Thousands",
-  "headers": [
-    [
-      "12 Months Ended"
-    ],
-    [
-      "Feb. 01, 2020",
-      "Feb. 02, 2019",
-      "Feb. 03, 2018"
-    ]
-  ],
-  "null": [
-    {
-      "label": "Total revenues",
-      "value": "13190707",
-      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
-      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
-    },
-    {
-      "label": "Cost of sales",
-      "value": "10763926",
-      "gaap_id": "us-gaap_CostOfRevenue",
-      "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
-    },
-    {
-      "label": "Selling, general and administrative expenses",
-      "value": "2059430",
-      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
-      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
-    },
-    {
-      "label": "Pre-opening expense",
-      "value": "15152",
-      "gaap_id": "us-gaap_PreOpeningCosts",
-      "definition": "Expenditures associated with opening new locations which are noncapital in nature and expensed as incurred."
-    },
-    {
-      "label": "Operating income",
-      "value": "352199",
-      "gaap_id": "us-gaap_OperatingIncomeLoss",
-      "definition": "The net result for the period of deducting operating expenses from operating revenues."
-    },
-    {
-      "label": "Interest expense, net",
-      "value": "108230",
-      "gaap_id": "us-gaap_InterestAndDebtExpense",
-      "definition": "Interest and debt related expenses associated with nonoperating financing activities of the entity."
-    },
-    {
-      "label": "Income from continuing operations before income taxes",
-      "value": "243969",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
-      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
-    },
-    {
-      "label": "Provision (benefit) for income taxes",
-      "value": "56212",
-      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
-      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
-    },
-    {
-      "label": "Income from continuing operations",
-      "value": "187757",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperations",
-      "definition": "Amount after tax of income (loss) from continuing operations attributable to the parent."
-    },
-    {
-      "label": "Income (loss) from discontinued operations, net of income taxes",
-      "value": "(581)",
-      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTax",
-      "definition": "Amount after tax of income (loss) from a discontinued operation including the portion attributable to the noncontrolling interest. Includes, but is not limited to, the income (loss) from operations during the phase-out period, gain (loss) on disposal, gain (loss) for reversal of write-down (write-down) to fair value, less cost to sell, and adjustments to a prior period gain (loss) on disposal."
-    },
-    {
-      "label": "Net income",
-      "value": "187176",
-      "gaap_id": "us-gaap_NetIncomeLoss",
-      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
-    }
-  ],
-  "Income per share attributable to common stockholders — basic:": [
-    {
-      "label": "Income from continuing operations (in usd per share)",
-      "value": "1.38",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicShare",
-      "definition": "The amount of net income (loss) from continuing operations per each share of common stock or unit outstanding during the reporting period."
-    },
-    {
-      "label": "Loss from discontinued operations (in usd per share)",
-      "value": "(0.01)",
-      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerBasicShare",
-      "definition": "Per basic share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation."
-    },
-    {
-      "label": "Net income (in usd per share)",
-      "value": "1.37",
-      "gaap_id": "us-gaap_EarningsPerShareBasic",
-      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
-    }
-  ],
-  "Income (loss) per share attributable to common stockholders - diluted:": [
-    {
-      "label": "Income from continuing operations (in usd per share)",
-      "value": "1.35",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare",
-      "definition": "The amount of net income (loss) derived from continuing operations during the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    },
-    {
-      "label": "Loss from discontinued operations (in usd per share)",
-      "value": "0.00",
-      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerDilutedShare",
-      "definition": "Per diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation."
-    },
-    {
-      "label": "Net income (in usd per share)",
-      "value": "1.35",
-      "gaap_id": "us-gaap_EarningsPerShareDiluted",
-      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    }
-  ],
-  "Weighted-average number of common shares outstanding:": [
-    {
-      "label": "Basic (in shares)",
-      "value": "136173675",
-      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
-      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
-    },
-    {
-      "label": "Diluted (in shares)",
-      "value": "139109188",
-      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
-      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
-    }
-  ],
-  "Other comprehensive income:": [
-    {
-      "label": "Postretirement medical plan adjustment, net of income tax of $385, $94 and $204, respectively",
-      "value": "(990)",
-      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossPensionAndOtherPostretirementBenefitPlansAdjustmentNetOfTax",
-      "definition": "Amount, after tax and reclassification adjustment, of (increase) decrease in accumulated other comprehensive income for defined benefit plan."
-    },
-    {
-      "label": "Unrealized loss on cash flow hedge, net of income tax of $5,554, $5,454 and $0, respectively",
-      "value": "(14281)",
-      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossCashFlowHedgeGainLossBeforeReclassificationAfterTax",
-      "definition": "Amount, after tax and before reclassification, of gain (loss) from derivative instrument designated and qualifying as cash flow hedge included in assessment of hedge effectiveness."
-    },
-    {
-      "label": "Total other comprehensive loss",
-      "value": "(15271)",
-      "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent",
-      "definition": "Amount after tax of other comprehensive income (loss) attributable to parent entity."
-    },
-    {
-      "label": "Total comprehensive income",
-      "value": "171905",
-      "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
-      "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
-    },
-    {
-      "label": "Total revenues",
-      "value": "12888556",
-      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
-      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
-    },
-    {
-      "label": "Total revenues",
-      "value": "302151",
-      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
-      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
-    }
-  ]
-}
+[
+  {
+    "label": "Total revenues",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+  },
+  {
+    "label": "Cost of sales",
+    "gaap_id": "us-gaap_CostOfRevenue",
+    "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
+  },
+  {
+    "label": "Selling, general and administrative expenses",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+  },
+  {
+    "label": "Pre-opening expense",
+    "gaap_id": "us-gaap_PreOpeningCosts",
+    "definition": "Expenditures associated with opening new locations which are noncapital in nature and expensed as incurred."
+  },
+  {
+    "label": "Operating income",
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "definition": "The net result for the period of deducting operating expenses from operating revenues."
+  },
+  {
+    "label": "Interest expense, net",
+    "gaap_id": "us-gaap_InterestAndDebtExpense",
+    "definition": "Interest and debt related expenses associated with nonoperating financing activities of the entity."
+  },
+  {
+    "label": "Income from continuing operations before income taxes",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+    "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+  },
+  {
+    "label": "Provision (benefit) for income taxes",
+    "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+    "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+  },
+  {
+    "label": "Income from continuing operations",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperations",
+    "definition": "Amount after tax of income (loss) from continuing operations attributable to the parent."
+  },
+  {
+    "label": "Income (loss) from discontinued operations, net of income taxes",
+    "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTax",
+    "definition": "Amount after tax of income (loss) from a discontinued operation including the portion attributable to the noncontrolling interest. Includes, but is not limited to, the income (loss) from operations during the phase-out period, gain (loss) on disposal, gain (loss) for reversal of write-down (write-down) to fair value, less cost to sell, and adjustments to a prior period gain (loss) on disposal."
+  },
+  {
+    "label": "Net income",
+    "gaap_id": "us-gaap_NetIncomeLoss",
+    "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+  },
+  {
+    "label": "Income from continuing operations (in usd per share)",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicShare",
+    "definition": "The amount of net income (loss) from continuing operations per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Loss from discontinued operations (in usd per share)",
+    "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerBasicShare",
+    "definition": "Per basic share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation."
+  },
+  {
+    "label": "Net income (in usd per share)",
+    "gaap_id": "us-gaap_EarningsPerShareBasic",
+    "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Income from continuing operations (in usd per share)",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare",
+    "definition": "The amount of net income (loss) derived from continuing operations during the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  },
+  {
+    "label": "Loss from discontinued operations (in usd per share)",
+    "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerDilutedShare",
+    "definition": "Per diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation."
+  },
+  {
+    "label": "Net income (in usd per share)",
+    "gaap_id": "us-gaap_EarningsPerShareDiluted",
+    "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  },
+  {
+    "label": "Basic (in shares)",
+    "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+    "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+  },
+  {
+    "label": "Diluted (in shares)",
+    "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+    "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+  },
+  {
+    "label": "Postretirement medical plan adjustment, net of income tax of $385, $94 and $204, respectively",
+    "gaap_id": "us-gaap_OtherComprehensiveIncomeLossPensionAndOtherPostretirementBenefitPlansAdjustmentNetOfTax",
+    "definition": "Amount, after tax and reclassification adjustment, of (increase) decrease in accumulated other comprehensive income for defined benefit plan."
+  },
+  {
+    "label": "Unrealized loss on cash flow hedge, net of income tax of $5,554, $5,454 and $0, respectively",
+    "gaap_id": "us-gaap_OtherComprehensiveIncomeLossCashFlowHedgeGainLossBeforeReclassificationAfterTax",
+    "definition": "Amount, after tax and before reclassification, of gain (loss) from derivative instrument designated and qualifying as cash flow hedge included in assessment of hedge effectiveness."
+  },
+  {
+    "label": "Total other comprehensive loss",
+    "gaap_id": "us-gaap_OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent",
+    "definition": "Amount after tax of other comprehensive income (loss) attributable to parent entity."
+  },
+  {
+    "label": "Total comprehensive income",
+    "gaap_id": "us-gaap_ComprehensiveIncomeNetOfTax",
+    "definition": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+  },
+  {
+    "label": "Total revenues",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+  },
+  {
+    "label": "Total revenues",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+  }
+]

@@ -84,7 +84,8 @@ def print_30_lines(text):
     print(first_30)
 
 def download_filing_summary(company_name, cik, year, accession_number):
-    base_url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number}"
+    accession_number_no_dashes = accession_number.replace("-","")
+    base_url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession_number_no_dashes}"
     filing_summary_url = f"{base_url}/{g_filing_summary}" 
     print(filing_summary_url)
     download(filing_summary_url, g_filing_summary) 

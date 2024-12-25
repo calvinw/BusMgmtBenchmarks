@@ -1,133 +1,97 @@
-{
-  "title": "CONSOLIDATED STATEMENTS OF EARNINGS - USD ($)shares in Millions, $ in Millions",
-  "headers": [
-    [
-      "12 Months Ended"
-    ],
-    [
-      "Aug. 31, 2019",
-      "Aug. 31, 2018",
-      "Aug. 31, 2017"
-    ]
-  ],
-  "null": [
-    {
-      "label": "Sales",
-      "value": "136866",
-      "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
-      "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
-    },
-    {
-      "label": "Cost of sales",
-      "value": "106790",
-      "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
-      "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
-    },
-    {
-      "label": "Gross profit",
-      "value": "30076",
-      "gaap_id": "us-gaap_GrossProfit",
-      "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
-    },
-    {
-      "label": "Selling, general and administrative expenses",
-      "value": "25242",
-      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
-      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
-    },
-    {
-      "label": "Equity earnings in AmerisourceBergen",
-      "value": "164",
-      "gaap_id": "wba_IncomeLossFromEquityMethodInvestmentsAmerisourceBergen",
-      "definition": "This item represents the entity's proportionate share for the period of the net income (loss) of its investee (such as unconsolidated subsidiaries and joint ventures) to which the equity method of accounting is applied. This item includes income or expense related to stock-based compensation based on the investor's grant of stock to employees of an equity method investee."
-    },
-    {
-      "label": "Operating income",
-      "value": "4998",
-      "gaap_id": "us-gaap_OperatingIncomeLoss",
-      "definition": "The net result for the period of deducting operating expenses from operating revenues."
-    },
-    {
-      "label": "Other income",
-      "value": "233",
-      "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
-      "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
-    },
-    {
-      "label": "Earnings before interest and income tax provision",
-      "value": "5231",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
-      "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
-    },
-    {
-      "label": "Interest expense, net",
-      "value": "704",
-      "gaap_id": "us-gaap_InterestExpense",
-      "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
-    },
-    {
-      "label": "Earnings before income tax provision",
-      "value": "4527",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
-      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
-    },
-    {
-      "label": "Income tax provision",
-      "value": "588",
-      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
-      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
-    },
-    {
-      "label": "Post tax earnings from other equity method investments",
-      "value": "23",
-      "gaap_id": "wba_IncomeLossfromOtherEquityMethodInvestments",
-      "definition": "Income (Loss) from Other Equity Method Investments"
-    },
-    {
-      "label": "Net earnings",
-      "value": "3962",
-      "gaap_id": "us-gaap_ProfitLoss",
-      "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
-    },
-    {
-      "label": "Net (loss) earnings attributable to noncontrolling interests",
-      "value": "(20)",
-      "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
-      "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
-    },
-    {
-      "label": "Net earnings attributable to Walgreens Boots Alliance, Inc.",
-      "value": "3982",
-      "gaap_id": "us-gaap_NetIncomeLoss",
-      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
-    }
-  ],
-  "Net earnings per common share:": [
-    {
-      "label": "Basic (in dollars per share)",
-      "value": "4.32",
-      "gaap_id": "us-gaap_EarningsPerShareBasic",
-      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
-    },
-    {
-      "label": "Diluted (in dollars per share)",
-      "value": "4.31",
-      "gaap_id": "us-gaap_EarningsPerShareDiluted",
-      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    }
-  ],
-  "Weighted average common shares outstanding:": [
-    {
-      "label": "Basic (in shares)",
-      "value": "921.5",
-      "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
-      "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
-    },
-    {
-      "label": "Diluted (in shares)",
-      "value": "923.5",
-      "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
-      "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
-    }
-  ]
-}
+[
+  {
+    "label": "Sales",
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "definition": "Amount, excluding tax collected from customer, of revenue from satisfaction of performance obligation by transferring promised good or service to customer. Tax collected from customer is tax assessed by governmental authority that is both imposed on and concurrent with specific revenue-producing transaction, including, but not limited to, sales, use, value added and excise."
+  },
+  {
+    "label": "Cost of sales",
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+    "definition": "The aggregate costs related to goods produced and sold and services rendered by an entity during the reporting period. This excludes costs incurred during the reporting period related to financial services rendered and other revenue generating activities."
+  },
+  {
+    "label": "Gross profit",
+    "gaap_id": "us-gaap_GrossProfit",
+    "definition": "Aggregate revenue less cost of goods and services sold or operating expenses directly attributable to the revenue generation activity."
+  },
+  {
+    "label": "Selling, general and administrative expenses",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+  },
+  {
+    "label": "Equity earnings in AmerisourceBergen",
+    "gaap_id": "wba_IncomeLossFromEquityMethodInvestmentsAmerisourceBergen",
+    "definition": "This item represents the entity's proportionate share for the period of the net income (loss) of its investee (such as unconsolidated subsidiaries and joint ventures) to which the equity method of accounting is applied. This item includes income or expense related to stock-based compensation based on the investor's grant of stock to employees of an equity method investee."
+  },
+  {
+    "label": "Operating income",
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "definition": "The net result for the period of deducting operating expenses from operating revenues."
+  },
+  {
+    "label": "Other income",
+    "gaap_id": "us-gaap_OtherNonoperatingIncomeExpense",
+    "definition": "Amount of income (expense) related to nonoperating activities, classified as other."
+  },
+  {
+    "label": "Earnings before interest and income tax provision",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+    "definition": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit) and income (loss) attributable to noncontrolling interest, and addition of income (loss) from equity method investments."
+  },
+  {
+    "label": "Interest expense, net",
+    "gaap_id": "us-gaap_InterestExpense",
+    "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
+  },
+  {
+    "label": "Earnings before income tax provision",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+  },
+  {
+    "label": "Income tax provision",
+    "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+    "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+  },
+  {
+    "label": "Post tax earnings from other equity method investments",
+    "gaap_id": "wba_IncomeLossfromOtherEquityMethodInvestments",
+    "definition": "Income (Loss) from Other Equity Method Investments"
+  },
+  {
+    "label": "Net earnings",
+    "gaap_id": "us-gaap_ProfitLoss",
+    "definition": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+  },
+  {
+    "label": "Net (loss) earnings attributable to noncontrolling interests",
+    "gaap_id": "us-gaap_NetIncomeLossAttributableToNoncontrollingInterest",
+    "definition": "Amount of Net Income (Loss) attributable to noncontrolling interest."
+  },
+  {
+    "label": "Net earnings attributable to Walgreens Boots Alliance, Inc.",
+    "gaap_id": "us-gaap_NetIncomeLoss",
+    "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+  },
+  {
+    "label": "Basic (in dollars per share)",
+    "gaap_id": "us-gaap_EarningsPerShareBasic",
+    "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Diluted (in dollars per share)",
+    "gaap_id": "us-gaap_EarningsPerShareDiluted",
+    "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  },
+  {
+    "label": "Basic (in shares)",
+    "gaap_id": "us-gaap_WeightedAverageNumberOfSharesOutstandingBasic",
+    "definition": "Number of [basic] shares or units, after adjustment for contingently issuable shares or units and other shares or units not deemed outstanding, determined by relating the portion of time within a reporting period that common shares or units have been outstanding to the total time in that period."
+  },
+  {
+    "label": "Diluted (in shares)",
+    "gaap_id": "us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding",
+    "definition": "The average number of shares or units issued and outstanding that are used in calculating diluted EPS or earnings per unit (EPU), determined based on the timing of issuance of shares or units in the period."
+  }
+]

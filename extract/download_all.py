@@ -1,71 +1,101 @@
 import json
+import os
 from download_filing_summary import download_filing_summary
 from download_income_and_balance_html import download_income_and_balance_html 
-from extract_income_and_balance import extract_statement_json
-from create_filings_json import get_company_name
+from extract_income_and_balance import parse_gaap_from_files 
 from download_filings_list import download_filings_list
 from classify_concepts import create_concepts
+from lookup_concept_values import lookup_concept_values 
 import csv
 
-filings = {}
+def all_files_exist(company_name, year):
+    required_files = [
+        f"html/income-{company_name}-{year}.html",
+        f"html/balance-{company_name}-{year}.html",
+        f"facts/income-{company_name}-{year}.json",
+        f"facts/balance-{company_name}-{year}.json",
+        f"concepts/concepts-{company_name}-{year}.json"
+    ]
+    return all(os.path.exists(file) for file in required_files)
 
-begin = 2019
-end = 2024
-print("Creating Filing info for ", begin, " to ", end) 
+def html_files_exist(company_name, year):
+    required_files = [
+        f"html/income-{company_name}-{year}.html",
+        f"html/balance-{company_name}-{year}.html"
+    ]
+    return all(os.path.exists(file) for file in required_files)
 
-print("Using companies in the CIK.csv file ") 
-with open('CIK.csv', 'r') as csvfile:
-    csv_reader = csv.DictReader(csvfile)
-    for row in csv_reader:
-        company_name = row['company_name']
-        cik = row['cik']
+def fact_files_exist(company_name, year):
+    required_files = [
+        f"facts/income-{company_name}-{year}.json",
+        f"facts/balance-{company_name}-{year}.json",
+    ]
+    return all(os.path.exists(file) for file in required_files)
 
-        print("Creating filings list for ", company_name)
-        filings_list = download_filings_list(cik, begin, end)
-        
-        filings[company_name] = {
-            "cik": cik,
-            "segment": row['segment'],
-            "subsegment": row['subsegment'],
-            "filings": filings_list 
-        }
-
-print("Writing json file: filings/filings.json")
-with open('filings/filings.json', 'w') as jsonfile:
-    json.dump(filings, jsonfile, indent=2)
+def concept_files_exist(company_name, year):
+    required_files = [
+        f"concepts/concepts-{company_name}-{year}.json"
+    ]
+    return all(os.path.exists(file) for file in required_files)
 
 # company name with iterate through companies, 
 # company data will be the data for that company 
 
-# iterates over the company names
-for company_name, company_data in filings.items():
-    cik = company_data['cik']
+def download_all():
+    with open('filings/filings.json', 'r') as f:
+        filings = json.load(f)
+    
+    for company_name, company_data in filings.items():
 
-    print("company_name: ", company_name," cik: ",cik)
-    print("----------------------------------------------")
+        cik = company_data['cik']
+        name = company_data['name']
 
-    for filing in company_data['filings']:
-        filing_date = filing['filingDate']
-        # getting just the year from the filing date
-        year = filing_date[:4]
-        accession_number = filing['accessionNumber'] 
-        print("year:", year)
-        print("accession_number:", accession_number)
+        print("company_name: ", company_name," cik: ",cik)
+        print("----------------------------------------------")
 
-        print("Downloading FileSummary.xml for: ", company_name," ", year)
-        download_filing_summary(company_name, cik, year, accession_number)
+        for filing in company_data['filings']:
 
-        print("Downloading income and balance html files")
-        download_income_and_balance_html(company_name, cik, year, accession_number)
+            filing_date = filing['filingDate']
+            # getting just the year from the filing date
+            year = filing_date[:4]
+            accession_number = filing['accessionNumber'] 
 
-        income_json = f"facts/income-{company_name}-{year}.json"
-        print("Extracting Facts: ", income_json)
-        extract_statement_json("income.html", income_json) 
+            if all_files_exist(company_name, year):
+                print(f"Skipping {company_name} {year} - files already exist")
+                continue
 
-        balance_json = f"facts/balance-{company_name}-{year}.json"
-        print("Extracting Facts: ", balance_json)
-        extract_statement_json("balance.html", balance_json) 
+            print("year:", year)
+            print("accession_number:", accession_number)
 
-        print("Mapping Concepts: ")
-        create_concepts(company_name, year, income_json, balance_json)        
+            if html_files_exist(company_name, year) == False:
+                print("Downloading FileSummary.xml for: ", company_name," ", year)
+                download_filing_summary(company_name, cik, year, accession_number)
 
+                print("Downloading income and balance html files")
+                download_income_and_balance_html(company_name, cik, year, accession_number)
+            else:
+                print(f"html/income-{company_name}-{year}.html", " already exists")
+                print(f"html/balance-{company_name}-{year}.html", " already exists")
+
+            if fact_files_exist(company_name, year) == False:
+                income_json = f"facts/income-{company_name}-{year}.json"
+                print("Extracting Facts: ", income_json)
+                parse_gaap_from_files("income.html", income_json) 
+
+                balance_json = f"facts/balance-{company_name}-{year}.json"
+                print("Extracting Facts: ", balance_json)
+                parse_gaap_from_files("balance.html", balance_json) 
+            else:
+                print(f"facts/income-{company_name}-{year}.json", " already exists")
+                print(f"facts/balance-{company_name}-{year}.json", " already exists")
+
+            if concept_files_exist(company_name, year) == False:
+                print("Mapping Concepts: ")
+                create_concepts(company_name, year)
+                lookup_concept_values(company_name, int(year))
+            else:
+                print(f"concepts/concepts-{company_name}-{year}.json", " already exist")
+
+
+if __name__ == "__main__":
+    download_all()

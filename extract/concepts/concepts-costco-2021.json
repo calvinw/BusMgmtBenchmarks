@@ -1,57 +1,79 @@
-{
-  "Net Revenue": {
+[
+  {
     "label": "Total revenue",
-    "value": "195,929,000",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "concept": "Net Revenue",
+    "location": "income",
+    "value": 195929000.0
   },
-  "Cost of Goods": {
+  {
     "label": "Merchandise costs",
-    "value": "170,684,000",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold"
+    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+    "concept": "Cost of Goods",
+    "location": "income",
+    "value": 170684000.0
   },
-  "SG&A": {
+  {
     "label": "Selling, general and administrative",
-    "value": "18,461,000",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "concept": "SG&A",
+    "location": "income",
+    "value": 18461000.0
   },
-  "Operating Profit": {
+  {
     "label": "Operating Income",
-    "value": "6,708,000",
-    "gaap_id": "us-gaap_OperatingIncomeLoss"
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "concept": "Operating Profit",
+    "location": "income",
+    "value": 6708000.0
   },
-  "Net Profit": {
+  {
     "label": "NET INCOME ATTRIBUTABLE TO COSTCO",
-    "value": "5,007,000",
-    "gaap_id": "us-gaap_NetIncomeLoss"
+    "gaap_id": "us-gaap_NetIncomeLoss",
+    "concept": "Net Profit",
+    "location": "income",
+    "value": 5007000.0
   },
-  "Inventory": {
+  {
     "label": "Merchandise inventories",
-    "value": "14,215,000",
-    "gaap_id": "us-gaap_InventoryNet"
+    "gaap_id": "us-gaap_InventoryNet",
+    "concept": "Inventory",
+    "location": "balance",
+    "value": 14215000.0
   },
-  "Current Assets": {
+  {
     "label": "Total current assets",
-    "value": "29,505,000",
-    "gaap_id": "us-gaap_AssetsCurrent"
+    "gaap_id": "us-gaap_AssetsCurrent",
+    "concept": "Current Assets",
+    "location": "balance",
+    "value": 29505000.0
   },
-  "Total Assets": {
+  {
     "label": "TOTAL ASSETS",
-    "value": "59,268,000",
-    "gaap_id": "us-gaap_Assets"
+    "gaap_id": "us-gaap_Assets",
+    "concept": "Total Assets",
+    "location": "balance",
+    "value": 59268000.0
   },
-  "Current Liabilities": {
+  {
     "label": "Total current liabilities",
-    "value": "29,441,000",
-    "gaap_id": "us-gaap_LiabilitiesCurrent"
+    "gaap_id": "us-gaap_LiabilitiesCurrent",
+    "concept": "Current Liabilities",
+    "location": "balance",
+    "value": 29441000.0
   },
-  "Total Shareholder Equity": {
+  {
     "label": "Total Costco stockholders' equity",
-    "value": "17,564,000",
-    "gaap_id": "us-gaap_StockholdersEquity"
+    "gaap_id": "us-gaap_StockholdersEquity",
+    "concept": "Total Shareholder Equity",
+    "location": "balance",
+    "value": 17564000.0
   },
-  "Total Liabilities and Shareholder Equity": {
+  {
     "label": "TOTAL LIABILITIES AND EQUITY",
-    "value": "59,268,000",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "concept": "Total Liabilities and Shareholder Equity",
+    "location": "balance",
+    "value": 59268000.0
   }
-}
+]

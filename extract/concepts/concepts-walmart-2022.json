@@ -1,57 +1,79 @@
-{
-  "Net Revenue": {
+[
+  {
     "label": "Net sales",
-    "value": "567,762,000",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "concept": "Net Revenue",
+    "location": "income",
+    "value": 567762000.0
   },
-  "Cost of Goods": {
+  {
     "label": "Cost of sales",
-    "value": "429,000,000",
-    "gaap_id": "us-gaap_CostOfRevenue"
+    "gaap_id": "us-gaap_CostOfRevenue",
+    "concept": "Cost of Goods",
+    "location": "income",
+    "value": 429000000.0
   },
-  "SG&A": {
+  {
     "label": "Operating, selling, general and administrative expenses",
-    "value": "117,812,000",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense"
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "concept": "SG&A",
+    "location": "income",
+    "value": 117812000.0
   },
-  "Operating Profit": {
+  {
     "label": "Operating income",
-    "value": "25,942,000",
-    "gaap_id": "us-gaap_OperatingIncomeLoss"
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "concept": "Operating Profit",
+    "location": "income",
+    "value": 25942000.0
   },
-  "Net Profit": {
-    "label": "Consolidated net income attributable to Walmart",
-    "value": "13,673,000",
-    "gaap_id": "us-gaap_NetIncomeLoss"
+  {
+    "label": "Consolidated net income",
+    "gaap_id": "us-gaap_ProfitLoss",
+    "concept": "Net Profit",
+    "location": "income",
+    "value": 13940000.0
   },
-  "Inventory": {
+  {
     "label": "Inventories",
-    "value": "56,511,000",
-    "gaap_id": "us-gaap_InventoryNet"
+    "gaap_id": "us-gaap_InventoryNet",
+    "concept": "Inventory",
+    "location": "balance",
+    "value": 56511000.0
   },
-  "Current Assets": {
+  {
     "label": "Total current assets",
-    "value": "81,070,000",
-    "gaap_id": "us-gaap_AssetsCurrent"
+    "gaap_id": "us-gaap_AssetsCurrent",
+    "concept": "Current Assets",
+    "location": "balance",
+    "value": 81070000.0
   },
-  "Total Assets": {
+  {
     "label": "Total assets",
-    "value": "244,860,000",
-    "gaap_id": "us-gaap_Assets"
+    "gaap_id": "us-gaap_Assets",
+    "concept": "Total Assets",
+    "location": "balance",
+    "value": 244860000.0
   },
-  "Current Liabilities": {
+  {
     "label": "Total current liabilities",
-    "value": "87,379,000",
-    "gaap_id": "us-gaap_LiabilitiesCurrent"
+    "gaap_id": "us-gaap_LiabilitiesCurrent",
+    "concept": "Current Liabilities",
+    "location": "balance",
+    "value": 87379000.0
   },
-  "Total Shareholder Equity": {
+  {
     "label": "Total Walmart shareholders' equity",
-    "value": "83,253,000",
-    "gaap_id": "us-gaap_StockholdersEquity"
+    "gaap_id": "us-gaap_StockholdersEquity",
+    "concept": "Total Shareholder Equity",
+    "location": "balance",
+    "value": 83253000.0
   },
-  "Total Liabilities and Shareholder Equity": {
+  {
     "label": "Total liabilities and equity",
-    "value": "244,860,000",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "concept": "Total Liabilities and Shareholder Equity",
+    "location": "balance",
+    "value": 244860000.0
   }
-}
+]

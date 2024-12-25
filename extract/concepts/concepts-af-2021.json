@@ -1,52 +1,79 @@
-{
-  "Net Revenue": {
+[
+  {
     "label": "Net sales",
-    "value": "3,125,384",
-    "gaap_id": "us-gaap_Revenues"
+    "gaap_id": "us-gaap_Revenues",
+    "concept": "Net Revenue",
+    "location": "income",
+    "value": 3125384.0
   },
-  "Cost of Goods": {
+  {
     "label": "Cost of Goods and Service, Excluding Depreciation, Depletion, and Amortization",
-    "value": "1,234,179",
-    "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"
+    "gaap_id": "us-gaap_CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+    "concept": "Cost of Goods",
+    "location": "income",
+    "value": 1234179.0
   },
-  "Operating Profit": {
+  {
+    "label": "Marketing General And Administrative Expense",
+    "gaap_id": "anf_MarketingGeneralAndAdministrativeExpense",
+    "concept": "SG&A",
+    "location": "income",
+    "value": 463843.0
+  },
+  {
     "label": "Operating Income (Loss)",
-    "value": "-20,469",
-    "gaap_id": "us-gaap_OperatingIncomeLoss"
+    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "concept": "Operating Profit",
+    "location": "income",
+    "value": -20469.0
   },
-  "Net Profit": {
+  {
     "label": "Net Income (Loss), Including Portion Attributable to Noncontrolling Interest",
-    "value": "-108,954",
-    "gaap_id": "us-gaap_ProfitLoss"
+    "gaap_id": "us-gaap_ProfitLoss",
+    "concept": "Net Profit",
+    "location": "income",
+    "value": -108954.0
   },
-  "Inventory": {
+  {
     "label": "Inventories",
-    "value": "404,053",
-    "gaap_id": "us-gaap_InventoryNet"
+    "gaap_id": "us-gaap_InventoryNet",
+    "concept": "Inventory",
+    "location": "balance",
+    "value": 404053.0
   },
-  "Current Assets": {
+  {
     "label": "Total current assets",
-    "value": "1,661,629",
-    "gaap_id": "us-gaap_AssetsCurrent"
+    "gaap_id": "us-gaap_AssetsCurrent",
+    "concept": "Current Assets",
+    "location": "balance",
+    "value": 1661629.0
   },
-  "Total Assets": {
+  {
     "label": "Total assets",
-    "value": "3,314,902",
-    "gaap_id": "us-gaap_Assets"
+    "gaap_id": "us-gaap_Assets",
+    "concept": "Total Assets",
+    "location": "balance",
+    "value": 3314902.0
   },
-  "Current Liabilities": {
+  {
     "label": "Total current liabilities",
-    "value": "959,399",
-    "gaap_id": "us-gaap_LiabilitiesCurrent"
+    "gaap_id": "us-gaap_LiabilitiesCurrent",
+    "concept": "Current Liabilities",
+    "location": "balance",
+    "value": 959399.0
   },
-  "Total Shareholder Equity": {
-    "label": "Total stockholders\u2019 equity",
-    "value": "949,312",
-    "gaap_id": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+  {
+    "label": "Total Abercrombie & Fitch Co. stockholders\u2019 equity",
+    "gaap_id": "us-gaap_StockholdersEquity",
+    "concept": "Total Shareholder Equity",
+    "location": "balance",
+    "value": 936628.0
   },
-  "Total Liabilities and Shareholder Equity": {
+  {
     "label": "Total liabilities and stockholders\u2019 equity",
-    "value": "3,314,902",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity"
+    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "concept": "Total Liabilities and Shareholder Equity",
+    "location": "balance",
+    "value": 3314902.0
   }
-}
+]

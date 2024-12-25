@@ -9,80 +9,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def parse_financial_value(value_str):
-    """
-    Convert a financial string value to a float, handling parentheses for negative numbers.
-    
-    Args:
-        value_str (str): The financial value as a string, e.g., "1,234" or "(1,234)"
-        
-    Returns:
-        float: The converted value as a float, with parentheses values converted to negative numbers
-        
-    Examples:
-        >>> parse_financial_value("1,234")
-        1234.0
-        >>> parse_financial_value("(1,234)")
-        -1234.0
-    """
-    # Remove any whitespace
-    value_str = value_str.strip()
-    
-    # Check if the value is in parentheses
-    is_negative = value_str.startswith('(') and value_str.endswith(')')
-    
-    # Remove parentheses if they exist
-    if is_negative:
-        value_str = value_str[1:-1]
-    
-    # Remove any commas
-    value_str = value_str.replace(',', '')
-    
-    # Convert to float
-    value = float(value_str)
-    
-    # Make negative if it was in parentheses
-    if is_negative:
-        value = -value
-        
-    return value
-
-def convert_to_thousands(financial_data, input_unit='dollars'):
-    if input_unit not in ['dollars', 'thousands', 'millions']:
-        raise ValueError("input_unit must be 'dollars', 'thousands', or 'millions'")
-        
-    conversion_factors = {
-        'dollars': 1/1000,    # Divide by 1000 to convert dollars to thousands
-        'thousands': 1,       # No conversion needed
-        'millions': 1000      # Multiply by 1000 to convert millions to thousands
-    }
-    
-    conversion_factor = conversion_factors[input_unit]
-    converted_data = []
-    
-    for item in financial_data:
-        # Create a copy of the item to avoid modifying the original
-        new_item = item.copy()
-        
-        try:
-            # Use the new parse_financial_value function
-            original_value = parse_financial_value(item['value'])
-            value_in_thousands = original_value * conversion_factor
-            
-            # Format with parentheses for negative values
-            # if value_in_thousands < 0:
-            #     new_item['value'] = f"({abs(value_in_thousands):,.0f})"
-            # else:
-            new_item['value'] = f"{value_in_thousands:,.0f}"
-                
-        except (KeyError, ValueError) as e:
-            print(f"Error processing item {item}: {e}")
-            continue
-            
-        converted_data.append(new_item)
-    
-    return converted_data
-
 def transform_financial_data(data):
     result = {}
     
@@ -90,7 +16,6 @@ def transform_financial_data(data):
         # Create new dict without the concept key
         value_dict = {
             "label": item["label"],
-            "value": item["value"],
             "gaap_id": item["gaap_id"]
         }
         
@@ -100,11 +25,31 @@ def transform_financial_data(data):
     return result
 
 def remove_json_code_block(text):
-    if text.startswith('```json'):
-        text = text[7:]  # Remove the '```json' part from the start
-    if text.endswith('```'):
-        text = text[:-3]  # Remove the '```' part from the end
-    return text.strip()  # Strip any extra whitespace that may have been left behind
+    # Handle None or empty input
+    if not text:
+        return ""
+    
+    # Convert to string in case we get a different type
+    text = str(text).strip()
+    
+    # Remove starting markers (handle variations)
+    start_markers = ['```json', '```JSON', '``` json', '```\njson', '``` JSON']
+    for marker in start_markers:
+        if text.startswith(marker):
+            text = text[len(marker):]
+            break
+    
+    # Remove ending markers (handle variations)
+    end_markers = ['```', '``` ', '\n```', '\n``` ']
+    for marker in end_markers:
+        if text.endswith(marker):
+            text = text[:-len(marker)]
+            break
+    
+    # Clean up any leftover whitespace and newlines at start/end
+    text = text.strip()
+    
+    return text
 
 def classify_facts(prompt):
     #print("Prompt:")
@@ -117,7 +62,8 @@ def classify_facts(prompt):
 
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-4o-mini",
+            #model="openai/gpt-4o-mini",
+            model="google/gemini-flash-1.5",
             messages=[
                 {"role": "system", "content": "You are a financial document expert assistant."},
                 {"role": "user", "content": prompt}
@@ -128,6 +74,7 @@ def classify_facts(prompt):
         # Extract the response json 
         response_json = response.choices[0].message.content
         #print(response_json)
+
         json = remove_json_code_block(response_json)
         
         return json 
@@ -160,7 +107,9 @@ Your response will be like this:
    The json of the five objects that you identify
 ]
 """
+    #print(prompt)
     response = classify_facts(prompt) 
+    #print(response)
 
     return response 
 
@@ -193,8 +142,9 @@ Your response will be like this:
 
     return response 
 
-def create_concepts(company, year, income_file, balance_file):
-   
+def create_concepts(company, year):
+
+    income_file = f"facts/income-{company}-{year}.json"
     # read the income_file as a json file and call 
     with open(income_file, 'r') as f:
         income_facts_json = f.read()
@@ -205,6 +155,7 @@ def create_concepts(company, year, income_file, balance_file):
     income_str = classify_income_facts(income_facts_json)
 
     # read the balance_file as a json file and call 
+    balance_file = f"facts/balance-{company}-{year}.json"
     with open(balance_file, 'r') as f:
         balance_facts_json = f.read()
 
@@ -214,51 +165,19 @@ def create_concepts(company, year, income_file, balance_file):
     balance_str = classify_balance_facts(balance_facts_json)
 
     python_income_list = json.loads(income_str)
-    python_balance_list = json.loads(balance_str) 
+    for item in python_income_list:
+        item["location"] = "income"
 
-    print("Income facts title :")
-    print(income_facts_dict["title"])
-    print("Income facts headers :")
-    print(income_facts_dict["headers"])
-    units_text = income_facts_dict["title"]
-    units = "dollars" # default to dollars
-    if "$ in Millions" in units_text:
-       units = "millions"
-    elif "$ in Thousands" in units_text:
-       units = "thousands"
-    print("python_income_list")
-    print("units: ", units)
-    converted_income_list = convert_to_thousands(python_income_list, units)
-    print(json.dumps(converted_income_list, indent=2))
+    python_balance_list = json.loads(balance_str)
+    for item in python_balance_list:
+        item["location"] = "balance"
 
-    print("Balance facts title:")
-    print(balance_facts_dict["title"])
-    print("Balance facts headers :")
-    print(balance_facts_dict["headers"])
-    units_text = balance_facts_dict["title"]
-    units = "dollars" # default to dollars
-    if "$ in Millions" in units_text:
-       units = "millions"
-    elif "$ in Thousands" in units_text:
-       units = "thousands"
-    print("python_balance_list")
-    print("units: ", units)
-    converted_balance_list = convert_to_thousands(python_balance_list, units)
-    print(json.dumps(converted_balance_list, indent=2))
+    concepts_list = python_income_list + python_balance_list
 
-    concepts_list = converted_income_list + converted_balance_list 
-
-    data = transform_financial_data(concepts_list)
-    #print(json.dumps(data, indent=2))
-
-    # print("Example of net revenue value")
-    # print(data["Net Revenue"]["value"])
-
-    # Save the concepts to a json file
     output_file = f"concepts/concepts-{company}-{year}.json"
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, 'w') as f:
-        json.dump(data, f, indent=2)
+        json.dump(concepts_list, f, indent=2)
 
 
 if __name__ == "__main__":

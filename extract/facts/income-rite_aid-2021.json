@@ -1,196 +1,137 @@
-{
-  "title": "CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS - USD ($)$ in Thousands",
-  "headers": [
-    [
-      "3 Months Ended",
-      "12 Months Ended"
-    ],
-    [
-      "Feb. 27, 2021",
-      "Nov. 28, 2020",
-      "Aug. 29, 2020",
-      "May 30, 2020",
-      "Feb. 29, 2020",
-      "Nov. 30, 2019",
-      "Aug. 31, 2019",
-      "Jun. 01, 2019",
-      "Feb. 27, 2021",
-      "Feb. 29, 2020",
-      "Mar. 02, 2019"
-    ]
-  ],
-  "null": [
-    {
-      "label": "Revenues",
-      "value": "5916856",
-      "gaap_id": "us-gaap_Revenues",
-      "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
-    }
-  ],
-  "Costs and expenses:": [
-    {
-      "label": "Cost of revenues",
-      "value": "4774297",
-      "gaap_id": "us-gaap_CostOfRevenue",
-      "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
-    },
-    {
-      "label": "Selling, general and administrative expenses",
-      "value": "1187541",
-      "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
-      "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
-    },
-    {
-      "label": "Lease termination and impairment charges",
-      "value": "35669",
-      "gaap_id": "rad_LeaseTerminationAndLongLivedAssetImpairmentCharges",
-      "definition": "The charge against earnings resulting from early termination of leases and from the aggregate write-down of tangible assets from their carrying value to their fair value."
-    },
-    {
-      "label": "Intangible asset impairment charges",
-      "value": "29852",
-      "gaap_id": "us-gaap_GoodwillAndIntangibleAssetImpairment",
-      "definition": "Total loss recognized during the period from the impairment of goodwill plus the loss recognized in the period resulting from the impairment of the carrying amount of intangible assets, other than goodwill."
-    },
-    {
-      "label": "Interest expense",
-      "value": "49999",
-      "gaap_id": "us-gaap_InterestExpense",
-      "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
-    },
-    {
-      "label": "(Gain) loss on debt modifications and retirements, net",
-      "value": "(5274)",
-      "gaap_id": "rad_GainsLossesOnExtinguishmentAndRestructuringOfDebtNet",
-      "definition": "The net amount of 1.) the difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity and 2.) the difference between the book value of the debt before the restructuring and the fair value of the payments on the debt after restructuring is complete, duriing the period."
-    },
-    {
-      "label": "(Gain) loss on sale of assets, net",
-      "value": "(51827)",
-      "gaap_id": "us-gaap_GainLossOnDispositionOfAssets1",
-      "definition": "Amount of gain (loss) on sale or disposal of assets, including but not limited to property plant and equipment, intangible assets and equity in securities of subsidiaries or equity method investee."
-    },
-    {
-      "label": "Gain on Bartell acquisition",
-      "value": "(47705)",
-      "gaap_id": "us-gaap_BusinessCombinationBargainPurchaseGainRecognizedAmount",
-      "definition": "In a business combination in which the amount of net identifiable assets acquired and liabilities assumed exceeds the aggregate consideration transferred or to be transferred (as defined), this element represents the amount of gain recognized by the entity."
-    },
-    {
-      "label": "Total costs and expenses",
-      "value": "5947974",
-      "gaap_id": "us-gaap_CostsAndExpenses",
-      "definition": "Total costs of sales and operating expenses for the period."
-    },
-    {
-      "label": "Loss from continuing operations before income taxes",
-      "value": "(31118)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
-      "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
-    },
-    {
-      "label": "Income tax (benefit) expense",
-      "value": "(12623)",
-      "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
-      "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
-    },
-    {
-      "label": "Net loss from continuing operations",
-      "value": "(18495)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
-      "definition": "Amount after tax of income (loss) from continuing operations including portion attributable to the noncontrolling interest."
-    },
-    {
-      "label": "Net income from discontinued operations, net of tax",
-      "value": "9161",
-      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTax",
-      "definition": "Amount after tax of income (loss) from a discontinued operation including the portion attributable to the noncontrolling interest. Includes, but is not limited to, the income (loss) from operations during the phase-out period, gain (loss) on disposal, gain (loss) for reversal of write-down (write-down) to fair value, less cost to sell, and adjustments to a prior period gain (loss) on disposal."
-    },
-    {
-      "label": "Net loss",
-      "value": "(18495)",
-      "gaap_id": "us-gaap_NetIncomeLoss",
-      "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
-    }
-  ],
-  "Computation of loss attributable to common stockholders:": [
-    {
-      "label": "Loss from continuing operations attributable to common stockholders-basic and diluted",
-      "value": "(100070)",
-      "gaap_id": "rad_NetIncomeLossFromContinuingOperationsAvailableToCommonStockHoldersBasicAndDiluted",
-      "definition": "The amount of net income (loss) from continuing operations available to common stockholders for both basic and diluted shares."
-    },
-    {
-      "label": "Income from discontinued operations attributable to common stockholders-basic and diluted",
-      "value": "9161",
-      "gaap_id": "rad_NetIncomeLossFromDiscontinuedOperationsAvailableToCommonStockHoldersBasicAndDiluted",
-      "definition": "The amount of net income (loss) from discontinued operations available to common stockholders for both basic and diluted shares."
-    },
-    {
-      "label": "Loss attributable to common stockholders-basic and diluted",
-      "value": "(90909)",
-      "gaap_id": "rad_NetIncomeLossAvailableToCommonStockholdersBasicAndDiluted",
-      "definition": "The amount of net income (loss) from continuing operations available to common stockholders for both basic and diluted shares."
-    }
-  ],
-  "Basic income (loss) per share:": [
-    {
-      "label": "Continuing operations",
-      "value": "(0.34)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicShare",
-      "definition": "The amount of net income (loss) from continuing operations per each share of common stock or unit outstanding during the reporting period."
-    },
-    {
-      "label": "Discontinued operations",
-      "value": "0.17",
-      "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerBasicShare",
-      "definition": "Per basic share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
-    },
-    {
-      "label": "Net basic income (loss) per share",
-      "value": "(0.34)",
-      "gaap_id": "us-gaap_EarningsPerShareBasic",
-      "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
-    }
-  ],
-  "Diluted income (loss) per share:": [
-    {
-      "label": "Continuing operations",
-      "value": "(0.34)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare",
-      "definition": "The amount of net income (loss) derived from continuing operations during the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    },
-    {
-      "label": "Discontinued operations",
-      "value": "0.17",
-      "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerDilutedShare",
-      "definition": "Per diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
-    },
-    {
-      "label": "Net diluted income (loss) per share",
-      "value": "(0.34)",
-      "gaap_id": "us-gaap_EarningsPerShareDiluted",
-      "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    }
-  ],
-  "Basic and diluted (loss) income per share:": [
-    {
-      "label": "Continuing operations",
-      "value": "(1.87)",
-      "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicAndDilutedShare",
-      "definition": "The amount of net income (loss) from continuing operations per each basic and diluted share of common stock or unit when the per share amount is the same for both basic and diluted shares."
-    },
-    {
-      "label": "Discontinued operations",
-      "value": "0.18",
-      "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerBasicAndDilutedShare",
-      "definition": "Per basic and diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation, when the per share amount is the same."
-    },
-    {
-      "label": "Net basic and diluted loss per share",
-      "value": "(1.69)",
-      "gaap_id": "us-gaap_EarningsPerShareBasicAndDiluted",
-      "definition": "The amount of net income or loss for the period per each share in instances when basic and diluted earnings per share are the same amount and reported as a single line item on the face of the financial statements.  Basic earnings per share is the amount of net income or loss for the period per each share of common stock or unit outstanding during the reporting period.  Diluted earnings per share includes the amount of net income or loss for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
-    }
-  ]
-}
+[
+  {
+    "label": "Revenues",
+    "gaap_id": "us-gaap_Revenues",
+    "definition": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."
+  },
+  {
+    "label": "Cost of revenues",
+    "gaap_id": "us-gaap_CostOfRevenue",
+    "definition": "The aggregate cost of goods produced and sold and services rendered during the reporting period."
+  },
+  {
+    "label": "Selling, general and administrative expenses",
+    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "definition": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses. Direct selling expenses (for example, credit, warranty, and advertising) are expenses that can be directly linked to the sale of specific products. Indirect selling expenses are expenses that cannot be directly linked to the sale of specific products, for example telephone expenses, Internet, and postal charges. General and administrative expenses include salaries of non-sales personnel, rent, utilities, communication, etc."
+  },
+  {
+    "label": "Lease termination and impairment charges",
+    "gaap_id": "rad_LeaseTerminationAndLongLivedAssetImpairmentCharges",
+    "definition": "The charge against earnings resulting from early termination of leases and from the aggregate write-down of tangible assets from their carrying value to their fair value."
+  },
+  {
+    "label": "Intangible asset impairment charges",
+    "gaap_id": "us-gaap_GoodwillAndIntangibleAssetImpairment",
+    "definition": "Total loss recognized during the period from the impairment of goodwill plus the loss recognized in the period resulting from the impairment of the carrying amount of intangible assets, other than goodwill."
+  },
+  {
+    "label": "Interest expense",
+    "gaap_id": "us-gaap_InterestExpense",
+    "definition": "Amount of the cost of borrowed funds accounted for as interest expense."
+  },
+  {
+    "label": "(Gain) loss on debt modifications and retirements, net",
+    "gaap_id": "rad_GainsLossesOnExtinguishmentAndRestructuringOfDebtNet",
+    "definition": "The net amount of 1.) the difference between the fair value of payments made and the carrying amount of debt which is extinguished prior to maturity and 2.) the difference between the book value of the debt before the restructuring and the fair value of the payments on the debt after restructuring is complete, duriing the period."
+  },
+  {
+    "label": "(Gain) loss on sale of assets, net",
+    "gaap_id": "us-gaap_GainLossOnDispositionOfAssets1",
+    "definition": "Amount of gain (loss) on sale or disposal of assets, including but not limited to property plant and equipment, intangible assets and equity in securities of subsidiaries or equity method investee."
+  },
+  {
+    "label": "Gain on Bartell acquisition",
+    "gaap_id": "us-gaap_BusinessCombinationBargainPurchaseGainRecognizedAmount",
+    "definition": "In a business combination in which the amount of net identifiable assets acquired and liabilities assumed exceeds the aggregate consideration transferred or to be transferred (as defined), this element represents the amount of gain recognized by the entity."
+  },
+  {
+    "label": "Total costs and expenses",
+    "gaap_id": "us-gaap_CostsAndExpenses",
+    "definition": "Total costs of sales and operating expenses for the period."
+  },
+  {
+    "label": "Loss from continuing operations before income taxes",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "definition": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+  },
+  {
+    "label": "Income tax (benefit) expense",
+    "gaap_id": "us-gaap_IncomeTaxExpenseBenefit",
+    "definition": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+  },
+  {
+    "label": "Net loss from continuing operations",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+    "definition": "Amount after tax of income (loss) from continuing operations including portion attributable to the noncontrolling interest."
+  },
+  {
+    "label": "Net income from discontinued operations, net of tax",
+    "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTax",
+    "definition": "Amount after tax of income (loss) from a discontinued operation including the portion attributable to the noncontrolling interest. Includes, but is not limited to, the income (loss) from operations during the phase-out period, gain (loss) on disposal, gain (loss) for reversal of write-down (write-down) to fair value, less cost to sell, and adjustments to a prior period gain (loss) on disposal."
+  },
+  {
+    "label": "Net loss",
+    "gaap_id": "us-gaap_NetIncomeLoss",
+    "definition": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."
+  },
+  {
+    "label": "Loss from continuing operations attributable to common stockholders-basic and diluted",
+    "gaap_id": "rad_NetIncomeLossFromContinuingOperationsAvailableToCommonStockHoldersBasicAndDiluted",
+    "definition": "The amount of net income (loss) from continuing operations available to common stockholders for both basic and diluted shares."
+  },
+  {
+    "label": "Income from discontinued operations attributable to common stockholders-basic and diluted",
+    "gaap_id": "rad_NetIncomeLossFromDiscontinuedOperationsAvailableToCommonStockHoldersBasicAndDiluted",
+    "definition": "The amount of net income (loss) from discontinued operations available to common stockholders for both basic and diluted shares."
+  },
+  {
+    "label": "Loss attributable to common stockholders-basic and diluted",
+    "gaap_id": "rad_NetIncomeLossAvailableToCommonStockholdersBasicAndDiluted",
+    "definition": "The amount of net income (loss) from continuing operations available to common stockholders for both basic and diluted shares."
+  },
+  {
+    "label": "Continuing operations",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicShare",
+    "definition": "The amount of net income (loss) from continuing operations per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Discontinued operations",
+    "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerBasicShare",
+    "definition": "Per basic share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
+  },
+  {
+    "label": "Net basic income (loss) per share",
+    "gaap_id": "us-gaap_EarningsPerShareBasic",
+    "definition": "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."
+  },
+  {
+    "label": "Continuing operations",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare",
+    "definition": "The amount of net income (loss) derived from continuing operations during the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  },
+  {
+    "label": "Discontinued operations",
+    "gaap_id": "us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerDilutedShare",
+    "definition": "Per diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation."
+  },
+  {
+    "label": "Net diluted income (loss) per share",
+    "gaap_id": "us-gaap_EarningsPerShareDiluted",
+    "definition": "The amount of net income (loss) for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  },
+  {
+    "label": "Continuing operations",
+    "gaap_id": "us-gaap_IncomeLossFromContinuingOperationsPerBasicAndDilutedShare",
+    "definition": "The amount of net income (loss) from continuing operations per each basic and diluted share of common stock or unit when the per share amount is the same for both basic and diluted shares."
+  },
+  {
+    "label": "Discontinued operations",
+    "gaap_id": "us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxPerBasicAndDilutedShare",
+    "definition": "Per basic and diluted share amount, after tax, of income (loss) from the day-to-day business activities of the discontinued operation and gain (loss) from the disposal of the discontinued operation, when the per share amount is the same."
+  },
+  {
+    "label": "Net basic and diluted loss per share",
+    "gaap_id": "us-gaap_EarningsPerShareBasicAndDiluted",
+    "definition": "The amount of net income or loss for the period per each share in instances when basic and diluted earnings per share are the same amount and reported as a single line item on the face of the financial statements.  Basic earnings per share is the amount of net income or loss for the period per each share of common stock or unit outstanding during the reporting period.  Diluted earnings per share includes the amount of net income or loss for the period available to each share of common stock or common unit outstanding during the reporting period and to each share or unit that would have been outstanding assuming the issuance of common shares or units for all dilutive potential common shares or units outstanding during the reporting period."
+  }
+]

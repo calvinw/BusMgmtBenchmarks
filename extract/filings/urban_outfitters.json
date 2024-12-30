@@ -1,0 +1,62 @@
+{
+  "cik": "912615",
+  "name": "URBAN OUTFITTERS INC",
+  "segment": "Specialty",
+  "subsegment": "Apparel",
+  "filings": [
+    {
+      "reportDate": "2024-01-31",
+      "filingDate": "2024-04-01",
+      "form": "10-K",
+      "primaryDocument": "urbn-20240131.htm",
+      "accessionNumber": "0000950170-24-039320",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000095017024039320/0000950170-24-039320.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000095017024039320/urbn-20240131_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-31",
+      "filingDate": "2023-04-03",
+      "form": "10-K",
+      "primaryDocument": "urbn-20230131.htm",
+      "accessionNumber": "0000950170-23-011597",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000095017023011597/0000950170-23-011597.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000095017023011597/urbn-20230131_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-31",
+      "filingDate": "2022-04-01",
+      "form": "10-K",
+      "primaryDocument": "urbn-10k_20220131.htm",
+      "accessionNumber": "0001564590-22-013232",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000156459022013232/0001564590-22-013232.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000156459022013232/urbn-10k_20220131_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-31",
+      "filingDate": "2021-04-01",
+      "form": "10-K",
+      "primaryDocument": "urbn-10k_20210131.htm",
+      "accessionNumber": "0001564590-21-017306",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000156459021017306/0001564590-21-017306.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000156459021017306/urbn-10k_20210131_htm.xml"
+    },
+    {
+      "reportDate": "2020-01-31",
+      "filingDate": "2020-03-31",
+      "form": "10-K",
+      "primaryDocument": "urbn-10k_20200131.htm",
+      "accessionNumber": "0001564590-20-014397",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000156459020014397/0001564590-20-014397.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000156459020014397/urbn-10k_20200131_htm.xml"
+    },
+    {
+      "reportDate": "2019-01-31",
+      "filingDate": "2019-04-01",
+      "form": "10-K",
+      "primaryDocument": "urbn-10k_20190131.htm",
+      "accessionNumber": "0001564590-19-010433",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/912615/000156459019010433/0001564590-19-010433.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/912615/000156459019010433/urbn-20190131.xml"
+    }
+  ]
+}

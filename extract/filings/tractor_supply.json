@@ -1,0 +1,62 @@
+{
+  "cik": "916365",
+  "name": "TRACTOR SUPPLY CO /DE/",
+  "segment": "Home Improvement",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2023-12-30",
+      "filingDate": "2024-02-23",
+      "form": "10-K",
+      "primaryDocument": "tsco-20231230.htm",
+      "accessionNumber": "0000916365-24-000046",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636524000046/0000916365-24-000046.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636524000046/tsco-20231230_htm.xml"
+    },
+    {
+      "reportDate": "2022-12-31",
+      "filingDate": "2023-02-23",
+      "form": "10-K",
+      "primaryDocument": "tsco-20221231.htm",
+      "accessionNumber": "0000916365-23-000045",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636523000045/0000916365-23-000045.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636523000045/tsco-20221231_htm.xml"
+    },
+    {
+      "reportDate": "2021-12-25",
+      "filingDate": "2022-02-17",
+      "form": "10-K",
+      "primaryDocument": "tsco-20211225.htm",
+      "accessionNumber": "0000916365-22-000049",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636522000049/0000916365-22-000049.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636522000049/tsco-20211225_htm.xml"
+    },
+    {
+      "reportDate": "2020-12-26",
+      "filingDate": "2021-02-18",
+      "form": "10-K",
+      "primaryDocument": "tsco-20201226.htm",
+      "accessionNumber": "0000916365-21-000052",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636521000052/0000916365-21-000052.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636521000052/tsco-20201226_htm.xml"
+    },
+    {
+      "reportDate": "2019-12-28",
+      "filingDate": "2020-02-20",
+      "form": "10-K",
+      "primaryDocument": "tsco-20191228.htm",
+      "accessionNumber": "0000916365-20-000050",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636520000050/0000916365-20-000050.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636520000050/tsco-20191228_htm.xml"
+    },
+    {
+      "reportDate": "2018-12-29",
+      "filingDate": "2019-02-21",
+      "form": "10-K",
+      "primaryDocument": "a2018q4form10-k.htm",
+      "accessionNumber": "0000916365-19-000035",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/916365/000091636519000035/0000916365-19-000035.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/916365/000091636519000035/tsco-20181229.xml"
+    }
+  ]
+}

@@ -1,79 +1,68 @@
 [
   {
     "label": "Total revenue",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 4060000.0
+    "value": 4060000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
     "label": "Cost of goods sold",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 1463000.0
+    "value": 1463000,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
     "label": "Selling, general and administrative expenses",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
     "concept": "SG&A",
-    "location": "income",
-    "value": 2018000.0
+    "value": 2018000,
+    "name": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   {
     "label": "Income (loss) from operations",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 19000.0
+    "value": 19000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
-    "label": "Net (loss) income",
-    "gaap_id": "us-gaap_ProfitLoss",
+    "label": "Net (loss) income attributable to Capri",
     "concept": "Net Profit",
-    "location": "income",
-    "value": -63000.0
+    "value": -62000,
+    "name": "us-gaap_NetIncomeLoss"
   },
   {
     "label": "Inventories, net",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 736000.0
+    "value": 736000,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total current assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 1546000.0
+    "value": 1546000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 7481000.0
+    "value": 7481000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total current liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 1621000.0
+    "value": 1621000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
-    "label": "Total shareholders\u2019 equity of Capri",
-    "gaap_id": "us-gaap_StockholdersEquity",
+    "label": "Total shareholders' equity of Capri",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 2158000.0
+    "value": 2158000,
+    "name": "us-gaap_StockholdersEquity"
   },
   {
-    "label": "Total liabilities and shareholders\u2019 equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "label": "Total liabilities and shareholders' equity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 7481000.0
+    "value": 7481000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

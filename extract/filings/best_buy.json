@@ -1,0 +1,62 @@
+{
+  "cik": "764478",
+  "name": "BEST BUY CO INC",
+  "segment": "Specialty",
+  "subsegment": "Category Killer",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-15",
+      "form": "10-K",
+      "primaryDocument": "bby-20240203x10k.htm",
+      "accessionNumber": "0000764478-24-000010",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447824000010/0000764478-24-000010.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447824000010/bby-20240203x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-17",
+      "form": "10-K",
+      "primaryDocument": "bby-20230128x10k.htm",
+      "accessionNumber": "0000764478-23-000006",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447823000006/0000764478-23-000006.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447823000006/bby-20230128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-18",
+      "form": "10-K",
+      "primaryDocument": "bby-20220129x10k.htm",
+      "accessionNumber": "0000764478-22-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447822000008/0000764478-22-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447822000008/bby-20220129x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-19",
+      "form": "10-K",
+      "primaryDocument": "bby-20210130x10k.htm",
+      "accessionNumber": "0000764478-21-000024",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447821000024/0000764478-21-000024.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447821000024/bby-20210130x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-23",
+      "form": "10-K",
+      "primaryDocument": "bby-20200201x10k.htm",
+      "accessionNumber": "0000764478-20-000017",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447820000017/0000764478-20-000017.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447820000017/bby-20200201x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-03-28",
+      "form": "10-K",
+      "primaryDocument": "bby-2019x10k.htm",
+      "accessionNumber": "0000764478-19-000009",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/764478/000076447819000009/0000764478-19-000009.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/764478/000076447819000009/bby-20190202.xml"
+    }
+  ]
+}

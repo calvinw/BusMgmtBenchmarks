@@ -1,79 +1,68 @@
 [
   {
     "label": "Total revenue",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 18098000.0
+    "value": 18098000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
     "label": "Cost of merchandise sold",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 11457000.0
+    "value": 11457000,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
     "label": "Selling, general, and administrative",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
     "concept": "SG&A",
-    "location": "income",
-    "value": 5587000.0
+    "value": 5587000,
+    "name": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   {
     "label": "Operating income (loss)",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 246000.0
+    "value": 246000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
     "label": "Net (loss) income",
-    "gaap_id": "us-gaap_NetIncomeLoss",
     "concept": "Net Profit",
-    "location": "income",
-    "value": -19000.0
+    "value": -19000,
+    "name": "us-gaap_NetIncomeLoss"
   },
   {
     "label": "Merchandise inventories",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 3189000.0
+    "value": 3189000,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total current assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 3736000.0
+    "value": 3736000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 14345000.0
+    "value": 14345000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total current liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 3115000.0
+    "value": 3115000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
-    "label": "Total shareholders\u2019 equity",
-    "gaap_id": "us-gaap_StockholdersEquity",
+    "label": "Total shareholders' equity",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 3763000.0
+    "value": 3763000,
+    "name": "us-gaap_StockholdersEquity"
   },
   {
-    "label": "Total liabilities and shareholders\u2019 equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "label": "Total liabilities and shareholders' equity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 14345000.0
+    "value": 14345000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

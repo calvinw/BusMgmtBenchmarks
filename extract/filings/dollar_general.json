@@ -1,0 +1,62 @@
+{
+  "cik": "29534",
+  "name": "DOLLAR GENERAL CORP",
+  "segment": "Discount",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-02",
+      "filingDate": "2024-03-25",
+      "form": "10-K",
+      "primaryDocument": "dg-20240202x10k.htm",
+      "accessionNumber": "0001558370-24-003813",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837024003813/0001558370-24-003813.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837024003813/dg-20240202x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-02-03",
+      "filingDate": "2023-03-24",
+      "form": "10-K",
+      "primaryDocument": "dg-20230203x10k.htm",
+      "accessionNumber": "0001558370-23-004574",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837023004574/0001558370-23-004574.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837023004574/dg-20230203x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-28",
+      "filingDate": "2022-03-18",
+      "form": "10-K",
+      "primaryDocument": "dg-20220128x10k.htm",
+      "accessionNumber": "0001558370-22-003921",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837022003921/0001558370-22-003921.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837022003921/dg-20220128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-29",
+      "filingDate": "2021-03-19",
+      "form": "10-K",
+      "primaryDocument": "dg-20210129x10k.htm",
+      "accessionNumber": "0001558370-21-003245",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837021003245/0001558370-21-003245.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837021003245/dg-20210129x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-01-31",
+      "filingDate": "2020-03-19",
+      "form": "10-K",
+      "primaryDocument": "dg-20200131x10ka41072.htm",
+      "accessionNumber": "0001558370-20-002915",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837020002915/0001558370-20-002915.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837020002915/dg-20200131x10ka41072_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-01",
+      "filingDate": "2019-03-22",
+      "form": "10-K",
+      "primaryDocument": "dg-20190201x10k.htm",
+      "accessionNumber": "0001558370-19-002383",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/29534/000155837019002383/0001558370-19-002383.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/29534/000155837019002383/dg-20190201.xml"
+    }
+  ]
+}

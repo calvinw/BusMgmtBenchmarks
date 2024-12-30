@@ -1,0 +1,62 @@
+{
+  "cik": "1528849",
+  "name": "RH",
+  "segment": "Specialty",
+  "subsegment": "Home",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-28",
+      "form": "10-K",
+      "primaryDocument": "rh-20240203x10k.htm",
+      "accessionNumber": "0001558370-24-004248",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000155837024004248/0001558370-24-004248.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000155837024004248/rh-20240203x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-29",
+      "form": "10-K",
+      "primaryDocument": "rh-20230128x10k.htm",
+      "accessionNumber": "0001558370-23-004942",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000155837023004942/0001558370-23-004942.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000155837023004942/rh-20230128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-30",
+      "form": "10-K",
+      "primaryDocument": "rh-20220129x10k.htm",
+      "accessionNumber": "0001558370-22-004753",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000155837022004753/0001558370-22-004753.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000155837022004753/rh-20220129x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-30",
+      "form": "10-K",
+      "primaryDocument": "rh-20210130x10k.htm",
+      "accessionNumber": "0001558370-21-003728",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000155837021003728/0001558370-21-003728.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000155837021003728/rh-20210130x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-30",
+      "form": "10-K",
+      "primaryDocument": "rh-20200201x10k54063e.htm",
+      "accessionNumber": "0001558370-20-003383",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000155837020003383/0001558370-20-003383.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000155837020003383/rh-20200201x10k54063e_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-03-29",
+      "form": "10-K",
+      "primaryDocument": "rh-10k_20190202.htm",
+      "accessionNumber": "0001564590-19-010132",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1528849/000156459019010132/0001564590-19-010132.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1528849/000156459019010132/rh-20190202.xml"
+    }
+  ]
+}

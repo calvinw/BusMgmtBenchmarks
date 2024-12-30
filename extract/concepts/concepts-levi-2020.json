@@ -1,79 +1,68 @@
 [
   {
-    "label": "Net revenues",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "label": "Net Revenue",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 5763087.0
+    "value": 5763087,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
-    "label": "Cost of goods sold",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+    "label": "Cost of Goods Sold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 2661714.0
+    "value": 2661714,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
-    "label": "Selling, general and administrative expenses",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "label": "Selling, General and Administrative Expenses",
     "concept": "SG&A",
-    "location": "income",
-    "value": 2534698.0
+    "value": 2534698,
+    "name": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   {
-    "label": "Operating income",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "label": "Operating Income",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 566675.0
+    "value": 566675,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
-    "label": "Net income",
-    "gaap_id": "us-gaap_ProfitLoss",
+    "label": "Net Income",
     "concept": "Net Profit",
-    "location": "income",
-    "value": 394980.0
+    "value": 394612,
+    "name": "us-gaap_NetIncomeLoss"
   },
   {
     "label": "Total inventories",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 884192.0
+    "value": 884192,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total current assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 2870186.0
+    "value": 2870186,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 4232418.0
+    "value": 4232418,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total current liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 1167204.0
+    "value": 1167204,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
-    "label": "Total Levi Strauss & Co. stockholders\u2019 equity",
-    "gaap_id": "us-gaap_StockholdersEquity",
+    "label": "Total Levi Strauss & Co. stockholders' equity",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 1563531.0
+    "value": 1563531,
+    "name": "us-gaap_StockholdersEquity"
   },
   {
-    "label": "Total liabilities, temporary equity and stockholders\u2019 equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "label": "Total liabilities, temporary equity and stockholders' equity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 4232418.0
+    "value": 4232418,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

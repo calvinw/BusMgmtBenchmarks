@@ -1,0 +1,44 @@
+{
+  "cik": "1817358",
+  "name": "Academy Sports & Outdoors, Inc.",
+  "segment": "Specialty",
+  "subsegment": "Category Killer",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-21",
+      "form": "10-K",
+      "primaryDocument": "aso-20240203.htm",
+      "accessionNumber": "0001817358-24-000042",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1817358/000181735824000042/0001817358-24-000042.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1817358/000181735824000042/aso-20240203_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-16",
+      "form": "10-K",
+      "primaryDocument": "aso-20230128.htm",
+      "accessionNumber": "0001817358-23-000062",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1817358/000181735823000062/0001817358-23-000062.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1817358/000181735823000062/aso-20230128_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-29",
+      "form": "10-K",
+      "primaryDocument": "aso-20220129.htm",
+      "accessionNumber": "0001817358-22-000039",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1817358/000181735822000039/0001817358-22-000039.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1817358/000181735822000039/aso-20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-04-07",
+      "form": "10-K",
+      "primaryDocument": "aso-20210130.htm",
+      "accessionNumber": "0001817358-21-000059",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1817358/000181735821000059/0001817358-21-000059.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1817358/000181735821000059/aso-20210130_htm.xml"
+    }
+  ]
+}

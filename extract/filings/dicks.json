@@ -1,0 +1,62 @@
+{
+  "cik": "1089063",
+  "name": "DICK'S SPORTING GOODS, INC.",
+  "segment": "Specialty",
+  "subsegment": "Category Killer",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-28",
+      "form": "10-K",
+      "primaryDocument": "dks-20240203.htm",
+      "accessionNumber": "0001089063-24-000037",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906324000037/0001089063-24-000037.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906324000037/dks-20240203_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-23",
+      "form": "10-K",
+      "primaryDocument": "dks-20230128.htm",
+      "accessionNumber": "0001089063-23-000023",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906323000023/0001089063-23-000023.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906323000023/dks-20230128_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-23",
+      "form": "10-K",
+      "primaryDocument": "dks-20220129.htm",
+      "accessionNumber": "0001089063-22-000031",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906322000031/0001089063-22-000031.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906322000031/dks-20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-24",
+      "form": "10-K",
+      "primaryDocument": "dks-20210130.htm",
+      "accessionNumber": "0001089063-21-000036",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906321000036/0001089063-21-000036.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906321000036/dks-20210130_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-20",
+      "form": "10-K",
+      "primaryDocument": "dks-20200201.htm",
+      "accessionNumber": "0001089063-20-000014",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906320000014/0001089063-20-000014.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906320000014/dks-20200201_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-03-29",
+      "form": "10-K",
+      "primaryDocument": "dks-10k_20190202.htm",
+      "accessionNumber": "0001089063-19-000017",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000108906319000017/0001089063-19-000017.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1089063/000108906319000017/dks-20190202.xml"
+    }
+  ]
+}

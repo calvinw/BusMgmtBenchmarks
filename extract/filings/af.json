@@ -1,0 +1,62 @@
+{
+  "cik": "1018840",
+  "name": "ABERCROMBIE & FITCH CO /DE/",
+  "segment": "Specialty",
+  "subsegment": "Apparel",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-04-01",
+      "form": "10-K",
+      "primaryDocument": "anf-20240203.htm",
+      "accessionNumber": "0001018840-24-000019",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884024000019/0001018840-24-000019.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884024000019/anf-20240203_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-27",
+      "form": "10-K",
+      "primaryDocument": "anf-20230128.htm",
+      "accessionNumber": "0001018840-23-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884023000011/0001018840-23-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884023000011/anf-20230128_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-28",
+      "form": "10-K",
+      "primaryDocument": "anf-20220129.htm",
+      "accessionNumber": "0001018840-22-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884022000011/0001018840-22-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884022000011/anf-20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-29",
+      "form": "10-K",
+      "primaryDocument": "anf-20210130.htm",
+      "accessionNumber": "0001018840-21-000023",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884021000023/0001018840-21-000023.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884021000023/anf-20210130_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-31",
+      "form": "10-K",
+      "primaryDocument": "a201910-k.htm",
+      "accessionNumber": "0001018840-20-000021",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884020000021/0001018840-20-000021.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884020000021/a201910-k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-04-01",
+      "form": "10-K",
+      "primaryDocument": "a201810-k.htm",
+      "accessionNumber": "0001018840-19-000018",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018840/000101884019000018/0001018840-19-000018.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018840/000101884019000018/anf-20190202.xml"
+    }
+  ]
+}

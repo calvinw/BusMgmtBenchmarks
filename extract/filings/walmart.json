@@ -1,0 +1,62 @@
+{
+  "cik": "104169",
+  "name": "Walmart Inc.",
+  "segment": "Discount",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-01-31",
+      "filingDate": "2024-03-15",
+      "form": "10-K",
+      "primaryDocument": "wmt-20240131.htm",
+      "accessionNumber": "0000104169-24-000056",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416924000056/0000104169-24-000056.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416924000056/wmt-20240131_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-31",
+      "filingDate": "2023-03-17",
+      "form": "10-K",
+      "primaryDocument": "wmt-20230131.htm",
+      "accessionNumber": "0000104169-23-000020",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416923000020/0000104169-23-000020.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416923000020/wmt-20230131_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-31",
+      "filingDate": "2022-03-18",
+      "form": "10-K",
+      "primaryDocument": "wmt-20220131.htm",
+      "accessionNumber": "0000104169-22-000012",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416922000012/0000104169-22-000012.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416922000012/wmt-20220131_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-31",
+      "filingDate": "2021-03-19",
+      "form": "10-K",
+      "primaryDocument": "wmt-20210131.htm",
+      "accessionNumber": "0000104169-21-000033",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416921000033/0000104169-21-000033.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416921000033/wmt-20210131_htm.xml"
+    },
+    {
+      "reportDate": "2020-01-31",
+      "filingDate": "2020-03-20",
+      "form": "10-K",
+      "primaryDocument": "wmtform10-kx1312020.htm",
+      "accessionNumber": "0000104169-20-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416920000011/0000104169-20-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416920000011/wmtform10-kx1312020_htm.xml"
+    },
+    {
+      "reportDate": "2019-01-31",
+      "filingDate": "2019-03-28",
+      "form": "10-K",
+      "primaryDocument": "wmtform10-kx1312019.htm",
+      "accessionNumber": "0000104169-19-000016",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416919000016/0000104169-19-000016.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416919000016/wmt-20190131.xml"
+    }
+  ]
+}

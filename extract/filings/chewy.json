@@ -1,0 +1,53 @@
+{
+  "cik": "1766502",
+  "name": "Chewy, Inc.",
+  "segment": "Online",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-01-28",
+      "filingDate": "2024-03-20",
+      "form": "10-K",
+      "primaryDocument": "chwy-20240128.htm",
+      "accessionNumber": "0001766502-24-000014",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1766502/000176650224000014/0001766502-24-000014.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1766502/000176650224000014/chwy-20240128_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-29",
+      "filingDate": "2023-03-22",
+      "form": "10-K",
+      "primaryDocument": "chwy-20230129.htm",
+      "accessionNumber": "0001766502-23-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1766502/000176650223000011/0001766502-23-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1766502/000176650223000011/chwy-20230129_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-30",
+      "filingDate": "2022-03-29",
+      "form": "10-K",
+      "primaryDocument": "chwy-20220130.htm",
+      "accessionNumber": "0001766502-22-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1766502/000176650222000008/0001766502-22-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1766502/000176650222000008/chwy-20220130_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-31",
+      "filingDate": "2021-03-30",
+      "form": "10-K",
+      "primaryDocument": "chwy-20210131.htm",
+      "accessionNumber": "0001766502-21-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1766502/000176650221000008/0001766502-21-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1766502/000176650221000008/chwy-20210131_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-02",
+      "filingDate": "2020-04-02",
+      "form": "10-K",
+      "primaryDocument": "chwy-20200202.htm",
+      "accessionNumber": "0001766502-20-000007",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1766502/000176650220000007/0001766502-20-000007.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1766502/000176650220000007/chwy-20200202_htm.xml"
+    }
+  ]
+}

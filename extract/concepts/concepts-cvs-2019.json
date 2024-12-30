@@ -1,79 +1,68 @@
 [
   {
     "label": "Revenues",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 193919000.0
+    "value": 193919000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
     "label": "Cost of products sold",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 156447000.0
+    "value": 156447000,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
     "label": "Operating expenses",
-    "gaap_id": "us-gaap_OtherCostAndExpenseOperating",
     "concept": "SG&A",
-    "location": "income",
-    "value": 21368000.0
+    "value": 21368000,
+    "name": "us-gaap_OtherCostAndExpenseOperating"
   },
   {
     "label": "Operating income",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 4021000.0
+    "value": 4021000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
     "label": "Net income (loss)",
-    "gaap_id": "us-gaap_ProfitLoss",
     "concept": "Net Profit",
-    "location": "income",
-    "value": -596000.0
+    "value": -596000,
+    "name": "us-gaap_ProfitLoss"
   },
   {
     "label": "Inventories",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 16450000.0
+    "value": 16450000,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total current assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 45243000.0
+    "value": 45243000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 196456000.0
+    "value": 196456000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total current liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 44009000.0
+    "value": 44009000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
-    "label": "Total CVS Health shareholders\u2019 equity",
-    "gaap_id": "us-gaap_StockholdersEquity",
+    "label": "Total shareholders’ equity",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 58225000.0
+    "value": 58543000,
+    "name": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
   },
   {
-    "label": "Total liabilities and shareholders\u2019 equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "label": "Total liabilities and shareholders’ equity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 196456000.0
+    "value": 196456000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

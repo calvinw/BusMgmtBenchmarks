@@ -1,13 +1,3 @@
-This will create filings/filings.json for all CIKs in the CIK.csv
 
->python create_filings_json.py
+::
 
-This will download all html that are in the filings/filings.json
->python download_all_html.py
-
-This utilizes these two files:
-download_filing_summary.py
-download_income_and_balance_html.py
-
-
-extract_income_and_balance.py

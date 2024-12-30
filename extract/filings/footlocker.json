@@ -1,0 +1,62 @@
+{
+  "cik": "850209",
+  "name": "FOOT LOCKER, INC.",
+  "segment": "Specialty",
+  "subsegment": "Accessories and Shoes",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-28",
+      "form": "10-K",
+      "primaryDocument": "floc20240203_10k.htm",
+      "accessionNumber": "0001437749-24-009866",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000143774924009866/0001437749-24-009866.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000143774924009866/floc20240203_10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-27",
+      "form": "10-K",
+      "primaryDocument": "fl-20230128x10k.htm",
+      "accessionNumber": "0000850209-23-000006",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020923000006/0000850209-23-000006.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020923000006/fl-20230128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-24",
+      "form": "10-K",
+      "primaryDocument": "fl-20220129x10k.htm",
+      "accessionNumber": "0000850209-22-000003",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020922000003/0000850209-22-000003.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020922000003/fl-20220129x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-25",
+      "form": "10-K",
+      "primaryDocument": "fl-20210130x10k.htm",
+      "accessionNumber": "0000850209-21-000003",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020921000003/0000850209-21-000003.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020921000003/fl-20210130x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-27",
+      "form": "10-K",
+      "primaryDocument": "fl-20200201x10k.htm",
+      "accessionNumber": "0000850209-20-000007",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020920000007/0000850209-20-000007.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000085020920000007/fl-20200201x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-04-02",
+      "form": "10-K",
+      "primaryDocument": "fl-20190202x10k.htm",
+      "accessionNumber": "0001558370-19-002753",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/0000850209/000155837019002753/0001558370-19-002753.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/0000850209/000155837019002753/fl-20190202.xml"
+    }
+  ]
+}

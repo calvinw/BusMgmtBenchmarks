@@ -1,0 +1,53 @@
+{
+  "cik": "886158",
+  "name": "20230930-DK-Butterfly-1, Inc.",
+  "segment": "Specialty",
+  "subsegment": "Beauty",
+  "filings": [
+    {
+      "reportDate": "2023-02-25",
+      "filingDate": "2023-06-14",
+      "form": "10-K",
+      "primaryDocument": "bbby-20230225.htm",
+      "accessionNumber": "0000886158-23-000059",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/886158/000088615823000059/0000886158-23-000059.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/886158/000088615823000059/bbby-20230225_htm.xml"
+    },
+    {
+      "reportDate": "2022-02-26",
+      "filingDate": "2022-04-21",
+      "form": "10-K",
+      "primaryDocument": "bbby-20220226.htm",
+      "accessionNumber": "0000886158-22-000047",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/886158/000088615822000047/0000886158-22-000047.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/886158/000088615822000047/bbby-20220226_htm.xml"
+    },
+    {
+      "reportDate": "2021-02-27",
+      "filingDate": "2021-04-22",
+      "form": "10-K",
+      "primaryDocument": "bbby-20210227.htm",
+      "accessionNumber": "0000886158-21-000015",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/886158/000088615821000015/0000886158-21-000015.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/886158/000088615821000015/bbby-20210227_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-29",
+      "filingDate": "2020-04-29",
+      "form": "10-K",
+      "primaryDocument": "bbby201910k.htm",
+      "accessionNumber": "0000886158-20-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/886158/000088615820000008/0000886158-20-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/886158/000088615820000008/bbby201910k_htm.xml"
+    },
+    {
+      "reportDate": "2019-03-02",
+      "filingDate": "2019-04-30",
+      "form": "10-K",
+      "primaryDocument": "bbby201910k.htm",
+      "accessionNumber": "0000886158-19-000012",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/886158/000088615819000012/0000886158-19-000012.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/886158/000088615819000012/bbby-20190302.xml"
+    }
+  ]
+}

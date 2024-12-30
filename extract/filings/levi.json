@@ -1,0 +1,62 @@
+{
+  "cik": "94845",
+  "name": "LEVI STRAUSS & CO",
+  "segment": "Specialty",
+  "subsegment": "Apparel",
+  "filings": [
+    {
+      "reportDate": "2023-11-26",
+      "filingDate": "2024-01-25",
+      "form": "10-K",
+      "primaryDocument": "lvis-20231126.htm",
+      "accessionNumber": "0000094845-24-000010",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484524000010/0000094845-24-000010.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484524000010/lvis-20231126_htm.xml"
+    },
+    {
+      "reportDate": "2022-11-27",
+      "filingDate": "2023-01-25",
+      "form": "10-K",
+      "primaryDocument": "lvis-20221127.htm",
+      "accessionNumber": "0000094845-23-000006",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484523000006/0000094845-23-000006.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484523000006/lvis-20221127_htm.xml"
+    },
+    {
+      "reportDate": "2021-11-28",
+      "filingDate": "2022-01-26",
+      "form": "10-K",
+      "primaryDocument": "lvis-20211128.htm",
+      "accessionNumber": "0000094845-22-000010",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484522000010/0000094845-22-000010.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484522000010/lvis-20211128_htm.xml"
+    },
+    {
+      "reportDate": "2020-11-29",
+      "filingDate": "2021-01-27",
+      "form": "10-K",
+      "primaryDocument": "lvis-20201129.htm",
+      "accessionNumber": "0000094845-21-000009",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484521000009/0000094845-21-000009.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484521000009/lvis-20201129_htm.xml"
+    },
+    {
+      "reportDate": "2019-11-24",
+      "filingDate": "2020-01-30",
+      "form": "10-K",
+      "primaryDocument": "a2019yeform10-k.htm",
+      "accessionNumber": "0000094845-20-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484520000008/0000094845-20-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484520000008/lvis-20191124.xml"
+    },
+    {
+      "reportDate": "2018-11-25",
+      "filingDate": "2019-02-05",
+      "form": "10-K",
+      "primaryDocument": "a2018yeform10-k.htm",
+      "accessionNumber": "0000094845-19-000006",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/94845/000009484519000006/0000094845-19-000006.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/94845/000009484519000006/lvis-20181125.xml"
+    }
+  ]
+}

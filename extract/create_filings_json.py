@@ -20,14 +20,13 @@ def get_submissions_data(cik, company_name=None):
     return data
 
 def create_filings_json():
-    filings = {}
 
     begin = 2019
     end = 2024
     print("Creating Filing info for ", begin, " to ", end) 
 
     print("Using companies in the CIK.csv file ") 
-    with open('CIK.csv', 'r') as csvfile:
+    with open('../CIK.csv', 'r') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
             company_name = row['company_name']
@@ -41,17 +40,18 @@ def create_filings_json():
             print(company_name)
             filings_list = download_filings_list(submissions, begin, end)
             
-            filings[company_name] = {
+            company_filing_data = {
                 "cik": cik,
                 "name": name,
                 "segment": row['segment'],
                 "subsegment": row['subsegment'],
                 "filings": filings_list 
             }
-
-    print("Writing json file: filings/filings.json")
-    with open('filings/filings.json', 'w') as jsonfile:
-        json.dump(filings, jsonfile, indent=2)
+            
+            filename = f"filings/{company_name}.json"
+            print(f"Writing json file: {filename}")
+            with open(filename, 'w') as jsonfile:
+                json.dump(company_filing_data, jsonfile, indent=2)
 
 if __name__ == "__main__":
     create_filings_json()

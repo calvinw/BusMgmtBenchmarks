@@ -1,0 +1,62 @@
+{
+  "cik": "1018724",
+  "name": "AMAZON COM INC",
+  "segment": "Online",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2023-12-31",
+      "filingDate": "2024-02-02",
+      "form": "10-K",
+      "primaryDocument": "amzn-20231231.htm",
+      "accessionNumber": "0001018724-24-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/0001018724-24-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231_htm.xml"
+    },
+    {
+      "reportDate": "2022-12-31",
+      "filingDate": "2023-02-03",
+      "form": "10-K",
+      "primaryDocument": "amzn-20221231.htm",
+      "accessionNumber": "0001018724-23-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/0001018724-23-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231_htm.xml"
+    },
+    {
+      "reportDate": "2021-12-31",
+      "filingDate": "2022-02-04",
+      "form": "10-K",
+      "primaryDocument": "amzn-20211231.htm",
+      "accessionNumber": "0001018724-22-000005",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/0001018724-22-000005.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231_htm.xml"
+    },
+    {
+      "reportDate": "2020-12-31",
+      "filingDate": "2021-02-03",
+      "form": "10-K",
+      "primaryDocument": "amzn-20201231.htm",
+      "accessionNumber": "0001018724-21-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/amzn-20201231_htm.xml"
+    },
+    {
+      "reportDate": "2019-12-31",
+      "filingDate": "2020-01-31",
+      "form": "10-K",
+      "primaryDocument": "amzn-20191231x10k.htm",
+      "accessionNumber": "0001018724-20-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/amzn-20191231x10k_htm.xml"
+    },
+    {
+      "reportDate": "2018-12-31",
+      "filingDate": "2019-02-01",
+      "form": "10-K",
+      "primaryDocument": "amzn-20181231x10k.htm",
+      "accessionNumber": "0001018724-19-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231.xml"
+    }
+  ]
+}

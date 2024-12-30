@@ -49,7 +49,7 @@ load_dotenv()
 def find_statement_reports(filing_summary_xml):
 
     # Construct the prompt
-    prompt = f"""You are a financial document expert. Below is Filing Summary XML file containing the nammes of the different reports in a financial 10-K. You are to identify the name of the file that contains the report that corresponds to the standard income statement and also the name of the file that corresponds to the main balance sheet. 
+    prompt = f"""You are a financial document expert. Below is Filing Summary XML file containing the names of the different reports in a financial 10-K. You are to identify the name of the file that contains the report that corresponds to the standard income statement and also the name of the file that corresponds to the main balance sheet. 
 
 The XML file is contained in <FilingSummary> tags: 
 
@@ -66,18 +66,27 @@ Return just the names of the files on two lines like this:
 <balance section name>.htm
 """
 
-
     try:
         client = OpenAI(
           base_url="https://openrouter.ai/api/v1",
           api_key=os.getenv("OPENROUTER_API_KEY"),
         )
+        # client = OpenAI(
+        #     api_key=os.getenv("GOOGLE_API_KEY"),
+        #     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+        # )
+        # client = OpenAI(
+        #   base_url="https://api.deepseek.com",
+        #   api_key="sk-dedd43a0f726463c9c0b27bbb1b47516",
+        # )
+
 
         response = client.chat.completions.create(
             #model="openai/gpt-4o-mini",
-            #model="google/gemini-2.0-flash-exp:free",
-            model="google/gemini-flash-1.5",
-            #model="google/gemini-flash-1.5-8b",
+            # model= "gemini-2.0-flash-exp",
+            #model= "google/gemini-flash-1.5-8b",
+            model = "deepseek/deepseek-chat",
+            # model = "deepseek-chat",
             messages=[
                 {"role": "system", "content": "You are a financial document expert assistant."},
                 {"role": "user", "content": prompt}

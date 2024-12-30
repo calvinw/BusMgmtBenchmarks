@@ -1,0 +1,62 @@
+{
+  "cik": "1530721",
+  "name": "Capri Holdings Ltd",
+  "segment": "Specialty",
+  "subsegment": "Accessories and Shoes",
+  "filings": [
+    {
+      "reportDate": "2024-03-30",
+      "filingDate": "2024-05-29",
+      "form": "10-K",
+      "primaryDocument": "cpri-20240330.htm",
+      "accessionNumber": "0001530721-24-000041",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072124000041/0001530721-24-000041.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072124000041/cpri-20240330_htm.xml"
+    },
+    {
+      "reportDate": "2023-04-01",
+      "filingDate": "2023-05-31",
+      "form": "10-K",
+      "primaryDocument": "cpri-20230401.htm",
+      "accessionNumber": "0001530721-23-000087",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072123000087/0001530721-23-000087.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072123000087/cpri-20230401_htm.xml"
+    },
+    {
+      "reportDate": "2022-04-02",
+      "filingDate": "2022-06-01",
+      "form": "10-K",
+      "primaryDocument": "cpri-20220402.htm",
+      "accessionNumber": "0001530721-22-000054",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072122000054/0001530721-22-000054.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072122000054/cpri-20220402_htm.xml"
+    },
+    {
+      "reportDate": "2021-03-27",
+      "filingDate": "2021-05-26",
+      "form": "10-K",
+      "primaryDocument": "cpri-20210327.htm",
+      "accessionNumber": "0001530721-21-000057",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072121000057/0001530721-21-000057.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072121000057/cpri-20210327_htm.xml"
+    },
+    {
+      "reportDate": "2020-03-28",
+      "filingDate": "2020-07-08",
+      "form": "10-K",
+      "primaryDocument": "cpri-20200328.htm",
+      "accessionNumber": "0001530721-20-000062",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072120000062/0001530721-20-000062.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072120000062/cpri-20200328_htm.xml"
+    },
+    {
+      "reportDate": "2019-03-30",
+      "filingDate": "2019-05-29",
+      "form": "10-K",
+      "primaryDocument": "cpri0330201910-k.htm",
+      "accessionNumber": "0001530721-19-000023",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1530721/000153072119000023/0001530721-19-000023.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1530721/000153072119000023/cpri-20190330.xml"
+    }
+  ]
+}

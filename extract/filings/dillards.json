@@ -1,0 +1,62 @@
+{
+  "cik": "28917",
+  "name": "DILLARD'S, INC.",
+  "segment": "Department Store",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-29",
+      "form": "10-K",
+      "primaryDocument": "dds-20240203x10k.htm",
+      "accessionNumber": "0000028917-24-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891724000011/0000028917-24-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891724000011/dds-20240203x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-27",
+      "form": "10-K",
+      "primaryDocument": "dds-20230128x10k.htm",
+      "accessionNumber": "0000028917-23-000007",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891723000007/0000028917-23-000007.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891723000007/dds-20230128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-29",
+      "form": "10-K",
+      "primaryDocument": "dds-20220129.htm",
+      "accessionNumber": "0000028917-22-000009",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891722000009/0000028917-22-000009.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891722000009/dds-20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-29",
+      "form": "10-K",
+      "primaryDocument": "dds-20210130.htm",
+      "accessionNumber": "0000028917-21-000066",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891721000066/0000028917-21-000066.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891721000066/dds-20210130_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-31",
+      "form": "10-K",
+      "primaryDocument": "dds-02012020x10k.htm",
+      "accessionNumber": "0000028917-20-000041",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891720000041/0000028917-20-000041.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891720000041/dds-02012020x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-03-29",
+      "form": "10-K",
+      "primaryDocument": "dds-02022019x10k.htm",
+      "accessionNumber": "0000028917-19-000078",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/28917/000002891719000078/0000028917-19-000078.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/28917/000002891719000078/dds-20190202.xml"
+    }
+  ]
+}

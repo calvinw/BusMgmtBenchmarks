@@ -1,79 +1,68 @@
 [
   {
     "label": "Sales",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 121162000.0
+    "value": 121162000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
     "label": "Merchandise costs, including advertising, warehousing, and transportation, excluding items shown separately below",
-    "gaap_id": "us-gaap_CostOfGoodsSoldExcludingDepreciationDepletionAndAmortization",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 94894000.0
+    "value": 94894000,
+    "name": "us-gaap_CostOfGoodsSoldExcludingDepreciationDepletionAndAmortization"
   },
   {
     "label": "Operating, general and administrative",
-    "gaap_id": "kr_OperatingGeneralAndAdministrativeExpense",
     "concept": "SG&A",
-    "location": "income",
-    "value": 20305000.0
+    "value": 20305000,
+    "name": "kr_OperatingGeneralAndAdministrativeExpense"
   },
   {
     "label": "Operating profit",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 2614000.0
+    "value": 2614000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
-    "label": "Net earnings including noncontrolling interests",
-    "gaap_id": "us-gaap_ProfitLoss",
+    "label": "Net earnings attributable to The Kroger Co.",
     "concept": "Net Profit",
-    "location": "income",
-    "value": 3078000.0
+    "value": 3110000,
+    "name": "us-gaap_NetIncomeLoss"
   },
   {
     "label": "FIFO inventory",
-    "gaap_id": "us-gaap_FIFOInventoryAmount",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 8123000.0
+    "value": 8123000,
+    "name": "us-gaap_FIFOInventoryAmount"
   },
   {
     "label": "Total current assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 10803000.0
+    "value": 10803000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total Assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 38118000.0
+    "value": 38118000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total current liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 14274000.0
+    "value": 14274000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
-    "label": "Total Shareholders\u2019 Equity - The Kroger Co.",
-    "gaap_id": "us-gaap_StockholdersEquity",
+    "label": "Total Shareholders’ Equity - The Kroger Co.",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 7886000.0
+    "value": 7886000,
+    "name": "us-gaap_StockholdersEquity"
   },
   {
     "label": "Total Liabilities and Equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 38118000.0
+    "value": 38118000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

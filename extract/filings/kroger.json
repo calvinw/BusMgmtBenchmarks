@@ -1,0 +1,62 @@
+{
+  "cik": "56873",
+  "name": "KROGER CO",
+  "segment": "Grocery",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-04-02",
+      "form": "10-K",
+      "primaryDocument": "kr-20240203x10k.htm",
+      "accessionNumber": "0001558370-24-004603",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837024004603/0001558370-24-004603.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837024004603/kr-20240203x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-28",
+      "form": "10-K",
+      "primaryDocument": "kr-20230128x10k.htm",
+      "accessionNumber": "0001558370-23-004767",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837023004767/0001558370-23-004767.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837023004767/kr-20230128x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-29",
+      "form": "10-K",
+      "primaryDocument": "kr-20220129x10k.htm",
+      "accessionNumber": "0001558370-22-004595",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837022004595/0001558370-22-004595.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837022004595/kr-20220129x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-30",
+      "form": "10-K",
+      "primaryDocument": "kr-20210130x10k.htm",
+      "accessionNumber": "0001558370-21-003706",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837021003706/0001558370-21-003706.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837021003706/kr-20210130x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-04-01",
+      "form": "10-K",
+      "primaryDocument": "kr-20200201x10k.htm",
+      "accessionNumber": "0001558370-20-003501",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837020003501/0001558370-20-003501.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837020003501/kr-20200201x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-04-02",
+      "form": "10-K",
+      "primaryDocument": "kr-20190202x10k.htm",
+      "accessionNumber": "0001558370-19-002756",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/56873/000155837019002756/0001558370-19-002756.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/56873/000155837019002756/kr-20190202.xml"
+    }
+  ]
+}

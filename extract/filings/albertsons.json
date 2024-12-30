@@ -1,0 +1,62 @@
+{
+  "cik": "1646972",
+  "name": "Albertsons Companies, Inc.",
+  "segment": "Grocery",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-24",
+      "filingDate": "2024-04-22",
+      "form": "10-K",
+      "primaryDocument": "aci-20240224.htm",
+      "accessionNumber": "0001646972-24-000060",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697224000060/0001646972-24-000060.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697224000060/aci-20240224_htm.xml"
+    },
+    {
+      "reportDate": "2023-02-25",
+      "filingDate": "2023-04-25",
+      "form": "10-K",
+      "primaryDocument": "aci-20230225.htm",
+      "accessionNumber": "0001646972-23-000045",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697223000045/0001646972-23-000045.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697223000045/aci-20230225_htm.xml"
+    },
+    {
+      "reportDate": "2022-02-26",
+      "filingDate": "2022-04-26",
+      "form": "10-K",
+      "primaryDocument": "aci-20220226.htm",
+      "accessionNumber": "0001646972-22-000031",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697222000031/0001646972-22-000031.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697222000031/aci-20220226_htm.xml"
+    },
+    {
+      "reportDate": "2021-02-27",
+      "filingDate": "2021-04-28",
+      "form": "10-K",
+      "primaryDocument": "aci-20210227.htm",
+      "accessionNumber": "0001646972-21-000026",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697221000026/0001646972-21-000026.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697221000026/aci-20210227_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-29",
+      "filingDate": "2020-05-13",
+      "form": "10-K",
+      "primaryDocument": "acify1910-k.htm",
+      "accessionNumber": "0001646972-20-000022",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697220000022/0001646972-20-000022.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697220000022/acify1910-k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-23",
+      "filingDate": "2019-04-24",
+      "form": "10-K",
+      "primaryDocument": "acify1810-k.htm",
+      "accessionNumber": "0001646972-19-000036",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1646972/000164697219000036/0001646972-19-000036.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1646972/000164697219000036/acify1810-k_htm.xml"
+    }
+  ]
+}

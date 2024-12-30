@@ -1,0 +1,62 @@
+{
+  "cik": "794367",
+  "name": "Macy's, Inc.",
+  "segment": "Department Store",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-03-22",
+      "form": "10-K",
+      "primaryDocument": "m-20240203.htm",
+      "accessionNumber": "0001628280-24-012734",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000162828024012734/0001628280-24-012734.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000162828024012734/m-20240203_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-24",
+      "form": "10-K",
+      "primaryDocument": "m-20230128.htm",
+      "accessionNumber": "0001628280-23-009154",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000162828023009154/0001628280-23-009154.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000162828023009154/m-20230128_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-25",
+      "form": "10-K",
+      "primaryDocument": "m-10k_20220129.htm",
+      "accessionNumber": "0001564590-22-011726",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000156459022011726/0001564590-22-011726.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000156459022011726/m-10k_20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-29",
+      "form": "10-K",
+      "primaryDocument": "m-10k_20210130.htm",
+      "accessionNumber": "0001564590-21-016119",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000156459021016119/0001564590-21-016119.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000156459021016119/m-10k_20210130_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-30",
+      "form": "10-K",
+      "primaryDocument": "m-0201202010xk.htm",
+      "accessionNumber": "0000794367-20-000040",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000079436720000040/0000794367-20-000040.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000079436720000040/m-0201202010xk_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-04-03",
+      "form": "10-K",
+      "primaryDocument": "m-0202201910xk.htm",
+      "accessionNumber": "0000794367-19-000038",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/794367/000079436719000038/0000794367-19-000038.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/794367/000079436719000038/m-20190202.xml"
+    }
+  ]
+}

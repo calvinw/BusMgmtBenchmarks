@@ -1,0 +1,62 @@
+{
+  "cik": "109198",
+  "name": "TJX COMPANIES INC /DE/",
+  "segment": "Off Price",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-03",
+      "filingDate": "2024-04-03",
+      "form": "10-K",
+      "primaryDocument": "tjx-20240203.htm",
+      "accessionNumber": "0000109198-24-000014",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000010919824000014/0000109198-24-000014.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000010919824000014/tjx-20240203_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-28",
+      "filingDate": "2023-03-29",
+      "form": "10-K",
+      "primaryDocument": "tjx-20230128.htm",
+      "accessionNumber": "0000109198-23-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000010919823000004/0000109198-23-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000010919823000004/tjx-20230128_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-29",
+      "filingDate": "2022-03-30",
+      "form": "10-K",
+      "primaryDocument": "tjx-20220129.htm",
+      "accessionNumber": "0000109198-22-000008",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000010919822000008/0000109198-22-000008.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000010919822000008/tjx-20220129_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-30",
+      "filingDate": "2021-03-31",
+      "form": "10-K",
+      "primaryDocument": "tjx-20210130.htm",
+      "accessionNumber": "0000109198-21-000006",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000010919821000006/0000109198-21-000006.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000010919821000006/tjx-20210130_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-01",
+      "filingDate": "2020-03-27",
+      "form": "10-K",
+      "primaryDocument": "tjx-20200201.htm",
+      "accessionNumber": "0000109198-20-000004",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000010919820000004/0000109198-20-000004.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000010919820000004/tjx-20200201_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-02",
+      "filingDate": "2019-04-03",
+      "form": "10-K",
+      "primaryDocument": "tjx-10kx20190202.htm",
+      "accessionNumber": "0001628280-19-003834",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/109198/000162828019003834/0001628280-19-003834.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/109198/000162828019003834/tjx-20190202.xml"
+    }
+  ]
+}

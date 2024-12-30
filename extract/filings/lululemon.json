@@ -1,0 +1,62 @@
+{
+  "cik": "1397187",
+  "name": "lululemon athletica inc.",
+  "segment": "Specialty",
+  "subsegment": "Apparel",
+  "filings": [
+    {
+      "reportDate": "2024-01-28",
+      "filingDate": "2024-03-21",
+      "form": "10-K",
+      "primaryDocument": "lulu-20240128.htm",
+      "accessionNumber": "0001397187-24-000010",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718724000010/0001397187-24-000010.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718724000010/lulu-20240128_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-29",
+      "filingDate": "2023-03-28",
+      "form": "10-K",
+      "primaryDocument": "lulu-20230129.htm",
+      "accessionNumber": "0001397187-23-000012",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718723000012/0001397187-23-000012.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718723000012/lulu-20230129_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-30",
+      "filingDate": "2022-03-29",
+      "form": "10-K",
+      "primaryDocument": "lulu-20220130.htm",
+      "accessionNumber": "0001397187-22-000014",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718722000014/0001397187-22-000014.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718722000014/lulu-20220130_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-31",
+      "filingDate": "2021-03-30",
+      "form": "10-K",
+      "primaryDocument": "lulu-20210131.htm",
+      "accessionNumber": "0001397187-21-000009",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718721000009/0001397187-21-000009.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718721000009/lulu-20210131_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-02",
+      "filingDate": "2020-03-26",
+      "form": "10-K",
+      "primaryDocument": "lulu-20200202x10k.htm",
+      "accessionNumber": "0001397187-20-000012",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718720000012/0001397187-20-000012.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718720000012/lulu-20200202x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-03",
+      "filingDate": "2019-03-27",
+      "form": "10-K",
+      "primaryDocument": "lulu-20190203x10k.htm",
+      "accessionNumber": "0001397187-19-000011",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718719000011/0001397187-19-000011.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1397187/000139718719000011/lulu-20190203.xml"
+    }
+  ]
+}

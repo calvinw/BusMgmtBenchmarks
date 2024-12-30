@@ -1,0 +1,13 @@
+{
+  "Net Revenue": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+  "Cost of Goods": "us-gaap_CostOfGoodsAndServicesSold",
+  "SG&A": "us-gaap_SellingGeneralAndAdministrativeExpense",
+  "Operating Profit": "us-gaap_OperatingIncomeLoss",
+  "Net Profit": "us-gaap_ProfitLoss",
+  "Inventory": "us-gaap_InventoryNet",
+  "Current Assets": "us-gaap_AssetsCurrent",
+  "Total Assets": "us-gaap_Assets",
+  "Current Liabilities": "us-gaap_LiabilitiesCurrent",
+  "Total Shareholder Equity": "us-gaap_StockholdersEquity",
+  "Total Liabilities and Shareholder Equity": "us-gaap_LiabilitiesAndStockholdersEquity"
+}

@@ -1,0 +1,62 @@
+{
+  "cik": "1610250",
+  "name": "Boot Barn Holdings, Inc.",
+  "segment": "Specialty",
+  "subsegment": "Accessories and Shoes",
+  "filings": [
+    {
+      "reportDate": "2024-03-30",
+      "filingDate": "2024-05-15",
+      "form": "10-K",
+      "primaryDocument": "boot-20240330x10k.htm",
+      "accessionNumber": "0001558370-24-008176",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837024008176/0001558370-24-008176.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837024008176/boot-20240330x10k_htm.xml"
+    },
+    {
+      "reportDate": "2023-04-01",
+      "filingDate": "2023-05-18",
+      "form": "10-K",
+      "primaryDocument": "boot-20230401x10k.htm",
+      "accessionNumber": "0001558370-23-010209",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837023010209/0001558370-23-010209.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837023010209/boot-20230401x10k_htm.xml"
+    },
+    {
+      "reportDate": "2022-03-26",
+      "filingDate": "2022-05-12",
+      "form": "10-K",
+      "primaryDocument": "boot-20220326x10k.htm",
+      "accessionNumber": "0001558370-22-008393",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837022008393/0001558370-22-008393.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837022008393/boot-20220326x10k_htm.xml"
+    },
+    {
+      "reportDate": "2021-03-27",
+      "filingDate": "2021-05-13",
+      "form": "10-K",
+      "primaryDocument": "boot-20210327x10k.htm",
+      "accessionNumber": "0001558370-21-007103",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837021007103/0001558370-21-007103.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837021007103/boot-20210327x10k_htm.xml"
+    },
+    {
+      "reportDate": "2020-03-28",
+      "filingDate": "2020-05-22",
+      "form": "10-K",
+      "primaryDocument": "boot-20200522x10k.htm",
+      "accessionNumber": "0001558370-20-006925",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837020006925/0001558370-20-006925.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837020006925/boot-20200522x10k_htm.xml"
+    },
+    {
+      "reportDate": "2019-03-30",
+      "filingDate": "2019-05-24",
+      "form": "10-K",
+      "primaryDocument": "boot-20190330x10k.htm",
+      "accessionNumber": "0001558370-19-005281",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1610250/000155837019005281/0001558370-19-005281.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1610250/000155837019005281/boot-20190330.xml"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "cik": "354950",
+  "name": "HOME DEPOT, INC.",
+  "segment": "Home Improvement",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-01-28",
+      "filingDate": "2024-03-13",
+      "form": "10-K",
+      "primaryDocument": "hd-20240128.htm",
+      "accessionNumber": "0000354950-24-000062",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495024000062/0000354950-24-000062.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495024000062/hd-20240128_htm.xml"
+    },
+    {
+      "reportDate": "2023-01-29",
+      "filingDate": "2023-03-15",
+      "form": "10-K",
+      "primaryDocument": "hd-20230129.htm",
+      "accessionNumber": "0000354950-23-000059",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495023000059/0000354950-23-000059.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495023000059/hd-20230129_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-30",
+      "filingDate": "2022-03-23",
+      "form": "10-K",
+      "primaryDocument": "hd-20220130.htm",
+      "accessionNumber": "0000354950-22-000070",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495022000070/0000354950-22-000070.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495022000070/hd-20220130_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-31",
+      "filingDate": "2021-03-24",
+      "form": "10-K",
+      "primaryDocument": "hd-20210131.htm",
+      "accessionNumber": "0000354950-21-000089",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495021000089/0000354950-21-000089.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495021000089/hd-20210131_htm.xml"
+    },
+    {
+      "reportDate": "2020-02-02",
+      "filingDate": "2020-03-25",
+      "form": "10-K",
+      "primaryDocument": "hd10k02022020.htm",
+      "accessionNumber": "0000354950-20-000015",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495020000015/0000354950-20-000015.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495020000015/hd10k02022020_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-03",
+      "filingDate": "2019-03-28",
+      "form": "10-K",
+      "primaryDocument": "hd_10kx02032019.htm",
+      "accessionNumber": "0000354950-19-000010",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/354950/000035495019000010/0000354950-19-000010.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/354950/000035495019000010/hd-20190203.xml"
+    }
+  ]
+}

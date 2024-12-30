@@ -1,0 +1,62 @@
+{
+  "cik": "60667",
+  "name": "LOWES COMPANIES INC",
+  "segment": "Home Improvement",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2024-02-02",
+      "filingDate": "2024-03-25",
+      "form": "10-K",
+      "primaryDocument": "low-20240202.htm",
+      "accessionNumber": "0000060667-24-000033",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066724000033/0000060667-24-000033.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066724000033/low-20240202_htm.xml"
+    },
+    {
+      "reportDate": "2023-02-03",
+      "filingDate": "2023-03-27",
+      "form": "10-K",
+      "primaryDocument": "low-20230203.htm",
+      "accessionNumber": "0000060667-23-000034",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066723000034/0000060667-23-000034.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066723000034/low-20230203_htm.xml"
+    },
+    {
+      "reportDate": "2022-01-28",
+      "filingDate": "2022-03-21",
+      "form": "10-K",
+      "primaryDocument": "low-20220128.htm",
+      "accessionNumber": "0000060667-22-000038",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066722000038/0000060667-22-000038.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066722000038/low-20220128_htm.xml"
+    },
+    {
+      "reportDate": "2021-01-29",
+      "filingDate": "2021-03-22",
+      "form": "10-K",
+      "primaryDocument": "low-20210129.htm",
+      "accessionNumber": "0000060667-21-000026",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066721000026/0000060667-21-000026.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066721000026/low-20210129_htm.xml"
+    },
+    {
+      "reportDate": "2020-01-31",
+      "filingDate": "2020-03-23",
+      "form": "10-K",
+      "primaryDocument": "form10k01312020.htm",
+      "accessionNumber": "0000060667-20-000036",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066720000036/0000060667-20-000036.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066720000036/form10k01312020_htm.xml"
+    },
+    {
+      "reportDate": "2019-02-01",
+      "filingDate": "2019-04-02",
+      "form": "10-K",
+      "primaryDocument": "form10k_02012019.htm",
+      "accessionNumber": "0000060667-19-000042",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/60667/000006066719000042/0000060667-19-000042.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/60667/000006066719000042/low-20190201.xml"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "cik": "1616707",
+  "name": "Wayfair Inc.",
+  "segment": "Online",
+  "subsegment": "",
+  "filings": [
+    {
+      "reportDate": "2023-12-31",
+      "filingDate": "2024-02-22",
+      "form": "10-K",
+      "primaryDocument": "w-20231231.htm",
+      "accessionNumber": "0001616707-24-000014",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670724000014/0001616707-24-000014.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670724000014/w-20231231_htm.xml"
+    },
+    {
+      "reportDate": "2022-12-31",
+      "filingDate": "2023-02-23",
+      "form": "10-K",
+      "primaryDocument": "w-20221231.htm",
+      "accessionNumber": "0001616707-23-000037",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670723000037/0001616707-23-000037.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670723000037/w-20221231_htm.xml"
+    },
+    {
+      "reportDate": "2021-12-31",
+      "filingDate": "2022-02-24",
+      "form": "10-K",
+      "primaryDocument": "w-20211231.htm",
+      "accessionNumber": "0001616707-22-000031",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670722000031/0001616707-22-000031.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670722000031/w-20211231_htm.xml"
+    },
+    {
+      "reportDate": "2020-12-31",
+      "filingDate": "2021-02-25",
+      "form": "10-K",
+      "primaryDocument": "w-20201231.htm",
+      "accessionNumber": "0001616707-21-000064",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670721000064/0001616707-21-000064.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670721000064/w-20201231_htm.xml"
+    },
+    {
+      "reportDate": "2019-12-31",
+      "filingDate": "2020-02-28",
+      "form": "10-K",
+      "primaryDocument": "a2019-12x31form10xk.htm",
+      "accessionNumber": "0001616707-20-000025",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670720000025/0001616707-20-000025.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670720000025/a2019-12x31form10xk_htm.xml"
+    },
+    {
+      "reportDate": "2018-12-31",
+      "filingDate": "2019-02-25",
+      "form": "10-K",
+      "primaryDocument": "a2018-12x31form10xk.htm",
+      "accessionNumber": "0001616707-19-000042",
+      "completeSubmissionUrl": "https://www.sec.gov/Archives/edgar/data/1616707/000161670719000042/0001616707-19-000042.txt",
+      "xbrlFile": "https://www.sec.gov/Archives/edgar/data/1616707/000161670719000042/w-20181231.xml"
+    }
+  ]
+}

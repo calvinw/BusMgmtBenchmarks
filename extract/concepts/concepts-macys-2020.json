@@ -1,79 +1,68 @@
 [
   {
-    "label": "Net sales",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
+    "label": "Total Revenue",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 24560000.0
+    "value": 24560000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
   },
   {
-    "label": "Cost of sales",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
+    "label": "Cost of Goods Sold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 15171000.0
+    "value": 15171000,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
-    "label": "Selling, general and administrative expenses",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
+    "label": "Selling, General and Administrative Expenses",
     "concept": "SG&A",
-    "location": "income",
-    "value": 8998000.0
+    "value": 8998000,
+    "name": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   {
-    "label": "Operating income (loss)",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
+    "label": "Operating Income",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": 970000.0
+    "value": 970000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
-    "label": "Net income (loss)",
-    "gaap_id": "us-gaap_ProfitLoss",
+    "label": "Net Income",
     "concept": "Net Profit",
-    "location": "income",
-    "value": 564000.0
+    "value": 564000,
+    "name": "us-gaap_ProfitLoss"
   },
   {
     "label": "Merchandise Inventories",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 5188000.0
+    "value": 5188000,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total Current Assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 6810000.0
+    "value": 6810000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total Assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 21172000.0
+    "value": 21172000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total Current Liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 5750000.0
+    "value": 5750000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
     "label": "Total Macy's, Inc. Shareholders' Equity",
-    "gaap_id": "us-gaap_StockholdersEquity",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 6377000.0
+    "value": 6377000,
+    "name": "us-gaap_StockholdersEquity"
   },
   {
     "label": "Total Liabilities and Shareholders' Equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 21172000.0
+    "value": 21172000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

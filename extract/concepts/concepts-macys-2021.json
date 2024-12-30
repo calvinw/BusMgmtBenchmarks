@@ -1,79 +1,74 @@
 [
   {
     "label": "Net sales",
-    "gaap_id": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax",
     "concept": "Net Revenue",
-    "location": "income",
-    "value": 17346000.0
+    "value": 17346000,
+    "name": "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax"
+  },
+  {
+    "label": "Credit card revenues, net",
+    "concept": "Other Revenue",
+    "value": 751000,
+    "name": "defref_m_NetEarningsFromCreditOperations"
   },
   {
     "label": "Cost of sales",
-    "gaap_id": "us-gaap_CostOfGoodsAndServicesSold",
     "concept": "Cost of Goods",
-    "location": "income",
-    "value": 12286000.0
+    "value": 12286000,
+    "name": "us-gaap_CostOfGoodsAndServicesSold"
   },
   {
     "label": "Selling, general and administrative expenses",
-    "gaap_id": "us-gaap_SellingGeneralAndAdministrativeExpense",
     "concept": "SG&A",
-    "location": "income",
-    "value": 6767000.0
+    "value": 6767000,
+    "name": "us-gaap_SellingGeneralAndAdministrativeExpense"
   },
   {
     "label": "Operating income (loss)",
-    "gaap_id": "us-gaap_OperatingIncomeLoss",
     "concept": "Operating Profit",
-    "location": "income",
-    "value": -4475000.0
+    "value": -4475000,
+    "name": "us-gaap_OperatingIncomeLoss"
   },
   {
     "label": "Net income (loss)",
-    "gaap_id": "us-gaap_ProfitLoss",
     "concept": "Net Profit",
-    "location": "income",
-    "value": -3944000.0
+    "value": -3944000,
+    "name": "us-gaap_ProfitLoss"
   },
   {
     "label": "Merchandise inventories",
-    "gaap_id": "us-gaap_InventoryNet",
     "concept": "Inventory",
-    "location": "balance",
-    "value": 3774000.0
+    "value": 3774000,
+    "name": "us-gaap_InventoryNet"
   },
   {
     "label": "Total Current Assets",
-    "gaap_id": "us-gaap_AssetsCurrent",
     "concept": "Current Assets",
-    "location": "balance",
-    "value": 6184000.0
+    "value": 6184000,
+    "name": "us-gaap_AssetsCurrent"
   },
   {
     "label": "Total Assets",
-    "gaap_id": "us-gaap_Assets",
     "concept": "Total Assets",
-    "location": "balance",
-    "value": 17706000.0
+    "value": 17706000,
+    "name": "us-gaap_Assets"
   },
   {
     "label": "Total Current Liabilities",
-    "gaap_id": "us-gaap_LiabilitiesCurrent",
     "concept": "Current Liabilities",
-    "location": "balance",
-    "value": 5357000.0
+    "value": 5357000,
+    "name": "us-gaap_LiabilitiesCurrent"
   },
   {
     "label": "Total Shareholders' Equity",
-    "gaap_id": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
     "concept": "Total Shareholder Equity",
-    "location": "balance",
-    "value": 2553000.0
+    "value": 2553000,
+    "name": "us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
   },
   {
-    "label": "Total Liabilities and Shareholders\u2019 Equity",
-    "gaap_id": "us-gaap_LiabilitiesAndStockholdersEquity",
+    "label": "Total Liabilities and Shareholders' Equity",
     "concept": "Total Liabilities and Shareholder Equity",
-    "location": "balance",
-    "value": 17706000.0
+    "value": 17706000,
+    "name": "us-gaap_LiabilitiesAndStockholdersEquity"
   }
 ]

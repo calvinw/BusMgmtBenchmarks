@@ -1,0 +1,48 @@
+company_name,cik,segment,subsegment
+walmart,104169,Discount,
+target,27419,Discount,
+dollar_general,29534,Discount,
+dollar_tree,935703,Discount,
+five_below,1177609,Discount,
+costco,909832,Warehouse Clubs,
+bjs,1531152,Warehouse Clubs,
+tj_maxx,109198,Off Price,
+ross,745732,Off Price,
+burlington,1579298,Off Price,
+macys,794367,Department Store,
+nordstrom,72333,Department Store,
+dillards,28917,Department Store,
+kohls,885639,Department Store,
+amazon,1018724,Online,
+wayfair,1616707,Online,
+chewy,1766502,Online,
+ulta_beauty,1403568,Specialty,Beauty
+bbb,886158,Specialty,Beauty
+victorias_secret,1856437,Specialty,Apparel
+signet_jewelers,832988,Specialty,Accessories and Shoes
+tapestry,1116132,Specialty,Accessories and Shoes
+capri_holdings,1530721,Specialty,Accessories and Shoes
+lululemon,1397187,Specialty,Apparel
+boot_barn,1610250,Specialty,Accessories and Shoes
+footlocker,850209,Specialty,Accessories and Shoes
+nike,320187,Specialty,Accessories and Shoes
+af,1018840,Specialty,Apparel
+american_eagle,919012,Specialty,Apparel
+urban_outfitters,912615,Specialty,Apparel
+gap,39911,Specialty,Apparel
+levi,94845,Specialty,Apparel
+dicks,1089063,Specialty,Category Killer
+academy_sports,1817358,Specialty,Category Killer
+best_buy,764478,Specialty,Category Killer
+yeti,1670592,Specialty,Home
+sherwin_williams,89800,Specialty,Home
+rh,1528849,Specialty,Home
+william_sonoma,719955,Specialty,Home
+home_depot,354950,Home Improvement,
+lowes,60667,Home Improvement,
+tractor_supply,916365,Home Improvement,
+kroger,56873,Grocery,
+albertsons,1646972,Grocery,
+walgreens,1618921,Health & Pharmacy,
+cvs,64803,Health & Pharmacy,
+rite_aid,84129,Health & Pharmacy,

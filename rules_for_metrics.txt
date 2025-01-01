@@ -28,6 +28,8 @@ Quick Ratio
 Debt to Equity Ratio    
 3-Year Revenue CAGR
 
+Sign Conventions
+
 1. Display Rules:
 - Convert negative to positive for display: Net Revenue, Cost of Goods, SG&A, Inventory, Current Assets, Total Assets, Current Liabilities, Total Shareholder Equity, Total Liabilities
 (can mean remove parentheses)
@@ -52,7 +54,7 @@ Return on Assets % = Net Profit / Average Total Assets × 100
 Current Ratio = Current Assets / Current Liabilities
 Quick Ratio = (Current Assets - Inventory) / Current Liabilities
 Debt to Equity = Total Liabilities / Total Shareholder Equity
-3-Year CAGR = (Final Value / Initial Value)^(1/3) - 1 × 100
+3-Year CAGR = (Final Value / Initial Value)^(1/3) - 1 × 100 (uses 4 years of data but time span is 3 years , so for example 2024, 2023, 2022, 2021 would be needed for CAGR with current year 2024)
 ```
 
 Signs in results:

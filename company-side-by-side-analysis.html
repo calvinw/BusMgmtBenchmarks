@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Data Comparison Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,7 +65,7 @@
 <body>
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1>Retail Financial Analysis Comparison</h1>
-        <button onclick="downloadTableToExcel('dataContainer', 'financial-data')">Download as Excel</button>
+        <button id="exportBtn" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Export to Excel</button>:
     </div>
     <div class="selectors-container">
         <div class="company-section">
@@ -193,8 +194,8 @@
             if (isNaN(num)) return 'N/A';
             return new Intl.NumberFormat('en-US', {
                 style: 'decimal',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
             }).format(num);
         }
 
@@ -368,36 +369,17 @@
         // Initialize dashboard when page loads
         fetchData();
 
-        function downloadTableToExcel(tableID, filename = ''){
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(tableID);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-    
-            // Create download link element
-            downloadLink = document.createElement("a");
-    
-            document.body.appendChild(downloadLink);
-    
-            if(navigator.msSaveOrOpenBlob){
-                var blob = new Blob(['\ufeff', tableHTML], {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob( blob, filename);
-            }else{
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-    
-                // Setting the file name
-                downloadLink.download = filename;
         
-                //triggering the function
-                downloadLink.click();
-            }
-        }
+    
+
+        // Add export functionality
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            const table = document.querySelector('table');
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'company_comparison.xlsx');
+        });
     </script>
 </body>
 </html>

@@ -75,7 +75,11 @@
             <h3>Segment</h3>
             <div>
                 <label for="segmentSelect">Select Segment: </label>
-                <select id="segmentSelect" onchange="updateCompanyOptions(); updateDisplay()"></select>
+                <select id="segmentSelect" onchange="handleSegmentChange()"></select>
+            </div>
+            <div id="subsegmentSection" style="display: none;">
+                <label for="subsegmentSelect">Select Subsegment: </label>
+                <select id="subsegmentSelect" onchange="updateCompanyOptions(); updateDisplay()"></select>
             </div>
         </div>
         
@@ -98,22 +102,26 @@
 
         let companyData = [];
         let segmentData = [];
+        let subsegmentData = [];
         let companySegmentMap = new Map();
 
         async function fetchData() {
             try {
                 // Load local CSV files
-                const [companyResponse, segmentResponse] = await Promise.all([
-                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/benchmarks_structured.csv'),
-                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/segment_analysis_output.csv')
+                const [companyResponse, segmentResponse, subsegmentResponse] = await Promise.all([
+                    fetch('benchmarks_structured.csv'),
+                    fetch('segment_analysis_output.csv'),
+                    fetch('subsegment_analysis_output.csv')
                 ]);
                 
                 const companyText = await companyResponse.text();
                 const segmentText = await segmentResponse.text();
+                const subsegmentText = await subsegmentResponse.text();
                 
                 // Parse CSV data and filter for 2024 only
                 companyData = parseCSV(companyText).filter(row => row.year === '2024');
                 segmentData = parseSegmentCSV(segmentText);
+                subsegmentData = parseSegmentCSV(subsegmentText);
                 
                 // Create company-segment mapping
                 companyData.forEach(row => {
@@ -173,7 +181,8 @@
                     }
                     obj[headers[j].trim()] = value;
                 }
-                if (obj.segment) {
+                // Handle both segment and subsegment CSV formats
+                if (obj.segment || obj.subsegment) {
                     results.push(obj);
                 }
             }
@@ -197,18 +206,53 @@
             updateCompanyOptions();
         }
 
+        function handleSegmentChange() {
+            const selectedSegment = document.getElementById('segmentSelect').value;
+            const subsegmentSection = document.getElementById('subsegmentSection');
+            const subsegmentSelect = document.getElementById('subsegmentSelect');
+            
+            if (selectedSegment === 'Specialty') {
+                subsegmentSection.style.display = 'block';
+                // Initialize subsegment options
+                subsegmentSelect.innerHTML = '';
+                const uniqueSubsegments = new Set(subsegmentData.map(sub => sub.subsegment));
+                Array.from(uniqueSubsegments)
+                    .sort()
+                    .forEach(subsegment => {
+                        const option = document.createElement('option');
+                        option.value = subsegment;
+                        option.textContent = subsegment;
+                        subsegmentSelect.appendChild(option);
+                    });
+            } else {
+                subsegmentSection.style.display = 'none';
+                subsegmentSelect.innerHTML = '';
+            }
+            
+            updateCompanyOptions();
+            updateDisplay();
+        }
+
         function updateCompanyOptions() {
             const selectedSegment = document.getElementById('segmentSelect').value;
+            const selectedSubsegment = document.getElementById('subsegmentSelect')?.value;
             const companySelect = document.getElementById('companySelect');
             companySelect.innerHTML = '';
             
-            // Filter companies by selected segment
-            const companiesInSegment = Array.from(companySegmentMap.entries())
+            // Filter companies by selected segment and subsegment
+            let companiesInSegment = Array.from(companySegmentMap.entries())
                 .filter(([_, segment]) => segment === selectedSegment)
-                .map(([company]) => company)
-                .sort();
+                .map(([company]) => company);
 
-            companiesInSegment.forEach(company => {
+            if (selectedSegment === 'Specialty' && selectedSubsegment) {
+                // Further filter by subsegment for Specialty
+                companiesInSegment = companiesInSegment.filter(company => {
+                    const companyInfo = companyData.find(d => d.company_name === company);
+                    return companyInfo?.subsegment === selectedSubsegment;
+                });
+            }
+
+            companiesInSegment.sort().forEach(company => {
                 const option = document.createElement('option');
                 option.value = company;
                 option.textContent = company.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());

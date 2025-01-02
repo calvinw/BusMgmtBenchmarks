@@ -73,7 +73,7 @@
         </div>
         <div class="section">
             <h3>Segment</h3>
-            <div>
+            <div style="margin-bottom: 20px;">
                 <label for="segmentSelect">Select Segment: </label>
                 <select id="segmentSelect" onchange="handleSegmentChange()"></select>
             </div>
@@ -291,6 +291,15 @@
 
         function getSegmentData() {
             const selectedSegment = document.getElementById('segmentSelect').value;
+            const selectedSubsegment = document.getElementById('subsegmentSelect')?.value;
+            
+            if (selectedSegment === 'Specialty' && selectedSubsegment) {
+                return {
+                    data: subsegmentData.find(d => d.subsegment === selectedSubsegment),
+                    segmentName: selectedSubsegment
+                };
+            }
+            
             return {
                 data: segmentData.find(d => d.segment === selectedSegment),
                 segmentName: selectedSegment

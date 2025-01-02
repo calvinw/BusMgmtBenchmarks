@@ -61,55 +61,62 @@
 </head>
 <body>
     <h1>Company vs Segment Comparison</h1>
+        <button id="exportBtn" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Export to Excel</button>:
     <div class="selectors-container">
-        <div class="section">
-            <h3>Segment</h3>
-            <div>
-                <label for="segmentSelect">Select Segment: </label>
-                <select id="segmentSelect" onchange="updateCompanyOptions()"></select>
-            </div>
-        </div>
-        
+
         <div class="section">
             <h3>Company</h3>
             <div>
                 <label for="companySelect">Select Company: </label>
-                <select id="companySelect" onchange="updateYearOptions()"></select>
-            </div>
-            <div>
-                <label for="yearSelect">Select Year: </label>
-                <select id="yearSelect" onchange="updateDisplay()"></select>
+                <select id="companySelect" onchange="updateDisplay()"></select>
             </div>
         </div>
+        <div class="section">
+            <h3>Segment</h3>
+            <div>
+                <label for="segmentSelect">Select Segment: </label>
+                <select id="segmentSelect" onchange="updateCompanyOptions(); updateDisplay()"></select>
+            </div>
+        </div>
+        
+
     </div>
     
     <div id="dataContainer"><div class="loading">Loading data...</div></div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
+
+        // Add export functionality
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            const table = document.querySelector('table');
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'company_comparison.xlsx');
+        });
+
+
         let companyData = [];
         let segmentData = [];
-        let companyYearMap = new Map();
         let companySegmentMap = new Map();
 
         async function fetchData() {
             try {
+                // Load local CSV files
                 const [companyResponse, segmentResponse] = await Promise.all([
-                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv'),
+                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/benchmarks_structured.csv'),
                     fetch('https://calvinw.github.io/BusMgmtBenchmarks/segment_analysis_output.csv')
                 ]);
                 
                 const companyText = await companyResponse.text();
                 const segmentText = await segmentResponse.text();
                 
-                companyData = parseCSV(companyText);
+                // Parse CSV data and filter for 2024 only
+                companyData = parseCSV(companyText).filter(row => row.year === '2024');
                 segmentData = parseSegmentCSV(segmentText);
                 
                 // Create company-segment mapping
-                const structuredDataResponse = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/benchmarks_structured.csv');
-                const structuredDataText = await structuredDataResponse.text();
-                const structuredData = parseCSV(structuredDataText);
-                
-                structuredData.forEach(row => {
+                companyData.forEach(row => {
                     if (row.company_name && row.segment) {
                         companySegmentMap.set(row.company_name, row.segment);
                     }
@@ -118,7 +125,7 @@
                 initializeSelectors();
                 updateDisplay();
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error loading data:', error);
                 document.getElementById('dataContainer').innerHTML = 'Error loading data';
             }
         }
@@ -174,14 +181,6 @@
         }
 
         function initializeSelectors() {
-            companyYearMap.clear();
-            companyData.forEach(row => {
-                if (!companyYearMap.has(row.company_name)) {
-                    companyYearMap.set(row.company_name, new Set());
-                }
-                companyYearMap.get(row.company_name).add(row.year);
-            });
-
             // Initialize segment select
             const segmentSelect = document.getElementById('segmentSelect');
             segmentSelect.innerHTML = '';
@@ -216,22 +215,6 @@
                 companySelect.appendChild(option);
             });
 
-            updateYearOptions();
-        }
-
-        function updateYearOptions() {
-            const company = document.getElementById('companySelect').value;
-            const yearSelect = document.getElementById('yearSelect');
-            yearSelect.innerHTML = '';
-            
-            const years = Array.from(companyYearMap.get(company) || []).sort().reverse();
-            years.forEach(year => {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearSelect.appendChild(option);
-            });
-
             updateDisplay();
         }
 
@@ -239,8 +222,8 @@
             if (num === undefined || num === null || isNaN(num)) return 'N/A';
             return new Intl.NumberFormat('en-US', {
                 style: 'decimal',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
             }).format(num);
         }
 
@@ -248,18 +231,17 @@
             if (num === undefined || num === null || isNaN(num)) return 'N/A';
             return new Intl.NumberFormat('en-US', {
                 style: 'percent',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
             }).format(num);
         }
 
         function getCompanyData() {
             const selectedCompany = document.getElementById('companySelect').value;
-            const selectedYear = document.getElementById('yearSelect').value;
             return {
-                data: companyData.find(d => d.company_name === selectedCompany && d.year === selectedYear),
+                data: companyData.find(d => d.company_name === selectedCompany),
                 companyName: selectedCompany.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                year: selectedYear
+                year: '2024'
             };
         }
 
@@ -315,6 +297,18 @@
                         <td class="number company-header">${segment.segmentName}<br>Segment Average</td>
                     </tr>
                     <tr>
+                        <td>Sales YoY Growth</td>
+                        <td class="number">${formatPercentage(company.data['YoY Growth %'] / 100)}</td>
+                        <td class="number">${formatPercentage(segment.data['Sales Var vs LY'] )}</td>
+                    </tr>
+                    <tr>
+                        <td>Sales 3 Year CAGR</td>
+                        <td class="number">${formatPercentage(company.data['3-Year CAGR %'] / 100)}</td>
+                        <td class="number">${formatPercentage(segment.data['3 Year Sales Growth CAGR'] )}</td>
+                    </tr>
+                    
+                    
+                    <tr>
                         <td>Gross margin percentage</td>
                         <td class="number">${formatPercentage(companyMetrics.gmPercent)}</td>
                         <td class="number">${formatPercentage(segmentMetrics.gmPercent)}</td>
@@ -335,10 +329,22 @@
                         <td class="number">${formatNumber(segmentMetrics.inventoryTurnover)}</td>
                     </tr>
                     <tr>
+                        <td>Current Ratio</td>
+                        <td class="number">${formatNumber(company.data['Current Ratio'])}</td>
+                        <td class="number">${formatNumber(segment.data['Current Ratio'])}</td>
+                    </tr>
+                    <tr>
+                        <td>Quick Ratio</td>
+                        <td class="number">${formatNumber(company.data['Quick Ratio'])}</td>
+                        <td class="number">${formatNumber(segment.data['Quick Ratio'])}</td>
+                    </tr>
+                    <tr>
                         <td>Return on assets (ROA)</td>
                         <td class="number">${formatPercentage(companyMetrics.roa)}</td>
                         <td class="number">${formatPercentage(segmentMetrics.roa)}</td>
                     </tr>
+
+
                 </table>
             `;
 

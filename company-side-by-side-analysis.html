@@ -39,10 +39,11 @@
         }
         .number {
             text-align: right;
-            min-width: 120px;
+            width: 150px;
         }
         .label-column {
-            min-width: 400px;
+            width: 250px;
+            word-wrap: break-word;
         }
         select {
             padding: 8px;
@@ -61,7 +62,10 @@
     </style>
 </head>
 <body>
-    <h1>Retail Financial Analysis Comparison</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Retail Financial Analysis Comparison</h1>
+        <button onclick="downloadTableToExcel('dataContainer', 'financial-data')">Download as Excel</button>
+    </div>
     <div class="selectors-container">
         <div class="company-section">
             <h3>Company 1</h3>
@@ -74,7 +78,7 @@
                 <select id="year1Select" onchange="updateDisplay()"></select>
             </div>
         </div>
-        
+
         <div class="company-section">
             <h3>Company 2</h3>
             <div>
@@ -87,7 +91,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="dataContainer"><div class="loading">Loading data...</div></div>
 
     <script>
@@ -111,7 +115,7 @@
             const lines = text.split('\n');
             const headers = lines[0].split(',');
             const results = [];
-            
+
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue;
                 const currentLine = lines[i].split(',');
@@ -173,7 +177,7 @@
             const company = document.getElementById(`company${companyNum}Select`).value;
             const yearSelect = document.getElementById(`year${companyNum}Select`);
             yearSelect.innerHTML = '';
-            
+
             const years = Array.from(companyYearMap.get(company)).sort().reverse();
             years.forEach(year => {
                 const option = document.createElement('option');
@@ -196,15 +200,18 @@
 
         function formatCurrency(num) {
             if (isNaN(num)) return 'N/A';
-            return '$' + formatNumber(num);
+            return '$' + new Intl.NumberFormat('en-US', {
+                style: 'decimal',
+                maximumFractionDigits: 0,
+            }).format(Math.round(num));
         }
 
         function formatPercentage(num) {
             if (num === null || isNaN(num)) return 'N/A';
             return new Intl.NumberFormat('en-US', {
                 style: 'percent',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
             }).format(num/100);
         }
 
@@ -360,6 +367,37 @@
 
         // Initialize dashboard when page loads
         fetchData();
+
+        function downloadTableToExcel(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+    
+            // Create download link element
+            downloadLink = document.createElement("a");
+    
+            document.body.appendChild(downloadLink);
+    
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob( blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+                // Setting the file name
+                downloadLink.download = filename;
+        
+                //triggering the function
+                downloadLink.click();
+            }
+        }
     </script>
 </body>
 </html>

@@ -26,4 +26,3 @@ Missing fields: Net Revenue, Cost of Goods, SG&A, Operating Profit, Net Profit
 
 Company: tractor_supply, Year: 2021
 Missing fields: Cost of Goods, SG&A, Operating Profit, Net Profit
-

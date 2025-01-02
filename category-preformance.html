@@ -94,8 +94,8 @@
         async function fetchData() {
             try {
                 const [companyResponse, segmentResponse] = await Promise.all([
-                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv'),
-                    fetch('https://calvinw.github.io/BusMgmtBenchmarks/segment_analysis_output.csv')
+                    fetch('financial_data.csv'),
+                    fetch('segment_analysis_output.csv')
                 ]);
                 
                 const companyText = await companyResponse.text();
@@ -105,7 +105,7 @@
                 segmentData = parseSegmentCSV(segmentText);
                 
                 // Create company-segment mapping
-                const structuredDataResponse = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/benchmarks_structured.csv');
+                const structuredDataResponse = await fetch('benchmarks_structured.csv');
                 const structuredDataText = await structuredDataResponse.text();
                 const structuredData = parseCSV(structuredDataText);
                 

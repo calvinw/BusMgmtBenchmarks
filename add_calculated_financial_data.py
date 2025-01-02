@@ -70,7 +70,7 @@ def get_rolling_cagr(company_data, target_year):
     Returns None if insufficient data available.
     """
     # Get data for target year and two years prior
-    years_needed = [str(target_year - 2), str(target_year - 1), str(target_year)]
+    years_needed = [str(target_year-3), str(target_year - 2), str(target_year - 1), str(target_year)]
     relevant_data = {}
     
     for row in company_data:
@@ -78,10 +78,10 @@ def get_rolling_cagr(company_data, target_year):
             relevant_data[row['year']] = float(row['Net Revenue'])
     
     # Only calculate if we have all three years
-    if len(relevant_data) == 3:
-        start_revenue = relevant_data[str(target_year - 2)]
+    if len(relevant_data) == 4:
+        start_revenue = relevant_data[str(target_year - 3)]
         end_revenue = relevant_data[str(target_year)]
-        return calculate_cagr(start_revenue, end_revenue, 2)  # 2 years between start and end
+        return calculate_cagr(start_revenue, end_revenue, 3)  # 2 years between start and end
     
     return None
 

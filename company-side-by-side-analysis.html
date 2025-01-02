@@ -96,7 +96,8 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv');
+                // const response = await fetch('https://calvinw.github.io/BusMgmtBenchmarks/financial_data.csv');
+                const response = await fetch('financial_data.csv');
                 const text = await response.text();
                 globalData = parseCSV(text);
                 initializeSelectors();

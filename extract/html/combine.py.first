@@ -1,0 +1,81 @@
+import re
+from bs4 import BeautifulSoup
+from pathlib import Path
+
+def combine_financial_statements(files, output_file):
+    """
+    Combines multiple HTML financial statement files into a single HTML file.
+    
+    Args:
+        files (list): List of input HTML file paths
+        output_file (str): Path for the output combined HTML file
+    """
+    # Initialize the combined HTML structure
+    combined_html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Combined Financial Statements</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+        <script type="text/javascript">
+            function toggleNextSibling(e) {
+                if (e.nextSibling.style.display=='none') {
+                    e.nextSibling.style.display='block';
+                } else {
+                    e.nextSibling.style.display='none';
+                }
+            }
+        </script>
+    </head>
+    <body>
+    """
+    
+    # Process each input file
+    for file_path in files:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            # Parse the HTML content
+            soup = BeautifulSoup(file.read(), 'html.parser')
+            
+            # Find the main table containing financial data
+            main_table = soup.find('table', class_='report')
+            
+            if main_table:
+                # Extract the title information from the first row
+                title_row = main_table.find('th', class_='tl')
+                if title_row:
+                    # Add a header for each statement
+                    combined_html += f"<h2>{title_row.get_text().strip()}</h2>"
+                
+                # Add the entire table
+                combined_html += str(main_table)
+                
+                # Add some spacing between tables
+                combined_html += "<br><br>"
+    
+    # Close the HTML structure
+    combined_html += """
+    </body>
+    </html>
+    """
+    
+    # Write the combined content to the output file
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write(combined_html)
+
+def main():
+    # Example usage
+    input_files = [
+        'income-target-2020.html',
+        'balance-target-2020.html'
+    ]
+    
+    output_file = 'combined-statements.html'
+    
+    try:
+        combine_financial_statements(input_files, output_file)
+        print(f"Successfully combined financial statements into {output_file}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+if __name__ == "__main__":
+    main()

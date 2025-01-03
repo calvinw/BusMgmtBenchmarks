@@ -1,0 +1,198 @@
+import re
+from bs4 import BeautifulSoup
+from pathlib import Path
+
+def extract_table_and_refs(html_file):
+    """Extract main table and reference data from an HTML file."""
+    with open(html_file, 'r', encoding='utf-8') as f:
+        soup = BeautifulSoup(f, 'html.parser')
+        
+    # Get the main table
+    main_table = soup.find('table', class_='report')
+    
+    # Get all reference tables
+    ref_tables = soup.find_all('table', class_='authRefData')
+    
+    return main_table, ref_tables
+
+def create_combined_html(income_file, balance_file, output_file):
+    """Create a combined HTML file with both statements in tabs."""
+    
+    # Extract content from both files
+    income_table, income_refs = extract_table_and_refs(income_file)
+    balance_table, balance_refs = extract_table_and_refs(balance_file)
+    
+    # Combine reference tables, removing duplicates by ID
+    ref_dict = {}
+    for ref in income_refs + balance_refs:
+        if ref.get('id'):
+            ref_dict[ref['id']] = ref
+    
+    # Create the HTML parts separately
+    head_content = '''
+    <head>
+        <title>Target Financial Statements 2020</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+        <style>
+            body {
+                font-family: Helvetica, Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: white;
+            }
+            
+            .banner {
+                background-color: #acf;
+                color: black;
+                padding: 15px;
+                text-align: center;
+                margin-bottom: 20px;
+                border: 2px solid #acf;
+            }
+            
+            .banner h1 {
+                margin: 0;
+                font-size: 14pt;
+                font-weight: bold;
+            }
+            
+            .banner h2 {
+                margin: 5px 0 0 0;
+                font-size: 12pt;
+            }
+            
+            .tabs {
+                display: flex;
+                margin-bottom: 0;
+                border-bottom: 2px solid #acf;
+            }
+            
+            .tab {
+                padding: 8px 16px;
+                cursor: pointer;
+                background-color: white;
+                border: 2px solid #acf;
+                border-bottom: none;
+                margin-right: 5px;
+                font-size: 10pt;
+            }
+            
+            .tab:hover {
+                background-color: #def;
+            }
+            
+            .tab.active {
+                background-color: #acf;
+                border-color: #acf;
+                font-weight: bold;
+            }
+            
+            .tab-content {
+                display: none;
+                padding: 20px 0;
+            }
+            
+            .tab-content.active {
+                display: block;
+            }
+        </style>
+        <script type="text/javascript" src="Show.js">/* Do Not Remove This Comment */</script>
+        <script>
+            function showTab(tabName) {
+                var contents = document.getElementsByClassName('tab-content');
+                for (var i = 0; i < contents.length; i++) {
+                    contents[i].classList.remove('active');
+                }
+                
+                var tabs = document.getElementsByClassName('tab');
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+                
+                document.getElementById(tabName).classList.add('active');
+                document.getElementById('tab-' + tabName).classList.add('active');
+            }
+            
+            function toggleNextSibling(e) {
+                if (e.nextSibling.style.display=='none') {
+                    e.nextSibling.style.display='block';
+                } else {
+                    e.nextSibling.style.display='none';
+                }
+            }
+            
+            function showAR(element, id, window) {
+                var refTable = document.getElementById(id);
+                if (refTable) {
+                    var allRefs = document.getElementsByClassName('authRefData');
+                    for (var i = 0; i < allRefs.length; i++) {
+                        allRefs[i].style.display = 'none';
+                    }
+                    refTable.style.display = 'block';
+                    
+                    var rect = element.getBoundingClientRect();
+                    refTable.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+                    refTable.style.left = rect.left + 'px';
+                }
+            }
+            
+            function hideAR() {
+                var allRefs = document.getElementsByClassName('authRefData');
+                for (var i = 0; i < allRefs.length; i++) {
+                    allRefs[i].style.display = 'none';
+                }
+            }
+        </script>
+    </head>
+    '''
+
+    # Create body content without f-strings
+    body_template = '''
+    <body>
+        <div class="banner">
+            <h1>Target Corporation</h1>
+            <h2>Financial Statements 2020</h2>
+        </div>
+        
+        <div class="tabs">
+            <div id="tab-income" class="tab active" onclick="showTab('income')">Income Statement</div>
+            <div id="tab-balance" class="tab" onclick="showTab('balance')">Balance Sheet</div>
+        </div>
+            
+        <div id="income" class="tab-content active">
+            {income_table}
+        </div>
+        
+        <div id="balance" class="tab-content">
+            {balance_table}
+        </div>
+        
+        <div style="display: none;">
+            {ref_tables}
+        </div>
+    </body>
+    '''
+
+    # Format the body content
+    body_content = body_template.format(
+        income_table=str(income_table),
+        balance_table=str(balance_table),
+        ref_tables='\n'.join(str(table) for table in ref_dict.values())
+    )
+
+    # Combine all parts using normal string concatenation
+    html_content = '<!DOCTYPE html>\n<html>\n' + head_content + body_content + '\n</html>'
+    
+    # Write the output file
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    print(f"Created combined financial statements at: {output_file}")
+
+if __name__ == "__main__":
+    # Example usage
+    income_file = "income-target-2020.html"
+    balance_file = "balance-target-2020.html"
+    output_file = "target-2020.html"
+    
+    create_combined_html(income_file, balance_file, output_file)

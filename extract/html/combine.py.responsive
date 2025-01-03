@@ -1,0 +1,126 @@
+import re
+from bs4 import BeautifulSoup
+from pathlib import Path
+
+def combine_financial_statements(files, output_file):
+    """
+    Combines multiple HTML financial statement files into a single HTML file with responsive layout.
+    
+    Args:
+        files (list): List of input HTML file paths
+        output_file (str): Path for the output combined HTML file
+    """
+    # Initialize the combined HTML structure with responsive CSS
+    combined_html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Combined Financial Statements</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+        <style>
+            .statements-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .statement-section {
+                flex: 1;
+                min-width: 300px;
+                max-width: 100%;
+            }
+            
+            @media screen and (min-width: 1200px) {
+                .statement-section {
+                    max-width: calc(50% - 10px);
+                }
+            }
+            
+            .statement-section table {
+                width: 100%;
+            }
+            
+            .statement-title {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            /* Ensure tables remain scrollable on smaller screens */
+            .table-wrapper {
+                overflow-x: auto;
+                margin-bottom: 20px;
+            }
+        </style>
+        <script type="text/javascript">
+            function toggleNextSibling(e) {
+                if (e.nextSibling.style.display=='none') {
+                    e.nextSibling.style.display='block';
+                } else {
+                    e.nextSibling.style.display='none';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="statements-container">
+    """
+    
+    # Process each input file
+    for file_path in files:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            # Parse the HTML content
+            soup = BeautifulSoup(file.read(), 'html.parser')
+            
+            # Find the main table containing financial data
+            main_table = soup.find('table', class_='report')
+            
+            if main_table:
+                # Start a new section for this statement
+                combined_html += '<div class="statement-section">'
+                
+                # Extract the title information from the first row
+                title_row = main_table.find('th', class_='tl')
+                if title_row:
+                    title_text = title_row.get_text().strip()
+                    combined_html += f'<h2 class="statement-title">{title_text}</h2>'
+                
+                # Wrap table in a scrollable container
+                combined_html += '<div class="table-wrapper">'
+                combined_html += str(main_table)
+                combined_html += '</div>'
+                
+                # Close the statement section
+                combined_html += '</div>'
+    
+    # Close the HTML structure
+    combined_html += """
+        </div>
+    </body>
+    </html>
+    """
+    
+    # Write the combined content to the output file
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write(combined_html)
+
+def main():
+    # Example usage
+    input_files = [
+        'income-target-2020.html',
+        'balance-target-2020.html'
+    ]
+    
+    output_file = 'combined-statements.html'
+    
+    try:
+        combine_financial_statements(input_files, output_file)
+        print(f"Successfully combined financial statements into {output_file}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+if __name__ == "__main__":
+    main()

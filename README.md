@@ -124,11 +124,15 @@ There are two main data displays for the current
 
 ### Side By Side Company 
 
-[ Need Details for this ]
+This web page shows the data for two companies side by side. You can pick two companies and the year to display side by side:
+
+[Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company-side-by-side-analysis.html)
 
 ### Side By Side Company and Segment
 
-[ Need Details for this ]
+This web page shows the data for companies against the segment or subsegment they belong to. The purpose of this page is to compare a company to a segment to see how it is doing: 
+
+[Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/category-preformance.html)
 
 ### SEC Filings Display
 

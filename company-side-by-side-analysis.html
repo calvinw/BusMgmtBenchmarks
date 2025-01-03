@@ -61,6 +61,23 @@
             text-align: center;
             font-weight: bold;
         }
+        
+        #sourceContainer {
+            margin-top: 20px;
+            margin-right: 20px;
+            font-size: 0.8em;
+            color: #666;
+            text-align: right;
+        }
+        
+        #sourceContainer a {
+            color: #666;
+            text-decoration: none;
+        }
+        
+        #sourceContainer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -95,6 +112,7 @@
     </div>
 
     <div id="dataContainer"><div class="loading">Loading data...</div></div>
+    <div id="sourceContainer"></div>
 
     <script>
         let globalData = [];
@@ -316,47 +334,47 @@
                         <td colspan="3">Financial Indicators</td>
                     </tr>
                     <tr>
-                        <td>a. Cost of goods percentage (COGS/Net Sales)</td>
+                        <td>Cost of goods percentage (COGS/Net Sales)</td>
                         <td class="number">${formatPercentage(metrics1.cogsPercent * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.cogsPercent * 100)}</td>
                     </tr>
                     <tr>
-                        <td>b. Gross margin percentage (GM/Net Sales)</td>
+                        <td>Gross margin percentage (GM/Net Sales)</td>
                         <td class="number">${formatPercentage(metrics1.gmPercent * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.gmPercent * 100)}</td>
                     </tr>
                     <tr>
-                        <td>c. SG&A expense percentage (SG&A/Net Sales)</td>
+                        <td>SG&A expense percentage (SG&A/Net Sales)</td>
                         <td class="number">${formatPercentage(metrics1.sgaPercent * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.sgaPercent * 100)}</td>
                     </tr>
                     <tr>
-                        <td>d. Operating profit margin percentage (Op.Profit/Net Sales)</td>
+                        <td>Operating profit margin percentage (Op.Profit/Net Sales)</td>
                         <td class="number">${formatPercentage(metrics1.opProfitPercent * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.opProfitPercent * 100)}</td>
                     </tr>
                     <tr>
-                        <td>e. Net profit margin percentage (Net Profit/Net Sales)</td>
+                        <td>Net profit margin percentage (Net Profit/Net Sales)</td>
                         <td class="number">${formatPercentage(metrics1.netProfitPercent * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.netProfitPercent * 100)}</td>
                     </tr>
                     <tr>
-                        <td>f. Inventory turnover (COGS/Inventory)</td>
+                        <td>Inventory turnover (COGS/Inventory)</td>
                         <td class="number">${formatNumber(metrics1.inventoryTurnover)}</td>
                         <td class="number">${formatNumber(metrics2.inventoryTurnover)}</td>
                     </tr>
                     <tr>
-                        <td>g. Asset turnover (Net Sales/Total Assets)</td>
+                        <td>Asset turnover (Net Sales/Total Assets)</td>
                         <td class="number">${formatNumber(metrics1.assetTurnover)}</td>
                         <td class="number">${formatNumber(metrics2.assetTurnover)}</td>
                     </tr>
                     <tr>
-                        <td>h. Return on assets (ROA) (Net profit Margin * Asset Turnover)</td>
+                        <td>Return on assets (ROA) (Net profit Margin * Asset Turnover)</td>
                         <td class="number">${formatPercentage(metrics1.roa * 100)}</td>
                         <td class="number">${formatPercentage(metrics2.roa * 100)}</td>
                     </tr>
                     <tr>
-                        <td>i. 3-Year Revenue CAGR</td>
+                        <td>3-Year Revenue CAGR</td>
                         <td class="number">${formatPercentage(metrics1.cagr)}</td>
                         <td class="number">${formatPercentage(metrics2.cagr
                         )}</td>
@@ -365,6 +383,24 @@
             `;
 
             document.getElementById('dataContainer').innerHTML = html;
+            
+            // Update source links
+            const sourceHtml = `
+                <div style="margin-top: 20px; font-size: 0.8em; color: #666;">
+                    <em>Source:</em> 
+                    <a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company1.data.company_name}-${company1.year}.html" target="_blank">
+                        ${company1.companyName} ${company1.year} SEC report
+                    </a>
+                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    <a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company2.data.company_name}-${company2.year}.html" target="_blank">
+                        ${company2.companyName} ${company2.year} SEC report
+                    </a>
+                </div>
+            `;
+            const sourceContainer = document.getElementById('sourceContainer');
+            if (sourceContainer) {
+                sourceContainer.innerHTML = sourceHtml;
+            }
         }
 
         // Initialize dashboard when page loads

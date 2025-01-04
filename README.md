@@ -120,7 +120,7 @@ particular company and year.
 
 ## Webpages for Display of Retail data
 
-There are two main data displays for the current 
+There are two main web page displays for the data and analyses.
 
 ### Side By Side Company 
 

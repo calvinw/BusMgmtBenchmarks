@@ -156,7 +156,7 @@ language model calls to assist in identifying the approprate fields from the
 
 ### Add Calculated Fields
 
-Next the script `add_calculated_fields.py`, adds the ratios, CAGR, and all the
+Next the script `create_financial_data.py`, adds the ratios, CAGR, and all the
 calculated fields.
 
 >python3 create_financial_data.py extracted_financial_data.csv financial_data.csv

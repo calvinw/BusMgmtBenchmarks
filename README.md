@@ -202,6 +202,5 @@ To create the retail index report for the subsegments, run this:
 python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
 ```
 
-This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file.
-
+This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file. 
 

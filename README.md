@@ -64,7 +64,7 @@ Currently companies belong to one category only.
 
 ### Important Topics and Files 
 
-#### `CIK.csv`
+#### [CIK.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/CIK.csv)
 
 This is a csv file that contains the names of the companies we use and the CIK
 identifiers for the companies. The CIK is a unique official identifier that
@@ -74,7 +74,7 @@ You can look these up at the SEC website.
 Also included are choices for segments and (optional) subsegments designations
 for each company. Currently only the Specialty segment has subsegments. 
 
-#### Extracted Financial Data (`extracted_financial_data.csv`) 
+#### Extracted Financial Data ([extracted_financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extracted_financial_data.csv)) 
 
 This is the complete raw list of extracted financial data. Each line in the
 data is the following data for a `company_name` and a particular `year`. (2019
@@ -95,7 +95,7 @@ to 2024 currently)
 Data is collected from company 10-K reports to create this file. The process is
 described in the extract folders readme called `extract/README.md`
 
-#### Financial Data (`financial_data.csv`) 
+#### Financial Data ([financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/financial_data.csv)) 
 
 This file (created by a python script as described below) adds  the following
 calculated fields to the extracted data above. Same as the extracted data this
@@ -161,7 +161,7 @@ calculated fields.
 
 >python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
 
-The output of this is the `financial_data.csv`
+The output of this is the [financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/financial_data.csv)
 
 ### Yearly Benchmark Report  
 
@@ -170,7 +170,7 @@ to the `create_benchmarks.py` script.
 
 >python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 
 
-This creates the `benchmarks_2024.csv` file.
+This creates the [benchmarks_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/benchmarks_2024.csv) file.
 
 ### Retail Index Report - Segments (Yearly)
 
@@ -178,7 +178,7 @@ To create the retial index report for the segments, run this:
 
 >python3 create_segment_analysis.py benchmarks_2024.csv segment_analysis_2024.csv
 
-This creates the `segment_analysis_2024.csv` file.
+This creates the [segment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/segment_analysis_2024.csv) file.
 
 ### Retail Index Report - Subsegments (Yearly) 
 
@@ -186,6 +186,6 @@ To create the retail index report for the subsegments, run this:
 
 >python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
 
-This creates the `subsegment_analysis_2024.csv` file.
+This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file.
 
 

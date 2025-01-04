@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Add Calculated Fields (creates financial_data.csv)
-
-python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
-
 # Yearly Benchmark Report (creates benchmarks_2024.csv) 
 
 python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 

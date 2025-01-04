@@ -29,7 +29,7 @@ def create_historical_data(input_file, cik_file, output_file):
         # Read the main financial data
         df = pd.read_csv(input_file)
         
-        # Read CIK data
+        # Read CIK data with segments and subsegments
         cik_df = pd.read_csv(cik_file)
         
         # Get 2024 data first (base data)
@@ -60,14 +60,16 @@ def create_historical_data(input_file, cik_file, output_file):
             axis=1
         )
         
-        # Merge with CIK data
+        # Merge with CIK data including segments and subsegments
         df_final = pd.merge(df_2024, cik_df, on='company_name', how='left')
         
-        # Create the desired column order
+        # Create the desired column order with year before CIK and new segment columns after
         cols = [
             'company_name',
-            'cik',
             'year',
+            'cik',
+            'segment',
+            'subsegment',
             'Net Revenue',
             'Net Revenue 2023',
             'Net Revenue 2022',
@@ -100,6 +102,9 @@ def create_historical_data(input_file, cik_file, output_file):
         df_final['3-Year CAGR %'] = df_final['3-Year CAGR %'].round(1)
         df_final['YoY Growth %'] = df_final['YoY Growth %'].round(1)
         
+        # Fill NaN values in subsegment with empty string to match source data format
+        df_final['subsegment'] = df_final['subsegment'].fillna('')
+        
         # Save to CSV
         df_final.to_csv(output_file, index=False)
         
@@ -107,17 +112,15 @@ def create_historical_data(input_file, cik_file, output_file):
         print(f"Output saved to: {output_file}")
         print("\nColumn order (first few columns):")
         print("1. company_name")
-        print("2. cik")
-        print("3. year")
-        print("4. Net Revenue (2024)")
-        print("5. Net Revenue 2023")
-        print("6. Net Revenue 2022")
-        print("7. Net Revenue 2021")
+        print("2. year")
+        print("3. cik")
+        print("4. segment")
+        print("5. subsegment")
+        print("6. Net Revenue (2024)")
+        print("7. Net Revenue 2023")
+        print("8. Net Revenue 2022")
+        print("9. Net Revenue 2021")
         print("...")
-        print("19. Liabilities")
-        print("20. 3-Year CAGR %")
-        print("21. YoY Growth %")
-        print("22. Cost of Goods Percentage")
             
     except pd.errors.EmptyDataError:
         print("Error: One of the input files is empty")
@@ -131,26 +134,26 @@ def create_historical_data(input_file, cik_file, output_file):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Create historical financial data file with growth metrics',
+        description='Create benchmarks file with growth metrics, segments, and subsegments',
         formatter_class=argparse.RawTextHelpFormatter
     )
     
     parser.add_argument(
         '-i', '--input',
         required=True,
-        help='Path to financial data CSV file'
+        help='Path to financial data CSV file (default: financial_data.csv)'
     )
     
     parser.add_argument(
         '-c', '--cik',
         required=True,
-        help='Path to CIK CSV file'
+        help='Path to CIK CSV file (CIK.csv)'
     )
     
     parser.add_argument(
         '-o', '--output',
-        default='financial_data_historical.csv',
-        help='Path to output CSV file (default: financial_data_historical.csv)'
+        default='benchmarks.csv',
+        help='Path to output CSV file (default: benchmarks.csv)'
     )
 
     args = parser.parse_args()

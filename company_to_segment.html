@@ -109,9 +109,9 @@
             try {
                 // Load local CSV files
                 const [companyResponse, segmentResponse, subsegmentResponse] = await Promise.all([
-                    fetch('benchmarks_structured.csv'),
-                    fetch('segment_analysis_output.csv'),
-                    fetch('subsegment_analysis_output.csv')
+                    fetch('benchmarks_2024.csv'),
+                    fetch('segment_analysis_2024.csv'),
+                    fetch('subsegment_analysis_2024.csv')
                 ]);
                 
                 const companyText = await companyResponse.text();

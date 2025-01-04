@@ -126,13 +126,13 @@ There are two main data displays for the current
 
 This web page shows the data for two companies side by side. You can pick two companies and the year to display side by side:
 
-[Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company-side-by-side-analysis.html)
+[Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html)
 
 ### Side By Side Company and Segment
 
 This web page shows the data for companies against the segment or subsegment they belong to. The purpose of this page is to compare a company to a segment to see how it is doing: 
 
-[Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/category-preformance.html)
+[Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_segment.html)
 
 ### SEC Filings Display
 
@@ -159,33 +159,33 @@ language model calls to assist in identifying the approprate fields from the
 Next the script `add_calculated_fields.py`, adds the ratios, CAGR, and all the
 calculated fields.
 
->python3 add_calculated_financial_data.py extracted_financial_data.csv financial_data.csv
+>python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
 
 The output of this is the `financial_data.csv`
 
 ### Yearly Benchmark Report  
 
 To create the yearly benchmark file pass in the `financial_data.csv` and the `CIK.csv` files
-to the `create_benchmarks_earnings.py` script.
+to the `create_benchmarks.py` script.
 
->python3 create_benchmark_earnings.py -i financial_data.csv -c CIK.csv -o benchmarks_structured.csv 
+>python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 
 
-This creates the `benchmarks_structured.csv` file.
+This creates the `benchmarks_2024.csv` file.
 
 ### Retail Index Report - Segments (Yearly)
 
 To create the retial index report for the segments, run this:
 
->python3 segment_aggregation.py benchmarks_structured.csv segment_analysis_output.csv
+>python3 create_segment_analysis.py benchmarks_2024.csv segment_analysis_2024.csv
 
-This creates the `segment_analysis_output.csv` file.
+This creates the `segment_analysis_2024.csv` file.
 
 ### Retail Index Report - Subsegments (Yearly) 
 
 To create the retail index report for the subsegments, run this:
 
->python3 subsegment_aggregation.py benchmarks_structured.csv segment_analysis_output.csv
+>python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
 
-This creates the `subsegment_analysis_output.csv` file.
+This creates the `subsegment_analysis_2024.csv` file.
 
 

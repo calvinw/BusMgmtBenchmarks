@@ -167,7 +167,9 @@ language model calls to assist in identifying the approprate fields from the
 Next the script `create_financial_data.py`, adds the ratios, CAGR, and all the
 calculated fields.
 
->python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
+```bash
+python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
+```
 
 The output of this is the [financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/financial_data.csv)
 
@@ -176,7 +178,9 @@ The output of this is the [financial_data.csv](https://github.com/calvinw/BusMgm
 To create the yearly benchmark file pass in the `financial_data.csv` and the `CIK.csv` files
 to the `create_benchmarks.py` script.
 
->python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 
+```bash
+python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 
+```
 
 This creates the [benchmarks_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/benchmarks_2024.csv) file.
 
@@ -184,7 +188,9 @@ This creates the [benchmarks_2024.csv](https://github.com/calvinw/BusMgmtBenchma
 
 To create the retial index report for the segments, run this:
 
->python3 create_segment_analysis.py benchmarks_2024.csv segment_analysis_2024.csv
+```bash
+python3 create_segment_analysis.py benchmarks_2024.csv segment_analysis_2024.csv
+```
 
 This creates the [segment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/segment_analysis_2024.csv) file.
 
@@ -192,7 +198,9 @@ This creates the [segment_analysis_2024.csv](https://github.com/calvinw/BusMgmtB
 
 To create the retail index report for the subsegments, run this:
 
->python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
+```bash
+python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
+```
 
 This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file.
 

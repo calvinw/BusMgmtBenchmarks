@@ -136,7 +136,15 @@ This web page shows the data for companies against the segment or subsegment the
 
 ### SEC Filings Display
 
-[ Need Details for this ]
+At the bottom of the [Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html) page are links to copies of the official SEC webpage for the income and balance statements for the companies and years indicated. These may be of interest to see more details about the company or to further check the data. 
+
+Here is an example of those displays:
+
+- [Costco 2024 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/costco-2024.html)
+
+- [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/costco-2022.html)
+
+These webpages are pulled directly from the submitted html pages of the public 10-k filings of the companies with the SEC and are not changed in any way from that filing. They are just provided here for convenience and further reference. 
 
 ## Downloadable Files
 

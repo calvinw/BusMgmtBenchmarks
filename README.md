@@ -204,3 +204,9 @@ python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_20
 
 This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file. 
 
+## Data Collection (Extraction) Techniques
+
+Please see the README.md in the extract folder [extract/README.md](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/README.md) for the details of how the extraction process and scripts work. An expository example is given here: 
+
+[Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://github.com/calvinw/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
+

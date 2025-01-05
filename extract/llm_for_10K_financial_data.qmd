@@ -1,0 +1,275 @@
+---
+title: Using Large Language Models to Identify Financial Concepts from 10-K Reports
+format:
+  html:
+    page-layout: full 
+---
+
+See [here](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb) for a colab notebook version of this document.
+
+In this notebook we give the idea behind the extraction technique we use to get
+financial facts from  annual 10-K reports. The main idea involves calling an
+LLM with a version of the income statement and the balance sheet from a 10-K
+annual report and asking it to identify some financial concepts we are
+interested in.
+
+We will use the amazingly useful
+[edgartools](https://github.com/dgunning/edgartools) package for filtering and
+finding the SEC 10-K filings for our companies. 
+
+For each of our companies we are interested in identifying these concepts from
+company 10-K reports:
+
+- Net Revenue
+- Cost of Goods
+- SG&A
+- Operating Profit
+- Net Profit
+- Inventory
+- Current Assets
+- Total Assets
+- Current Liabilities
+- Total Shareholder Equity
+- Total Liabilities and Shareholder Equity
+
+The reason we want to do this is so that we can build a tool that will allow
+you to easily compare these values for different companies and for companies
+and segments they belong to.
+
+We will find the latest 10-K by using the
+[edgartools](https://github.com/dgunning/edgartools) package. The code behind
+the library is a very efficient API front end for queries to the SEC edgar REST
+api.  
+
+Of course once you have a mapping of the labels in the report to the standard
+gaap attributes taxonomy for the company you are interested in you could look
+the facts labeled with those attribute names on subsequent reports from the
+same company. We dont illustrate that but it makes sense if you need  want to
+optimize looking up this information for multiple years for the same company
+and speed and if LLM costs are an issue.
+
+Our dataset is so small and the LLM costs are minimal for what we want so we
+dont pursue that kind of optimization.
+
+
+```{python}
+#| eval: false 
+!pip install edgartools
+!pip install openai
+!pip install python-dotenv 
+```
+
+```{python}
+#| eval: true
+#| echo: false 
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+## Using Edgartools to Load the 10K for a Company
+
+```{python}
+from edgar import set_identity, Company
+import pandas as pd
+
+# Set identity
+set_identity("Calvin Williamson calvin_williamson@fitnyc.edu")
+
+# Use the CIK for walmart
+cik = "0000104169"  
+
+# Get the company object using the CIK
+company = Company(cik)
+
+# Fetch the 10-K filings
+filings = company.get_filings(form="10-K")
+
+# Just get the latest 10-K
+filing = filings[0]
+walmart = filing.obj()
+```
+
+## Getting the Income Statement and the Balance Sheet as Dataframe 
+
+This gets the latest income statement as a dataframe. Since the first column is
+labels, the data we want is usually in the second column so we use iloc to drop
+all but the first and second column. The rest of the columns usually have past
+2 years before the current year so people can compare, but we dont need to pass
+those columns to the LLM so we drop them here
+
+```{python}
+income_df = walmart.income_statement.to_dataframe()
+income_df = income_df.iloc[:, :1]
+print(income_df)
+```
+
+This gets the latest balance statement as a dataframe. Again we just keep the
+labels and the first column that has the data we want in it
+
+```{python}
+balance_df = walmart.balance_sheet.to_dataframe()
+balance_df = balance_df.iloc[:, :1]
+print(balance_df)
+```
+
+## Compare to SEC Filing Web Page
+
+You can compare these to a copy of the report filed by the company with the
+SEC. The following html is included in company's official report to the SEC and
+we just reproduce it here so you can compare. Every 10-K has this kind of html
+page and its any easy reference for seeing if we pulled the right values.
+
+```{python}
+from IPython.display import IFrame
+
+IFrame(src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html", width=900, height=900)
+```
+
+## Convert the Dataframes to Markdown to Prepare for LLM Call 
+
+We convert the data froms to markdown tables to prepare to send them to an LLM
+
+Here is the income statement as markdown:
+
+```{python}
+income_markdown_table = income_df.to_markdown(index=True, floatfmt=".0f")
+print(income_markdown_table)
+```
+
+And the balance sheet as markdown:
+
+```{python}
+balance_markdown_table = balance_df.to_markdown(index=True, floatfmt=".0f")
+print(balance_markdown_table)
+```
+
+## Prepare a Prompt for Passing the Income Statement and Balance Sheet 
+
+Now we prepare a prompt to send both the income and balance sheets to the LLM
+and ask it to find some financial concepts for us. There are many variations 
+of this process, you could also give common terms that you would find these
+concepts labeled as, or could include the us_gaap taxonomy names for some
+of the concepts as well.
+
+The dataframes above actually are indexed with the gaap or other attribute
+name that corresponds to each of the quantities above.
+
+We just rely on the LLM recognizing the concept from the labels in the first
+column of the income statement and the balance report.
+
+```{python}
+prompt = f"""Below is a list of financial concepts related to the income sheet
+part of a 10-K report. Find the following financial concepts and values for the
+latest year.
+
+<concepts>
+Net Revenue
+Cost of Goods
+SG&A
+Operating Profit
+Net Profit
+Inventory
+Current Assets
+Total Assets
+Current Liabilities
+Total Shareholder Equity
+Total Liabilities and Shareholder Equity
+</concepts>
+
+Here is the income statement:
+
+<income_statement>
+{income_markdown_table}
+</income_statement>
+
+Here is the balance sheet is:
+
+<balance_sheet>
+{balance_markdown_table}
+</balance_sheet>
+
+Please return the values found as strings in a json format as follows. Make
+sure to provide a number for every concept. Respond only with with the
+following format, no other commentary or discussion
+
+Example Response Format:
+```json
+{{
+    "Net Revenue": << the value found >>,
+    "Cost of Goods": << the value found >> 
+    "SG&A": << the value found >>,
+    "Operating Profit": << the value found >>,
+    "Net Profit": << the value found >>,
+    "Inventory": << the value found >>,
+    "Current Assets": << the value found >>,
+    "Total Assets": << the value found >>,
+    "Current Liabilities": << the value found >>,
+    "Total Shareholder Equity": << the value found >>,
+    "Total Liabilities and Shareholder Equity": << the value found >>
+}}
+```"""
+```
+
+Lets take a look at the prompt before we send it:
+
+```{python}
+#| eval: false 
+print(prompt)
+```
+
+## Pass the Prompt to an Large Language Model
+
+We use openai compatible call to OpenRouter but you could use any openai
+compatible api and key. A good one at the time of writing this is DeepSeek V3,
+but many models would work well here. I believe many of the lightweight 8B
+models would work. Gemini Flash 1.5 or 2.0, gpt-4o-mini. Im sure there are many
+of the more inexpensive models would work fine.
+
+### Put Your OPENROUTER_API_KEY here
+
+Or use whatever openai compatible key you like.
+
+```{python}
+#| eval: false
+#| code-fold: true
+import os
+os.environ["OPENROUTER_API_KEY"] = "paste_your_api_key_here"
+```
+
+Now we call the api. You can use in openai compatible base_url and api_key. 
+We use DeepSeek V3 but many models would work.
+
+```{python}
+from openai import OpenAI
+import os
+
+try:
+    client = OpenAI(
+      base_url="https://openrouter.ai/api/v1",
+      api_key=os.getenv("OPENROUTER_API_KEY")
+    )
+    response = client.chat.completions.create(
+        model = "deepseek/deepseek-chat",
+        messages=[
+            {"role": "system", "content": "You are a financial document expert assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.0  # Using 0 temperature for more consistent responses
+    )
+    llm_response_content = response.choices[0].message.content
+
+except Exception as e:
+    print(f"Error occurred: {str(e)}")
+
+print("The LLMs response")
+print(llm_response_content)
+```
+
+## Check the Response from the LLM 
+
+We could use structred output or json output checking here as well, but we do not show the details of that.
+
+```{python}
+print("The income statement again so you can check the LLM response: ")
+print(income_df)
+```

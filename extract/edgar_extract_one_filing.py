@@ -69,20 +69,23 @@ Here is the balance sheet is:
 {balance_sheet_markdown}
 </balance_sheet>
 
+Please return the values found in a json format as follows. Make sure to provide a number for every concept. 
+Resond only with with the following format, no other commentary or discussion
+
 Response format:
 ```json
 {{
-    "Net Revenue": {{ "value": 1250000000, "label": "Total net revenue" }}, 
-    "Cost of Goods": {{ "value": 750000000, "label": "Cost of goods sold" }},
-    "SG&A": {{ "value": 200000000, "label": "Selling, general and administrative expenses" }},
-    "Operating Profit": {{ "value": 300000000, "label": "Operating income" }},
-    "Net Profit": {{ "value": 225000000, "label": "Net income" }},
-    "Inventory": {{ "value": 180000000, "label": "Inventories, net" }},
-    "Current Assets": {{ "value": 850000000, "label": "Total current assets" }},
-    "Total Assets": {{ "value": 2100000000, "label": "Total assets" }},
-    "Current Liabilities": {{ "value": 450000000, "label": "Total current liabilities" }},
-    "Total Shareholder Equity": {{ "value": 1200000000, "label": "Total shareholders' equity" }},
-    "Total Liabilities and Shareholder Equity": {{ "value": 2100000000, "label": "Total liabilities and shareholders' equity" }}
+    "Net Revenue": "1250000000",
+    "Cost of Goods": "750000000",
+    "SG&A": "200000000",
+    "Operating Profit": "300000000",
+    "Net Profit": "225000000",
+    "Inventory": "180000000",
+    "Current Assets": "850000000",
+    "Total Assets": "2100000000",
+    "Current Liabilities": "450000000",
+    "Total Shareholder Equity": "1200000000",
+    "Total Liabilities and Shareholder Equity": "2100000000"
 }}
 ```
 """
@@ -100,9 +103,11 @@ def call_llm(prompt):
         )
         response = client.chat.completions.create(
                 # model="openai/gpt-4o-mini",
-                # model="google/openai/gpt-4o-mini",
-                model="google/gemini-flash-1.5",
-                # model = "deepseek/deepseek-chat",
+                # model="mistralai/ministral-8b",
+                # model="google/gemini-flash-1.5",
+                # model = "amazon/nova-micro-v1",
+                # model ="meta-llama/llama-3.2-1b-instruct",
+                model = "deepseek/deepseek-chat",
                 messages=[
                     {"role": "system", "content": "You are a financial document expert assistant."},
                     {"role": "user", "content": prompt}
@@ -111,8 +116,8 @@ def call_llm(prompt):
             )
 
         response = response.choices[0].message.content
-        # print(f"actual response")
-        # print(response)
+        print(f"actual response")
+        print(response)
 
         json_response = remove_json_code_block(response)
 
@@ -132,11 +137,6 @@ def process_filing(company_name: str, filing) -> Optional[Dict[str, str]]:
     Returns:
         Dict containing financial data or None if processing fails
     """
-    # Randomly fail 1 out of 5 times
-    # if random.randint(1, 5) == 1:
-    #     print("Random failure processing {company_name} filing {filing.accession_number}")
-    #     return None
-
     company = filing.obj()
 
     income_df = company.income_statement.to_dataframe()
@@ -154,43 +154,16 @@ def process_filing(company_name: str, filing) -> Optional[Dict[str, str]]:
     
     # Convert JSON string to Python dictionary
     import json
-    llm_response = json.loads(llm_response_str)
 
+    # print(llm_response_str)
+    data= json.loads(llm_response_str)
 
-    # data = {
-    #     "Net Revenue": 1000000000,
-    #     "Cost of Goods": 600000000,
-    #     "SG&A": 200000000,
-    #     "Operating Profit": 200000000,
-    #     "Net Profit": 150000000,
-    #     "Inventory": 300000000,
-    #     "Current Assets": 500000000,
-    #     "Total Assets": 2000000000,
-    #     "Current Liabilities": 400000000,
-    #     "Total Shareholder Equity": 1200000000, 
-    #     "Total Liabilities and Shareholder Equity": 2000000000
-    # }
-    # return dummy_data
-
-    data = {
-        "Net Revenue": llm_response["Net Revenue"]["value"],
-        "Cost of Goods": llm_response["Cost of Goods"]["value"],
-        "SG&A": llm_response["SG&A"]["value"],
-        "Operating Profit": llm_response["Operating Profit"]["value"],
-        "Net Profit": llm_response["Net Profit"]["value"],
-        "Inventory": llm_response["Inventory"]["value"],
-        "Current Assets": llm_response["Current Assets"]["value"],
-        "Total Assets": llm_response["Total Assets"]["value"],
-        "Current Liabilities": llm_response["Current Liabilities"]["value"],
-        "Total Shareholder Equity": llm_response["Total Shareholder Equity"]["value"],
-        "Total Liabilities and Shareholder Equity": llm_response["Total Liabilities and Shareholder Equity"]["value"]
-    }
 
     print(f"company: {company_name}")
     print(f"Filing: {filing.accession_number}, Date: {filing.filing_date}, Form: {filing.form}")
     print("")
-    print(f"LLM Response: company: {company_name}, date: {filing.filing_date}")
-    print(json.dumps(data, indent=2))
+    # print(f"LLM Response: company: {company_name}, date: {filing.filing_date}")
+    # print(json.dumps(data, indent=2))
     print("")
     print(f"Income statement: {company_name}, date: {filing.filing_date}")
     print(income_markdown_table)

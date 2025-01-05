@@ -60,20 +60,23 @@ dont pursue that kind of optimization.
 ```
 
 ```{python}
-#| eval: true
 #| echo: false 
+#| output: false
 from dotenv import load_dotenv
 load_dotenv()
 ```
 
 ## Using Edgartools to Load the 10K for a Company
 
+You must set your name and company email address in order for edgartools to access
+the SEC edgar website
+
 ```{python}
 from edgar import set_identity, Company
 import pandas as pd
 
 # Set identity
-set_identity("Calvin Williamson calvin_williamson@fitnyc.edu")
+set_identity("your_name company_email.com")
 
 # Use the CIK for walmart
 cik = "0000104169"  
@@ -213,7 +216,6 @@ Example Response Format:
 Lets take a look at the prompt before we send it:
 
 ```{python}
-#| eval: false 
 print(prompt)
 ```
 
@@ -231,7 +233,6 @@ Or use whatever openai compatible key you like.
 
 ```{python}
 #| eval: false
-#| code-fold: true
 import os
 os.environ["OPENROUTER_API_KEY"] = "paste_your_api_key_here"
 ```

@@ -126,267 +126,448 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install edgartools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install openai</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install python<span class="op">-</span>dotenv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="using-edgartools-to-load-the-10k-for-a-company" class="level2">
-<h2 class="anchored" data-anchor-id="using-edgartools-to-load-the-10k-for-a-company">Using Edgartools to Load the 10K for a Company</h2>
-<p>You must set your name and company email address in order for edgartools to access the SEC edgar website</p>
+<p>Do some imports and set the display to print out just 10 rows of dataframes.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> edgar <span class="im">import</span> set_identity, Company</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set identity</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>set_identity(<span class="st">"YourName YourCompanyEmailAddress"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the CIK for walmart</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cik <span class="op">=</span> <span class="st">"0000104169"</span>  </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the company object using the CIK</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>company <span class="op">=</span> Company(cik)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the 10-K filings</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>filings <span class="op">=</span> company.get_filings(form<span class="op">=</span><span class="st">"10-K"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Just get the latest 10-K</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>filing <span class="op">=</span> filings[<span class="dv">0</span>]</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>walmart <span class="op">=</span> filing.obj()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="using-edgartools-to-load-the-10k-for-a-company" class="level2">
+<h2 class="anchored" data-anchor-id="using-edgartools-to-load-the-10k-for-a-company">Using Edgartools to Load the 10K for a Company</h2>
+<p>You must set your email address in order for edgartools to access the SEC edgar website. Change “YourEmailAddress” below to be your email address.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set identity</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>set_identity(<span class="st">"YourEmailAddress"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we use the CIK to download the latest 10K for the company. You can find the CIKs for companies that are American filing at the SEC website.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the CIK for lululemon </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cik <span class="op">=</span> <span class="st">"1397187"</span>  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the company object using the CIK</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>company <span class="op">=</span> Company(cik)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the 10-K filings</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>filings <span class="op">=</span> company.get_filings(form<span class="op">=</span><span class="st">"10-K"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Just get the latest 10-K</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>filing <span class="op">=</span> filings[<span class="dv">0</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>filing_obj <span class="op">=</span> filing.obj()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="getting-the-income-statement-and-the-balance-sheet-as-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-income-statement-and-the-balance-sheet-as-dataframe">Getting the Income Statement and the Balance Sheet as Dataframe</h2>
-<p>This gets the latest income statement as a dataframe. Since the first column is labels, the data we want is usually in the second column so we use iloc to drop all but the first and second column. The rest of the columns usually have past 2 years before the current year so people can compare, but we dont need to pass those columns to the LLM so we drop them here</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> walmart.income_statement.to_dataframe()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> income_df.iloc[:, :<span class="dv">1</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                                                             2024
-label                                                            
-Net sales                                            642637000000
-Membership and other income                            5488000000
-Total revenues                                       648125000000
-Cost of sales                                       -490142000000
-Operating, selling, general and administrative ...  -130971000000
-Operating income                                      27012000000
-Debt                                                  -2259000000
-Finance lease                                          -424000000
-Interest income                                         546000000
-Interest, net                                         -2137000000
-Loss on extinguishment of debt                                 -0
-Other (gains) and losses                              -3027000000
-Income before income taxes                            21848000000
-Provision for income taxes                            -5578000000
-Consolidated net income                               16270000000
-Consolidated net (income) loss attributable to ...     -759000000
-Consolidated net income attributable to Walmart       15511000000
-Basic net income per common share attributable ...           1.92
-Diluted net income per common share attributabl...           1.91
-Basic (in shares)                                      8077000000
-Diluted (in shares)                                    8108000000
-Dividends declared per common share (in USD per...           0.76</code></pre>
+<p>First we get the income statement as a dataframe.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> filing_obj.income_statement.to_dataframe()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>income_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">2024</th>
+<th data-quarto-table-cell-role="th">2023</th>
+<th data-quarto-table-cell-role="th">2022</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Net revenue</td>
+<td>9619278000</td>
+<td>8110518000</td>
+<td>6256617000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Cost of goods sold</td>
+<td>-4009873000</td>
+<td>-3618178000</td>
+<td>-2648052000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Gross profit</td>
+<td>5609405000</td>
+<td>4492340000</td>
+<td>3608565000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Selling, general and administrative expenses</td>
+<td>-3397218000</td>
+<td>-2757447000</td>
+<td>-2225034000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Impairment of goodwill and other assets, restructuring costs</td>
+<td>74501000</td>
+<td>407913000</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Comprehensive income</td>
+<td>1538518000</td>
+<td>798133000</td>
+<td>956560000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Basic earnings per share (in dollars per share)</td>
+<td>12.23</td>
+<td>6.70</td>
+<td>7.52</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Diluted earnings per share (in dollars per share)</td>
+<td>12.20</td>
+<td>6.68</td>
+<td>7.49</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Basic weighted-average number of shares outstanding (in shares)</td>
+<td>126726000</td>
+<td>127666000</td>
+<td>129768000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Diluted weighted-average number of shares outstanding (in shares)</td>
+<td>127060000</td>
+<td>128017000</td>
+<td>130295000</td>
+</tr>
+</tbody>
+</table>
+
+<p>21 rows × 3 columns</p>
 </div>
 </div>
-<p>This gets the latest balance statement as a dataframe. Again we just keep the labels and the first column that has the data we want in it</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> walmart.balance_sheet.to_dataframe()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> balance_df.iloc[:, :<span class="dv">1</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                                                            2024
-label                                                           
-Cash and cash equivalents                             9900000000
-Receivables, net                                      8796000000
-Inventories                                          54892000000
-Prepaid expenses and other                            3322000000
-Total current assets                                 76877000000
-Property and equipment, net                         110810000000
-Operating lease right-of-use assets                  13673000000
-Finance lease right-of-use assets, net                5855000000
-Goodwill                                             28113000000
-Other long-term assets                               17071000000
-Total assets                                        252399000000
-Short-term borrowings                                  900000000
-Accounts payable                                     56812000000
-Accrued liabilities                                  28759000000
-Accrued income taxes                                   307000000
-Long-term debt due within one year                    3447000000
-Operating lease obligations due within one year       1487000000
-Finance lease obligations due within one year          725000000
-Total current liabilities                            92415000000
-Long-term debt                                       36132000000
-Long-term operating lease obligations                12943000000
-Long-term finance lease obligations                   5709000000
-Deferred income taxes and other                      14629000000
-Commitments and contingencies                                   
-Redeemable noncontrolling interest                     222000000
-Common stock                                           805000000
-Capital in excess of par value                        4544000000
-Retained earnings                                    89814000000
-Accumulated other comprehensive loss                -11302000000
-Total Walmart shareholders' equity                   83861000000
-Noncontrolling interest                               6488000000
-Total equity                                         90349000000
-Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
+</div>
+<p>You can see that the current year is in one column and the previous years after that.</p>
+<p>The labels are not a separate column, they are actually “indices” to the rows, so the data we want is in the first column (with index=0). So we can drop the columns after that since we only need the current year data. We use <code>iloc</code> to do that as follows:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> income_df.iloc[:, :<span class="dv">1</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>income_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">2024</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Net revenue</td>
+<td>9619278000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Cost of goods sold</td>
+<td>-4009873000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Gross profit</td>
+<td>5609405000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Selling, general and administrative expenses</td>
+<td>-3397218000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Impairment of goodwill and other assets, restructuring costs</td>
+<td>74501000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Comprehensive income</td>
+<td>1538518000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Basic earnings per share (in dollars per share)</td>
+<td>12.23</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Diluted earnings per share (in dollars per share)</td>
+<td>12.20</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Basic weighted-average number of shares outstanding (in shares)</td>
+<td>126726000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Diluted weighted-average number of shares outstanding (in shares)</td>
+<td>127060000</td>
+</tr>
+</tbody>
+</table>
+
+<p>21 rows × 1 columns</p>
+</div>
+</div>
+</div>
+<p>Now we have our labels and the column of data from 2024, the latest in this case.</p>
+<p>This will be cleaner for sending to the LLM, it doesnt need the older years data</p>
+<p>Next we get the balance sheet as a dataframe. Again we just keep the labels and the first column that has the data we want in it</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> filing_obj.balance_sheet.to_dataframe()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> balance_df.iloc[:, :<span class="dv">1</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>balance_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">2024</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">label</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Cash and cash equivalents</td>
+<td>2243971000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Accounts receivable, net</td>
+<td>124769000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Inventories</td>
+<td>1323602000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prepaid and receivable income taxes</td>
+<td>183733000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Prepaid expenses and other current assets</td>
+<td>184502000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Additional paid-in capital</td>
+<td>575369000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Retained earnings</td>
+<td>3920362000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Accumulated other comprehensive loss</td>
+<td>-264256000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Total stockholders' equity</td>
+<td>4232081000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Total liabilities and stockholders' equity</td>
+<td>7091941000</td>
+</tr>
+</tbody>
+</table>
+
+<p>36 rows × 1 columns</p>
+</div>
 </div>
 </div>
 </section>
 <section id="compare-to-sec-filing-web-page" class="level2">
 <h2 class="anchored" data-anchor-id="compare-to-sec-filing-web-page">Compare to SEC Filing Web Page</h2>
 <p>You can compare these to a copy of the report filed by the company with the SEC. The following html is included in company’s official report to the SEC and we just reproduce it here so you can compare. Every 10-K has this kind of html page and its any easy reference for seeing if we pulled the right values.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>IFrame(src<span class="op">=</span><span class="st">"https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html"</span>, width<span class="op">=</span><span class="dv">900</span>, height<span class="op">=</span><span class="dv">900</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>IFrame(src<span class="op">=</span><span class="st">"https://calvinw.github.io/BusMgmtBenchmarks/extract/html/lululemon-2024.html"</span>, width<span class="op">=</span><span class="dv">900</span>, height<span class="op">=</span><span class="dv">900</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 
-        <iframe width="900" height="900" src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="900" height="900" src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/lululemon-2024.html" frameborder="0" allowfullscreen=""></iframe>
         
 </div>
 </div>
 </section>
 <section id="convert-the-dataframes-to-markdown-to-prepare-for-llm-call" class="level2">
 <h2 class="anchored" data-anchor-id="convert-the-dataframes-to-markdown-to-prepare-for-llm-call">Convert the Dataframes to Markdown to Prepare for LLM Call</h2>
-<p>We convert the data froms to markdown tables to prepare to send them to an LLM</p>
+<p>We convert the dataframes to markdown tables to prepare to send them to an LLM</p>
+<p>We use the <code>to_markdown</code> method of the dataframe.</p>
 <p>Here is the income statement as markdown:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>income_markdown_table <span class="op">=</span> income_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>income_markdown_table <span class="op">=</span> income_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>| label                                                                          |          2024 |
-|:-------------------------------------------------------------------------------|--------------:|
-| Net sales                                                                      |  642637000000 |
-| Membership and other income                                                    |    5488000000 |
-| Total revenues                                                                 |  648125000000 |
-| Cost of sales                                                                  | -490142000000 |
-| Operating, selling, general and administrative expenses                        | -130971000000 |
-| Operating income                                                               |   27012000000 |
-| Debt                                                                           |   -2259000000 |
-| Finance lease                                                                  |    -424000000 |
-| Interest income                                                                |     546000000 |
-| Interest, net                                                                  |   -2137000000 |
-| Loss on extinguishment of debt                                                 |            -0 |
-| Other (gains) and losses                                                       |   -3027000000 |
-| Income before income taxes                                                     |   21848000000 |
-| Provision for income taxes                                                     |   -5578000000 |
-| Consolidated net income                                                        |   16270000000 |
-| Consolidated net (income) loss attributable to noncontrolling interest         |    -759000000 |
-| Consolidated net income attributable to Walmart                                |   15511000000 |
-| Basic net income per common share attributable to Walmart (in USD per share)   |             2 |
-| Diluted net income per common share attributable to Walmart (in USD per share) |             2 |
-| Basic (in shares)                                                              |    8077000000 |
-| Diluted (in shares)                                                            |    8108000000 |
-| Dividends declared per common share (in USD per share)                         |             1 |</code></pre>
+<pre><code>| label                                                             |        2024 |
+|:------------------------------------------------------------------|------------:|
+| Net revenue                                                       |  9619278000 |
+| Cost of goods sold                                                | -4009873000 |
+| Gross profit                                                      |  5609405000 |
+| Selling, general and administrative expenses                      | -3397218000 |
+| Impairment of goodwill and other assets, restructuring costs      |    74501000 |
+| Amortization of intangible assets                                 |    -5000000 |
+| Acquisition-related expenses                                      |          -0 |
+| Gain on disposal of assets                                        |          -0 |
+| Income from operations                                            |  2132676000 |
+| Other income (expense), net                                       |    43059000 |
+| Income before income tax expense                                  |  2175735000 |
+| Income tax expense                                                |  -625545000 |
+| Net income                                                        |  1550190000 |
+| Foreign currency translation adjustment                           |   -23077000 |
+| Net investment hedge gains (losses)                               |    11405000 |
+| Other comprehensive income (loss), net of tax                     |   -11672000 |
+| Comprehensive income                                              |  1538518000 |
+| Basic earnings per share (in dollars per share)                   |          12 |
+| Diluted earnings per share (in dollars per share)                 |          12 |
+| Basic weighted-average number of shares outstanding (in shares)   |   126726000 |
+| Diluted weighted-average number of shares outstanding (in shares) |   127060000 |</code></pre>
 </div>
 </div>
 <p>And the balance sheet as markdown:</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>balance_markdown_table <span class="op">=</span> balance_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>balance_markdown_table <span class="op">=</span> balance_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>| label                                                             | 2024         |
-|:------------------------------------------------------------------|:-------------|
-| Cash and cash equivalents                                         | 9900000000   |
-| Receivables, net                                                  | 8796000000   |
-| Inventories                                                       | 54892000000  |
-| Prepaid expenses and other                                        | 3322000000   |
-| Total current assets                                              | 76877000000  |
-| Property and equipment, net                                       | 110810000000 |
-| Operating lease right-of-use assets                               | 13673000000  |
-| Finance lease right-of-use assets, net                            | 5855000000   |
-| Goodwill                                                          | 28113000000  |
-| Other long-term assets                                            | 17071000000  |
-| Total assets                                                      | 252399000000 |
-| Short-term borrowings                                             | 900000000    |
-| Accounts payable                                                  | 56812000000  |
-| Accrued liabilities                                               | 28759000000  |
-| Accrued income taxes                                              | 307000000    |
-| Long-term debt due within one year                                | 3447000000   |
-| Operating lease obligations due within one year                   | 1487000000   |
-| Finance lease obligations due within one year                     | 725000000    |
-| Total current liabilities                                         | 92415000000  |
-| Long-term debt                                                    | 36132000000  |
-| Long-term operating lease obligations                             | 12943000000  |
-| Long-term finance lease obligations                               | 5709000000   |
-| Deferred income taxes and other                                   | 14629000000  |
-| Commitments and contingencies                                     |              |
-| Redeemable noncontrolling interest                                | 222000000    |
-| Common stock                                                      | 805000000    |
-| Capital in excess of par value                                    | 4544000000   |
-| Retained earnings                                                 | 89814000000  |
-| Accumulated other comprehensive loss                              | -11302000000 |
-| Total Walmart shareholders' equity                                | 83861000000  |
-| Noncontrolling interest                                           | 6488000000   |
-| Total equity                                                      | 90349000000  |
-| Total liabilities, redeemable noncontrolling interest, and equity | 252399000000 |</code></pre>
+<pre><code>| label                                                                                                       | 2024       |
+|:------------------------------------------------------------------------------------------------------------|:-----------|
+| Cash and cash equivalents                                                                                   | 2243971000 |
+| Accounts receivable, net                                                                                    | 124769000  |
+| Inventories                                                                                                 | 1323602000 |
+| Prepaid and receivable income taxes                                                                         | 183733000  |
+| Prepaid expenses and other current assets                                                                   | 184502000  |
+| Total current assets                                                                                        | 4060577000 |
+| Property and equipment, net                                                                                 | 1545811000 |
+| Right-of-use lease assets                                                                                   | 1265610000 |
+| Goodwill                                                                                                    | 24083000   |
+| Intangible assets, net                                                                                      | 0          |
+| Deferred income tax assets                                                                                  | 9176000    |
+| Other non-current assets                                                                                    | 186684000  |
+| Total assets                                                                                                | 7091941000 |
+| Accounts payable                                                                                            | 348441000  |
+| Accrued liabilities and other                                                                               | 348555000  |
+| Accrued compensation and related expenses                                                                   | 326110000  |
+| Current lease liabilities                                                                                   | 249270000  |
+| Current income taxes payable                                                                                | 12098000   |
+| Unredeemed gift card liability                                                                              | 306479000  |
+| Other current liabilities                                                                                   | 40308000   |
+| Total current liabilities                                                                                   | 1631261000 |
+| Non-current lease liabilities                                                                               | 1154012000 |
+| Non-current income taxes payable                                                                            | 15864000   |
+| Deferred income tax liabilities                                                                             | 29522000   |
+| Other non-current liabilities                                                                               | 29201000   |
+| Total liabilities                                                                                           | 2859860000 |
+| Commitments and contingencies                                                                               |            |
+| Undesignated preferred stock, $0.01 par value: 5,000 shares authorized; none issued and outstanding         | 0          |
+| Exchangeable stock, no par value: 60,000&nbsp;shares authorized; 5,116 and 5,116 issued and outstanding          | 0          |
+| Special voting stock, $0.000005&nbsp;par value: 60,000&nbsp;shares authorized; 5,116 and 5,116 issued and outstanding | 0          |
+| Common stock, $0.005&nbsp;par value: 400,000&nbsp;shares authorized; 121,106 and 122,205 issued and outstanding       | 606000     |
+| Additional paid-in capital                                                                                  | 575369000  |
+| Retained earnings                                                                                           | 3920362000 |
+| Accumulated other comprehensive loss                                                                        | -264256000 |
+| Total stockholders' equity                                                                                  | 4232081000 |
+| Total liabilities and stockholders' equity                                                                  | 7091941000 |</code></pre>
 </div>
 </div>
 </section>
 <section id="prepare-a-prompt-for-passing-the-income-statement-and-balance-sheet" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-a-prompt-for-passing-the-income-statement-and-balance-sheet">Prepare a Prompt for Passing the Income Statement and Balance Sheet</h2>
 <p>Now we prepare a prompt to send both the income and balance sheets to the LLM and ask it to find some financial concepts for us. There are many variations of this process, you could also give common terms that you would find these concepts labeled as, or could include the us_gaap taxonomy names for some of the concepts as well.</p>
-<p>The dataframes above actually are indexed with the gaap or other attribute name that corresponds to each of the quantities above.</p>
+<p>In the <code>edgartools</code> versions of the the dataframes above there are ways of getting the gaap attributes that the labels corresponds to for each of the rows. One could pass those the to LLM as well, to help it identify the financial concepts that you want, but we dont show that here.</p>
 <p>We just rely on the LLM recognizing the concept from the labels in the first column of the income statement and the balance report.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"""Below is a list of financial concepts related to the income sheet</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ss">part of a 10-K report. Find the following financial concepts and values for the</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ss">latest year.</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;concepts&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Revenue</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">Cost of Goods</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ss">SG&amp;A</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Operating Profit</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Profit</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">Inventory</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Assets</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Assets</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Liabilities</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Shareholder Equity</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Liabilities and Shareholder Equity</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/concepts&gt;</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the income statement:</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;income_statement&gt;</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>income_markdown_table<span class="sc">}</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/income_statement&gt;</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the balance sheet is:</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;balance_sheet&gt;</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>balance_markdown_table<span class="sc">}</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/balance_sheet&gt;</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="ss">Please return the values found as strings in a json format as follows. Make</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="ss">sure to provide a number for every concept. Respond only with with the</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ss">following format, no other commentary or discussion</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="ss">Example Response Format:</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="ss">```json</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="ch">{{</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Revenue": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Cost of Goods": &lt;&lt; the value found &gt;&gt; </span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="ss">    "SG&amp;A": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Operating Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Inventory": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Liabilities": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Shareholder Equity": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Liabilities and Shareholder Equity": &lt;&lt; the value found &gt;&gt;</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ch">}}</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ss">```"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s our prompt with our list of concepts and template variables for the income statement and the balance sheet. This f-string will get filled in with those.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"""Below is a list of financial concepts (given inside the &lt;concepts&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ss">tags) to be found in the income statement and the balance sheet of a companies</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">10-K report. </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;concepts&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Revenue</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">Cost of Goods</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ss">SG&amp;A</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Operating Profit</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Profit</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ss">Inventory</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Assets</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Assets</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Liabilities</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Shareholder Equity</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Liabilities and Shareholder Equity</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/concepts&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Find the concepts and their values in the income statement or the balance</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="ss">sheet that follow. </span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="ss">The income statement is enclosed in  &lt;income_statment&gt; tags. </span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="ss">The balance sheet is enclosed in &lt;balance_sheet&gt; tags.</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the income statement:</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;income_statement&gt;</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>income_markdown_table<span class="sc">}</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/income_statement&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the balance sheet:</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;balance_sheet&gt;</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>balance_markdown_table<span class="sc">}</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/balance_sheet&gt;</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="ss">Please return the values found as strings in a json format as follows. Make</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="ss">sure to provide a number for every concept. Respond only with with the</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="ss">following format, no other commentary or discussion</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="ss">The Response Format:</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="ss">```json</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="ch">{{</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Revenue": &lt;value&gt;,</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Cost of Goods": &lt;value&gt;, </span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    "SG&amp;A":  &lt;value&gt;,</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Operating Profit": &lt;value&gt;,</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Profit": &lt;value&gt;,</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Inventory": &lt;value&gt;,</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Assets": &lt;value&gt;,</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Assets": &lt;value&gt;,</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Liabilities": &lt;value&gt;,</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Shareholder Equity": &lt;value&gt;,</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Liabilities and Shareholder Equity": &lt;value&gt;</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="ch">}}</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="ss">```"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets take a look at the prompt before we send it:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Below is a list of financial concepts related to the income sheet
-part of a 10-K report. Find the following financial concepts and values for the
-latest year.
+<pre><code>Below is a list of financial concepts (given inside the &lt;concepts&gt;
+tags) to be found in the income statement and the balance sheet of a companies
+10-K report. 
 
 &lt;concepts&gt;
 Net Revenue
@@ -402,93 +583,101 @@ Total Shareholder Equity
 Total Liabilities and Shareholder Equity
 &lt;/concepts&gt;
 
+Find the concepts and their values in the income statement or the balance
+sheet that follow. 
+
+The income statement is enclosed in  &lt;income_statment&gt; tags. 
+The balance sheet is enclosed in &lt;balance_sheet&gt; tags.
+
 Here is the income statement:
 
 &lt;income_statement&gt;
-| label                                                                          |          2024 |
-|:-------------------------------------------------------------------------------|--------------:|
-| Net sales                                                                      |  642637000000 |
-| Membership and other income                                                    |    5488000000 |
-| Total revenues                                                                 |  648125000000 |
-| Cost of sales                                                                  | -490142000000 |
-| Operating, selling, general and administrative expenses                        | -130971000000 |
-| Operating income                                                               |   27012000000 |
-| Debt                                                                           |   -2259000000 |
-| Finance lease                                                                  |    -424000000 |
-| Interest income                                                                |     546000000 |
-| Interest, net                                                                  |   -2137000000 |
-| Loss on extinguishment of debt                                                 |            -0 |
-| Other (gains) and losses                                                       |   -3027000000 |
-| Income before income taxes                                                     |   21848000000 |
-| Provision for income taxes                                                     |   -5578000000 |
-| Consolidated net income                                                        |   16270000000 |
-| Consolidated net (income) loss attributable to noncontrolling interest         |    -759000000 |
-| Consolidated net income attributable to Walmart                                |   15511000000 |
-| Basic net income per common share attributable to Walmart (in USD per share)   |             2 |
-| Diluted net income per common share attributable to Walmart (in USD per share) |             2 |
-| Basic (in shares)                                                              |    8077000000 |
-| Diluted (in shares)                                                            |    8108000000 |
-| Dividends declared per common share (in USD per share)                         |             1 |
+| label                                                             |        2024 |
+|:------------------------------------------------------------------|------------:|
+| Net revenue                                                       |  9619278000 |
+| Cost of goods sold                                                | -4009873000 |
+| Gross profit                                                      |  5609405000 |
+| Selling, general and administrative expenses                      | -3397218000 |
+| Impairment of goodwill and other assets, restructuring costs      |    74501000 |
+| Amortization of intangible assets                                 |    -5000000 |
+| Acquisition-related expenses                                      |          -0 |
+| Gain on disposal of assets                                        |          -0 |
+| Income from operations                                            |  2132676000 |
+| Other income (expense), net                                       |    43059000 |
+| Income before income tax expense                                  |  2175735000 |
+| Income tax expense                                                |  -625545000 |
+| Net income                                                        |  1550190000 |
+| Foreign currency translation adjustment                           |   -23077000 |
+| Net investment hedge gains (losses)                               |    11405000 |
+| Other comprehensive income (loss), net of tax                     |   -11672000 |
+| Comprehensive income                                              |  1538518000 |
+| Basic earnings per share (in dollars per share)                   |          12 |
+| Diluted earnings per share (in dollars per share)                 |          12 |
+| Basic weighted-average number of shares outstanding (in shares)   |   126726000 |
+| Diluted weighted-average number of shares outstanding (in shares) |   127060000 |
 &lt;/income_statement&gt;
 
-Here is the balance sheet is:
+Here is the balance sheet:
 
 &lt;balance_sheet&gt;
-| label                                                             | 2024         |
-|:------------------------------------------------------------------|:-------------|
-| Cash and cash equivalents                                         | 9900000000   |
-| Receivables, net                                                  | 8796000000   |
-| Inventories                                                       | 54892000000  |
-| Prepaid expenses and other                                        | 3322000000   |
-| Total current assets                                              | 76877000000  |
-| Property and equipment, net                                       | 110810000000 |
-| Operating lease right-of-use assets                               | 13673000000  |
-| Finance lease right-of-use assets, net                            | 5855000000   |
-| Goodwill                                                          | 28113000000  |
-| Other long-term assets                                            | 17071000000  |
-| Total assets                                                      | 252399000000 |
-| Short-term borrowings                                             | 900000000    |
-| Accounts payable                                                  | 56812000000  |
-| Accrued liabilities                                               | 28759000000  |
-| Accrued income taxes                                              | 307000000    |
-| Long-term debt due within one year                                | 3447000000   |
-| Operating lease obligations due within one year                   | 1487000000   |
-| Finance lease obligations due within one year                     | 725000000    |
-| Total current liabilities                                         | 92415000000  |
-| Long-term debt                                                    | 36132000000  |
-| Long-term operating lease obligations                             | 12943000000  |
-| Long-term finance lease obligations                               | 5709000000   |
-| Deferred income taxes and other                                   | 14629000000  |
-| Commitments and contingencies                                     |              |
-| Redeemable noncontrolling interest                                | 222000000    |
-| Common stock                                                      | 805000000    |
-| Capital in excess of par value                                    | 4544000000   |
-| Retained earnings                                                 | 89814000000  |
-| Accumulated other comprehensive loss                              | -11302000000 |
-| Total Walmart shareholders' equity                                | 83861000000  |
-| Noncontrolling interest                                           | 6488000000   |
-| Total equity                                                      | 90349000000  |
-| Total liabilities, redeemable noncontrolling interest, and equity | 252399000000 |
+| label                                                                                                       | 2024       |
+|:------------------------------------------------------------------------------------------------------------|:-----------|
+| Cash and cash equivalents                                                                                   | 2243971000 |
+| Accounts receivable, net                                                                                    | 124769000  |
+| Inventories                                                                                                 | 1323602000 |
+| Prepaid and receivable income taxes                                                                         | 183733000  |
+| Prepaid expenses and other current assets                                                                   | 184502000  |
+| Total current assets                                                                                        | 4060577000 |
+| Property and equipment, net                                                                                 | 1545811000 |
+| Right-of-use lease assets                                                                                   | 1265610000 |
+| Goodwill                                                                                                    | 24083000   |
+| Intangible assets, net                                                                                      | 0          |
+| Deferred income tax assets                                                                                  | 9176000    |
+| Other non-current assets                                                                                    | 186684000  |
+| Total assets                                                                                                | 7091941000 |
+| Accounts payable                                                                                            | 348441000  |
+| Accrued liabilities and other                                                                               | 348555000  |
+| Accrued compensation and related expenses                                                                   | 326110000  |
+| Current lease liabilities                                                                                   | 249270000  |
+| Current income taxes payable                                                                                | 12098000   |
+| Unredeemed gift card liability                                                                              | 306479000  |
+| Other current liabilities                                                                                   | 40308000   |
+| Total current liabilities                                                                                   | 1631261000 |
+| Non-current lease liabilities                                                                               | 1154012000 |
+| Non-current income taxes payable                                                                            | 15864000   |
+| Deferred income tax liabilities                                                                             | 29522000   |
+| Other non-current liabilities                                                                               | 29201000   |
+| Total liabilities                                                                                           | 2859860000 |
+| Commitments and contingencies                                                                               |            |
+| Undesignated preferred stock, $0.01 par value: 5,000 shares authorized; none issued and outstanding         | 0          |
+| Exchangeable stock, no par value: 60,000&nbsp;shares authorized; 5,116 and 5,116 issued and outstanding          | 0          |
+| Special voting stock, $0.000005&nbsp;par value: 60,000&nbsp;shares authorized; 5,116 and 5,116 issued and outstanding | 0          |
+| Common stock, $0.005&nbsp;par value: 400,000&nbsp;shares authorized; 121,106 and 122,205 issued and outstanding       | 606000     |
+| Additional paid-in capital                                                                                  | 575369000  |
+| Retained earnings                                                                                           | 3920362000 |
+| Accumulated other comprehensive loss                                                                        | -264256000 |
+| Total stockholders' equity                                                                                  | 4232081000 |
+| Total liabilities and stockholders' equity                                                                  | 7091941000 |
 &lt;/balance_sheet&gt;
 
 Please return the values found as strings in a json format as follows. Make
 sure to provide a number for every concept. Respond only with with the
 following format, no other commentary or discussion
 
-Example Response Format:
+The Response Format:
 ```json
 {
-    "Net Revenue": &lt;&lt; the value found &gt;&gt;,
-    "Cost of Goods": &lt;&lt; the value found &gt;&gt; 
-    "SG&amp;A": &lt;&lt; the value found &gt;&gt;,
-    "Operating Profit": &lt;&lt; the value found &gt;&gt;,
-    "Net Profit": &lt;&lt; the value found &gt;&gt;,
-    "Inventory": &lt;&lt; the value found &gt;&gt;,
-    "Current Assets": &lt;&lt; the value found &gt;&gt;,
-    "Total Assets": &lt;&lt; the value found &gt;&gt;,
-    "Current Liabilities": &lt;&lt; the value found &gt;&gt;,
-    "Total Shareholder Equity": &lt;&lt; the value found &gt;&gt;,
-    "Total Liabilities and Shareholder Equity": &lt;&lt; the value found &gt;&gt;
+    "Net Revenue": &lt;value&gt;,
+    "Cost of Goods": &lt;value&gt;, 
+    "SG&amp;A":  &lt;value&gt;,
+    "Operating Profit": &lt;value&gt;,
+    "Net Profit": &lt;value&gt;,
+    "Inventory": &lt;value&gt;,
+    "Current Assets": &lt;value&gt;,
+    "Total Assets": &lt;value&gt;,
+    "Current Liabilities": &lt;value&gt;,
+    "Total Shareholder Equity": &lt;value&gt;,
+    "Total Liabilities and Shareholder Equity": &lt;value&gt;
 }
 ```</code></pre>
 </div>
@@ -496,54 +685,55 @@ Example Response Format:
 </section>
 <section id="pass-the-prompt-to-an-large-language-model" class="level2">
 <h2 class="anchored" data-anchor-id="pass-the-prompt-to-an-large-language-model">Pass the Prompt to an Large Language Model</h2>
-<p>We use openai compatible call to OpenRouter but you could use any openai compatible api and key. A good one at the time of writing this is DeepSeek V3, but many models would work well here. I believe many of the lightweight 8B models would work. Gemini Flash 1.5 or 2.0, gpt-4o-mini. Im sure there are many of the more inexpensive models would work fine.</p>
-<section id="put-your-openrouter_api_key-here" class="level3">
-<h3 class="anchored" data-anchor-id="put-your-openrouter_api_key-here">Put Your OPENROUTER_API_KEY here</h3>
-<p>Or use whatever openai compatible key you like.</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>] <span class="op">=</span> <span class="st">"paste_your_api_key_here"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use openai compatible call to OpenRouter but you could use any openai compatible api and key. A good model at the time of writing is DeepSeek-V3, but many models would work well here. I believe many of the lightweight 8B models would work. Gemini Flash 1.5 or 2.0, gpt-4o-mini all work great. Im sure there are many of the more inexpensive models that would work as well.</p>
+<section id="set-up-your-llm-provider" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-your-llm-provider">Set Up Your LLM Provider</h3>
+<p>Paste in the key to your LLM provider as appropriate. You should change the base_url and the environment variable to be appropriate for your situation.</p>
+<p>As long as the api you are using is openai compatible you should be fine.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>] <span class="op">=</span> <span class="st">"paste_your_api_key_here"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we call the api. You can use in openai compatible base_url and api_key. We use DeepSeek V3 but many models would work.</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    client <span class="op">=</span> OpenAI(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      api_key<span class="op">=</span>os.getenv(<span class="st">"OPENROUTER_API_KEY"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> <span class="st">"deepseek/deepseek-chat"</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a financial document expert assistant."</span>},</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.0</span>  <span class="co"># Using 0 temperature for more consistent responses</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    llm_response_content <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Error occurred: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The LLMs response"</span>)</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(llm_response_content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we call the api. Fix the base_url and api_key. We use DeepSeek V3 but many models would work.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    client <span class="op">=</span> OpenAI(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      api_key<span class="op">=</span>os.getenv(<span class="st">"OPENROUTER_API_KEY"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> <span class="st">"deepseek/deepseek-chat"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a financial document expert assistant."</span>},</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.0</span>  <span class="co"># Using 0 temperature for more consistent responses</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    llm_response_content <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Error occurred: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The LLMs response"</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(llm_response_content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The LLMs response
 ```json
 {
-    "Net Revenue": "648125000000",
-    "Cost of Goods": "490142000000",
-    "SG&amp;A": "130971000000",
-    "Operating Profit": "27012000000",
-    "Net Profit": "15511000000",
-    "Inventory": "54892000000",
-    "Current Assets": "76877000000",
-    "Total Assets": "252399000000",
-    "Current Liabilities": "92415000000",
-    "Total Shareholder Equity": "90349000000",
-    "Total Liabilities and Shareholder Equity": "252399000000"
+    "Net Revenue": "9619278000",
+    "Cost of Goods": "4009873000", 
+    "SG&amp;A":  "3397218000",
+    "Operating Profit": "2132676000",
+    "Net Profit": "1550190000",
+    "Inventory": "1323602000",
+    "Current Assets": "4060577000",
+    "Total Assets": "7091941000",
+    "Current Liabilities": "1631261000",
+    "Total Shareholder Equity": "4232081000",
+    "Total Liabilities and Shareholder Equity": "7091941000"
 }
 ```</code></pre>
 </div>
@@ -553,35 +743,34 @@ Example Response Format:
 <section id="check-the-response-from-the-llm" class="level2">
 <h2 class="anchored" data-anchor-id="check-the-response-from-the-llm">Check the Response from the LLM</h2>
 <p>We could use structred output or json output checking here as well, but we do not show the details of that.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The income statement again so you can check the LLM response: "</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The income statement again so you can check some of the LLM response: "</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The income statement again so you can check the LLM response: 
-                                                             2024
-label                                                            
-Net sales                                            642637000000
-Membership and other income                            5488000000
-Total revenues                                       648125000000
-Cost of sales                                       -490142000000
-Operating, selling, general and administrative ...  -130971000000
-Operating income                                      27012000000
-Debt                                                  -2259000000
-Finance lease                                          -424000000
-Interest income                                         546000000
-Interest, net                                         -2137000000
-Loss on extinguishment of debt                                 -0
-Other (gains) and losses                              -3027000000
-Income before income taxes                            21848000000
-Provision for income taxes                            -5578000000
-Consolidated net income                               16270000000
-Consolidated net (income) loss attributable to ...     -759000000
-Consolidated net income attributable to Walmart       15511000000
-Basic net income per common share attributable ...           1.92
-Diluted net income per common share attributabl...           1.91
-Basic (in shares)                                      8077000000
-Diluted (in shares)                                    8108000000
-Dividends declared per common share (in USD per...           0.76</code></pre>
+<pre><code>The income statement again so you can check some of the LLM response: 
+| label                                                             |        2024 |
+|:------------------------------------------------------------------|------------:|
+| Net revenue                                                       |  9619278000 |
+| Cost of goods sold                                                | -4009873000 |
+| Gross profit                                                      |  5609405000 |
+| Selling, general and administrative expenses                      | -3397218000 |
+| Impairment of goodwill and other assets, restructuring costs      |    74501000 |
+| Amortization of intangible assets                                 |    -5000000 |
+| Acquisition-related expenses                                      |          -0 |
+| Gain on disposal of assets                                        |          -0 |
+| Income from operations                                            |  2132676000 |
+| Other income (expense), net                                       |    43059000 |
+| Income before income tax expense                                  |  2175735000 |
+| Income tax expense                                                |  -625545000 |
+| Net income                                                        |  1550190000 |
+| Foreign currency translation adjustment                           |   -23077000 |
+| Net investment hedge gains (losses)                               |    11405000 |
+| Other comprehensive income (loss), net of tax                     |   -11672000 |
+| Comprehensive income                                              |  1538518000 |
+| Basic earnings per share (in dollars per share)                   |          12 |
+| Diluted earnings per share (in dollars per share)                 |          12 |
+| Basic weighted-average number of shares outstanding (in shares)   |   126726000 |
+| Diluted weighted-average number of shares outstanding (in shares) |   127060000 |</code></pre>
 </div>
 </div>
 </section>

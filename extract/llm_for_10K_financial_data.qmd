@@ -58,30 +58,43 @@ dont pursue that kind of optimization.
 #| eval: false 
 !pip install edgartools
 !pip install openai
-!pip install python-dotenv 
+!pip install pandas
 ```
 
 ```{python}
 #| echo: false 
 #| output: false
 from dotenv import load_dotenv
+import os
 load_dotenv()
+os.environ['EDGAR_IDENTITY'] = "Calvin Williamson calvin_williamson@fitnyc.edu"
 ```
-
-## Using Edgartools to Load the 10K for a Company
-
-You must set your name and company email address in order for edgartools to access
-the SEC edgar website
+Do some imports and set the display to print out just 10 rows of dataframes. 
 
 ```{python}
 from edgar import set_identity, Company
 import pandas as pd
+pd.set_option('display.max_rows', 10)
+```
 
+## Using Edgartools to Load the 10K for a Company
+
+You must set your email address in order for edgartools to access the SEC edgar website.
+Change "YourEmailAddress" below to be your email address.
+
+```{python}
+#| eval: false 
 # Set identity
-set_identity("Calvin Williamson calvin_williamson@fitnyc.edu")
+set_identity("YourEmailAddress")
+```
 
-# Use the CIK for walmart
-cik = "0000104169"  
+Next we use the CIK to download the latest 10K for the company. You can find
+the CIKs for companies that are American filing at the SEC website.
+
+
+```{python}
+# Use the CIK for lululemon 
+cik = "1397187"  
 
 # Get the company object using the CIK
 company = Company(cik)
@@ -91,30 +104,41 @@ filings = company.get_filings(form="10-K")
 
 # Just get the latest 10-K
 filing = filings[0]
-walmart = filing.obj()
+filing_obj = filing.obj()
 ```
 
 ## Getting the Income Statement and the Balance Sheet as Dataframe 
 
-This gets the latest income statement as a dataframe. Since the first column is
-labels, the data we want is usually in the second column so we use iloc to drop
-all but the first and second column. The rest of the columns usually have past
-2 years before the current year so people can compare, but we dont need to pass
-those columns to the LLM so we drop them here
+First we get the income statement as a dataframe. 
 
 ```{python}
-income_df = walmart.income_statement.to_dataframe()
-income_df = income_df.iloc[:, :1]
-print(income_df)
+income_df = filing_obj.income_statement.to_dataframe()
+income_df
 ```
 
-This gets the latest balance statement as a dataframe. Again we just keep the
-labels and the first column that has the data we want in it
+You can see that the current year is in one column and the previous years after that.
+
+The labels are not a separate column, they are actually "indices" to the rows,
+so the data we want is in the first column (with index=0). So we can drop the
+columns after that since we only need the current year data. We use `iloc` to
+do that as follows:
 
 ```{python}
-balance_df = walmart.balance_sheet.to_dataframe()
+income_df = income_df.iloc[:, :1]
+income_df
+```
+
+Now we have our labels and the column of data from 2024, the latest in this case.
+
+This will be cleaner for sending to the LLM, it doesnt need the older years data
+
+Next we get the balance sheet as a dataframe. Again we just keep the labels and
+the first column that has the data we want in it
+
+```{python}
+balance_df = filing_obj.balance_sheet.to_dataframe()
 balance_df = balance_df.iloc[:, :1]
-print(balance_df)
+balance_df
 ```
 
 ## Compare to SEC Filing Web Page
@@ -127,12 +151,14 @@ page and its any easy reference for seeing if we pulled the right values.
 ```{python}
 from IPython.display import IFrame
 
-IFrame(src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html", width=900, height=900)
+IFrame(src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/lululemon-2024.html", width=900, height=900)
 ```
 
 ## Convert the Dataframes to Markdown to Prepare for LLM Call 
 
-We convert the data froms to markdown tables to prepare to send them to an LLM
+We convert the dataframes to markdown tables to prepare to send them to an LLM
+
+We use the `to_markdown` method of the dataframe.
 
 Here is the income statement as markdown:
 
@@ -151,21 +177,27 @@ print(balance_markdown_table)
 ## Prepare a Prompt for Passing the Income Statement and Balance Sheet 
 
 Now we prepare a prompt to send both the income and balance sheets to the LLM
-and ask it to find some financial concepts for us. There are many variations 
-of this process, you could also give common terms that you would find these
-concepts labeled as, or could include the us_gaap taxonomy names for some
-of the concepts as well.
+and ask it to find some financial concepts for us. There are many variations of
+this process, you could also give common terms that you would find these
+concepts labeled as, or could include the us_gaap taxonomy names for some of
+the concepts as well.
 
-The dataframes above actually are indexed with the gaap or other attribute
-name that corresponds to each of the quantities above.
+In the `edgartools` versions of the the dataframes above there are ways of
+getting the gaap attributes that the labels corresponds to for each of the
+rows. One could pass those the to LLM as well, to help it identify the
+financial concepts that you want, but we dont show that here.
 
 We just rely on the LLM recognizing the concept from the labels in the first
 column of the income statement and the balance report.
 
+Here's our prompt with our list of concepts and template variables for the
+income statement and the balance sheet. This f-string will get filled in with
+those.
+
 ```{python}
-prompt = f"""Below is a list of financial concepts related to the income sheet
-part of a 10-K report. Find the following financial concepts and values for the
-latest year.
+prompt = f"""Below is a list of financial concepts (given inside the <concepts>
+tags) to be found in the income statement and the balance sheet of a companies
+10-K report. 
 
 <concepts>
 Net Revenue
@@ -181,13 +213,19 @@ Total Shareholder Equity
 Total Liabilities and Shareholder Equity
 </concepts>
 
+Find the concepts and their values in the income statement or the balance
+sheet that follow. 
+
+The income statement is enclosed in  <income_statment> tags. 
+The balance sheet is enclosed in <balance_sheet> tags.
+
 Here is the income statement:
 
 <income_statement>
 {income_markdown_table}
 </income_statement>
 
-Here is the balance sheet is:
+Here is the balance sheet:
 
 <balance_sheet>
 {balance_markdown_table}
@@ -197,20 +235,20 @@ Please return the values found as strings in a json format as follows. Make
 sure to provide a number for every concept. Respond only with with the
 following format, no other commentary or discussion
 
-Example Response Format:
+The Response Format:
 ```json
 {{
-    "Net Revenue": << the value found >>,
-    "Cost of Goods": << the value found >> 
-    "SG&A": << the value found >>,
-    "Operating Profit": << the value found >>,
-    "Net Profit": << the value found >>,
-    "Inventory": << the value found >>,
-    "Current Assets": << the value found >>,
-    "Total Assets": << the value found >>,
-    "Current Liabilities": << the value found >>,
-    "Total Shareholder Equity": << the value found >>,
-    "Total Liabilities and Shareholder Equity": << the value found >>
+    "Net Revenue": <value>,
+    "Cost of Goods": <value>, 
+    "SG&A":  <value>,
+    "Operating Profit": <value>,
+    "Net Profit": <value>,
+    "Inventory": <value>,
+    "Current Assets": <value>,
+    "Total Assets": <value>,
+    "Current Liabilities": <value>,
+    "Total Shareholder Equity": <value>,
+    "Total Liabilities and Shareholder Equity": <value>
 }}
 ```"""
 ```
@@ -224,14 +262,17 @@ print(prompt)
 ## Pass the Prompt to an Large Language Model
 
 We use openai compatible call to OpenRouter but you could use any openai
-compatible api and key. A good one at the time of writing this is DeepSeek V3,
-but many models would work well here. I believe many of the lightweight 8B
-models would work. Gemini Flash 1.5 or 2.0, gpt-4o-mini. Im sure there are many
-of the more inexpensive models would work fine.
+compatible api and key. A good model at the time of writing is DeepSeek-V3, but
+many models would work well here. I believe many of the lightweight 8B models
+would work. Gemini Flash 1.5 or 2.0, gpt-4o-mini all work great. Im sure there
+are many of the more inexpensive models that would work as well.
 
-### Put Your OPENROUTER_API_KEY here
+### Set Up Your LLM Provider 
 
-Or use whatever openai compatible key you like.
+Paste in the key to your LLM provider as appropriate. You should change the
+base_url and the environment variable to be appropriate for your situation.
+
+As long as the api you are using is openai compatible you should be fine.
 
 ```{python}
 #| eval: false
@@ -239,7 +280,7 @@ import os
 os.environ["OPENROUTER_API_KEY"] = "paste_your_api_key_here"
 ```
 
-Now we call the api. You can use in openai compatible base_url and api_key. 
+Now we call the api. Fix the base_url and api_key. 
 We use DeepSeek V3 but many models would work.
 
 ```{python}
@@ -270,9 +311,10 @@ print(llm_response_content)
 
 ## Check the Response from the LLM 
 
-We could use structred output or json output checking here as well, but we do not show the details of that.
+We could use structred output or json output checking here as well, but we do
+not show the details of that.
 
 ```{python}
-print("The income statement again so you can check the LLM response: ")
-print(income_df)
+print("The income statement again so you can check some of the LLM response: ")
+print(income_markdown_table)
 ```

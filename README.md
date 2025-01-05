@@ -210,5 +210,3 @@ Please see the README.md in the extract folder [extract/README.md](https://githu
 
 [Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
 
-
-https://calvinw.github.io/BusMgmtBenchmarks/extract/html/costco-2024.html

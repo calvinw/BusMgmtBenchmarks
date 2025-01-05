@@ -5,7 +5,9 @@ format:
     page-layout: full 
 ---
 
-See [here](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb) for a colab notebook version of this document.
+Open the colab notebook here: 
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb) 
 
 In this notebook we give the idea behind the extraction technique we use to get
 financial facts from  annual 10-K reports. The main idea involves calling an
@@ -76,7 +78,7 @@ from edgar import set_identity, Company
 import pandas as pd
 
 # Set identity
-set_identity("your_name company_email.com")
+set_identity("Calvin Williamson calvin_williamson@fitnyc.edu")
 
 # Use the CIK for walmart
 cik = "0000104169"  

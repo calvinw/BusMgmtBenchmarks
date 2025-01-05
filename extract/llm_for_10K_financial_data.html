@@ -97,7 +97,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>See <a href="https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb">here</a> for a colab notebook version of this document.</p>
+<p>Open the colab notebook here:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">Open In Colab</figcaption>
+</figure>
+</div>
 <p>In this notebook we give the idea behind the extraction technique we use to get financial facts from annual 10-K reports. The main idea involves calling an LLM with a version of the income statement and the balance sheet from a 10-K annual report and asking it to identify some financial concepts we are interested in.</p>
 <p>We will use the amazingly useful <a href="https://github.com/dgunning/edgartools">edgartools</a> package for filtering and finding the SEC 10-K filings for our companies.</p>
 <p>For each of our companies we are interested in identifying these concepts from company 10-K reports:</p>
@@ -123,32 +129,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install openai</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install python<span class="op">-</span>dotenv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
 <section id="using-edgartools-to-load-the-10k-for-a-company" class="level2">
 <h2 class="anchored" data-anchor-id="using-edgartools-to-load-the-10k-for-a-company">Using Edgartools to Load the 10K for a Company</h2>
+<p>You must set your name and company email address in order for edgartools to access the SEC edgar website</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> edgar <span class="im">import</span> set_identity, Company</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set identity</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>set_identity(<span class="st">"Your_name Your company email address"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the CIK for walmart</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>cik <span class="op">=</span> <span class="st">"0000104169"</span>  </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the company object using the CIK</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>company <span class="op">=</span> Company(cik)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the 10-K filings</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>filings <span class="op">=</span> company.get_filings(form<span class="op">=</span><span class="st">"10-K"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Just get the latest 10-K</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>filing <span class="op">=</span> filings[<span class="dv">0</span>]</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>walmart <span class="op">=</span> filing.obj()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> edgar <span class="im">import</span> set_identity, Company</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set identity</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>set_identity(<span class="st">"YourName YourCompanyEmailAddress"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the CIK for walmart</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cik <span class="op">=</span> <span class="st">"0000104169"</span>  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the company object using the CIK</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>company <span class="op">=</span> Company(cik)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the 10-K filings</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>filings <span class="op">=</span> company.get_filings(form<span class="op">=</span><span class="st">"10-K"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Just get the latest 10-K</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>filing <span class="op">=</span> filings[<span class="dv">0</span>]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>walmart <span class="op">=</span> filing.obj()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[23:57:13] </span><span style="color: #000080; text-decoration-color: #000080">INFO    </span> Identity of the Edgar REST client set to <span style="font-weight: bold">[</span>Calvin Williamson                         <a href="file:///home/calvinw/develop/BusMgmtBenchmarks/bus-mgmt-env/lib/python3.11/site-packages/edgar/core.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">core.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///home/calvinw/develop/BusMgmtBenchmarks/bus-mgmt-env/lib/python3.11/site-packages/edgar/core.py#174" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">174</span></a>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         calvin_williamson@fitnyc.edu<span style="font-weight: bold">]</span>                                                       <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">           </span>
-</pre>
 </div>
 </div>
 </section>
@@ -156,9 +159,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="getting-the-income-statement-and-the-balance-sheet-as-dataframe">Getting the Income Statement and the Balance Sheet as Dataframe</h2>
 <p>This gets the latest income statement as a dataframe. Since the first column is labels, the data we want is usually in the second column so we use iloc to drop all but the first and second column. The rest of the columns usually have past 2 years before the current year so people can compare, but we dont need to pass those columns to the LLM so we drop them here</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> walmart.income_statement.to_dataframe()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> income_df.iloc[:, :<span class="dv">1</span>]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> walmart.income_statement.to_dataframe()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> income_df.iloc[:, :<span class="dv">1</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                             2024
 label                                                            
@@ -188,9 +191,9 @@ Dividends declared per common share (in USD per...           0.76</code></pre>
 </div>
 <p>This gets the latest balance statement as a dataframe. Again we just keep the labels and the first column that has the data we want in it</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> walmart.balance_sheet.to_dataframe()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> balance_df.iloc[:, :<span class="dv">1</span>]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> walmart.balance_sheet.to_dataframe()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> balance_df.iloc[:, :<span class="dv">1</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                            2024
 label                                                           
@@ -234,9 +237,9 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
 <h2 class="anchored" data-anchor-id="compare-to-sec-filing-web-page">Compare to SEC Filing Web Page</h2>
 <p>You can compare these to a copy of the report filed by the company with the SEC. The following html is included in company’s official report to the SEC and we just reproduce it here so you can compare. Every 10-K has this kind of html page and its any easy reference for seeing if we pulled the right values.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>IFrame(src<span class="op">=</span><span class="st">"https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html"</span>, width<span class="op">=</span><span class="dv">900</span>, height<span class="op">=</span><span class="dv">900</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>IFrame(src<span class="op">=</span><span class="st">"https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html"</span>, width<span class="op">=</span><span class="dv">900</span>, height<span class="op">=</span><span class="dv">900</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 
         <iframe width="900" height="900" src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/walmart-2024.html" frameborder="0" allowfullscreen=""></iframe>
@@ -249,8 +252,8 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
 <p>We convert the data froms to markdown tables to prepare to send them to an LLM</p>
 <p>Here is the income statement as markdown:</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>income_markdown_table <span class="op">=</span> income_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>income_markdown_table <span class="op">=</span> income_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>| label                                                                          |          2024 |
 |:-------------------------------------------------------------------------------|--------------:|
@@ -280,8 +283,8 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
 </div>
 <p>And the balance sheet as markdown:</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>balance_markdown_table <span class="op">=</span> balance_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>balance_markdown_table <span class="op">=</span> balance_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>| label                                                             | 2024         |
 |:------------------------------------------------------------------|:-------------|
@@ -327,60 +330,169 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
 <p>The dataframes above actually are indexed with the gaap or other attribute name that corresponds to each of the quantities above.</p>
 <p>We just rely on the LLM recognizing the concept from the labels in the first column of the income statement and the balance report.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"""Below is a list of financial concepts related to the income sheet</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ss">part of a 10-K report. Find the following financial concepts and values for the</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">latest year.</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;concepts&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Revenue</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">Cost of Goods</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ss">SG&amp;A</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Operating Profit</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Profit</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ss">Inventory</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Assets</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Assets</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Liabilities</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Shareholder Equity</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Liabilities and Shareholder Equity</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/concepts&gt;</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the income statement:</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;income_statement&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>income_markdown_table<span class="sc">}</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/income_statement&gt;</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the balance sheet is:</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;balance_sheet&gt;</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>balance_markdown_table<span class="sc">}</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/balance_sheet&gt;</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="ss">Please return the values found as strings in a json format as follows. Make</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="ss">sure to provide a number for every concept. Respond only with with the</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="ss">following format, no other commentary or discussion</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="ss">Example Response Format:</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="ss">```json</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="ch">{{</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Revenue": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Cost of Goods": &lt;&lt; the value found &gt;&gt; </span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="ss">    "SG&amp;A": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Operating Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Inventory": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Liabilities": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Shareholder Equity": &lt;&lt; the value found &gt;&gt;,</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Liabilities and Shareholder Equity": &lt;&lt; the value found &gt;&gt;</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="ch">}}</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="ss">```"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"""Below is a list of financial concepts related to the income sheet</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ss">part of a 10-K report. Find the following financial concepts and values for the</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ss">latest year.</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;concepts&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Revenue</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">Cost of Goods</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ss">SG&amp;A</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Operating Profit</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">Net Profit</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">Inventory</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Assets</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Assets</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Current Liabilities</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Shareholder Equity</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">Total Liabilities and Shareholder Equity</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/concepts&gt;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the income statement:</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;income_statement&gt;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>income_markdown_table<span class="sc">}</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/income_statement&gt;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="ss">Here is the balance sheet is:</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;balance_sheet&gt;</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>balance_markdown_table<span class="sc">}</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/balance_sheet&gt;</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="ss">Please return the values found as strings in a json format as follows. Make</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="ss">sure to provide a number for every concept. Respond only with with the</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ss">following format, no other commentary or discussion</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="ss">Example Response Format:</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="ss">```json</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="ch">{{</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Revenue": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Cost of Goods": &lt;&lt; the value found &gt;&gt; </span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="ss">    "SG&amp;A": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Operating Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Net Profit": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Inventory": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Assets": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Current Liabilities": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Shareholder Equity": &lt;&lt; the value found &gt;&gt;,</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    "Total Liabilities and Shareholder Equity": &lt;&lt; the value found &gt;&gt;</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ch">}}</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ss">```"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets take a look at the prompt before we send it:</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Below is a list of financial concepts related to the income sheet
+part of a 10-K report. Find the following financial concepts and values for the
+latest year.
+
+&lt;concepts&gt;
+Net Revenue
+Cost of Goods
+SG&amp;A
+Operating Profit
+Net Profit
+Inventory
+Current Assets
+Total Assets
+Current Liabilities
+Total Shareholder Equity
+Total Liabilities and Shareholder Equity
+&lt;/concepts&gt;
+
+Here is the income statement:
+
+&lt;income_statement&gt;
+| label                                                                          |          2024 |
+|:-------------------------------------------------------------------------------|--------------:|
+| Net sales                                                                      |  642637000000 |
+| Membership and other income                                                    |    5488000000 |
+| Total revenues                                                                 |  648125000000 |
+| Cost of sales                                                                  | -490142000000 |
+| Operating, selling, general and administrative expenses                        | -130971000000 |
+| Operating income                                                               |   27012000000 |
+| Debt                                                                           |   -2259000000 |
+| Finance lease                                                                  |    -424000000 |
+| Interest income                                                                |     546000000 |
+| Interest, net                                                                  |   -2137000000 |
+| Loss on extinguishment of debt                                                 |            -0 |
+| Other (gains) and losses                                                       |   -3027000000 |
+| Income before income taxes                                                     |   21848000000 |
+| Provision for income taxes                                                     |   -5578000000 |
+| Consolidated net income                                                        |   16270000000 |
+| Consolidated net (income) loss attributable to noncontrolling interest         |    -759000000 |
+| Consolidated net income attributable to Walmart                                |   15511000000 |
+| Basic net income per common share attributable to Walmart (in USD per share)   |             2 |
+| Diluted net income per common share attributable to Walmart (in USD per share) |             2 |
+| Basic (in shares)                                                              |    8077000000 |
+| Diluted (in shares)                                                            |    8108000000 |
+| Dividends declared per common share (in USD per share)                         |             1 |
+&lt;/income_statement&gt;
+
+Here is the balance sheet is:
+
+&lt;balance_sheet&gt;
+| label                                                             | 2024         |
+|:------------------------------------------------------------------|:-------------|
+| Cash and cash equivalents                                         | 9900000000   |
+| Receivables, net                                                  | 8796000000   |
+| Inventories                                                       | 54892000000  |
+| Prepaid expenses and other                                        | 3322000000   |
+| Total current assets                                              | 76877000000  |
+| Property and equipment, net                                       | 110810000000 |
+| Operating lease right-of-use assets                               | 13673000000  |
+| Finance lease right-of-use assets, net                            | 5855000000   |
+| Goodwill                                                          | 28113000000  |
+| Other long-term assets                                            | 17071000000  |
+| Total assets                                                      | 252399000000 |
+| Short-term borrowings                                             | 900000000    |
+| Accounts payable                                                  | 56812000000  |
+| Accrued liabilities                                               | 28759000000  |
+| Accrued income taxes                                              | 307000000    |
+| Long-term debt due within one year                                | 3447000000   |
+| Operating lease obligations due within one year                   | 1487000000   |
+| Finance lease obligations due within one year                     | 725000000    |
+| Total current liabilities                                         | 92415000000  |
+| Long-term debt                                                    | 36132000000  |
+| Long-term operating lease obligations                             | 12943000000  |
+| Long-term finance lease obligations                               | 5709000000   |
+| Deferred income taxes and other                                   | 14629000000  |
+| Commitments and contingencies                                     |              |
+| Redeemable noncontrolling interest                                | 222000000    |
+| Common stock                                                      | 805000000    |
+| Capital in excess of par value                                    | 4544000000   |
+| Retained earnings                                                 | 89814000000  |
+| Accumulated other comprehensive loss                              | -11302000000 |
+| Total Walmart shareholders' equity                                | 83861000000  |
+| Noncontrolling interest                                           | 6488000000   |
+| Total equity                                                      | 90349000000  |
+| Total liabilities, redeemable noncontrolling interest, and equity | 252399000000 |
+&lt;/balance_sheet&gt;
+
+Please return the values found as strings in a json format as follows. Make
+sure to provide a number for every concept. Respond only with with the
+following format, no other commentary or discussion
+
+Example Response Format:
+```json
+{
+    "Net Revenue": &lt;&lt; the value found &gt;&gt;,
+    "Cost of Goods": &lt;&lt; the value found &gt;&gt; 
+    "SG&amp;A": &lt;&lt; the value found &gt;&gt;,
+    "Operating Profit": &lt;&lt; the value found &gt;&gt;,
+    "Net Profit": &lt;&lt; the value found &gt;&gt;,
+    "Inventory": &lt;&lt; the value found &gt;&gt;,
+    "Current Assets": &lt;&lt; the value found &gt;&gt;,
+    "Total Assets": &lt;&lt; the value found &gt;&gt;,
+    "Current Liabilities": &lt;&lt; the value found &gt;&gt;,
+    "Total Shareholder Equity": &lt;&lt; the value found &gt;&gt;,
+    "Total Liabilities and Shareholder Equity": &lt;&lt; the value found &gt;&gt;
+}
+```</code></pre>
+</div>
 </div>
 </section>
 <section id="pass-the-prompt-to-an-large-language-model" class="level2">
@@ -390,11 +502,8 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
 <h3 class="anchored" data-anchor-id="put-your-openrouter_api_key-here">Put Your OPENROUTER_API_KEY here</h3>
 <p>Or use whatever openai compatible key you like.</p>
 <div class="cell" data-execution_count="11">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>] <span class="op">=</span> <span class="st">"paste_your_api_key_here"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Now we call the api. You can use in openai compatible base_url and api_key. We use DeepSeek V3 but many models would work.</p>
 <div class="cell" data-execution_count="12">
@@ -434,7 +543,7 @@ Total liabilities, redeemable noncontrolling in...  252399000000</code></pre>
     "Current Assets": "76877000000",
     "Total Assets": "252399000000",
     "Current Liabilities": "92415000000",
-    "Total Shareholder Equity": "83861000000",
+    "Total Shareholder Equity": "90349000000",
     "Total Liabilities and Shareholder Equity": "252399000000"
 }
 ```</code></pre>

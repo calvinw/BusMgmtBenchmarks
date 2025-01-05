@@ -1,7 +1,7 @@
 
 Please refer to the document below for an overview: 
 
-[Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://github.com/calvinw/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
+[Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
 
 [To be Completed description of the scripts that run to extract the data]
 

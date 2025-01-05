@@ -77,7 +77,7 @@ Return just the names of the files on two lines like this:
         # )
         # client = OpenAI(
         #   base_url="https://api.deepseek.com",
-        #   api_key="sk-dedd43a0f726463c9c0b27bbb1b47516",
+        #   api_key= 
         # )
 
 

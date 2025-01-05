@@ -210,5 +210,3 @@ Please see the README.md in the extract folder [extract/README.md](https://githu
 
 [Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calvinw/BusMgmtBenchmarks/blob/main/extract/llm_for_10K_financial_data.ipynb) 
-

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Financial Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Company Financial Data</h1>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Date</th>
+        <th>Period</th>
+        <th>Net Revenue</th>
+        <th>Cost of Goods</th>
+        <th>SG&A</th>
+        <th>Operating Profit</th>
+        <th>Net Profit</th>
+        <th>Inventories</th>
+        <th>Current Assets</th>
+        <th>Total Assets</th>
+        <th>Current Liabilities</th>
+        <th>Shareholder Equity</th>
+        <th>Liabilities & Equity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be populated here by JavaScript -->
+    </tbody>
+  </table>
+
+  <script>
+    // DoltHub API endpoint and SQL query
+    const apiUrl = `https://www.dolthub.com/api/v1alpha1/post-no-preference/earnings/master?q=SELECT%20inc.act_symbol%2C%20inc.date%2C%20inc.period%2C%20inc.sales%20AS%20net_revenue%2C%20inc.cost_of_goods%2C%20inc.selling_administrative_depreciation_amortization_expenses%20AS%20sga%2C%20inc.income_after_depreciation_and_amortization%20AS%20operating_profit%2C%20inc.net_income%20AS%20net_profit%2C%20assets.inventories%2C%20assets.total_current_assets%2C%20assets.total_assets%2C%20liab.total_current_liabilities%2C%20equity.total_equity%20AS%20total_shareholder_equity%2C%20equity.total_liabilities_and_equity%20FROM%20income_statement%20inc%20JOIN%20balance_sheet_assets%20assets%20ON%20inc.act_symbol%20%3D%20assets.act_symbol%20AND%20inc.date%20%3D%20assets.date%20AND%20inc.period%20%3D%20assets.period%20JOIN%20balance_sheet_liabilities%20liab%20ON%20inc.act_symbol%20%3D%20liab.act_symbol%20AND%20inc.date%20%3D%20liab.date%20AND%20inc.period%20%3D%20liab.period%20JOIN%20balance_sheet_equity%20equity%20ON%20inc.act_symbol%20%3D%20equity.act_symbol%20AND%20inc.date%20%3D%20equity.date%20AND%20inc.period%20%3D%20equity.period%20WHERE%20inc.act_symbol%20IN%20(%27WMT%27%2C%20%27TGT%27%2C%20%27DG%27%2C%20%27DLTR%27%2C%20%27FIVE%27%2C%20%27COST%27%2C%20%27BJ%27%2C%20%27TJX%27%2C%20%27ROST%27%2C%20%27BURL%27%2C%20%27M%27%2C%20%27JWN%27%2C%20%27DDS%27%2C%20%27KSS%27%2C%20%27AMZN%27%2C%20%27W%27%2C%20%27CHWY%27%2C%20%27ULTA%27%2C%20%27BBBY%27%2C%20%27VSCO%27%2C%20%27SIG%27%2C%20%27TPR%27%2C%20%27CPRI%27%2C%20%27LULU%27%2C%20%27BOOT%27%2C%20%27FL%27%2C%20%27NKE%27%2C%20%27ANF%27%2C%20%27AEO%27%2C%20%27URBN%27%2C%20%27GPS%27%2C%20%27LEVI%27%2C%20%27DKS%27%2C%20%27ASO%27%2C%20%27BBY%27%2C%20%27YETI%27%2C%20%27SHW%27%2C%20%27RH%27%2C%20%27WSM%27%2C%20%27HD%27%2C%20%27LOW%27%2C%20%27TSCO%27%2C%20%27KR%27%2C%20%27ACI%27%2C%20%27WBA%27%2C%20%27CVS%27%2C%20%27RAD%27)%20AND%20inc.period%20%3D%20%27Year%27%20AND%20inc.date%20%3E%3D%20DATE_SUB(CURDATE()%2C%20INTERVAL%2010%20YEAR)%20ORDER%20BY%20inc.act_symbol%2C%20inc.date%20DESC`;
+
+async function fetchData() {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+        if (data.query_execution_status === "Success") {
+          renderTable(data.rows);
+        } else {
+          console.error("Query execution failed:", data.query_execution_message);
+        }
+    console.log(data); // Process the data as needed
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+    // Function to render the table with data
+    function renderTable(rows) {
+      const tbody = document.querySelector("#data-table tbody");
+      tbody.innerHTML = ""; // Clear existing rows
+
+      rows.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.act_symbol}</td>
+          <td>${row.date}</td>
+          <td>${row.period}</td>
+          <td>${formatNumber(row.net_revenue)}</td>
+          <td>${formatNumber(row.cost_of_goods)}</td>
+          <td>${formatNumber(row.sga)}</td>
+          <td>${formatNumber(row.operating_profit)}</td>
+          <td>${formatNumber(row.net_profit)}</td>
+          <td>${formatNumber(row.inventories)}</td>
+          <td>${formatNumber(row.total_current_assets)}</td>
+          <td>${formatNumber(row.total_assets)}</td>
+          <td>${formatNumber(row.total_current_liabilities)}</td>
+          <td>${formatNumber(row.total_shareholder_equity)}</td>
+          <td>${formatNumber(row.total_liabilities_and_equity)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Helper function to format large numbers with commas
+    function formatNumber(number) {
+      return number ? Number(number).toLocaleString() : "-";
+    }
+
+    // Fetch data when the page loads
+    fetchData();
+  </script>
+</body>
+</html>

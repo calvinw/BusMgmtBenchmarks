@@ -61,7 +61,7 @@
 
   <script>
     // DoltHub API endpoint and SQL query
-    const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*%0AFROM+%60financials%60%0AORDER+BY+%60company_name%60+ASC%2C+%60year%60+ASC%0ALIMIT+1000%3B%0A`;
+    const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+financials+WHERE+company_name%3D%22Abercrombie+%26+Fitch%22%0A`;
 
 async function fetchData() {
   try {

@@ -9,3 +9,87 @@ Total Assets
 Current Liabilities
 Total Shareholder Equity
 Total Liabilities and Shareholder Equity
+
+newNames = [
+    "Revenue": "Net Revenue",
+    "Cost of Revenues": "Cost of Goods",
+    "General & Admin Expenses": "SG&A",
+    "Operating Income": "Operating Profit",
+    "Net Income to Company": "Net Profit",
+    "Inventory": "Inventory",
+    "Total Current Assets": "Current Assets",
+    "Total Assets": "Total Assets",
+    "Total Current Liabilities": "Current Liabilities",
+    "Total Equity": "Total Shareholder Equity",
+    "Total Liabilities And Equity": "Total Liabilities and Shareholder Equity"
+]
+
+
+VARCHAR(64) NOT NULL
+sales
+DECIMAL(24,0)
+cost_of_goods
+DECIMAL(24,0)
+gross_profit
+DECIMAL(24,0)
+selling_administrative_…
+DECIMAL(24,0)
+income_after_depreciati…
+DECIMAL(24,0)
+non_operating_income
+DECIMAL(24,0)
+interest_expense
+DECIMAL(24,0)
+pretax_income
+DECIMAL(24,0)
+income_taxes
+DECIMAL(24,0)
+minority_interest
+DECIMAL(24,0)
+investment_gains
+DECIMAL(24,0)
+other_income
+DECIMAL(24,0)
+income_from_continuing_…
+DECIMAL(24,0)
+extras_and_discontinued…
+DECIMAL(24,0)
+net_income
+DECIMAL(24,0)
+income_before_depreciat…
+DECIMAL(24,0)
+depreciation_and_amorti…
+DECIMAL(24,0)
+average_shares
+DECIMAL(24,0)
+diluted_eps_before_non_…
+DECIMAL(16,2)
+diluted_net_eps
+DECIMAL(16,2)
+
+cash_and_equivalents
+DECIMAL(24,0)
+receivables
+DECIMAL(24,0)
+notes_receivable
+DECIMAL(24,0)
+inventories
+DECIMAL(24,0)
+other_current_assets
+DECIMAL(24,0)
+total_current_assets
+DECIMAL(24,0)
+net_property_and_equipm…
+DECIMAL(24,0)
+investments_and_advance…
+DECIMAL(24,0)
+other_non_current_asset…
+DECIMAL(24,0)
+deferred_charges
+DECIMAL(24,0)
+intangibles
+DECIMAL(24,0)
+deposits_and_other_asse…
+DECIMAL(24,0)
+total_assets
+DECIMAL(24,0)

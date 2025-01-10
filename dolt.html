@@ -61,7 +61,7 @@
 
   <script>
     // DoltHub API endpoint and SQL query
-    const apiUrl = `https://www.dolthub.com/api/v1alpha1/post-no-preference/earnings/master?q=SELECT%20inc.act_symbol%2C%20inc.date%2C%20inc.period%2C%20inc.sales%20AS%20net_revenue%2C%20inc.cost_of_goods%2C%20inc.selling_administrative_depreciation_amortization_expenses%20AS%20sga%2C%20inc.income_after_depreciation_and_amortization%20AS%20operating_profit%2C%20inc.net_income%20AS%20net_profit%2C%20assets.inventories%2C%20assets.total_current_assets%2C%20assets.total_assets%2C%20liab.total_current_liabilities%2C%20equity.total_equity%20AS%20total_shareholder_equity%2C%20equity.total_liabilities_and_equity%20FROM%20income_statement%20inc%20JOIN%20balance_sheet_assets%20assets%20ON%20inc.act_symbol%20%3D%20assets.act_symbol%20AND%20inc.date%20%3D%20assets.date%20AND%20inc.period%20%3D%20assets.period%20JOIN%20balance_sheet_liabilities%20liab%20ON%20inc.act_symbol%20%3D%20liab.act_symbol%20AND%20inc.date%20%3D%20liab.date%20AND%20inc.period%20%3D%20liab.period%20JOIN%20balance_sheet_equity%20equity%20ON%20inc.act_symbol%20%3D%20equity.act_symbol%20AND%20inc.date%20%3D%20equity.date%20AND%20inc.period%20%3D%20equity.period%20WHERE%20inc.act_symbol%20IN%20(%27WMT%27%2C%20%27TGT%27%2C%20%27DG%27%2C%20%27DLTR%27%2C%20%27FIVE%27%2C%20%27COST%27%2C%20%27BJ%27%2C%20%27TJX%27%2C%20%27ROST%27%2C%20%27BURL%27%2C%20%27M%27%2C%20%27JWN%27%2C%20%27DDS%27%2C%20%27KSS%27%2C%20%27AMZN%27%2C%20%27W%27%2C%20%27CHWY%27%2C%20%27ULTA%27%2C%20%27BBBY%27%2C%20%27VSCO%27%2C%20%27SIG%27%2C%20%27TPR%27%2C%20%27CPRI%27%2C%20%27LULU%27%2C%20%27BOOT%27%2C%20%27FL%27%2C%20%27NKE%27%2C%20%27ANF%27%2C%20%27AEO%27%2C%20%27URBN%27%2C%20%27GPS%27%2C%20%27LEVI%27%2C%20%27DKS%27%2C%20%27ASO%27%2C%20%27BBY%27%2C%20%27YETI%27%2C%20%27SHW%27%2C%20%27RH%27%2C%20%27WSM%27%2C%20%27HD%27%2C%20%27LOW%27%2C%20%27TSCO%27%2C%20%27KR%27%2C%20%27ACI%27%2C%20%27WBA%27%2C%20%27CVS%27%2C%20%27RAD%27)%20AND%20inc.period%20%3D%20%27Year%27%20AND%20inc.date%20%3E%3D%20DATE_SUB(CURDATE()%2C%20INTERVAL%2010%20YEAR)%20ORDER%20BY%20inc.act_symbol%2C%20inc.date%20DESC`;
+    const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*%0AFROM+%60financials%60%0AORDER+BY+%60company_name%60+ASC%2C+%60year%60+ASC%0ALIMIT+1000%3B%0A`;
 
 async function fetchData() {
   try {
@@ -89,20 +89,20 @@ async function fetchData() {
       rows.forEach((row) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${row.act_symbol}</td>
-          <td>${row.date}</td>
-          <td>${row.period}</td>
-          <td>${formatNumber(row.net_revenue)}</td>
-          <td>${formatNumber(row.cost_of_goods)}</td>
-          <td>${formatNumber(row.sga)}</td>
-          <td>${formatNumber(row.operating_profit)}</td>
-          <td>${formatNumber(row.net_profit)}</td>
-          <td>${formatNumber(row.inventories)}</td>
-          <td>${formatNumber(row.total_current_assets)}</td>
-          <td>${formatNumber(row.total_assets)}</td>
-          <td>${formatNumber(row.total_current_liabilities)}</td>
-          <td>${formatNumber(row.total_shareholder_equity)}</td>
-          <td>${formatNumber(row.total_liabilities_and_equity)}</td>
+        <td>${row.company_name}</td>
+        <td>${row.year}</td>
+        <td>${row.reportDate}</td>
+        <td>${row['Net Revenue']}</td>
+        <td>${formatNumber(row['Cost of Goods'])}</td>
+        <td>${formatNumber(row['SG&A'])}</td>
+        <td>${formatNumber(row['Operating Profit'])}</td>
+        <td>${formatNumber(row['Net Profit'])}</td>
+        <td>${formatNumber(row['Inventory'])}</td>
+        <td>${formatNumber(row['Current Assets'])}</td>
+        <td>${formatNumber(row['Total Assets'])}</td>
+        <td>${formatNumber(row['Current Liabilities'])}</td>
+        <td>${formatNumber(row['Total Shareholder Equity'])}</td>
+        <td>${formatNumber(row['Total Liabilities and Shareholder Equity'])}</td>
         `;
         tbody.appendChild(tr);
       });

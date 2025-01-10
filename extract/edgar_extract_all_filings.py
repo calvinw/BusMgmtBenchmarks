@@ -12,6 +12,7 @@ os.environ['EDGAR_IDENTITY'] = "Calvin Williamson calvin_williamson@fitnyc.edu"
 COLUMNS = [
     "company_name", 
     "year", 
+    "reportDate",
     "Net Revenue", 
     "Cost of Goods", 
     "SG&A",
@@ -29,6 +30,7 @@ COLUMNS = [
 COLUMN_TYPES = {
     "company_name": str,
     "year": int,
+    "reportDate": str,
     "Net Revenue": int,
     "Cost of Goods": int,
     "SG&A": int,
@@ -43,15 +45,15 @@ COLUMN_TYPES = {
 }
 
 def get_recent_filings(company: Company):
-    """Get all 10-K filings from 2019 onwards."""
+    """Get all 10-K filings from 2019 or 2020."""
     try:
         filings = company.get_filings(form="10-K")
         if not filings:
             raise ValueError("No 10-K filings found")
-        return [f for f in filings if f.filing_date.year >= 2019]
+        return [f for f in filings if f.filing_date.year in {2019, 2020}]
     except Exception as e:
-        print(f"Error getting filing: {str(e)}")
-        return None
+        print(f"An error occurred: {e}")
+        return []
 
 def add_company_filing_if_needed(
     company_name: str, 
@@ -69,6 +71,7 @@ def add_company_filing_if_needed(
             
         results = []
         for filing in filings:
+            print(filing)
             filing_year = filing.filing_date.year
             
             if existing_data is not None and not existing_data.empty:
@@ -84,10 +87,11 @@ def add_company_filing_if_needed(
                 
             data['company_name'] = company_name
             data['year'] = filing_year
+            data['reportDate'] = filing.report_date 
             
             # Rescale all numerical fields except company_name and year by dividing by 1000
             for field in data.keys():
-                if field not in ['company_name', 'year']:
+                if field not in ['company_name', 'year', 'reportDate']:
                     data[field] = int(data[field]) / 1000
                     
             results.append(data)
@@ -185,7 +189,7 @@ if __name__ == "__main__":
     
     # Read companies from CIK.csv
     companies = []
-    with open('CIK.csv', 'r') as csvfile:
+    with open('companies.csv', 'r') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
             companies.append((row['company_name'], row['cik']))

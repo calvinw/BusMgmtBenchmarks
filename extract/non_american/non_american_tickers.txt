@@ -1,0 +1,34 @@
+LVMH Moet Hennessy Louis Vuitton SE
+ENXTPA:MC
+France / Consumer Discretionary / Textiles, Apparel & Luxury Goods
+Currency: EUR
+
+Industria de Diseno Textil SA
+BME:ITX
+Spain / Consumer Discretionary / Specialty Retail
+Currency: EUR
+
+H & M Hennes & Mauritz AB B
+OM:HMB
+Sweden / Consumer Discretionary / Specialty Retail
+Currency: SEK 
+
+Adidas AG
+DB:ADS
+Germany / Consumer Discretionary / Textiles, Apparel & Luxury Goods
+Currency: EUR
+
+Aritzia Inc
+TSX:ATZ
+Canada / Consumer Discretionary / Specialty Retail
+Currency: CAD 
+
+Koninklijke Ahold Delhaize NV
+ENXTAM:AD
+Netherlands / Consumer Staples / Consumer Staples Distribution & Retail
+Currency: EUR
+
+ASOS PLC
+LSE:ASC
+United Kingdom / Consumer Discretionary / Specialty Retail
+Currency: GBP 

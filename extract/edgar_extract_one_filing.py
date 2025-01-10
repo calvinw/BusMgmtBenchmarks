@@ -40,8 +40,9 @@ def remove_json_code_block(text):
 
 def setup_prompt(income_statement_markdown, balance_sheet_markdown):
 
-    prompt = f"""Below is a list of financial concepts related to the income sheet
-part of a 10-K report. Find the following financial concepts and values for the latest year.
+    prompt = f"""Below is a list of financial concepts (given inside the <concepts>
+tags) to be found in the income statement and the balance sheet of a companies
+10-K report. 
 
 <concepts>
 Net Revenue
@@ -57,38 +58,44 @@ Total Shareholder Equity
 Total Liabilities and Shareholder Equity
 </concepts>
 
+Find the concepts and their values in the income statement or the balance
+sheet that follow. 
+
+The income statement is enclosed in  <income_statment> tags. 
+The balance sheet is enclosed in <balance_sheet> tags.
+
 Here is the income statement:
 
 <income_statement>
 {income_statement_markdown}
 </income_statement>
 
-Here is the balance sheet is:
+Here is the balance sheet:
 
 <balance_sheet>
 {balance_sheet_markdown}
 </balance_sheet>
 
-Please return the values found in a json format as follows. Make sure to provide a number for every concept. 
-Resond only with with the following format, no other commentary or discussion
+Please return the values found as strings in a json format as follows. Make
+sure to provide a number for every concept. Respond only with with the
+following format, no other commentary or discussion
 
 Response format:
 ```json
 {{
-    "Net Revenue": "1250000000",
-    "Cost of Goods": "750000000",
-    "SG&A": "200000000",
-    "Operating Profit": "300000000",
-    "Net Profit": "225000000",
-    "Inventory": "180000000",
-    "Current Assets": "850000000",
-    "Total Assets": "2100000000",
-    "Current Liabilities": "450000000",
-    "Total Shareholder Equity": "1200000000",
-    "Total Liabilities and Shareholder Equity": "2100000000"
+    "Net Revenue": <value>,
+    "Cost of Goods": <value>, 
+    "SG&A":  <value>,
+    "Operating Profit": <value>,
+    "Net Profit": <value>,
+    "Inventory": <value>,
+    "Current Assets": <value>,
+    "Total Assets": <value>,
+    "Current Liabilities": <value>,
+    "Total Shareholder Equity": <value>,
+    "Total Liabilities and Shareholder Equity": <value>
 }}
-```
-"""
+```"""
 
     return prompt
 
@@ -115,11 +122,11 @@ def call_llm(prompt):
                 temperature=0.0  # Using 0 temperature for more consistent responses
             )
 
-        response = response.choices[0].message.content
-        print(f"actual response")
-        print(response)
+        llm_response = response.choices[0].message.content
 
-        json_response = remove_json_code_block(response)
+        print("Raw llm response:")
+        print(llm_response)
+        json_response = remove_json_code_block(llm_response)
 
         return json_response 
 
@@ -142,6 +149,9 @@ def process_filing(company_name: str, filing) -> Optional[Dict[str, str]]:
     income_df = company.income_statement.to_dataframe()
     balance_df = company.balance_sheet.to_dataframe()
 
+    income_df = income_df.iloc[:, :1]
+    balance_df = balance_df.iloc[:, :1]
+
     income_markdown_table = income_df.to_markdown(index=True, floatfmt=".0f")
     balance_markdown_table = balance_df.to_markdown(index=True, floatfmt=".0f")
 
@@ -155,7 +165,6 @@ def process_filing(company_name: str, filing) -> Optional[Dict[str, str]]:
     # Convert JSON string to Python dictionary
     import json
 
-    # print(llm_response_str)
     data= json.loads(llm_response_str)
 
 

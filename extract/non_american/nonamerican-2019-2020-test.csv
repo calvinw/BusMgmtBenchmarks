@@ -1,0 +1,2 @@
+company_name,year,ticker,currency,units,reportDate,Net Revenue,Cost of Goods,SG&A,Operating Profit,Net Profit,Inventory,Current Assets,Total Assets,Current Liabilities,Total Shareholder Equity,Total Liabilities and Shareholder Equity
+Adidas,2019,DB:ADS,EUR,thousands,2018-12-31,"21915000.0","10552000.0","1576000.0","2421000.0","1705000.0","3445000.0","9813000.0","15612000.0","6834000.0","6364000.0","15612000.0"

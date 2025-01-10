@@ -2,6 +2,7 @@ bak/
 bus-env/
 .idx/
 .vscode/
+BusMgmtBenchmarks
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

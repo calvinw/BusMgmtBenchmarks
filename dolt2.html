@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarks Company 2024</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Benchmarks 2024</h1>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Year</th>
+        <th>Segment</th>
+        <th>Subsegment</th>
+        <th>Net Revenue</th>
+        <th>Net Revenue 2023</th>
+        <th>Net Revenue 2022</th>
+        <th>Net Revenue 2021</th>
+        <th>Cost of Goods</th>
+        <th>SG&A</th>
+        <th>Operating Profit</th>
+        <th>Net Profit</th>
+        <th>Inventory</th>
+        <th>Current Assets</th>
+        <th>Total Assets</th>
+        <th>Current Liabilities</th>
+        <th>Total Shareholder Equity</th>
+        <th>Total Liabilities and Shareholder Equity</th>
+        <th>Cost of Goods %</th>
+        <th>Gross Margin %</th>
+        <th>Operating Profit Margin %</th>
+        <th>Net Profit Margin %</th>
+        <th>Inventory Turnover</th>
+        <th>Asset Turnover</th>
+        <th>Return on Assets</th>
+        <th>Three Year Revenue CAGR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be populated here by JavaScript -->
+    </tbody>
+  </table>
+
+  <script>
+    // DoltHub API endpoint and SQL query
+    const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+%0A++++subquery.company_name+AS+company%2C%0A++++subquery.year+AS+year%2C%0A++++subquery.segment%2C%0A++++subquery.subsegment%2C%0A++++subquery.%60Net+Revenue%60%2C%0A++++subquery.%60Net+Revenue+2023%60%2C%0A++++subquery.%60Net+Revenue+2022%60%2C%0A++++subquery.%60Net+Revenue+2021%60%2C%0A++++subquery.%60Cost+of+Goods%60%2C%0A++++subquery.%60SG%26A%60%2C%0A++++subquery.%60Operating+Profit%60%2C%0A++++subquery.%60Net+Profit%60%2C%0A++++subquery.%60Inventory%60%2C%0A++++subquery.%60Current+Assets%60%2C%0A++++subquery.%60Total+Assets%60%2C%0A++++subquery.%60Current+Liabilities%60%2C%0A++++subquery.%60Total+Shareholder+Equity%60%2C%0A++++subquery.%60Total+Liabilities+and+Shareholder+Equity%60%2C%0A++++fm.%60Cost_of_Goods_Percentage%60+AS+%60Cost+of+Goods+%25%60%2C%0A++++fm.%60Gross_Margin_Percentage%60+AS+%60Gross+Margin+%25%60%2C%0A++++fm.%60Operating_Profit_Margin_Percentage%60+AS+%60Operating+Profit+Margin+%25%60%2C%0A++++fm.%60Net_Profit_Margin_Percentage%60+AS+%60Net+Profit+Margin+%25%60%2C%0A++++fm.%60Inventory_Turnover%60+AS+%60Inventory+Turnover%60%2C%0A++++fm.%60Asset_Turnover%60+AS+%60Asset+Turnover%60%2C%0A++++fm.%60Return_on_Assets%60+AS+%60Return+on+Assets%60%2C%0A++++fm.%60Three_Year_Revenue_CAGR%60+AS+%60Three+Year+Revenue+CAGR%60%0AFROM+%28%0A++++SELECT+%0A++++++++f2024.*%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2023%29+AS+%60Net+Revenue+2023%60%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2022%29+AS+%60Net+Revenue+2022%60%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2021%29+AS+%60Net+Revenue+2021%60%2C%0A++++++++c.segment%2C%0A++++++++c.subsegment%0A++++FROM+%0A++++++++financials+f2024%0A++++JOIN+%0A++++++++new_company_info+c+ON+f2024.company_name+%3D+c.company%0A++++WHERE+%0A++++++++f2024.year+%3D+2024%0A%29+AS+subquery%0AJOIN+%0A++++new_financial_metrics+fm+ON+subquery.company_name+%3D+fm.company_name+AND+subquery.year+%3D+fm.year`;
+
+    async function fetchData() {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.query_execution_status === "Success") {
+          renderTable(data.rows);
+        } else {
+          console.error("Query execution failed:", data.query_execution_message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    // Function to render the table with data
+    function renderTable(rows) {
+      const tbody = document.querySelector("#data-table tbody");
+      tbody.innerHTML = ""; // Clear existing rows
+
+      rows.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.company}</td>
+          <td>${row.year}</td>
+          <td>${row.segment}</td>
+          <td>${row.subsegment}</td>
+          <td>${formatNumber(row['Net Revenue'])}</td>
+          <td>${formatNumber(row['Net Revenue 2023'])}</td>
+          <td>${formatNumber(row['Net Revenue 2022'])}</td>
+          <td>${formatNumber(row['Net Revenue 2021'])}</td>
+          <td>${formatNumber(row['Cost of Goods'])}</td>
+          <td>${formatNumber(row['SG&A'])}</td>
+          <td>${formatNumber(row['Operating Profit'])}</td>
+          <td>${formatNumber(row['Net Profit'])}</td>
+          <td>${formatNumber(row['Inventory'])}</td>
+          <td>${formatNumber(row['Current Assets'])}</td>
+          <td>${formatNumber(row['Total Assets'])}</td>
+          <td>${formatNumber(row['Current Liabilities'])}</td>
+          <td>${formatNumber(row['Total Shareholder Equity'])}</td>
+          <td>${formatNumber(row['Total Liabilities and Shareholder Equity'])}</td>
+          <td>${formatPercentage(row['Cost of Goods %'])}</td>
+          <td>${formatPercentage(row['Gross Margin %'])}</td>
+          <td>${formatPercentage(row['Operating Profit Margin %'])}</td>
+          <td>${formatPercentage(row['Net Profit Margin %'])}</td>
+          <td>${formatNumber(row['Inventory Turnover'])}</td>
+          <td>${formatNumber(row['Asset Turnover'])}</td>
+          <td>${formatPercentage(row['Return on Assets'])}</td>
+          <td>${formatPercentage(row['Three Year Revenue CAGR'])}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Helper function to format large numbers with commas
+    function formatNumber(number) {
+      return number ? Number(number).toLocaleString() : "-";
+    }
+
+    // Helper function to format percentages
+    function formatPercentage(number) {
+      return number ? `${Number(number).toFixed(2)}%` : "-";
+    }
+
+    // Fetch data when the page loads
+    fetchData();
+  </script>
+</body>
+</html>

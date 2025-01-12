@@ -14,6 +14,15 @@ Data is collected and updated yearly (once a year) and benchmark results files
 companies are doing for the year as well as how segments (aggregated company
 data) are doing.
 
+There is an sql database (hosted at DoltHub) that accompanies the work here. 
+
+It is located here: 
+
+[BusinessMgmtBenchmarks at DoltHub](https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks)
+
+It is a publicly accessible database with the data used in the project. There
+are various SQL scripts for updating and maintaining the data there as well.
+
 ### Segments and Subsegments
 
 #### US Companies with 10-K data

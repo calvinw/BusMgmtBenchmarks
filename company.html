@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Details</title>
+    <style>
+        .container-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-direction: column;
+        }
+        .select-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .select-control {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .select-control:hover {
+            border-color: #999;
+        }
+        .label {
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 80px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 85%;
+            max-width: 800px;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #e6e6e6;
+            font-weight: 800;
+            font-size: 13px;
+        }
+        tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        .loading {
+            margin: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="controls">
+            <div class="select-group">
+                <span class="label">Company:</span>
+                <select id="companySelect" class="select-control">
+                    <option value="">Select a company...</option>
+                </select>
+            </div>
+            <div class="select-group">
+                <span class="label">Year:</span>
+                <select id="yearSelect" class="select-control">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+        </div>
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        async function fetchCompanies() {
+            try {
+                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+company%0AFROM+%60new_company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A');
+                const data = await response.json();
+                return data.rows.map(row => row.company);
+            } catch (error) {
+                console.error('Error fetching companies:', error);
+                return [];
+            }
+        }
+
+        async function fetchCompanyData(company, year) {
+            try {
+                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+where+company%3D%22${encodeURIComponent(company)}%22`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching company data:', error);
+                return null;
+            }
+        }
+
+        function formatValue(value, columnType) {
+            if (value === null) return 'N/A';
+            if (columnType.includes('decimal')) {
+                return Number(value).toLocaleString(undefined, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2 
+                });
+            }
+            if (columnType.includes('bigint')) {
+                return Number(value).toLocaleString();
+            }
+            return value;
+        }
+
+        function createTable(data) {
+            if (!data || !data.rows || data.rows.length === 0) {
+                return '<div class="loading">No data available for this selection.</div>';
+            }
+
+            const row = data.rows[0];
+            const schema = data.schema;
+
+            let tableHtml = '<table>';
+            for (const col of schema) {
+                if (col.columnName !== 'year') { // Skip the year column
+                    const value = formatValue(row[col.columnName], col.columnType);
+                    tableHtml += `
+                        <tr>
+                            <th>${col.columnName}</th>
+                            <td>${value}</td>
+                        </tr>
+                    `;
+                }
+            }
+            tableHtml += '</table>';
+            return tableHtml;
+        }
+
+        async function initializePage() {
+            const companies = await fetchCompanies();
+            const companySelect = document.getElementById('companySelect');
+            
+            companies.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company;
+                option.textContent = company;
+                companySelect.appendChild(option);
+            });
+
+            async function updateTable() {
+                const company = companySelect.value;
+                const year = document.getElementById('yearSelect').value;
+                const tableContainer = document.getElementById('tableContainer');
+                
+                if (!company) {
+                    tableContainer.innerHTML = '<div class="loading">Please select a company...</div>';
+                    return;
+                }
+
+                tableContainer.innerHTML = '<div class="loading">Loading data...</div>';
+                const data = await fetchCompanyData(company, year);
+                tableContainer.innerHTML = createTable(data);
+            }
+
+            companySelect.addEventListener('change', updateTable);
+            document.getElementById('yearSelect').addEventListener('change', updateTable);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

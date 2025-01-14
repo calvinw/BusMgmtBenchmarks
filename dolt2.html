@@ -7,74 +7,189 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      overflow-x: auto; /* Enable horizontal scrolling */
+      padding-top: 80px; /* Space for the sticky header */
+      max-width: 1200px; /* Limit the maximum width of the table */
+      margin: 0 auto; /* Center the table */
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensure header stays above the table */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     h1 {
-      text-align: center;
+      margin: 0;
+      color: #333;
+      font-size: 24px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin-top: 20px;
     }
     th, td {
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ddd;
       text-align: left;
+      background-color: white; /* Ensure cells have a background */
+      white-space: nowrap; /* Prevent text wrapping */
     }
     th {
       background-color: #f4f4f4;
+      font-weight: bold;
+      color: #333;
     }
-    tr:nth-child(even) {
+    tr:nth-child(even) td {
       background-color: #f9f9f9;
     }
-    tr:hover {
+    tr:hover td {
       background-color: #f1f1f1;
+    }
+    /* Sticky first column */
+    th:first-child,
+    td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 1; /* Ensure it stays above other cells */
+      background-color: #f4f4f4; /* Match header background */
+    }
+    /* Sticky header row */
+    thead th {
+      position: sticky;
+      top: 80px; /* Align with the header padding */
+      z-index: 2; /* Ensure it stays above the sticky first column */
+      background-color: #f4f4f4; /* Match header background */
+    }
+    /* Ensure the first header cell stays above other sticky elements */
+    thead th:first-child {
+      z-index: 3; /* Higher z-index to stay above other sticky elements */
+    }
+    /* Download button styling */
+    #download-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #download-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    #download-btn:active {
+      transform: translateY(0);
+    }
+    /* Icon for the button */
+    #download-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      #download-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      th:first-child,
+      td:first-child {
+        position: static; /* Disable sticky first column on smaller screens */
+      }
+      thead th {
+        position: static; /* Disable sticky header row on smaller screens */
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Benchmarks 2024</h1>
-  <table id="data-table">
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Year</th>
-        <th>Segment</th>
-        <th>Subsegment</th>
-        <th>Net Revenue</th>
-        <th>Net Revenue 2023</th>
-        <th>Net Revenue 2022</th>
-        <th>Net Revenue 2021</th>
-        <th>Cost of Goods</th>
-        <th>SG&A</th>
-        <th>Operating Profit</th>
-        <th>Net Profit</th>
-        <th>Inventory</th>
-        <th>Current Assets</th>
-        <th>Total Assets</th>
-        <th>Current Liabilities</th>
-        <th>Total Shareholder Equity</th>
-        <th>Total Liabilities and Shareholder Equity</th>
-        <th>Cost of Goods %</th>
-        <th>Gross Margin %</th>
-        <th>Operating Profit Margin %</th>
-        <th>Net Profit Margin %</th>
-        <th>Inventory Turnover</th>
-        <th>Asset Turnover</th>
-        <th>Return on Assets</th>
-        <th>Three Year Revenue CAGR</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data will be populated here by JavaScript -->
-    </tbody>
-  </table>
+  <div class="header">
+    <h1>Benchmarks 2024</h1>
+    <!-- Download button with an icon -->
+    <button id="download-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+      </svg>
+      Download Excel
+    </button>
+  </div>
 
+  <div class="container">
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Year</th>
+          <th>Segment</th>
+          <th>Subsegment</th>
+          <th>Net Revenue</th>
+          <th>Net Revenue 2023</th>
+          <th>Net Revenue 2022</th>
+          <th>Net Revenue 2021</th>
+          <th>Cost of Goods</th>
+          <th>SGA</th>
+          <th>Operating Profit</th>
+          <th>Net Profit</th>
+          <th>Inventory</th>
+          <th>Current Assets</th>
+          <th>Total Assets</th>
+          <th>Current Liabilities</th>
+          <th>Total Shareholder Equity</th>
+          <th>Total Liabilities and Shareholder Equity</th>
+          <th>Cost of Goods %</th>
+          <th>Gross Margin %</th>
+          <th>Operating Profit Margin %</th>
+          <th>Net Profit Margin %</th>
+          <th>Inventory Turnover</th>
+          <th>Asset Turnover</th>
+          <th>Return on Assets</th>
+          <th>Three Year Revenue CAGR</th>
+          <th>Current Ratio</th>
+          <th>Quick Ratio</th>
+          <th>Sales vs LY</th>
+          <th>Debt to Equity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be populated here by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Include the xlsx library for Excel export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
     // DoltHub API endpoint and SQL query
-    const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+%0A++++subquery.company_name+AS+company%2C%0A++++subquery.year+AS+year%2C%0A++++subquery.segment%2C%0A++++subquery.subsegment%2C%0A++++subquery.%60Net+Revenue%60%2C%0A++++subquery.%60Net+Revenue+2023%60%2C%0A++++subquery.%60Net+Revenue+2022%60%2C%0A++++subquery.%60Net+Revenue+2021%60%2C%0A++++subquery.%60Cost+of+Goods%60%2C%0A++++subquery.%60SG%26A%60%2C%0A++++subquery.%60Operating+Profit%60%2C%0A++++subquery.%60Net+Profit%60%2C%0A++++subquery.%60Inventory%60%2C%0A++++subquery.%60Current+Assets%60%2C%0A++++subquery.%60Total+Assets%60%2C%0A++++subquery.%60Current+Liabilities%60%2C%0A++++subquery.%60Total+Shareholder+Equity%60%2C%0A++++subquery.%60Total+Liabilities+and+Shareholder+Equity%60%2C%0A++++fm.%60Cost_of_Goods_Percentage%60+AS+%60Cost+of+Goods+%25%60%2C%0A++++fm.%60Gross_Margin_Percentage%60+AS+%60Gross+Margin+%25%60%2C%0A++++fm.%60Operating_Profit_Margin_Percentage%60+AS+%60Operating+Profit+Margin+%25%60%2C%0A++++fm.%60Net_Profit_Margin_Percentage%60+AS+%60Net+Profit+Margin+%25%60%2C%0A++++fm.%60Inventory_Turnover%60+AS+%60Inventory+Turnover%60%2C%0A++++fm.%60Asset_Turnover%60+AS+%60Asset+Turnover%60%2C%0A++++fm.%60Return_on_Assets%60+AS+%60Return+on+Assets%60%2C%0A++++fm.%60Three_Year_Revenue_CAGR%60+AS+%60Three+Year+Revenue+CAGR%60%0AFROM+%28%0A++++SELECT+%0A++++++++f2024.*%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2023%29+AS+%60Net+Revenue+2023%60%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2022%29+AS+%60Net+Revenue+2022%60%2C%0A++++++++%28SELECT+%60Net+Revenue%60+FROM+financials+WHERE+company_name+%3D+f2024.company_name+AND+year+%3D+2021%29+AS+%60Net+Revenue+2021%60%2C%0A++++++++c.segment%2C%0A++++++++c.subsegment%0A++++FROM+%0A++++++++financials+f2024%0A++++JOIN+%0A++++++++new_company_info+c+ON+f2024.company_name+%3D+c.company%0A++++WHERE+%0A++++++++f2024.year+%3D+2024%0A%29+AS+subquery%0AJOIN+%0A++++new_financial_metrics+fm+ON+subquery.company_name+%3D+fm.company_name+AND+subquery.year+%3D+fm.year`;
-
+    const apiUrl = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+2024+view%60';
     async function fetchData() {
       try {
         const response = await fetch(apiUrl);
@@ -126,6 +241,10 @@
           <td>${formatNumber(row['Asset Turnover'])}</td>
           <td>${formatPercentage(row['Return on Assets'])}</td>
           <td>${formatPercentage(row['Three Year Revenue CAGR'])}</td>
+          <td>${formatPercentage(row['Current Ratio'])}</td>
+          <td>${formatPercentage(row['Quick Ratio'])}</td>
+          <td>${formatPercentage(row['Sales vs LY'])}</td>
+          <td>${formatPercentage(row['Debt to Equity'])}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -140,6 +259,18 @@
     function formatPercentage(number) {
       return number ? `${Number(number).toFixed(2)}%` : "-";
     }
+
+    // Function to export table data to Excel
+    function exportToExcel() {
+      const table = document.getElementById("data-table");
+      const ws = XLSX.utils.table_to_sheet(table); // Convert table to worksheet
+      const wb = XLSX.utils.book_new(); // Create a new workbook
+      XLSX.utils.book_append_sheet(wb, ws, "Benchmarks 2024"); // Add worksheet to workbook
+      XLSX.writeFile(wb, "Benchmarks_2024.xlsx"); // Download the file
+    }
+
+    // Add event listener to the download button
+    document.getElementById("download-btn").addEventListener("click", exportToExcel);
 
     // Fetch data when the page loads
     fetchData();

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management Reports</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/ht-theme-main.min.css">
+    <style>
+        .container-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+        #reportTable {
+            width: 85% !important;
+        }
+        .handsontable tr:nth-child(even) td {
+            background-color: #f0f0f0 !important;
+        }
+        .handsontable th {
+            background-color: #e6e6e6 !important;
+            font-weight: 800 !important;
+            font-size: 13px !important;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 85%;
+            justify-content: space-between;
+        }
+        .select-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .control-select {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .control-select:hover {
+            border-color: #999;
+        }
+        .label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="controls">
+            <div class="select-group">
+                <span class="label">Report Type:</span>
+                <select id="reportSelect" class="control-select">
+                    <option value="segments_and_benchmarks">Segment and Benchmark Reports</option>
+                    <option value="segments">Segment Reports</option>
+                    <option value="benchmarks">Benchmark Reports</option>
+                    <option value="subsegments">Subsegment Reports</option>
+                </select>
+            </div>
+            <div class="select-group">
+                <span class="label">Year:</span>
+                <select id="yearSelect" class="control-select">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+        </div>
+        <div id="reportTable"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <script>
+    let hot; // Global reference to Handsontable instance
+
+    const REPORT_URLS = {
+        benchmarks: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+${year}+view%60`,
+        segments: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`,
+        subsegments: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`,
+        segments_and_benchmarks: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+and+company+benchmarks+${year}%60`
+    };
+
+    async function fetchData(reportType, year) {
+        try {
+            const url = REPORT_URLS[reportType](year);
+            const response = await fetch(url);
+            const jsonData = await response.json();
+            return jsonData;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
+        }
+    }
+
+    function formatColumnHeader(header) {
+        return header
+            .split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+    function getColumnConfig(reportType, col) {
+        const baseConfig = {
+            data: col.columnName,
+            title: formatColumnHeader(col.columnName),
+            type: col.columnType.includes('decimal') ? 'numeric' : 
+                  col.columnType.includes('int') ? 'numeric' : 'text'
+        };
+
+        if (baseConfig.type === 'numeric') {
+            baseConfig.numericFormat = {
+                pattern: '0.00',
+                culture: 'en-US'
+            };
+        }
+
+        // Set specific column widths based on column name
+        if (['company', 'segment', 'subsegment'].includes(col.columnName)) {
+            return { ...baseConfig, width: 200 };
+        }
+
+        return baseConfig;
+    }
+
+    async function initTable(reportType, year) {
+        const jsonData = await fetchData(reportType, year);
+        if (!jsonData || !jsonData.rows) {
+            console.error('No data available');
+            return;
+        }
+
+        const columns = jsonData.schema.map(col => getColumnConfig(reportType, col));
+        const container = document.querySelector('#reportTable');
+        
+        if (hot) {
+            hot.destroy();
+        }
+
+        // Configure fixed columns based on report type
+        let fixedColumns = 1;
+        if (reportType === 'segments_and_benchmarks') {
+            fixedColumns = 2;
+        }
+
+        hot = new Handsontable(container, {
+            data: jsonData.rows,
+            columns,
+            colWidths: 120,
+            width: '100%',
+            height: 'auto',
+            rowHeaders: true,
+            colHeaders: true,
+            fixedColumnsStart: fixedColumns,
+            autoWrapRow: true,
+            autoWrapCol: true,
+            manualColumnResize: true,
+            manualRowResize: true,
+            filters: true,
+            dropdownMenu: true,
+            wordWrap: true,
+            licenseKey: 'non-commercial-and-evaluation'
+        });
+    }
+
+    // Handle report type selection change
+    document.getElementById('reportSelect').addEventListener('change', function(e) {
+        const year = document.getElementById('yearSelect').value;
+        initTable(e.target.value, year);
+    });
+
+    // Handle year selection change
+    document.getElementById('yearSelect').addEventListener('change', function(e) {
+        const reportType = document.getElementById('reportSelect').value;
+        initTable(reportType, e.target.value);
+    });
+
+    // Initialize the table with default selections when the page loads
+    window.addEventListener('DOMContentLoaded', () => {
+        const reportType = document.getElementById('reportSelect').value;
+        const year = document.getElementById('yearSelect').value;
+        initTable(reportType, year);
+    });
+    </script>
+</body>
+</html>

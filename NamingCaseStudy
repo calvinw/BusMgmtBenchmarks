@@ -1,0 +1,18 @@
+Current;	Adjust
+Net Revenue;	Total Revenue
+Cost of Goods;	COGS
+Gross Margin;	Gross Margin
+SGA;	SG&A
+Operating Profit;	Operating Income
+Net Profit;	Net Income
+Inventory;	Inventory
+Total Assets;	Total Assets
+Cost of Goods %;	Cost of goods percentage (COGS/Net Sales)
+Gross Margin %;	Gross margin percentage (GM/Net Sales)
+SGA %;	SG&A expense percentage (SG&A/Net Sales)
+Operating Profit Margin %;	Operating profit margin percentage (Op.Profit/Net Sales)
+Net Profit Margin %;	Net profit margin percentage (Net Profit/Net Sales)
+Inventory Turnover;	Inventory turnover (COGS/Inventory)
+Asset Turnover;	Asset turnover (Net Sales/Total Assets)
+Return on Assets;	Return on assets (ROA) (Net profit Margin * Asset Turnover)
+Three Year Revenue CAGR;	3-Year Revenue CAGR

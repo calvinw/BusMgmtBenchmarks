@@ -135,8 +135,6 @@ Currently companies belong to one category only.
 Also included are choices for segments and (optional) subsegments designations
 for each company. Currently only the Specialty segment has subsegments. 
 
-#### Extracted Financial Data ([extracted_financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extracted_financial_data.csv)) 
-
 This is the complete raw list of extracted financial data. Each line in the
 data is the following data for a `company_name` and a particular `year`. (2019
 to 2024 currently)
@@ -155,8 +153,6 @@ to 2024 currently)
 
 Data is collected from company 10-K reports to create this file. The process is
 described in the extract folders readme called `extract/README.md`
-
-#### Financial Data ([financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/financial_data.csv)) 
 
 This file (created by a python script as described below) adds  the following
 calculated fields to the extracted data above. Same as the extracted data this
@@ -201,19 +197,19 @@ At the bottom of the [Company Side By Side Analysis](https://calvinw.github.io/B
 
 Here is an example of those displays:
 
-- [Costco 2024 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/costco-2024.html)
+- [Costco 2024 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Costco-2024.html)
 
-- [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/costco-2022.html)
+- [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Target-2022.html)
 
 These webpages are pulled directly from the submitted html pages of the public 10-k filings of the companies with the SEC and are not changed in any way from that filing. They are just provided here for convenience and further reference. 
 
-## Downloadable Files
+## Reports
 
 There are a number of downloadable data files created each year
 
-[ Need Details for this ]
+[Benchmark Reports](https://calvinw.github.io/BusMgmtBenchmarks/reports.html)
 
-## Steps for Data Collection and Benchmark Creation
+[ Need Details for this ]
 
 ### Collect Data from Companies (Primarily 10Ks for years 2019-2024) 
 
@@ -222,48 +218,6 @@ folder `extract` for details of this process. The details of the reports are
 from SEC provided info, and some python scripts collate the data and use large
 language model calls to assist in identifying the approprate fields from the
 10-K data.
-
-### Add Calculated Fields
-
-Next the script `create_financial_data.py`, adds the ratios, CAGR, and all the
-calculated fields.
-
-```bash
-python3 create_financial_data.py extracted_financial_data.csv financial_data.csv
-```
-
-The output of this is the [financial_data.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/financial_data.csv)
-
-### Yearly Benchmark Report  
-
-To create the yearly benchmark file pass in the `financial_data.csv` and the `CIK.csv` files
-to the `create_benchmarks.py` script.
-
-```bash
-python3 create_benchmarks.py -i financial_data.csv -c CIK.csv -o benchmarks_2024.csv 
-```
-
-This creates the [benchmarks_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/benchmarks_2024.csv) file.
-
-### Retail Index Report - Segments (Yearly)
-
-To create the retial index report for the segments, run this:
-
-```bash
-python3 create_segment_analysis.py benchmarks_2024.csv segment_analysis_2024.csv
-```
-
-This creates the [segment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/segment_analysis_2024.csv) file.
-
-### Retail Index Report - Subsegments (Yearly) 
-
-To create the retail index report for the subsegments, run this:
-
-```bash
-python3 create_subsegment_analysis.py benchmarks_2024.csv subsegment_analysis_2024.csv
-```
-
-This creates the [subsegment_analysis_2024.csv](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/subsegment_analysis_2024.csv) file. 
 
 ## Data Collection (Extraction) Techniques
 

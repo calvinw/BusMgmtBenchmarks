@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Management Reports</title>
+    <title>cd</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/ht-theme-main.min.css">
     <style>
@@ -54,6 +54,20 @@
             font-size: 16px;
             font-weight: bold;
         }
+        #downloadBtn {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -79,6 +93,9 @@
                     <option value="2019">2019</option>
                 </select>
             </div>
+            <button id="downloadBtn">Download as Excel</button> 
+
+
         </div>
         <div id="reportTable"></div>
     </div>
@@ -194,6 +211,31 @@
         const year = document.getElementById('yearSelect').value;
         initTable(reportType, year);
     });
+
+    // Download button functionality
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        if (hot) {
+            const exportPlugin = hot.getPlugin('exportFile');
+            exportPlugin.downloadFile('csv', {
+                bom: true,
+                columnDelimiter: ',',
+                columnHeaders: true,
+                exportHiddenColumns: true,
+                exportHiddenRows: true,
+                fileExtension: 'csv',
+                filename: 'report_[YYYY]-[MM]-[DD]',
+                mimeType: 'text/csv',
+                rowDelimiter: '\r\n',
+                rowHeaders: true
+            });
+        } else {
+            alert('No data to download. Please select a report.');
+        }
+    });
+
+
+
+
     </script>
 </body>
 </html>

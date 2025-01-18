@@ -48,6 +48,7 @@
             padding: 8px;
             font-size: 16px;
             min-width: 200px;
+            margin-bottom: 10px;
         }
         .loading {
             margin: 20px 0;
@@ -58,12 +59,27 @@
             text-align: center;
             font-weight: bold;
         }
+        .year-select {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Company vs Segment Comparison</h1>
     <button id="exportBtn" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Export to Excel</button>
     
+    <div class="year-select">
+        <label for="yearSelect">Select Analysis Year: </label>
+        <select id="yearSelect" onchange="handleYearChange()">
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+    </div>
+
     <div class="selectors-container">
         <div class="section">
             <h3>Company</h3>
@@ -102,9 +118,9 @@
         let subsegmentData = [];
         let companySegmentMap = new Map();
 
-        async function fetchCompanyList() {
+        async function fetchCompanyList(year) {
             try {
-                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+DISTINCT+company,+segment,+subsegment+FROM+%60benchmarks+2024+view%60+ORDER+BY+company');
+                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+DISTINCT+company,+segment,+subsegment+FROM+%60benchmarks+${year}+view%60+ORDER+BY+company`);
                 const data = await response.json();
                 return data.rows;
             } catch (error) {
@@ -113,9 +129,9 @@
             }
         }
 
-        async function fetchSegmentData() {
+        async function fetchSegmentData(year) {
             try {
-                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+benchmarks+2024%60');
+                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`);
                 const data = await response.json();
                 return data.rows;
             } catch (error) {
@@ -124,9 +140,9 @@
             }
         }
 
-        async function fetchSubsegmentData() {
+        async function fetchSubsegmentData(year) {
             try {
-                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60subsegment+benchmarks+2024%60');
+                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`);
                 const data = await response.json();
                 return data.rows;
             } catch (error) {
@@ -135,10 +151,10 @@
             }
         }
 
-        async function fetchCompanyData(company) {
+        async function fetchCompanyData(company, year) {
             try {
                 const encodedCompany = encodeURIComponent(company);
-                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+2024+view%60+WHERE+company=%22${encodedCompany}%22`);
+                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+WHERE+company=%22${encodedCompany}%22`);
                 const data = await response.json();
                 return data.rows[0];
             } catch (error) {
@@ -147,13 +163,25 @@
             }
         }
 
-        async function initializePage() {
-            // Fetch all necessary data
-            const companies = await fetchCompanyList();
-            segmentData = await fetchSegmentData();
-            subsegmentData = await fetchSubsegmentData();
+        async function handleYearChange() {
+            const selectedYear = document.getElementById('yearSelect').value;
+            await initializePageForYear(selectedYear);
+        }
 
-            // Create company-segment mapping
+        async function initializePageForYear(year) {
+            // Clear existing data
+            document.getElementById('companySelect').innerHTML = '';
+            document.getElementById('segmentSelect').innerHTML = '';
+            document.getElementById('subsegmentSelect').innerHTML = '';
+            document.getElementById('dataContainer').innerHTML = '<div class="loading">Loading data...</div>';
+
+            // Fetch all necessary data for the selected year
+            const companies = await fetchCompanyList(year);
+            segmentData = await fetchSegmentData(year);
+            subsegmentData = await fetchSubsegmentData(year);
+
+            // Reset and rebuild company-segment mapping
+            companySegmentMap.clear();
             companies.forEach(row => {
                 if (row.company && row.segment) {
                     companySegmentMap.set(row.company, {
@@ -173,11 +201,16 @@
                 segmentSelect.appendChild(option);
             });
 
-            updateCompanyOptions();
-            handleSegmentChange();
+            await updateCompanyOptions();
+            await handleSegmentChange();
         }
 
-        function handleSegmentChange() {
+        async function initializePage() {
+            const initialYear = document.getElementById('yearSelect').value;
+            await initializePageForYear(initialYear);
+        }
+
+        async function handleSegmentChange() {
             const selectedSegment = document.getElementById('segmentSelect').value;
             const subsegmentSection = document.getElementById('subsegmentSection');
             const subsegmentSelect = document.getElementById('subsegmentSelect');
@@ -197,17 +230,16 @@
                 subsegmentSelect.innerHTML = '';
             }
             
-            updateCompanyOptions();
-            updateDisplay();
+            await updateCompanyOptions();
+            await updateDisplay();
         }
 
-        function updateCompanyOptions() {
+        async function updateCompanyOptions() {
             const selectedSegment = document.getElementById('segmentSelect').value;
             const selectedSubsegment = document.getElementById('subsegmentSelect')?.value;
             const companySelect = document.getElementById('companySelect');
             companySelect.innerHTML = '';
             
-            // Filter companies by selected segment and subsegment
             let filteredCompanies = Array.from(companySegmentMap.entries())
                 .filter(([_, info]) => info.segment === selectedSegment)
                 .map(([company]) => company);
@@ -225,7 +257,7 @@
                 companySelect.appendChild(option);
             });
 
-            updateDisplay();
+            await updateDisplay();
         }
 
         function formatNumber(num) {
@@ -247,6 +279,7 @@
         }
 
         async function updateDisplay() {
+            const selectedYear = document.getElementById('yearSelect').value;
             const selectedCompany = document.getElementById('companySelect').value;
             const selectedSegment = document.getElementById('segmentSelect').value;
             const selectedSubsegment = document.getElementById('subsegmentSelect')?.value;
@@ -256,7 +289,7 @@
                 return;
             }
 
-            const companyData = await fetchCompanyData(selectedCompany);
+            const companyData = await fetchCompanyData(selectedCompany, selectedYear);
             const benchmarkData = selectedSegment === 'Specialty' && selectedSubsegment
                 ? subsegmentData.find(d => d.subsegment === selectedSubsegment)
                 : segmentData.find(d => d.segment === selectedSegment);
@@ -315,7 +348,7 @@
                     </tr>
                     <tr>
                         <td>Return on assets (ROA)</td>
-                        <td class="number">${formatPercentage(companyData['Return on Assets'])}</td>
+			<td class="number">${formatPercentage(companyData['Return on Assets'])}</td>
                         <td class="number">${formatPercentage(benchmarkData['Return_on_Assets'] || benchmarkData['Return on Assets'])}</td>
                     </tr>
                 </table>

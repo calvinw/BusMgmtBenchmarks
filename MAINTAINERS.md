@@ -8,3 +8,4 @@
 
 - Jia Mei Lin (@JiaJen99)
   - Areas: web apps [Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html), [Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_segment.html), NonAmerican data collection, Prompt engineering
+  - Email: jiameilinair@icloud.com

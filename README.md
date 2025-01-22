@@ -181,19 +181,26 @@ There are two main web page displays for the data and analyses.
 
 ### Side By Side Company 
 
-This web page shows the data for two companies side by side. You can pick two companies and the year to display side by side:
+This web page shows the data for two companies side by side. You can pick two
+companies and the year to display side by side:
 
 [Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html)
 
 ### Side By Side Company and Segment
 
-This web page shows the data for companies against the segment or subsegment they belong to. The purpose of this page is to compare a company to a segment to see how it is doing: 
+This web page shows the data for companies against the segment or subsegment
+they belong to. The purpose of this page is to compare a company to a segment
+to see how it is doing: 
 
 [Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_segment.html)
 
 ### SEC Filings Display
 
-At the bottom of the [Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html) page are links to copies of the official SEC webpage for the income and balance statements for the companies and years indicated. These may be of interest to see more details about the company or to further check the data. 
+At the bottom of the [Company Side By Side
+Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html)
+page are links to copies of the official SEC webpage for the income and balance
+statements for the companies and years indicated. These may be of interest to
+see more details about the company or to further check the data. 
 
 Here is an example of those displays:
 
@@ -201,23 +208,15 @@ Here is an example of those displays:
 
 - [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Target-2022.html)
 
-These webpages are pulled directly from the submitted html pages of the public 10-k filings of the companies with the SEC and are not changed in any way from that filing. They are just provided here for convenience and further reference. 
+These webpages are pulled directly from the submitted html pages of the public
+10-k filings of the companies with the SEC and are not changed in any way from
+that filing. They are just provided here for convenience and further reference. 
 
 ## Reports
 
 There are a number of downloadable data files created each year
 
-[Benchmark Reports](https://calvinw.github.io/BusMgmtBenchmarks/reports.html)
-
-[ Need Details for this ]
-
-### Collect Data from Companies (Primarily 10Ks for years 2019-2024) 
-
-This is where the file `extracted_financial_data.csv` is created. See the
-folder `extract` for details of this process. The details of the reports are
-from SEC provided info, and some python scripts collate the data and use large
-language model calls to assist in identifying the approprate fields from the
-10-K data.
+[Reports](https://calvinw.github.io/BusMgmtBenchmarks/reports.html)
 
 ## Data Collection (Extraction) Techniques
 

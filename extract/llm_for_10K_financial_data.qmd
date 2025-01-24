@@ -151,7 +151,7 @@ page and its any easy reference for seeing if we pulled the right values.
 ```{python}
 from IPython.display import IFrame
 
-IFrame(src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/lululemon-2024.html", width=900, height=900)
+IFrame(src="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Lululemon-2024.html", width=900, height=900)
 ```
 
 ## Convert the Dataframes to Markdown to Prepare for LLM Call 

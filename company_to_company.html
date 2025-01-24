@@ -77,6 +77,53 @@
         #sourceContainer a:hover {
             text-decoration: underline;
         }
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .hamburger-menu {
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
         #exportBtn {
             position: fixed;
             top: 20px;
@@ -91,6 +138,18 @@
     </style>
 </head>
 <body>
+    <div class="menu-container">
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="dropdown-menu">
+            <a href="company_to_company.html">Company Comparison</a>
+            <a href="company_to_segment.html">Company vs Segment</a>
+            <a href="reports.html">Reports</a>
+        </div>
+    </div>
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1>Retail Financial Analysis Comparison</h1>
         <button id="exportBtn">Export to Excel</button>
@@ -207,7 +266,7 @@
             const row2 = data2.rows[0];
             
             const sections = {
-                'Financial Numbers': [
+                'Financial Numbers ($ in thousands)': [
                     ['Total Revenue', 'Net Revenue'],
                     ['COGS $', 'Cost of Goods'],
                     ['GM $', 'Gross Margin'],
@@ -338,6 +397,23 @@
             // Initial table update
             updateTable();
         }
+
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const menu = document.querySelector('.hamburger-menu');
+            const dropdown = document.querySelector('.dropdown-menu');
+            
+            menu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target) && !menu.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        });
 
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>

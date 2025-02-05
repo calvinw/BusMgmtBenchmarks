@@ -222,7 +222,17 @@
             }
         }
 
-        function formatValue(value, columnType, fieldName) {
+const currencyMap = {
+    'Louis Vuitton': '€',
+    'Inditex/Zara': '€',
+    'H&M': 'kr',
+    'Adidas': '€',
+    'Aritzia': 'CA$',
+    'Ahold Delhaize': '€',
+    'ASOS': '£'
+};
+
+        function formatValue(value, columnType, fieldName, company) {
             if (value === null) return 'N/A';
             
             const num = Number(value);
@@ -241,7 +251,9 @@
             
             if (columnType.includes('bigint') || 
                 (columnType.includes('decimal') && fieldName === 'Gross Margin')) {
-                return '$' + num.toLocaleString(undefined, {
+                const currency = currencyMap[company] || 'USD';
+                const symbol = currency === 'USD' ? '$' : currency;
+                return symbol + num.toLocaleString(undefined, {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0
                 });
@@ -303,8 +315,8 @@
                 for (const [label, fieldName] of fields) {
                     const schema = data1.schema.find(s => s.columnName === fieldName);
                     if (schema) {
-                        const value1 = formatValue(row1[fieldName], schema.columnType, fieldName);
-                        const value2 = formatValue(row2[fieldName], schema.columnType, fieldName);
+                        const value1 = formatValue(row1[fieldName], schema.columnType, fieldName, row1.company);
+                        const value2 = formatValue(row2[fieldName], schema.columnType, fieldName, row2.company);
                         tableHtml += `
                             <tr>
                                 <td class="label-column">${label}</td>

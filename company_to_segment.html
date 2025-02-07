@@ -154,7 +154,7 @@
             </div>
             <div id="subsegmentSection" style="display: none;">
                 <label for="subsegmentSelect">Select Subsegment: </label>
-                <select id="subsegmentSelect" onchange="updateDisplay()"></select>
+                <select id="subsegmentSelect" onchange="updateCompanyOptions()"></select>
             </div>
         </div>
     </div>
@@ -314,6 +314,10 @@
                 option.textContent = company;
                 companySelect.appendChild(option);
             });
+
+            if (filteredCompanies.length > 0) {
+                companySelect.selectedIndex = 0;
+            }
 
             await updateDisplay();
         }

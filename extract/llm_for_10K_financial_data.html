@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            Jay and Patty Baker School of Business and Technology, FIT
+            Jay and Patty Baker School of Business and Technology, Fashion Institute of Technology
           </p>
       </div>
   </div>
@@ -147,13 +147,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will find the latest 10-K by using the <a href="https://github.com/dgunning/edgartools">edgartools</a> package. The code behind the library is a very efficient API front end for queries to the SEC edgar REST api.</p>
 <p>Of course once you have a mapping of the labels in the report to the standard gaap attributes taxonomy for the company you are interested in you could look the facts labeled with those attribute names on subsequent reports from the same company. We dont illustrate that but it makes sense if you need want to optimize looking up this information for multiple years for the same company and speed and if LLM costs are an issue.</p>
 <p>Our dataset is so small and the LLM costs are minimal for what we want so we dont pursue that kind of optimization.</p>
-<div id="d2251273" class="cell" data-execution_count="1">
+<div id="36fbc0ac" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install edgartools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install openai</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Do some imports and set the display to print out just 10 rows of dataframes.</p>
-<div id="49543f1b" class="cell" data-execution_count="3">
+<div id="4cd07477" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> edgar <span class="im">import</span> set_identity, Company</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -161,12 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-edgartools-to-load-the-10k-for-a-company" class="level2">
 <h2 class="anchored" data-anchor-id="using-edgartools-to-load-the-10k-for-a-company">Using Edgartools to Load the 10K for a Company</h2>
 <p>You must set your email address in order for edgartools to access the SEC edgar website. Change “YourEmailAddress” below to be your email address.</p>
-<div id="92087feb" class="cell" data-execution_count="4">
+<div id="fac9a4bb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set identity</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>set_identity(<span class="st">"YourEmailAddress"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we use the CIK to download the latest 10K for the company. You can find the CIKs for companies that are American filing at the SEC website.</p>
-<div id="ebd22698" class="cell" data-execution_count="5">
+<div id="85fc9c9e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the CIK for lululemon </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cik <span class="op">=</span> <span class="st">"1397187"</span>  </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-the-income-statement-and-the-balance-sheet-as-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-income-statement-and-the-balance-sheet-as-dataframe">Getting the Income Statement and the Balance Sheet as Dataframe</h2>
 <p>First we get the income statement as a dataframe.</p>
-<div id="0099c3ec" class="cell" data-execution_count="6">
+<div id="20d71e2f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> filing_obj.income_statement.to_dataframe()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>income_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can see that the current year is in one column and the previous years after that.</p>
 <p>The labels are not a separate column, they are actually “indices” to the rows, so the data we want is in the first column (with index=0). So we can drop the columns after that since we only need the current year data. We use <code>iloc</code> to do that as follows:</p>
-<div id="2c5eb407" class="cell" data-execution_count="7">
+<div id="af566823" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>income_df <span class="op">=</span> income_df.iloc[:, :<span class="dv">1</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>income_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now we have our labels and the column of data from 2024, the latest in this case.</p>
 <p>This will be cleaner for sending to the LLM, it doesnt need the older years data</p>
 <p>Next we get the balance sheet as a dataframe. Again we just keep the labels and the first column that has the data we want in it</p>
-<div id="1998b412" class="cell" data-execution_count="8">
+<div id="4d9685b7" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> filing_obj.balance_sheet.to_dataframe()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> balance_df.iloc[:, :<span class="dv">1</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>balance_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compare-to-sec-filing-web-page" class="level2">
 <h2 class="anchored" data-anchor-id="compare-to-sec-filing-web-page">Compare to SEC Filing Web Page</h2>
 <p>You can compare these to a copy of the report filed by the company with the SEC. The following html is included in company’s official report to the SEC and we just reproduce it here so you can compare. Every 10-K has this kind of html page and its any easy reference for seeing if we pulled the right values.</p>
-<div id="432e1543" class="cell" data-execution_count="9">
+<div id="07be9581" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>IFrame(src<span class="op">=</span><span class="st">"https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Lululemon-2024.html"</span>, width<span class="op">=</span><span class="dv">900</span>, height<span class="op">=</span><span class="dv">900</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -446,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We convert the dataframes to markdown tables to prepare to send them to an LLM</p>
 <p>We use the <code>to_markdown</code> method of the dataframe.</p>
 <p>Here is the income statement as markdown:</p>
-<div id="865654bb" class="cell" data-execution_count="10">
+<div id="3d3fd276" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>income_markdown_table <span class="op">=</span> income_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -476,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>And the balance sheet as markdown:</p>
-<div id="c5d7bfbd" class="cell" data-execution_count="11">
+<div id="a958fbce" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>balance_markdown_table <span class="op">=</span> balance_df.to_markdown(index<span class="op">=</span><span class="va">True</span>, floatfmt<span class="op">=</span><span class="st">".0f"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the <code>edgartools</code> versions of the the dataframes above there are ways of getting the gaap attributes that the labels corresponds to for each of the rows. One could pass those the to LLM as well, to help it identify the financial concepts that you want, but we dont show that here.</p>
 <p>We just rely on the LLM recognizing the concept from the labels in the first column of the income statement and the balance report.</p>
 <p>Here’s our prompt with our list of concepts and template variables for the income statement and the balance sheet. This f-string will get filled in with those.</p>
-<div id="834388bb" class="cell" data-execution_count="12">
+<div id="8c23b332" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"""Below is a list of financial concepts (given inside the &lt;concepts&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ss">tags) to be found in the income statement and the balance sheet of a companies</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">10-K report. </span></span>
@@ -586,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="ss">```"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets take a look at the prompt before we send it:</p>
-<div id="9dfb7e47" class="cell" data-execution_count="13">
+<div id="34819163" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prompt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Below is a list of financial concepts (given inside the &lt;concepts&gt;
@@ -714,12 +714,12 @@ The Response Format:
 <h3 class="anchored" data-anchor-id="set-up-your-llm-provider">Set Up Your LLM Provider</h3>
 <p>Paste in the key to your LLM provider as appropriate. You should change the base_url and the environment variable to be appropriate for your situation.</p>
 <p>As long as the api you are using is openai compatible you should be fine.</p>
-<div id="d0a68640" class="cell" data-execution_count="14">
+<div id="205ebaef" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>] <span class="op">=</span> <span class="st">"paste_your_api_key_here"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we call the api. Fix the base_url and api_key. We use DeepSeek V3 but many models would work.</p>
-<div id="bff0fb76" class="cell" data-execution_count="15">
+<div id="72136721" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -767,7 +767,7 @@ The Response Format:
 <section id="check-the-response-from-the-llm" class="level2">
 <h2 class="anchored" data-anchor-id="check-the-response-from-the-llm">Check the Response from the LLM</h2>
 <p>We could use structred output or json output checking here as well, but we do not show the details of that.</p>
-<div id="e0d2a6bf" class="cell" data-execution_count="16">
+<div id="4dc26445" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The income statement again so you can check some of the LLM response: "</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(income_markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

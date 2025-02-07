@@ -4,7 +4,7 @@ authors:
   - name: "Calvin Williamson"
     affiliation: "Science and Math, Fashion Institute of Technology"
   - name: "Jia Mei Lin"
-    affiliation: "Jay and Patty Baker School of Business and Technology, FIT"
+    affiliation: "Jay and Patty Baker School of Business and Technology, Fashion Institute of Technology"
 format:
   html:
     page-layout: full 

@@ -1,5 +1,10 @@
 ---
 title: Using Large Language Models to Identify Financial Concepts from 10-K Reports
+authors:
+  - name: "Calvin Williamson"
+    affiliation: "Science and Math, Fashion Institute of Technology"
+  - name: "Jia Mei Lin"
+    affiliation: "Jay and Patty Baker School of Business and Technology, FIT"
 format:
   html:
     page-layout: full 

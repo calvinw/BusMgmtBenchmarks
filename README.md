@@ -107,7 +107,7 @@ Currently companies belong to one category only.
 | Abercrombie & Fitch | ANF | 1018840 | Specialty | Apparel |
 | American Eagle | AEO | 919012 | Specialty | Apparel |
 | Urban Outfitters | URBN | 912615 | Specialty | Apparel |
-| Gap | GPS | 39911 | Specialty | Apparel |
+| Gap | GAP | 39911 | Specialty | Apparel |
 | Levi Strauss | LEVI | 94845 | Specialty | Apparel |
 | Dick's Sporting Goods | DKS | 1089063 | Specialty | Category Killer |
 | Academy Sports | ASO | 1817358 | Specialty | Category Killer |

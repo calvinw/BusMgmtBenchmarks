@@ -50,7 +50,7 @@ def get_recent_filings(company: Company):
         filings = company.get_filings(form="10-K")
         if not filings:
             raise ValueError("No 10-K filings found")
-        return [f for f in filings if f.filing_date.year in {2019, 2020}]
+        return [f for f in filings if f.filing_date.year in {2024, 2023, 2022, 2021}]
     except Exception as e:
         print(f"An error occurred: {e}")
         return []

@@ -78,7 +78,9 @@ Here is the balance sheet:
 
 Please return the values found as strings in a json format as follows. Make
 sure to provide a number for every concept. Respond only with with the
-following format, no other commentary or discussion
+following format, no other commentary or discussion. 
+
+Please return Cost of Goods and SG&A as positive numbers only.
 
 Response format:
 ```json
@@ -109,12 +111,16 @@ def call_llm(prompt):
           api_key=os.getenv("OPENROUTER_API_KEY")
         )
         response = client.chat.completions.create(
-                # model="openai/gpt-4o-mini",
+                #model="openai/gpt-4o",
+                model="anthropic/claude-3.5-sonnet",
                 # model="mistralai/ministral-8b",
                 # model="google/gemini-flash-1.5",
+                # model = "google/gemini-2.0-flash-001",
+                # model = "google/gemini-2.0-pro-exp-02-05:free",
                 # model = "amazon/nova-micro-v1",
                 # model ="meta-llama/llama-3.2-1b-instruct",
-                model = "deepseek/deepseek-chat",
+                # model = "deepseek/deepseek-r1",
+                # model = "deepseek/deepseek-r1-distill-llama-70b",
                 messages=[
                     {"role": "system", "content": "You are a financial document expert assistant."},
                     {"role": "user", "content": prompt}
@@ -165,21 +171,23 @@ def process_filing(company_name: str, filing) -> Optional[Dict[str, str]]:
     # Convert JSON string to Python dictionary
     import json
 
+    # print(llm_response_str)
+
     data= json.loads(llm_response_str)
 
 
-    print(f"company: {company_name}")
-    print(f"Filing: {filing.accession_number}, Date: {filing.filing_date}, Form: {filing.form}")
-    print("")
+    # print(f"company: {company_name}")
+    # print(f"Filing: {filing.accession_number}, Date: {filing.filing_date}, Form: {filing.form}")
+    # print("")
     # print(f"LLM Response: company: {company_name}, date: {filing.filing_date}")
     # print(json.dumps(data, indent=2))
-    print("")
-    print(f"Income statement: {company_name}, date: {filing.filing_date}")
-    print(income_markdown_table)
-    print("")
-    print(f"Balance sheet: {company_name}, date: {filing.filing_date}")
-    print(balance_markdown_table)
-    print("")
+    # print("")
+    # print(f"Income statement: {company_name}, date: {filing.filing_date}")
+    # #print(income_markdown_table)
+    # print("")
+    # print(f"Balance sheet: {company_name}, date: {filing.filing_date}")
+    # #print(balance_markdown_table)
+    # print("")
 
     return data
 

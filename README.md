@@ -222,5 +222,5 @@ There are a number of downloadable data files created each year
 
 Please see the README.md in the extract folder [extract/README.md](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/README.md) for the details of how the extraction process and scripts work. An expository example is given here: 
 
-[Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
+[Using a Large Language Model to Identify Financial Concepts from 10K Reports](https://medium.com/@calvin.e.williamson/using-a-large-language-model-to-identify-financial-concepts-from-10k-reports-d551a7fb5554)
 

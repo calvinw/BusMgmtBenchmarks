@@ -399,11 +399,24 @@ const currencyMap = {
 
             // Add export functionality
             document.getElementById('exportBtn').addEventListener('click', function() {
-                const table = document.querySelector('table');
-                const ws = XLSX.utils.table_to_sheet(table);
+                // Find financial numbers section boundaries
+                const allRows = Array.from(document.querySelectorAll('table tr'));
+                const financialStart = allRows.findIndex(tr => 
+                    tr.textContent.includes('Financial Numbers ($ in thousands)'));
+                const nextSection = allRows.findIndex((tr, idx) => 
+                    idx > financialStart && tr.classList.contains('section-header'));
+
+                // Create filtered table with just financial numbers
+                const filteredRows = allRows.slice(financialStart, 
+                    nextSection === -1 ? undefined : nextSection);
+                const tempTable = document.createElement('table');
+                filteredRows.forEach(row => tempTable.appendChild(row.cloneNode(true)));
+
+                // Export filtered data
+                const ws = XLSX.utils.table_to_sheet(tempTable);
                 const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-                XLSX.writeFile(wb, 'company_comparison.xlsx');
+                XLSX.utils.book_append_sheet(wb, ws, 'Financials');
+                XLSX.writeFile(wb, 'financial_numbers_export.xlsx');
             });
 
             // Initial table update

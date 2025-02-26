@@ -1,0 +1,19 @@
+This proposal is for support of enhancements of the original financial modeling tool built to support the current IITG grant for Business Management Course Development (https://online.suny.edu/iitg2/current-projects/entry/1423/).
+
+In that grant, we built:   
+
+- OER website (https://github.com/calvinw/BusMgmtBenchmarks) 
+- SQL database(https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks) 
+- Online financial analysis tools (https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html) 
+
+for a fixed group of 54 companies over the span of 2019-2024. These webtools support case studies created for business management courses and other educational content creation.   
+
+Collection of data from financial report income statements and balance sheets for these companies was automated using AI (https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html) and webscraping via open source libraries.
+
+Data is displayed in standardized formats to allow analyzing companies financial statments side by side against other companies as well as side by side against segments (customized groups of companies). 
+
+This followup grant proposal would be to support extensions to the software that would allow the following:
+
+1) instructors or classes to upload customized lists of companies (and segments) they wish to analyze
+2) improvements to the current online SQL database to allow direct access to the data via forms and query builders to allow displaying and working with the data in customized views and formats  
+3) extension to the AI techniques used to automate the data collection to allow arbitrary ranges of years with both American (with 10-K reports) and non-American companies (no 10-Ks) 

@@ -107,7 +107,7 @@ Currently companies belong to one category only.
 | Abercrombie & Fitch | ANF | 1018840 | Specialty | Apparel |
 | American Eagle | AEO | 919012 | Specialty | Apparel |
 | Urban Outfitters | URBN | 912615 | Specialty | Apparel |
-| Gap | GPS | 39911 | Specialty | Apparel |
+| Gap | GAP | 39911 | Specialty | Apparel |
 | Levi Strauss | LEVI | 94845 | Specialty | Apparel |
 | Dick's Sporting Goods | DKS | 1089063 | Specialty | Category Killer |
 | Academy Sports | ASO | 1817358 | Specialty | Category Killer |
@@ -222,5 +222,5 @@ There are a number of downloadable data files created each year
 
 Please see the README.md in the extract folder [extract/README.md](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/README.md) for the details of how the extraction process and scripts work. An expository example is given here: 
 
-[Using an Large Language Model to Identify Financial Concepts from 10-K Reports](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
+[Using a Large Language Model to Identify Financial Concepts from 10K Reports](https://medium.com/@calvin.e.williamson/using-a-large-language-model-to-identify-financial-concepts-from-10k-reports-d551a7fb5554)
 

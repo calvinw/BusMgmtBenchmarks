@@ -11,23 +11,24 @@ companies_df = pd.read_csv("companies.csv")
 mapping = {
     "Total Revenue": "Net Revenue",
     "Cost Of Revenue": "Cost of Goods",
-    "Selling General And Administration": "SG&A",
-    "Operating Income": "Operating Profit",
+    "Selling General And Administration": "SGA",
+#    "Other Gand A": "SGA",
+#   "Operating Expense": "SGA",
+    "Total Operating Income As Reported": "Operating Profit",
     "Net Income": "Net Profit",
     "Inventory": "Inventory",
     "Current Assets": "Current Assets",
     "Total Assets": "Total Assets",
     "Current Liabilities": "Current Liabilities",
-    "Stockholders Equity": "Total Shareholder Equity",
-    "Total Liabilities Net Minority Interest": "Total Liabilities and Shareholder Equity"
+    "Stockholders Equity": "Total Shareholder Equity"
 }
 
 # Iterate over each company in the companies DataFrame
 for index, row in companies_df.iterrows():
     company_name = row["company_name"]
     ticker = row["ticker"]
-    currency = row["currency"]
-    units = row["units"]
+    #currency = row["currency"]
+    #units = row["units"]
 
     try:
         # Fetch company data using yfinance

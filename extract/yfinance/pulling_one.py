@@ -2,7 +2,7 @@ import pandas as pd
 import yfinance as yf
 
 # Fetch LVMH data
-lvmh = yf.Ticker("MC.PA")
+lvmh = yf.Ticker("M")
 
 # Get income statement and balance sheet
 income_statement = lvmh.income_stmt
@@ -53,7 +53,7 @@ financial_df = financial_df[desired_columns]  # Filter the DataFrame to keep onl
 financial_df = financial_df.reset_index().rename(columns={"index": "filingDate"})
 
 # Step 7: Add a new column called "company_name" with the value "Louis Vuitton"
-financial_df["company_name"] = "Louis Vuitton"
+financial_df["company_name"] = "Macys"
 
 # Step 8: Add a new column called "year" with values 2024, 2023, 2022, 2021
 financial_df["year"] = [2024, 2023, 2022, 2021]

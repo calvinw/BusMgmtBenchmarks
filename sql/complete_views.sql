@@ -23,9 +23,9 @@ DROP VIEW IF EXISTS `benchmarks 2022 view`;
 DROP VIEW IF EXISTS `benchmarks 2021 view`;
 DROP VIEW IF EXISTS `benchmarks 2020 view`;
 DROP VIEW IF EXISTS `benchmarks 2019 view`;
+DROP VIEW IF EXISTS `benchmarks 2018 view`;
 
--- Create detailed benchmark views for each year
-CREATE VIEW `benchmarks 2019 view` AS 
+CREATE VIEW `benchmarks 2018 view` AS 
 SELECT 
     subquery.company_name AS company,
     subquery.year AS year,
@@ -65,6 +65,55 @@ FROM (
     JOIN 
         new_company_info c ON f.company_name = c.company
     WHERE 
+        f.year = 2018
+) AS subquery
+JOIN 
+    new_financial_metrics fm ON subquery.company_name = fm.company_name AND subquery.year = fm.year;
+
+
+-- Create detailed benchmark views for each year
+CREATE VIEW `benchmarks 2019 view` AS 
+SELECT 
+    subquery.company_name AS company,
+    subquery.year AS year,
+    subquery.segment,
+    subquery.subsegment,
+    subquery.`Net Revenue`,
+    subquery.`Net Revenue 2018`,
+    subquery.`Cost of Goods`,
+    subquery.`SGA`,
+    subquery.`Operating Profit`,
+    subquery.`Net Profit`,
+    subquery.`Inventory`,
+    subquery.`Current Assets`,
+    subquery.`Total Assets`,
+    subquery.`Current Liabilities`,
+    subquery.`Total Shareholder Equity`,
+    subquery.`Total Liabilities and Shareholder Equity`,
+    fm.`Cost_of_Goods_Percentage` AS `Cost of Goods %`,
+    fm.`SGA_Percentage` AS `SGA %`,
+    fm.`Gross_Margin_Percentage` AS `Gross Margin %`,
+    fm.`Operating_Profit_Margin_Percentage` AS `Operating Profit Margin %`,
+    fm.`Net_Profit_Margin_Percentage` AS `Net Profit Margin %`,
+    fm.`Inventory_Turnover` AS `Inventory Turnover`,
+    fm.`Asset_Turnover` AS `Asset Turnover`,
+    fm.`Return_on_Assets` AS `Return on Assets`,
+    fm.`Three_Year_Revenue_CAGR` AS `Three Year Revenue CAGR`,
+    fm.`Current_Ratio` AS `Current Ratio`,
+    fm.`Quick_Ratio` AS `Quick Ratio`,
+    fm.`Sales_Current_Year_vs_LY` AS `Sales vs LY`,
+    fm.`Debt_to_Equity` AS `Debt to Equity`
+FROM (
+    SELECT 
+        f.*,
+        (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2018) AS `Net Revenue 2018`,
+        c.segment,
+        c.subsegment
+    FROM 
+        financials f
+    JOIN 
+        new_company_info c ON f.company_name = c.company
+    WHERE 
         f.year = 2019
 ) AS subquery
 JOIN 
@@ -78,6 +127,7 @@ SELECT
     subquery.subsegment,
     subquery.`Net Revenue`,
     subquery.`Net Revenue 2019`,
+    subquery.`Net Revenue 2018`,
     subquery.`Cost of Goods`,
     subquery.`SGA`,
     subquery.`Operating Profit`,
@@ -105,6 +155,7 @@ FROM (
     SELECT 
         f.*,
         (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2019) AS `Net Revenue 2019`,
+        (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2018) AS `Net Revenue 2018`,
         c.segment,
         c.subsegment
     FROM 
@@ -126,6 +177,7 @@ SELECT
     subquery.`Net Revenue`,
     subquery.`Net Revenue 2020`,
     subquery.`Net Revenue 2019`,
+    subquery.`Net Revenue 2018`,
     subquery.`Cost of Goods`,
     subquery.`SGA`,
     subquery.`Operating Profit`,
@@ -154,6 +206,7 @@ FROM (
         f.*,
         (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2020) AS `Net Revenue 2020`,
         (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2019) AS `Net Revenue 2019`,
+        (SELECT `Net Revenue` FROM financials WHERE company_name = f.company_name AND year = 2018) AS `Net Revenue 2018`,
         c.segment,
         c.subsegment
     FROM 
@@ -320,6 +373,9 @@ JOIN
     new_financial_metrics fm ON subquery.company_name = fm.company_name AND subquery.year = fm.year;
 
 -- Create segment benchmark views
+CREATE VIEW `segment benchmarks 2018` AS 
+SELECT * FROM segment_metrics WHERE year = 2018;
+
 CREATE VIEW `segment benchmarks 2019` AS 
 SELECT * FROM segment_metrics WHERE year = 2019;
 

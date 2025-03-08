@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Financial Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input, button, select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .chart-container {
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Company Financial Dashboard</h1>
+        </div>
+        
+        <div class="controls">
+            <select id="companySelect">
+                <option value="">Loading companies...</option>
+            </select>
+            <button id="fetchBtn">Fetch Data</button>
+            <select id="chartType">
+                <option value="line">Line Chart</option>
+                <option value="bar">Bar Chart</option>
+            </select>
+        </div>
+        
+        <div id="error" class="error hide"></div>
+        <div id="loading" class="loading hide">Loading data...</div>
+        
+        <div id="chartsContainer">
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h2>Revenue & Profitability</h2>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>Margins & Profitability Ratios</h2>
+                    <canvas id="marginsChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>Assets</h2>
+                    <canvas id="assetsChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>Liabilities & Equity</h2>
+                    <canvas id="liabilitiesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart instances
+        let charts = {
+            revenue: null,
+            margins: null,
+            assets: null,
+            liabilities: null
+        };
+
+        // Colors for the charts
+        const colors = [
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(153, 102, 255, 0.7)',
+            'rgba(255, 159, 64, 0.7)',
+            'rgba(199, 199, 199, 0.7)',
+            'rgba(83, 102, 255, 0.7)',
+            'rgba(40, 159, 64, 0.7)',
+            'rgba(210, 199, 199, 0.7)'
+        ];
+
+        // DOM elements
+        const companySelect = document.getElementById('companySelect');
+        const fetchBtn = document.getElementById('fetchBtn');
+        const chartTypeSelect = document.getElementById('chartType');
+        const errorDiv = document.getElementById('error');
+        const loadingDiv = document.getElementById('loading');
+
+        // Add event listeners
+        fetchBtn.addEventListener('click', fetchData);
+        chartTypeSelect.addEventListener('change', updateChartType);
+
+        // Fetch companies on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCompanies();
+        });
+
+        // Function to fetch company list
+        function fetchCompanies() {
+            // Show loading indicator
+            loadingDiv.classList.remove('hide');
+            
+            // API URL for company names
+            const apiUrl = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/year_test_branch?q=SELECT+company%0AFROM+%60new_company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A';
+            
+            // Fetch companies from the API
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.rows || data.rows.length === 0) {
+                        throw new Error('No companies found');
+                    }
+                    
+                    // Clear the select options
+                    companySelect.innerHTML = '';
+                    
+                    // Add companies to the dropdown
+                    data.rows.forEach(row => {
+                        const option = document.createElement('option');
+                        option.value = row.company;
+                        option.textContent = row.company;
+                        companySelect.appendChild(option);
+                    });
+                    
+                    // Set default company and fetch its data
+                    companySelect.value = 'Amazon';
+                    fetchData();
+                })
+                .catch(error => {
+                    showError(`Error fetching companies: ${error.message}`);
+                    loadingDiv.classList.add('hide');
+                });
+        }
+
+        // Main function to fetch financial data
+        function fetchData() {
+            const companyName = companySelect.value.trim();
+            
+            if (!companyName) {
+                showError("Please select a company");
+                return;
+            }
+            
+            // Show loading indicator
+            loadingDiv.classList.remove('hide');
+            errorDiv.classList.add('hide');
+            
+            // Construct the API URL with encoded SQL query
+            const query = `SELECT * FROM \`financials\` WHERE company_name = "${companyName}"`;
+            const encodedQuery = encodeURIComponent(query);
+            const apiUrl = `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/year_test_branch?q=${encodedQuery}`;
+            
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.rows || data.rows.length === 0) {
+                        throw new Error(`No financial data found for ${companyName}`);
+                    }
+                    
+                    // Process and visualize the data
+                    processData(data);
+                })
+                .catch(error => {
+                    showError(`Error fetching data: ${error.message}`);
+                })
+                .finally(() => {
+                    loadingDiv.classList.add('hide');
+                });
+        }
+
+        // Process the financial data and create charts
+        function processData(data) {
+            // Extract the years for x-axis
+            const years = data.rows.map(row => row.year);
+            
+            // Create chart groups
+            createRevenueChart(data.rows, years);
+            createMarginsChart(data.rows, years);
+            createAssetsChart(data.rows, years);
+            createLiabilitiesChart(data.rows, years);
+            
+            // Update page title with company name
+            document.title = `${data.rows[0].company_name} Financial Dashboard`;
+        }
+
+        // Helper function to convert strings to numbers
+        function parseFinancial(value) {
+            // Handle negative values
+            if (typeof value === 'string' && value.startsWith('-')) {
+                return -Number(value.substring(1));
+            }
+            return Number(value);
+        }
+
+        // Helper function to convert to millions for better readability
+        function toMillions(value) {
+            return parseFinancial(value) / 1000000;
+        }
+
+        // Create revenue and profit chart
+        function createRevenueChart(data, years) {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            
+            const chartData = {
+                labels: years,
+                datasets: [
+                    {
+                        label: 'Net Revenue',
+                        data: data.map(row => toMillions(row['Net Revenue'])),
+                        backgroundColor: colors[0],
+                        borderColor: colors[0].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Gross Margin',
+                        data: data.map(row => toMillions(row['Gross Margin'])),
+                        backgroundColor: colors[1],
+                        borderColor: colors[1].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Operating Profit',
+                        data: data.map(row => toMillions(row['Operating Profit'])),
+                        backgroundColor: colors[2],
+                        borderColor: colors[2].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Net Profit',
+                        data: data.map(row => toMillions(row['Net Profit'])),
+                        backgroundColor: colors[3],
+                        borderColor: colors[3].replace('0.7', '1'),
+                        borderWidth: 2
+                    }
+                ]
+            };
+            
+            // Destroy existing chart if it exists
+            if (charts.revenue) charts.revenue.destroy();
+            
+            // Create new chart
+            charts.revenue = new Chart(ctx, {
+                type: chartTypeSelect.value,
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: $${context.raw.toLocaleString()} M`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($ millions)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString() + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create margins chart
+        function createMarginsChart(data, years) {
+            const ctx = document.getElementById('marginsChart').getContext('2d');
+            
+            // Calculate margin ratios
+            const datasets = [
+                {
+                    label: 'Gross Margin %',
+                    data: data.map(row => (parseFinancial(row['Gross Margin']) / parseFinancial(row['Net Revenue']) * 100).toFixed(2)),
+                    backgroundColor: colors[4],
+                    borderColor: colors[4].replace('0.7', '1'),
+                    borderWidth: 2
+                },
+                {
+                    label: 'Operating Margin %',
+                    data: data.map(row => (parseFinancial(row['Operating Profit']) / parseFinancial(row['Net Revenue']) * 100).toFixed(2)),
+                    backgroundColor: colors[5],
+                    borderColor: colors[5].replace('0.7', '1'),
+                    borderWidth: 2
+                },
+                {
+                    label: 'Net Profit Margin %',
+                    data: data.map(row => (parseFinancial(row['Net Profit']) / parseFinancial(row['Net Revenue']) * 100).toFixed(2)),
+                    backgroundColor: colors[6],
+                    borderColor: colors[6].replace('0.7', '1'),
+                    borderWidth: 2
+                }
+            ];
+            
+            // Destroy existing chart if it exists
+            if (charts.margins) charts.margins.destroy();
+            
+            // Create new chart
+            charts.margins = new Chart(ctx, {
+                type: chartTypeSelect.value,
+                data: {
+                    labels: years,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Percentage (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create assets chart
+        function createAssetsChart(data, years) {
+            const ctx = document.getElementById('assetsChart').getContext('2d');
+            
+            const chartData = {
+                labels: years,
+                datasets: [
+                    {
+                        label: 'Total Assets',
+                        data: data.map(row => toMillions(row['Total Assets'])),
+                        backgroundColor: colors[0],
+                        borderColor: colors[0].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Current Assets',
+                        data: data.map(row => toMillions(row['Current Assets'])),
+                        backgroundColor: colors[1],
+                        borderColor: colors[1].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Inventory',
+                        data: data.map(row => toMillions(row['Inventory'])),
+                        backgroundColor: colors[2],
+                        borderColor: colors[2].replace('0.7', '1'),
+                        borderWidth: 2
+                    }
+                ]
+            };
+            
+            // Destroy existing chart if it exists
+            if (charts.assets) charts.assets.destroy();
+            
+            // Create new chart
+            charts.assets = new Chart(ctx, {
+                type: chartTypeSelect.value,
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: $${context.raw.toLocaleString()} M`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($ millions)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString() + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create liabilities and equity chart
+        function createLiabilitiesChart(data, years) {
+            const ctx = document.getElementById('liabilitiesChart').getContext('2d');
+            
+            const chartData = {
+                labels: years,
+                datasets: [
+                    {
+                        label: 'Total Liabilities',
+                        data: data.map(row => toMillions(row['Liabilities'])),
+                        backgroundColor: colors[3],
+                        borderColor: colors[3].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Current Liabilities',
+                        data: data.map(row => toMillions(row['Current Liabilities'])),
+                        backgroundColor: colors[4],
+                        borderColor: colors[4].replace('0.7', '1'),
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Shareholder Equity',
+                        data: data.map(row => toMillions(row['Total Shareholder Equity'])),
+                        backgroundColor: colors[5],
+                        borderColor: colors[5].replace('0.7', '1'),
+                        borderWidth: 2
+                    }
+                ]
+            };
+            
+            // Destroy existing chart if it exists
+            if (charts.liabilities) charts.liabilities.destroy();
+            
+            // Create new chart
+            charts.liabilities = new Chart(ctx, {
+                type: chartTypeSelect.value,
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: $${context.raw.toLocaleString()} M`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($ millions)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString() + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update chart type when user changes the selection
+        function updateChartType() {
+            const chartType = chartTypeSelect.value;
+            
+            // Update each chart type
+            Object.keys(charts).forEach(key => {
+                if (charts[key]) {
+                    charts[key].config.type = chartType;
+                    charts[key].update();
+                }
+            });
+        }
+
+        // Show error message
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hide');
+            loadingDiv.classList.add('hide');
+        }
+    </script>
+</body>
+</html>

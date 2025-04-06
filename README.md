@@ -1,4 +1,4 @@
-# Business Management Benchmarks (BusMgmtBenchmarks)
+code# Business Management Benchmarks (BusMgmtBenchmarks)
 
 This project is for collecting retail data and analyzing it for a number of
 companies and segments. In particular the goal is to allow companies to be

@@ -14,18 +14,6 @@
     </style>
 </head>
 <body class="font-sans max-w-7xl mx-auto p-5">
-    <div class="fixed top-5 left-5 z-50">
-        <div class="hamburger-menu cursor-pointer p-2.5">
-            <div class="bar w-6 h-0.5 bg-gray-800 my-1 transition duration-300"></div>
-            <div class="bar w-6 h-0.5 bg-gray-800 my-1 transition duration-300"></div>
-            <div class="bar w-6 h-0.5 bg-gray-800 my-1 transition duration-300"></div>
-        </div>
-        <div class="dropdown-menu absolute left-0 top-full bg-white min-w-[200px] shadow-lg rounded py-2.5">
-            <a href="company_to_company.html" class="block px-5 py-2.5 text-gray-800 no-underline hover:bg-gray-100">Company Comparison</a>
-            <a href="company_to_segment.html" class="block px-5 py-2.5 text-gray-800 no-underline hover:bg-gray-100">Company vs Segment</a>
-            <a href="reports.html" class="block px-5 py-2.5 text-gray-800 no-underline hover:bg-gray-100">Reports</a>
-        </div>
-    </div>
 
     <div class="flex justify-between items-center mb-4">
         <img src="https://calvinw.github.io/BusMgmtBenchmarks/fit-button-lockup-retail-index-report-black.png" alt="Retail Financial Analysis Comparison" class="max-w-[250px] block mx-auto">
@@ -197,20 +185,32 @@
                  if (row1 && row2) {
                     for (const [label, fieldName] of fields) {
                         const schema = data1.schema.find(s => s.columnName === fieldName);
-                    if (schema) {
-                        const value1 = formatValue(row1[fieldName], schema.columnType, fieldName, row1.company);
-                        const value2 = formatValue(row2[fieldName], schema.columnType, fieldName, row2.company);
-                        tableHtml += `
-                            <tr>
-                                <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label}</td>
-                                <td class="border border-gray-300 p-3 text-center w-[150px]">${value1}</td>
-                                <td class="border border-gray-300 p-3 text-center w-[150px]">${value2}</td>
-                            </tr>
-                        `;
+                        if (schema) {
+                            // Only show data values for 'Financial Numbers' section
+                            if (sectionName === 'Financial Numbers ($ in thousands)') {
+                                const value1 = formatValue(row1[fieldName], schema.columnType, fieldName, row1.company);
+                                const value2 = formatValue(row2[fieldName], schema.columnType, fieldName, row2.company);
+                                tableHtml += `
+                                    <tr>
+                                        <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label}</td>
+                                        <td class="border border-gray-300 p-3 text-center w-[150px]">${value1}</td>
+                                        <td class="border border-gray-300 p-3 text-center w-[150px]">${value2}</td>
+                                    </tr>
+                                `;
+                            } else {
+                                // For 'Financial Indicators' section, show only labels but no data
+                                tableHtml += `
+                                    <tr>
+                                        <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label}</td>
+                                        <td class="border border-gray-300 p-3 text-center w-[150px]">-</td>
+                                        <td class="border border-gray-300 p-3 text-center w-[150px]">-</td>
+                                    </tr>
+                                `;
+                            }
+                        }
                     }
-                }
-            } // <-- Missing closing brace for 'if (row1 && row2)'
-        } // <-- Closing brace for outer 'for...of' loop
+                } // <-- Closing brace for 'if (row1 && row2)'
+            } // <-- Closing brace for outer 'for...of' loop
             
             tableHtml += '</table>';
             return tableHtml;
@@ -381,23 +381,6 @@
             // No initial table update needed here, updateTable() handles it
         }
 
-        // Hamburger menu functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const menu = document.querySelector('.hamburger-menu');
-            const dropdown = document.querySelector('.dropdown-menu');
-            
-            menu.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Toggle a class that controls visibility/opacity (using the minimal CSS added)
-                dropdown.classList.toggle('active'); 
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!dropdown.contains(e.target) && !menu.contains(e.target)) {
-                    dropdown.classList.remove('active'); // Hide if clicked outside
-                }
-            });
-        });
 
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>

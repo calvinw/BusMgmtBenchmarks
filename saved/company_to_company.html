@@ -28,7 +28,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <img src="https://calvinw.github.io/BusMgmtBenchmarks/fit-button-lockup-retail-index-report-black.png" alt="Retail Financial Analysis Comparison" class="max-w-[250px] block mx-auto">
+        <img src="https://calvinw.github.io/BusMgmtBenchmarks/fit-button-lockup-retail-index-report-black.png" alt="Retail Financial Analysis Comparison" class="max-w-[500px] block mx-auto">
         <button id="exportBtn" class="fixed top-5 right-5 px-5 py-2.5 bg-green-600 text-white border-none rounded cursor-pointer hover:bg-green-700">Export to Excel</button>
     </div>
     <h2 class="text-center text-2xl font-semibold mb-6">Retail Financial Analysis Comparison</h2>
@@ -328,46 +328,13 @@
 
             // Export button listener (can be set once)
             document.getElementById('exportBtn').addEventListener('click', function() {
-                const originalTable = document.querySelector('#tableContainer table');
-                if (originalTable) {
+                const table = document.querySelector('#tableContainer table');
+                if (table) {
                     try {
-                        // Create a clone of the table for export
-                        const exportTable = originalTable.cloneNode(true);
-                        
-                        // Get the selected company and year values
-                        const company1 = selectedCompany1;
-                        const year1 = selectedYear1;
-                        const company2 = selectedCompany2;
-                        const year2 = selectedYear2;
-                        
-                        // Find the first row with the dropdowns
-                        const headerRow = exportTable.querySelector('tr');
-                        if (headerRow) {
-                            // Replace the dropdown cells with just the selected values
-                            const cells = headerRow.querySelectorAll('td');
-                            if (cells.length >= 3) {
-                                // First cell is the section name, keep it as is
-                                
-                                // Second cell (company1 & year1)
-                                cells[1].innerHTML = `<div class="font-bold">${company1} (${year1})</div>`;
-                                
-                                // Third cell (company2 & year2)
-                                cells[2].innerHTML = `<div class="font-bold">${company2} (${year2})</div>`;
-                            }
-                        }
-                        
-                        // Add the export table to the DOM temporarily (hidden)
-                        exportTable.style.display = 'none';
-                        document.body.appendChild(exportTable);
-                        
-                        // Export the clean table
-                        const ws = XLSX.utils.table_to_sheet(exportTable);
+                        const ws = XLSX.utils.table_to_sheet(table);
                         const wb = XLSX.utils.book_new();
                         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
                         XLSX.writeFile(wb, 'company_comparison.xlsx');
-                        
-                        // Remove the temporary table
-                        document.body.removeChild(exportTable);
                     } catch (error) {
                          console.error("Error exporting to Excel:", error);
                          alert("Error exporting to Excel. See console for details.");

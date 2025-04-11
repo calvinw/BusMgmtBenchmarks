@@ -39,12 +39,12 @@
     <div class="text-center mb-4">
         <label for="yearSelect" class="mr-2 font-medium">Select Analysis Year:</label>
         <select id="yearSelect" class="p-1 border border-gray-300 rounded">
-            <option value="2024">2024</option>
             <option value="2023">2023</option>
             <option value="2022">2022</option>
             <option value="2021">2021</option>
             <option value="2020">2020</option>
             <option value="2019">2019</option>
+            <option value="2018">2018</option>
         </select>
     </div>
 
@@ -59,7 +59,7 @@
         let allCompaniesData = []; // Stores { company, segment, subsegment } for the selected year
         let segmentBenchmarkData = []; // Stores segment benchmark data for the selected year
         let subsegmentBenchmarkData = []; // Stores subsegment benchmark data for the selected year
-        let selectedYear = '2024';
+        let selectedYear = '2023';
         let selectedCompany = "Dillard's"; // Default company
         let selectedSegment = 'Department Store'; // Default segment
         let selectedSubsegment = ''; // Only relevant if segment is 'Specialty'
@@ -432,10 +432,9 @@
             await initializeDataForYear(selectedYear); // Fetch initial data
 
             // Set specific initial default selections
-            selectedYear = '2024'; // Ensure year is set correctly
+            selectedYear = '2023'; // Ensure year is set correctly
             selectedSegment = 'Department Store';
             selectedCompany = "Dillard's";
-            // Subsegment will be handled by updateDisplay based on segment selection
             // Subsegment will be handled by updateDisplay based on segment selection
 
             await updateDisplay(); // Initial table load and attach listeners

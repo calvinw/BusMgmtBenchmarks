@@ -108,11 +108,11 @@
 
         // Store fetched companies and selected state globally
         let allCompanies = [];
-        const availableYears = ["2024", "2023", "2022", "2021", "2020", "2019"];
+        const availableYears = ["2023", "2022", "2021", "2020", "2019", "2018"];
         let selectedCompany1 = '';
-        let selectedYear1 = '2024'; // Default year
+        let selectedYear1 = '2023'; // Default year
         let selectedCompany2 = '';
-        let selectedYear2 = '2024'; // Default year
+        let selectedYear2 = '2023'; // Default year
 
         function createComparisonTable(data1, data2) {
             // Use global state for selected values
@@ -224,7 +224,7 @@
             let sourceHtml = `<div class="mt-5 text-lg text-gray-600"><em>Sources: </em>&nbsp;&nbsp;`; // Applied Tailwind classes
 
             if (isCompany1American) {
-                sourceHtml += ` <a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company1}-${year1}.html" target="_blank" class="text-gray-600 no-underline hover:underline">
+                sourceHtml += ` <a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company1}-${year1 + 1}.html" target="_blank" class="text-gray-600 no-underline hover:underline">
                         ${company1} ${year1}: SEC report
                     </a>`; // Applied Tailwind classes
             } else {
@@ -234,7 +234,7 @@
           sourceHtml += `&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;`;
 
             if (isCompany2American) {
-                sourceHtml += `<a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company2}-${year2}.html" target="_blank" class="text-gray-600 no-underline hover:underline">
+                sourceHtml += `<a href="https://calvinw.github.io/BusMgmtBenchmarks/extract/html/${company2}-${year2 + 1}.html" target="_blank" class="text-gray-600 no-underline hover:underline">
                         ${company2} ${year2}: SEC report
                     </a>`; // Applied Tailwind classes
             } else {

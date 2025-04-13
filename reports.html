@@ -126,22 +126,64 @@
         }
 
         // Specific formatting for percentage columns
-        if (col.columnName.includes('%') || col.columnName.includes('CAGR') || col.columnName.includes('Return_on_Assets')) {
+        if (col.columnName.includes('%')) {
+            // For benchmark reports, display percentage fields as regular numbers
+            if (reportType === 'benchmarks') {
+                baseConfig.numericFormat = {
+                    pattern: '0.0', // 1 decimal place
+                    culture: 'en-US'
+                };
+            } else {
+                baseConfig.numericFormat = {
+                    pattern: '0.0%', // Percentage format for other reports
+                    culture: 'en-US'
+                };
+            }
+        }
+        
+        // Special handling for CAGR and ROA
+        if (col.columnName.includes('CAGR') || col.columnName.includes('Return_on_Assets')) {
              baseConfig.numericFormat = {
-                pattern: '0.0%', // Percentage format
+                pattern: '0.0', // Display as regular number with 1 decimal place
                 culture: 'en-US'
             };
-             // Handsontable expects percentages as decimals (e.g., 0.5 for 50%)
-             // We need to adjust the data *before* it gets to Handsontable if it's stored as 50 for 50%
-             // This will be handled in the data transformation step before loading into HOT.
+            // Remove any data transformation for these columns as we want to display raw values as percentages
+            
+            // Add a custom renderer to debug the values as they're being displayed
+            baseConfig.renderer = function(instance, td, row, col, prop, value, cellProperties) {
+                // Log the value being rendered for debugging
+                if (value !== null && value !== undefined) {
+                    console.log(`Rendering ${prop} with value: ${value} (which will display as ${value * 100}%)`);
+                }
+                
+                // Use the default renderer for numeric cells with percentage format
+                Handsontable.renderers.NumericRenderer.apply(this, arguments);
+            };
         }
 
-        // Specific formatting for large numbers (like revenue, profit, assets) - no decimals
-        if (['Net_Revenue', 'Cost_of_Goods', 'Gross_Margin', 'SGA', 'Operating_Profit', 'Net_Profit', 'Inventory', 'Total_Assets'].includes(col.columnName)) {
+        // Special formatting for year field (plain number in all reports)
+        if (col.columnName === 'year') {
             baseConfig.numericFormat = {
-                pattern: '$0,0', // Currency format, no decimals
+                pattern: '0', // Whole number
                 culture: 'en-US'
             };
+        }
+        // Specific formatting for large numbers (like revenue, profit, assets)
+        else if (['Net Revenue', 'Net Revenue 2022', 'Net Revenue 2021', 'Net Revenue 2020',
+             'Net Revenue 2019', 'Net Revenue 2018', 'Cost of Goods', 'Gross Margin', 'SGA',
+             'Operating Profit', 'Net Profit', 'Inventory', 'Current Assets', 'Total Assets',
+             'Current Liabilities', 'Total Shareholder Equity', 'Total Liabilities and Shareholder Equity'].includes(col.columnName)) {
+            if (reportType === 'benchmarks') {
+                baseConfig.numericFormat = {
+                    pattern: '0,0', // Whole numbers for benchmarks
+                    culture: 'en-US'
+                };
+            } else {
+                baseConfig.numericFormat = {
+                    pattern: '$0,0', // Currency format, no decimals for other reports
+                    culture: 'en-US'
+                };
+            }
         }
 
         // Specific formatting for turnover/ratio columns - one decimal place
@@ -165,17 +207,77 @@
 
     // Function to transform data before loading into Handsontable
     function transformDataForHOT(rows, schema) {
+        // Detect percentage columns (both % suffix and _Percentage suffix)
         const percentageColumns = schema
-            .filter(col => col.columnName.includes('%') || col.columnName.includes('CAGR') || col.columnName.includes('Return_on_Assets'))
+            .filter(col => col.columnName.includes('%') || col.columnName.endsWith('_Percentage'))
             .map(col => col.columnName);
+        const cagrColumns = schema
+            .filter(col => col.columnName.includes('CAGR'))
+            .map(col => col.columnName);
+        const roaColumns = schema
+            .filter(col => col.columnName.includes('Return_on_Assets'))
+            .map(col => col.columnName);
+
+        console.log('Percentage columns:', percentageColumns);
+        console.log('CAGR columns:', cagrColumns);
+        console.log('ROA columns:', roaColumns);
+        
+        // Get the current report type to apply specific handling
+        const reportType = document.getElementById('reportSelect').value;
+        
+        // Add debug logging to understand the data formats
+        if (rows.length > 0) {
+            const firstRow = rows[0];
+            console.log("Report type:", reportType);
+            
+            if (percentageColumns.length > 0) {
+                console.log("Sample percentage value before transform:", 
+                    firstRow[percentageColumns[0]]);
+            }
+            
+            if (cagrColumns.length > 0) {
+                console.log("Sample CAGR value before transform:", 
+                    firstRow[cagrColumns[0]]);
+            }
+            
+            if (roaColumns.length > 0) {
+                console.log("Sample ROA value before transform:", 
+                    firstRow[roaColumns[0]]);
+            }
+        }
 
         return rows.map(row => {
             const newRow = { ...row };
+            
+            // Process regular percentage columns
             percentageColumns.forEach(colName => {
                 if (newRow[colName] !== null && typeof newRow[colName] === 'number') {
-                    newRow[colName] = newRow[colName] / 100; // Convert 50 to 0.5 for HOT percentage format
+                    console.log(`Percentage column ${colName} value:`, newRow[colName],
+                              `(will display as ${newRow[colName]}%)`);
                 }
             });
+            
+            // For CAGR columns
+            cagrColumns.forEach(colName => {
+                if (newRow[colName] !== null && typeof newRow[colName] === 'number') {
+                    console.log(`CAGR column ${colName} value:`, newRow[colName],
+                              `(will display as ${newRow[colName]}%)`);
+                }
+            });
+            
+            // For ROA columns
+            roaColumns.forEach(colName => {
+                if (newRow[colName] !== null && typeof newRow[colName] === 'number') {
+                    console.log(`ROA column ${colName} value:`, newRow[colName],
+                              `(will display as ${newRow[colName]}%)`);
+                }
+            });
+
+            // Log first row for debugging
+            if (rows.indexOf(row) === 0) {
+                console.log('First row sample:', newRow);
+            }
+            
             return newRow;
         });
     }

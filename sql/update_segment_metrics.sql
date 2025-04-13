@@ -4,28 +4,28 @@ JOIN (
         ci.segment,
         f.year,
         -- Cost of Goods Percentage
-        ROUND(SUM(f.`Cost of Goods`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 2) AS Cost_of_Goods_Percentage,
+        ROUND(SUM(f.`Cost of Goods`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 4) AS Cost_of_Goods_Percentage,
 
-        --  
-        ROUND(SUM(f.`SGA`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 2) AS SGA_Percentage,
+        -- SGA Percentage
+        ROUND(SUM(f.`SGA`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 4) AS SGA_Percentage,
         
         -- Gross Margin Percentage
-        ROUND(100 - (SUM(f.`Cost of Goods`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100), 2) AS Gross_Margin_Percentage,
+        ROUND(100 - (SUM(f.`Cost of Goods`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100), 4) AS Gross_Margin_Percentage,
         
         -- Operating Profit Margin Percentage
-        ROUND(SUM(f.`Operating Profit`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 2) AS Operating_Profit_Margin_Percentage,
+        ROUND(SUM(f.`Operating Profit`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 4) AS Operating_Profit_Margin_Percentage,
         
         -- Net Profit Margin Percentage
-        ROUND(SUM(f.`Net Profit`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 2) AS Net_Profit_Margin_Percentage,
+        ROUND(SUM(f.`Net Profit`) / NULLIF(SUM(f.`Net Revenue`), 0) * 100, 4) AS Net_Profit_Margin_Percentage,
         
         -- Inventory Turnover
-        ROUND(SUM(f.`Cost of Goods`) / NULLIF(SUM(f.Inventory), 0), 2) AS Inventory_Turnover,
+        ROUND(SUM(f.`Cost of Goods`) / NULLIF(SUM(f.Inventory), 0), 4) AS Inventory_Turnover,
         
         -- Asset Turnover
-        ROUND(SUM(f.`Net Revenue`) / NULLIF(SUM(f.`Total Assets`), 0), 2) AS Asset_Turnover,
+        ROUND(SUM(f.`Net Revenue`) / NULLIF(SUM(f.`Total Assets`), 0), 4) AS Asset_Turnover,
         
         -- Return on Assets
-        ROUND(SUM(f.`Net Profit`) / NULLIF(SUM(f.`Total Assets`), 0) * 100, 2) AS Return_on_Assets,
+        ROUND(SUM(f.`Net Profit`) / NULLIF(SUM(f.`Total Assets`), 0) * 100, 4) AS Return_on_Assets,
         
         -- Three-Year Revenue CAGR
         ROUND(
@@ -40,10 +40,10 @@ JOIN (
         ) * 100 AS Three_Year_Revenue_CAGR,
         
         -- Current Ratio
-        ROUND(SUM(f.`Current Assets`) / NULLIF(SUM(f.`Current Liabilities`), 0), 2) AS Current_Ratio,
+        ROUND(SUM(f.`Current Assets`) / NULLIF(SUM(f.`Current Liabilities`), 0), 4) AS Current_Ratio,
         
         -- Quick Ratio
-        ROUND(SUM(f.`Current Assets` - f.`Inventory`) / NULLIF(SUM(f.`Current Liabilities`), 0), 2) AS Quick_Ratio,
+        ROUND(SUM(f.`Current Assets` - f.`Inventory`) / NULLIF(SUM(f.`Current Liabilities`), 0), 4) AS Quick_Ratio,
         
         -- Sales Current Year vs Last Year
         ROUND((SUM(f.`Net Revenue`) - SUM(CASE 
@@ -52,11 +52,11 @@ JOIN (
         END)) / NULLIF(SUM(CASE 
             WHEN f_prev_year.year = f.year - 1 
             THEN f_prev_year.`Net Revenue` 
-        END), 0) * 100, 2) AS Sales_Current_Year_vs_LY,
+        END), 0) * 100, 4) AS Sales_Current_Year_vs_LY,
         
         -- Debt to Equity
         ROUND(SUM(f.`Total Liabilities and Shareholder Equity` - f.`Total Shareholder Equity`) / 
-            NULLIF(SUM(f.`Total Shareholder Equity`), 0), 2) AS Debt_to_Equity
+            NULLIF(SUM(f.`Total Shareholder Equity`), 0), 4) AS Debt_to_Equity
 
     FROM financials f
     JOIN new_company_info ci ON f.company_name = ci.company

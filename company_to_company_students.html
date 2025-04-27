@@ -186,7 +186,7 @@
                         const schema = data1.schema.find(s => s.columnName === fieldName);
                         if (schema) {
                             // Only show data values for 'Financial Numbers' section
-                            if (sectionName === 'Financial Numbers ($ in thousands)') {
+                            if (sectionName === 'Financial Numbers (in thousands)') {
                                 const value1 = formatValue(row1[fieldName], schema.columnType, fieldName, row1.company);
                                 const value2 = formatValue(row2[fieldName], schema.columnType, fieldName, row2.company);
                                 tableHtml += `
@@ -197,7 +197,6 @@
                                     </tr>
                                 `;
                             } else {
-                                // For 'Financial Indicators' section, show only labels but no data
                                 tableHtml += `
                                     <tr>
                                         <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label}</td>

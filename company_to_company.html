@@ -131,7 +131,7 @@
             const row2 = data2?.rows?.[0]; // Use optional chaining
             
             const sections = {
-                'Financial Numbers ($ in thousands)': [
+                'Financial Numbers (in thousands)': [
                     ['Total Revenue', 'Net Revenue'],
                     ['COGS $', 'Cost of Goods'],
                     ['GM $', 'Gross Margin'],
@@ -202,15 +202,15 @@
                         const value2 = formatValue(row2[fieldName], schema.columnType, fieldName, row2.company);
                         tableHtml += `
                             <tr>
-                                <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label}</td>
+                                <td class="border border-gray-300 p-3 text-left w-[250px] break-words">${label === 'COGS $' ? 'Cost of Goods' : label === 'GM $' ? 'Gross Margin' : label === 'SG&A $' ? 'Selling, General & Administrative Expenses' : label === 'Operating Profit $' ? 'Operating Profit' : label === 'Net Profit $' ? 'Net Profit' : label === 'Inventory $' ? 'Inventory' : label === 'Total Assets $' ? 'Total Assets' : label}</td>
                                 <td class="border border-gray-300 p-3 text-center w-[150px]">${value1}</td>
                                 <td class="border border-gray-300 p-3 text-center w-[150px]">${value2}</td>
                             </tr>
                         `;
                     }
                 }
-            } // <-- Missing closing brace for 'if (row1 && row2)'
-        } // <-- Closing brace for outer 'for...of' loop
+            }
+        }
             
             tableHtml += '</table>';
             return tableHtml;

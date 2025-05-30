@@ -18,7 +18,12 @@ There is an sql database (hosted at DoltHub) that accompanies the work here.
 
 It is located here: 
 
-[BusinessMgmtBenchmarks at DoltHub](https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks)
+[BusMgmtBenchmarks at DoltHub](https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks)
+
+and has its own github repo here:
+
+[BusMgmtDoltDatabase at GitHub](https://github.com/calvinw/BusMgmtDoltDatabase.git)
+
 
 It is a publicly accessible database with the data used in the project. There
 are various SQL scripts for updating and maintaining the data there as well.
@@ -136,7 +141,7 @@ Also included are choices for segments and (optional) subsegments designations
 for each company. Currently only the Specialty segment has subsegments. 
 
 This is the complete raw list of extracted financial data. Each line in the
-data is the following data for a `company_name` and a particular `year`. (2019
+data is the following data for a `company_name` and a particular `year`. (2018
 to 2024 currently)
 
 - Net Revenue
@@ -218,9 +223,20 @@ There are a number of downloadable data files created each year
 
 [Reports](https://calvinw.github.io/BusMgmtBenchmarks/reports.html)
 
+## Visualizations based on database 
+
+It is possible to build visualizations and other webapps by vibe coding
+against the Dolt database. 
+
+Here is an example of a webapp that was produced with Sonnet 3.5 in one prompt: 
+
+[Financial Dashbord ](https://calvinw.github.io/BusMgmtBenchmarks/financial-dashboard.html)
+
+We will be building an additional set of these as part of a SUNY IITG award. 
+
 ## Data Collection (Extraction) Techniques
 
-Please see the README.md in the extract folder [extract/README.md](https://github.com/calvinw/BusMgmtBenchmarks/blob/main/extract/README.md) for the details of how the extraction process and scripts work. An expository example is given here: 
+The technique for extracting the data for each company is described below: 
 
 [Using a Large Language Model to Identify Financial Concepts from 10K Reports](https://medium.com/@calvin.e.williamson/using-a-large-language-model-to-identify-financial-concepts-from-10k-reports-d551a7fb5554)
 

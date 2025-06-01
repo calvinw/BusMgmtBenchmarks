@@ -46,7 +46,7 @@
     <script>
         async function fetchCompanies() {
             try {
-                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+company%0AFROM+%60new_company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A');
+                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+company%0AFROM+%60company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A');
                 const data = await response.json();
                 return data.rows.map(row => row.company);
             } catch (error) {
@@ -115,7 +115,7 @@
 
         // Store fetched companies and selected state globally
         let allCompanies = [];
-        const availableYears = ["2023", "2022", "2021", "2020", "2019", "2018"];
+        const availableYears = ["2024", "2023", "2022", "2021", "2020", "2019", "2018"];
         let selectedCompany1 = '';
         let selectedYear1 = '2023'; // Default year
         let selectedCompany2 = '';

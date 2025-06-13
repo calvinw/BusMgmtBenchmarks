@@ -82,11 +82,13 @@
     <script>
     let hot; // Global reference to Handsontable instance
 
+    const DB_URL = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main';
+
     const REPORT_URLS = {
-        benchmarks: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+${year}+view%60`,
-        segments: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`,
-        subsegments: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`,
-        segments_and_benchmarks: year => `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60segment+and+company+benchmarks+${year}%60`
+        benchmarks: year => DB_URL + `?q=SELECT+*+FROM+%60benchmarks+${year}+view%60`,
+        segments: year => DB_URL + `?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`,
+        subsegments: year => DB_URL + `?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`,
+        segments_and_benchmarks: year => DB_URL + `?q=SELECT+*+FROM+%60segment+and+company+benchmarks+${year}%60`
     };
 
     async function fetchData(reportType, year) {

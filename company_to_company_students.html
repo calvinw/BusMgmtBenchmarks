@@ -25,9 +25,11 @@
     <div id="sourceContainer" class="mt-5 mr-5 text-sm text-gray-600 text-right"></div>
 
     <script>
+        const DB_URL = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main';
+
         async function fetchCompanies() {
             try {
-                const response = await fetch('https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+company%0AFROM+%60company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A');
+                const response = await fetch(DB_URL + '?q=SELECT+company%0AFROM+%60company_info%60%0AORDER+BY+%60company%60+ASC%0ALIMIT+1000%3B%0A');
                 const data = await response.json();
                 return data.rows.map(row => row.company);
             } catch (error) {
@@ -38,7 +40,7 @@
 
         async function fetchCompanyData(company, year) {
             try {
-                const response = await fetch(`https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+where+company%3D%22${encodeURIComponent(company)}%22`);
+                const response = await fetch(DB_URL + `?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+where+company%3D%22${encodeURIComponent(company)}%22`);
                 const data = await response.json();
                 return data;
             } catch (error) {

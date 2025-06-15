@@ -30,7 +30,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <img src="https://calvinw.github.io/BusMgmtBenchmarks/fit-button-lockup-retail-index-report-black.png" alt="Retail Financial Analysis Comparison" class="max-w-[250px] block mx-auto">
+        <img src="https://calvinw.github.io/BusMgmtBenchmarks/fit-button-lockup-retail-index-report-blue.png" alt="Retail Financial Analysis Comparison" class="max-w-[250px] block mx-auto">
         <button id="exportBtn" class="fixed top-5 right-5 px-5 py-2.5 bg-green-600 text-white border-none rounded cursor-pointer hover:bg-green-700">Export to Excel</button>
     </div>
     <h2 class="text-center text-2xl font-semibold mb-6">Company and Segment Comparison</h2>
@@ -165,16 +165,19 @@
 
             // Define metrics to display
             const metrics = [
-                // Label in table, Company Field Name, Benchmark Field Name (Segment/Subsegment), isPercentage, isTurnover, isRatio
-                ['Sales YoY Growth', 'Sales vs LY', 'Sales_Current_Year_vs_LY', true, false, false],
-                ['Sales 3 Year CAGR', 'Three Year Revenue CAGR', 'Three_Year_Revenue_CAGR', true, false, false],
-                ['Gross Margin %', 'Gross Margin %', 'Gross_Margin_Percentage', true, false, false],
-                ['SG&A Expense %', 'SGA %', 'SGA_Percentage', true, false, false],
-                ['Net Profit Margin %', 'Net Profit Margin %', 'Net_Profit_Margin_Percentage', true, false, false],
-                ['Inventory Turnover', 'Inventory Turnover', 'Inventory_Turnover', false, true, false],
-                ['Current Ratio', 'Current Ratio', 'Current_Ratio', false, false, true],
-                ['Quick Ratio', 'Quick Ratio', 'Quick_Ratio', false, false, true],
-                ['Return on Assets (ROA)', 'Return on Assets', 'Return_on_Assets', true, false, false]
+                // Label in table, Company Field Name, Benchmark Field Name, isPercentage, isTurnover, isRatio
+                ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %', 'Cost_of_Goods_Percentage', true, false, false],
+                ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %', 'Gross_Margin_Percentage', true, false, false],
+                ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %', 'SGA_Percentage', true, false, false],
+                ['Operating profit margin percentage (Op.Profit/Net Sales)', 'Operating Profit Margin %', 'Operating_Profit_Margin_Percentage', true, false, false],
+                ['Net profit margin percentage (Net Profit/Net Sales)', 'Net Profit Margin %', 'Net_Profit_Margin_Percentage', true, false, false],
+                ['Inventory turnover (COGS/Inventory)', 'Inventory Turnover', 'Inventory_Turnover', false, true, false],
+                ['Current Ratio (Current Assets/Current Liabilities)', 'Current Ratio', 'Current_Ratio', false, false, true],
+                ['Quick Ratio ((Cash + AR)/Current Liabilities)', 'Quick Ratio', 'Quick_Ratio', false, false, true],
+                ['Debt-to-Equity Ratio (Total Debt/Total Equity)', 'Debt to Equity', 'Debt_to_Equity', false, false, true],
+                ['Asset turnover (Net Sales/Total Assets)', 'Asset Turnover', 'Asset_Turnover', false, true, false],
+                ['Return on assets (ROA)', 'Return on Assets', 'Return_on_Assets', true, false, false],
+                ['3-Year Revenue CAGR', 'Three Year Revenue CAGR', 'Three_Year_Revenue_CAGR', true, false, false]
             ];
 
             // Get available companies, segments, subsegments for dropdowns

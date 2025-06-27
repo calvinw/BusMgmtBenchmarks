@@ -59,7 +59,7 @@
 
         async function fetchCompanyData(company, year) {
             try {
-                const response = await fetch(DB_URL + `?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+where+company%3D%22${encodeURIComponent(company)}%22`);
+                const response = await fetch(DB_URL + `?q=SELECT+*+FROM+%60company_comparison_${year}_view%60+where+company%3D%22${encodeURIComponent(company)}%22`);
                 const data = await response.json();
                 return data;
             } catch (error) {

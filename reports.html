@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports - Tailwind</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/ht-theme-main.min.css">
     <style>
@@ -396,27 +397,30 @@
         // Export button functionality (using new ID 'exportBtn')
         document.getElementById('exportBtn').addEventListener('click', function() {
             if (hot) {
-                const exportPlugin = hot.getPlugin('exportFile');
                 const reportType = document.getElementById('reportSelect').value;
                 const year = document.getElementById('yearSelect').value;
-                const filename = `${reportType}_${year}`; // Construct filename
+                const filename = `${reportType}_${year}.xlsx`; // Excel filename
 
                 try {
-                    exportPlugin.downloadFile('csv', {
-                        bom: true,
-                        columnDelimiter: ',',
-                        columnHeaders: true,
-                        exportHiddenColumns: false, // Don't export hidden columns
-                        exportHiddenRows: false, // Don't export hidden rows
-                        fileExtension: 'csv',
-                        filename: filename, // Use dynamic filename
-                        mimeType: 'text/csv',
-                        rowDelimiter: '\r\n',
-                        rowHeaders: true // Include row headers (numbers)
-                    });
+                    // Get data from Handsontable
+                    const data = hot.getData();
+                    const colHeaders = hot.getColHeader();
+                    
+                    // Create worksheet data with headers
+                    const worksheetData = [colHeaders, ...data];
+                    
+                    // Create workbook and worksheet
+                    const wb = XLSX.utils.book_new();
+                    const ws = XLSX.utils.aoa_to_sheet(worksheetData);
+                    
+                    // Add worksheet to workbook
+                    XLSX.utils.book_append_sheet(wb, ws, 'Report');
+                    
+                    // Write file
+                    XLSX.writeFile(wb, filename);
                 } catch (error) {
-                    console.error("Error exporting data:", error);
-                    alert("An error occurred while exporting the data. Please check the console for details.");
+                    console.error("Error exporting to Excel:", error);
+                    alert("An error occurred while exporting to Excel. Please check the console for details.");
                 }
             } else {
                 alert('No data table is currently loaded to export.');

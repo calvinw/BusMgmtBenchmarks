@@ -406,8 +406,19 @@
                     const data = hot.getData();
                     const colHeaders = hot.getColHeader();
                     
+                    // Format numeric data to 3 decimal places before exporting
+                    const formattedData = data.map(row => 
+                        row.map(cell => {
+                            if (typeof cell === 'number' && !Number.isInteger(cell)) {
+                                // Round to 3 decimal places for non-integer numbers
+                                return Math.round(cell * 1000) / 1000;
+                            }
+                            return cell;
+                        })
+                    );
+                    
                     // Create worksheet data with headers
-                    const worksheetData = [colHeaders, ...data];
+                    const worksheetData = [colHeaders, ...formattedData];
                     
                     // Create workbook and worksheet
                     const wb = XLSX.utils.book_new();

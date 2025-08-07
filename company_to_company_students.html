@@ -315,14 +315,19 @@
             // Fetch companies and store globally
             allCompanies = await fetchCompanies();
             
-            // Set initial default selections if companies are available
-            if (allCompanies.length > 0) {
+            // Set initial default selections to Dillard's and Macy's
+            if (allCompanies.includes("Dillard's")) {
+                selectedCompany1 = "Dillard's";
+            } else if (allCompanies.length > 0) {
                 selectedCompany1 = allCompanies[0];
             }
-            if (allCompanies.length > 1) {
+            
+            if (allCompanies.includes("Macy's")) {
+                selectedCompany2 = "Macy's";
+            } else if (allCompanies.length > 1) {
                 selectedCompany2 = allCompanies[1];
             } else if (allCompanies.length > 0) {
-                 selectedCompany2 = allCompanies[0]; // Default to first if only one company
+                selectedCompany2 = allCompanies[0];
             }
             // Default years are already set globally
 

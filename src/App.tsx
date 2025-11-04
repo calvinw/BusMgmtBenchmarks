@@ -1,34 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Dropdown } from './components/Dropdown'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [company, setCompany] = useState("Macy's")
+  const [year, setYear] = useState('2024')
+
+  const companyOptions = ["Macy's", "Nordstorm", "Dillard's", "Costco"]
+  const yearOptions = ['2024', '2023', '2022', '2021']
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-white">
+      {/* Exact Figma layout: 116px top padding, 63px horizontal padding, 40px gap */}
+      <div className="pt-[116px] px-[63px]">
+        <div className="flex flex-wrap gap-10">
+          <Dropdown
+            label="Company"
+            options={companyOptions}
+            value={company}
+            onChange={setCompany}
+          />
+          <Dropdown
+            label="Year"
+            options={yearOptions}
+            value={year}
+            onChange={setYear}
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

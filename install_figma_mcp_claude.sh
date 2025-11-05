@@ -7,4 +7,4 @@ set -e
 echo "🔧 Installing REMOTE Figma MCP server..."
 
 echo "⚙️ Adding REMOTE SSE server..."
-claude mcp add --transport sse figmaMCP https://mcp.figma.com/mcp 
+claude mcp add --transport http figmaMCP https://mcp.figma.com/mcp 

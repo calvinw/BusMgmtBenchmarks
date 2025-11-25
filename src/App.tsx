@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Dropdown } from './components/Dropdown'
+import { Sidebar } from './components/Sidebar'
 import './App.css'
 
 interface FinancialData {
@@ -30,6 +31,7 @@ interface CompanyInfo {
 const DOLT_API_BASE = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks'
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('Company vs Company')
   const [company, setCompany] = useState("Macy's")
   const [year, setYear] = useState('2024')
   const [companyOptions, setCompanyOptions] = useState<string[]>(["Macy's", "Nordstorm", "Dillard's", "Costco"])
@@ -118,135 +120,180 @@ function App() {
   const currentCompanyInfo = companyInfoMap.get(company)
   const currentCurrency = currentCompanyInfo?.currency || 'USD'
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Exact Figma layout: 116px top padding, 63px horizontal padding, 40px gap */}
-      <div className="pt-[116px] px-[63px]">
-        <div className="flex flex-wrap gap-10 mb-8">
-          <Dropdown
-            label="Company"
-            options={companyOptions}
-            value={company}
-            onChange={setCompany}
-          />
-          <Dropdown
-            label="Year"
-            options={yearOptions}
-            value={year}
-            onChange={setYear}
-          />
-        </div>
+  const renderPageContent = () => {
+    switch (currentPage) {
+      case 'Company vs Company':
+        return (
+          <div className="p-8">
+            <h1 className="text-[24px] font-semibold mb-6 text-[#0A0A0A]">
+              Company vs Company
+            </h1>
+            
+            <div className="flex flex-wrap gap-10 mb-8">
+              <Dropdown
+                label="Company"
+                options={companyOptions}
+                value={company}
+                onChange={setCompany}
+              />
+              <Dropdown
+                label="Year"
+                options={yearOptions}
+                value={year}
+                onChange={setYear}
+              />
+            </div>
 
-        {/* Financial Data Table */}
-        {loading && (
-          <div className="text-[14px] text-[#737373]">Loading financial data...</div>
-        )}
+            {/* Financial Data Table */}
+            {loading && (
+              <div className="text-[14px] text-[#737373]">Loading financial data...</div>
+            )}
 
-        {error && (
-          <div className="text-[14px] text-red-600">{error}</div>
-        )}
+            {error && (
+              <div className="text-[14px] text-red-600">{error}</div>
+            )}
 
-        {financialData && !loading && (
-          <div className="mt-8">
-            <h2 className="text-[20px] font-semibold mb-4 text-[#0A0A0A]">
-              Financial Data - {financialData.company_name} ({financialData.year})
-            </h2>
-            <table className="w-full border-collapse border border-[#E5E5E5]">
-              <thead>
-                <tr className="bg-[#F5F5F5]">
-                  <th className="border border-[#E5E5E5] px-4 py-2 text-left text-[14px] font-semibold text-[#0A0A0A]">
-                    Metric
-                  </th>
-                  <th className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] font-semibold text-[#0A0A0A]">
-                    Value
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Net Revenue</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Net Revenue'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Cost of Goods</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Cost of Goods'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Gross Margin</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Gross Margin'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">SG&A</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['SGA'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Operating Profit</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Operating Profit'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Net Profit</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Net Profit'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Inventory</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Inventory'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Current Assets</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Current Assets'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Assets</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Total Assets'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Current Liabilities</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Current Liabilities'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Liabilities</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Liabilities'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Shareholder Equity</td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Total Shareholder Equity'], currentCurrency)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">
-                    Total Liabilities and Shareholder Equity
-                  </td>
-                  <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
-                    {formatCurrency(financialData['Total Liabilities and Shareholder Equity'], currentCurrency)}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            {financialData && !loading && (
+              <div className="mt-8">
+                <h2 className="text-[20px] font-semibold mb-4 text-[#0A0A0A]">
+                  Financial Data - {financialData.company_name} ({financialData.year})
+                </h2>
+                <table className="w-full border-collapse border border-[#E5E5E5]">
+                  <thead>
+                    <tr className="bg-[#F5F5F5]">
+                      <th className="border border-[#E5E5E5] px-4 py-2 text-left text-[14px] font-semibold text-[#0A0A0A]">
+                        Metric
+                      </th>
+                      <th className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] font-semibold text-[#0A0A0A]">
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Net Revenue</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Net Revenue'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Cost of Goods</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Cost of Goods'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Gross Margin</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Gross Margin'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">SG&A</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['SGA'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Operating Profit</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Operating Profit'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Net Profit</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Net Profit'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Inventory</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Inventory'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Current Assets</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Current Assets'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Assets</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Total Assets'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Current Liabilities</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Current Liabilities'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Liabilities</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Liabilities'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">Total Shareholder Equity</td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Total Shareholder Equity'], currentCurrency)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-[14px] text-[#0A0A0A]">
+                        Total Liabilities and Shareholder Equity
+                      </td>
+                      <td className="border border-[#E5E5E5] px-4 py-2 text-right text-[14px] text-[#0A0A0A]">
+                        {formatCurrency(financialData['Total Liabilities and Shareholder Equity'], currentCurrency)}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
-        )}
+        );
+      
+      case 'Company vs Segment':
+        return (
+          <div className="p-8">
+            <h1 className="text-[24px] font-semibold mb-6 text-[#0A0A0A]">
+              Company vs Segment
+            </h1>
+            <div className="text-[14px] text-[#737373]">
+              Company vs Segment comparison view - Coming soon
+            </div>
+          </div>
+        );
+      
+      case 'Reports':
+        return (
+          <div className="p-8">
+            <h1 className="text-[24px] font-semibold mb-6 text-[#0A0A0A]">
+              Reports
+            </h1>
+            <div className="text-[14px] text-[#737373]">
+              Reports dashboard - Coming soon
+            </div>
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-white">
+      <Sidebar 
+        currentPage={currentPage} 
+        onPageChange={setCurrentPage}
+      />
+      <div className="flex-1 overflow-auto">
+        {renderPageContent()}
       </div>
     </div>
   )

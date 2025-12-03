@@ -108,14 +108,40 @@ cd extract/html/
 ```
 
 **Dev Branch (Netlify):**
-```bash
-# Manual deployment:
-npm run build                    # Build the app
-netlify deploy --prod --dir=build   # Deploy to production
 
-# Or use Netlify drop (drag & drop build/ folder):
-# https://app.netlify.com/drop
+Deploying a new version to Netlify:
+```bash
+# 1. Make your code changes in src/
+
+# 2. Test locally
+npm run dev
+
+# 3. Build the production version
+npm run build
+
+# 4. Deploy to Netlify
+netlify deploy --prod --dir=build
 ```
+
+Quick deployment workflow:
+```bash
+npm run build && netlify deploy --prod --dir=build
+```
+
+Alternative - Netlify Drop (drag & drop):
+```bash
+# Build first
+npm run build
+
+# Then go to https://app.netlify.com/drop
+# and drag the build/ folder
+```
+
+**Note:** You don't need to commit/push to GitHub before deploying to Netlify - these are separate. But it's recommended to:
+1. Test locally (`npm run dev`)
+2. Build and deploy to Netlify
+3. Verify it works on the live site
+4. Then commit and push to GitHub
 
 ## Company and Segment Structure
 

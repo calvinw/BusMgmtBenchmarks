@@ -1,73 +1,156 @@
-# React + TypeScript + Vite
+# BusMgmtBenchmarks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Educational project for collecting and analyzing retail financial data from publicly traded companies. The project extracts financial metrics from SEC 10-K filings and provides both modern React-based applications and standalone HTML tools for comparing companies and retail segments.
 
-Currently, two official plugins are available:
+## Branch Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **main**: Production HTML applications with standalone JavaScript (GitHub Pages deployment)
+- **dev**: Modern React SPA with Figma-based design (Netlify deployment)
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Dev Branch (Modern React SPA):**
+- React 18.3.1 + TypeScript
+- Vite 6.3.5
+- Tailwind CSS 4.1.3
+- shadcn/ui with Radix UI primitives
+- Lucide React icons
+- Netlify deployment
 
-## Expanding the ESLint configuration
+**Main Branch (HTML Apps):**
+- Vanilla JavaScript + HTML
+- Tailwind CSS (CDN)
+- Handsontable for reports
+- GitHub Pages deployment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Quick Start (Dev Branch)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Start development server
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Dev Branch - Netlify Deployment
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Deploying a new version:
+
+```bash
+# 1. Make your code changes in src/
+
+# 2. Test locally
+npm run dev
+
+# 3. Build the production version
+npm run build
+
+# 4. Deploy to Netlify
+netlify deploy --prod --dir=build
 ```
+
+Quick workflow:
+```bash
+npm run build && netlify deploy --prod --dir=build
+```
+
+**Note:** You don't need to commit/push to GitHub before deploying to Netlify. Recommended workflow:
+1. Test locally (`npm run dev`)
+2. Build and deploy to Netlify
+3. Verify it works on the live site
+4. Then commit and push to GitHub
+
+### Main Branch - GitHub Pages
+
+Automatic deployment on push to main branch.
+
+Live at: https://calvinw.github.io/BusMgmtBenchmarks/
+
+## Project Structure
+
+**Dev Branch:**
+```
+src/
+├── components/
+│   ├── FinancialComparisonTable.tsx  # Main comparison component
+│   └── Sidebar.tsx                    # Navigation sidebar
+├── lib/                               # Utility functions
+├── App.tsx                            # Root component
+└── main.tsx                           # Entry point
+public/images/                         # Figma-exported assets
+build/                                 # Production build output
+```
+
+**Main Branch:**
+```
+company_to_company.html          # Compare two companies
+company_to_company_students.html # Student version
+company_to_segment.html          # Company vs segment comparison
+reports.html                     # Interactive reports
+```
+
+## Data Source
+
+- **Database**: Dolt hosted at DoltHub (calvinw/BusMgmtBenchmarks)
+- **API**: `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main`
+- **Coverage**: 60+ retail companies across 8 segments
+- **Years**: 2019-2024
+
+## Financial Metrics
+
+**Core Metrics:**
+- Revenue, Cost of Goods, SG&A, Operating Profit, Net Profit
+- Inventory, Current Assets, Total Assets, Current Liabilities
+- Total Shareholder Equity, Total Liabilities
+
+**Calculated Metrics:**
+- Margin percentages (Gross, Operating, Net Profit)
+- Financial ratios (Current, Quick, Debt-to-Equity)
+- Efficiency metrics (Inventory Turnover, Asset Turnover, ROA)
+- Growth metrics (3-Year Revenue CAGR)
+
+## Data Pipeline
+
+```bash
+# Extract financial data from SEC filings
+cd extract/
+python edgar_extract_all_filings.py
+
+# Process HTML files
+cd extract/html/
+./combine_all.sh
+```
+
+## Related Resources
+
+- [Companion SQL Database](https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks)
+- [LLM Extraction Documentation](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
+- [Live Applications](https://calvinw.github.io/BusMgmtBenchmarks/)
+
+## Development
+
+- Modern React app with Vite for fast HMR
+- TypeScript for type safety
+- Tailwind CSS for styling
+- shadcn/ui for accessible components
+- Client-side financial calculations
+- Real-time data fetching from Dolt REST API
+
+## License
+
+Educational use for Fashion Institute of Technology.
+
+## Credits
+
+- Fashion Institute of Technology Professors: Dr. Calvin Williamson, Shelley E. Kohan
+- AI Systems Assistant: Jia Mei Lin, Direct Marketing BS 2026
+- Made through the SUNY IITG Business Management Course Development Grant

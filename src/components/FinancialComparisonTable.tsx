@@ -110,7 +110,7 @@ function calculateFinancialIndicators(row: any): Partial<CompanyData> {
 async function fetchCAGR(company: string, year: string): Promise<number | null> {
   try {
     const response = await fetch(
-      DB_URL + `?q=SELECT+Three_Year_Revenue_CAGR+FROM+financial_metrics+WHERE+company_name%3D%22${encodeURIComponent(company)}%22+AND+year%3D${year}`
+      DB_URL + `?q=SELECT+Three_Year_Revenue_CAGR+FROM+financial_metrics+WHERE+company_name%3D%27${encodeURIComponent(company)}%27+AND+year%3D${year}`
     );
     const data: APIResponse = await response.json();
     if (data.query_execution_status === 'Success' && data.rows.length > 0) {
@@ -127,7 +127,7 @@ async function fetchCompanyData(company: string, year: string): Promise<CompanyD
   try {
     const encodedCompany = encodeURIComponent(company);
     const response = await fetch(
-      DB_URL + `?q=SELECT+*+FROM+financials+WHERE+company_name%3D%22${encodedCompany}%22+AND+year%3D${year}`
+      DB_URL + `?q=SELECT+*+FROM+financials+WHERE+company_name%3D%27${encodedCompany}%27+AND+year%3D${year}`
     );
     const data: APIResponse = await response.json();
 

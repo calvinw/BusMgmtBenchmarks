@@ -98,9 +98,9 @@ function calculateFinancialIndicators(row: any): Partial<CompanyData> {
   // Asset Turnover
   indicators['Asset Turnover'] = roundToTenth(nums.netRevenue / nums.totalAssets);
 
-  // ROA = (Net Profit Margin % / 100) × Asset Turnover
-  const netProfitMarginDecimal = indicators['Net Profit Margin %'] / 100;
-  indicators['Return on Assets'] = roundToTenth(netProfitMarginDecimal * indicators['Asset Turnover'] * 100);
+  // ROA = Net Profit Margin % × Asset Turnover (using rounded displayed values)
+  // This matches what students calculate manually from the displayed values
+  indicators['Return on Assets'] = roundToTenth(indicators['Net Profit Margin %'] * indicators['Asset Turnover']);
 
   // Three Year Revenue CAGR - fetched separately
   indicators['Three Year Revenue CAGR'] = null;
@@ -110,8 +110,10 @@ function calculateFinancialIndicators(row: any): Partial<CompanyData> {
 
 async function fetchCAGR(company: string, year: string): Promise<number | null> {
   try {
+    // Escape single quotes for SQL by doubling them
+    const escapedCompany = company.replace(/'/g, "''");
     const response = await fetch(
-      DB_URL + `?q=SELECT+Three_Year_Revenue_CAGR+FROM+financial_metrics+WHERE+company_name%3D%27${encodeURIComponent(company)}%27+AND+year%3D${year}`
+      DB_URL + `?q=SELECT+Three_Year_Revenue_CAGR+FROM+financial_metrics+WHERE+company_name%3D%27${encodeURIComponent(escapedCompany)}%27+AND+year%3D${year}`
     );
     const data: APIResponse = await response.json();
     if (data.query_execution_status === 'Success' && data.rows.length > 0) {
@@ -126,7 +128,9 @@ async function fetchCAGR(company: string, year: string): Promise<number | null> 
 
 async function fetchCompanyData(company: string, year: string): Promise<CompanyData | null> {
   try {
-    const encodedCompany = encodeURIComponent(company);
+    // Escape single quotes for SQL by doubling them
+    const escapedCompany = company.replace(/'/g, "''");
+    const encodedCompany = encodeURIComponent(escapedCompany);
     const response = await fetch(
       DB_URL + `?q=SELECT+*+FROM+financials+WHERE+company_name%3D%27${encodedCompany}%27+AND+year%3D${year}`
     );
@@ -201,6 +205,18 @@ function formatValue(value: number | null, fieldName: string, company: string): 
   });
 }
 
+function formatValueWithMissingData(
+  companyData: CompanyData | null,
+  fieldName: string,
+  companyName: string,
+  year: string
+): string {
+  if (!companyData) {
+    return '-';
+  }
+  return formatValue(companyData[fieldName as keyof CompanyData] as number, fieldName, companyName);
+}
+
 export function FinancialComparisonTable() {
   const [companies, setCompanies] = useState<string[]>([]);
   const [selectedCompany1, setSelectedCompany1] = useState<string>('');
@@ -246,8 +262,8 @@ export function FinancialComparisonTable() {
   }, [selectedCompany1, selectedYear1, selectedCompany2, selectedYear2]);
 
   const handleExportToExcel = () => {
-    if (!company1Data || !company2Data) {
-      alert('Please wait for data to load before exporting.');
+    if (!company1Data && !company2Data) {
+      alert('No data available to export. Please select companies and years that have data.');
       return;
     }
 
@@ -285,8 +301,8 @@ export function FinancialComparisonTable() {
     // Add header row
     excelData.push([
       '',
-      `${company1Data.company} (${company1Data.year})`,
-      `${company2Data.company} (${company2Data.year})`
+      company1Data ? `${company1Data.company} (${company1Data.year})` : `${selectedCompany1} (${selectedYear1}) - No Data`,
+      company2Data ? `${company2Data.company} (${company2Data.year})` : `${selectedCompany2} (${selectedYear2}) - No Data`
     ]);
 
     // Add each section
@@ -296,8 +312,8 @@ export function FinancialComparisonTable() {
 
       // Add data rows
       for (const [label, fieldName] of fields) {
-        const value1 = formatValue(company1Data[fieldName as keyof CompanyData] as number, fieldName, company1Data.company);
-        const value2 = formatValue(company2Data[fieldName as keyof CompanyData] as number, fieldName, company2Data.company);
+        const value1 = company1Data ? formatValue(company1Data[fieldName as keyof CompanyData] as number, fieldName, company1Data.company) : '-';
+        const value2 = company2Data ? formatValue(company2Data[fieldName as keyof CompanyData] as number, fieldName, company2Data.company) : '-';
         excelData.push([label, value1, value2]);
       }
     }
@@ -336,7 +352,7 @@ export function FinancialComparisonTable() {
 
       {loading && <div className="text-center py-8 text-neutral-500">Loading data...</div>}
 
-      {!loading && company1 && company2 && (
+      {!loading && (
       /* Financial Comparison Table */
       <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
         {/* Section Header and Company Dropdowns */}
@@ -347,48 +363,58 @@ export function FinancialComparisonTable() {
             </h2>
           </div>
           <div className="px-6 py-4 border-l border-neutral-200 space-y-2">
-            <select 
+            <select
               className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={selectedCompany1}
               onChange={(e) => setSelectedCompany1(e.target.value)}
             >
               {companies.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <select 
+            <select
               className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={selectedYear1}
               onChange={(e) => setSelectedYear1(e.target.value)}
             >
               {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
             </select>
+            {!company1Data && (
+              <div className="text-red-600 text-sm font-['Geist:Regular',sans-serif] mt-2">
+                {selectedCompany1} {selectedYear1}: No data available
+              </div>
+            )}
           </div>
           <div className="px-6 py-4 border-l border-neutral-200 space-y-2">
-            <select 
+            <select
               className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={selectedCompany2}
               onChange={(e) => setSelectedCompany2(e.target.value)}
             >
               {companies.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <select 
+            <select
               className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={selectedYear2}
               onChange={(e) => setSelectedYear2(e.target.value)}
             >
               {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
             </select>
+            {!company2Data && (
+              <div className="text-red-600 text-sm font-['Geist:Regular',sans-serif] mt-2">
+                {selectedCompany2} {selectedYear2}: No data available
+              </div>
+            )}
           </div>
         </div>
 
         {/* Financial Numbers Section */}
-        <TableRow label="Total Revenue" value1={formatValue(company1['Net Revenue'], 'Net Revenue', company1.company)} value2={formatValue(company2['Net Revenue'], 'Net Revenue', company2.company)} />
-        <TableRow label="Cost of Goods" value1={formatValue(company1['Cost of Goods'], 'Cost of Goods', company1.company)} value2={formatValue(company2['Cost of Goods'], 'Cost of Goods', company2.company)} />
-        <TableRow label="Gross Margin" value1={formatValue(company1['Gross Margin'], 'Gross Margin', company1.company)} value2={formatValue(company2['Gross Margin'], 'Gross Margin', company2.company)} />
-        <TableRow label="Selling, General & Administrative Expenses" value1={formatValue(company1['SGA'], 'SGA', company1.company)} value2={formatValue(company2['SGA'], 'SGA', company2.company)} />
-        <TableRow label="Operating Profit" value1={formatValue(company1['Operating Profit'], 'Operating Profit', company1.company)} value2={formatValue(company2['Operating Profit'], 'Operating Profit', company2.company)} />
-        <TableRow label="Net Profit" value1={formatValue(company1['Net Profit'], 'Net Profit', company1.company)} value2={formatValue(company2['Net Profit'], 'Net Profit', company2.company)} />
-        <TableRow label="Inventory" value1={formatValue(company1['Inventory'], 'Inventory', company1.company)} value2={formatValue(company2['Inventory'], 'Inventory', company2.company)} />
-        <TableRow label="Total Assets" value1={formatValue(company1['Total Assets'], 'Total Assets', company1.company)} value2={formatValue(company2['Total Assets'], 'Total Assets', company2.company)} />
+        <TableRow label="Total Revenue" value1={formatValueWithMissingData(company1, 'Net Revenue', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Revenue', selectedCompany2, selectedYear2)} />
+        <TableRow label="Cost of Goods" value1={formatValueWithMissingData(company1, 'Cost of Goods', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods', selectedCompany2, selectedYear2)} />
+        <TableRow label="Gross Margin" value1={formatValueWithMissingData(company1, 'Gross Margin', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin', selectedCompany2, selectedYear2)} />
+        <TableRow label="Selling, General & Administrative Expenses" value1={formatValueWithMissingData(company1, 'SGA', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA', selectedCompany2, selectedYear2)} />
+        <TableRow label="Operating Profit" value1={formatValueWithMissingData(company1, 'Operating Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit', selectedCompany2, selectedYear2)} />
+        <TableRow label="Net Profit" value1={formatValueWithMissingData(company1, 'Net Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit', selectedCompany2, selectedYear2)} />
+        <TableRow label="Inventory" value1={formatValueWithMissingData(company1, 'Inventory', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory', selectedCompany2, selectedYear2)} />
+        <TableRow label="Total Assets" value1={formatValueWithMissingData(company1, 'Total Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Total Assets', selectedCompany2, selectedYear2)} />
 
         {/* Financial Indicators Section */}
         <div className="bg-neutral-50 px-6 py-3 border-b border-neutral-200 border-t border-neutral-200">
@@ -397,25 +423,25 @@ export function FinancialComparisonTable() {
           </h2>
         </div>
 
-        <TableRow label="Cost of goods percentage (COGS/Net Sales)" value1={formatValue(company1['Cost of Goods %'], 'Cost of Goods %', company1.company)} value2={formatValue(company2['Cost of Goods %'], 'Cost of Goods %', company2.company)} />
-        <TableRow label="Gross margin percentage (GM/Net Sales)" value1={formatValue(company1['Gross Margin %'], 'Gross Margin %', company1.company)} value2={formatValue(company2['Gross Margin %'], 'Gross Margin %', company2.company)} />
-        <TableRow label="SG&A expense percentage (SG&A/Net Sales)" value1={formatValue(company1['SGA %'], 'SGA %', company1.company)} value2={formatValue(company2['SGA %'], 'SGA %', company2.company)} />
-        <TableRow label="Operating profit margin percentage (Op.Profit/Net Sales)" value1={formatValue(company1['Operating Profit Margin %'], 'Operating Profit Margin %', company1.company)} value2={formatValue(company2['Operating Profit Margin %'], 'Operating Profit Margin %', company2.company)} />
-        <TableRow label="Net profit margin percentage (Net Profit/Net Sales)" value1={formatValue(company1['Net Profit Margin %'], 'Net Profit Margin %', company1.company)} value2={formatValue(company2['Net Profit Margin %'], 'Net Profit Margin %', company2.company)} />
-        <TableRow label="Inventory turnover (COGS/Inventory)" value1={formatValue(company1['Inventory Turnover'], 'Inventory Turnover', company1.company)} value2={formatValue(company2['Inventory Turnover'], 'Inventory Turnover', company2.company)} />
-        <TableRow label="Current Ratio (Current Assets/Current Liabilities)" value1={formatValue(company1['Current Ratio'], 'Current Ratio', company1.company)} value2={formatValue(company2['Current Ratio'], 'Current Ratio', company2.company)} />
-        <TableRow label="Quick Ratio ((Cash + AR)/Current Liabilities)" value1={formatValue(company1['Quick Ratio'], 'Quick Ratio', company1.company)} value2={formatValue(company2['Quick Ratio'], 'Quick Ratio', company2.company)} />
-        <TableRow label="Debt-to-Equity Ratio (Total Debt/Total Equity)" value1={formatValue(company1['Debt to Equity'], 'Debt to Equity', company1.company)} value2={formatValue(company2['Debt to Equity'], 'Debt to Equity', company2.company)} />
-        <TableRow label="Asset turnover (Net Sales/Total Assets)" value1={formatValue(company1['Asset Turnover'], 'Asset Turnover', company1.company)} value2={formatValue(company2['Asset Turnover'], 'Asset Turnover', company2.company)} />
-        <TableRow label="Return on assets (ROA)" value1={formatValue(company1['Return on Assets'], 'Return on Assets', company1.company)} value2={formatValue(company2['Return on Assets'], 'Return on Assets', company2.company)} />
-        <TableRow label="3-Year Revenue CAGR" value1={formatValue(company1['Three Year Revenue CAGR'], 'Three Year Revenue CAGR', company1.company)} value2={formatValue(company2['Three Year Revenue CAGR'], 'Three Year Revenue CAGR', company2.company)} isLast />
+        <TableRow label="Cost of goods percentage (COGS/Net Sales)" value1={formatValueWithMissingData(company1, 'Cost of Goods %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods %', selectedCompany2, selectedYear2)} />
+        <TableRow label="Gross margin percentage (GM/Net Sales)" value1={formatValueWithMissingData(company1, 'Gross Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin %', selectedCompany2, selectedYear2)} />
+        <TableRow label="SG&A expense percentage (SG&A/Net Sales)" value1={formatValueWithMissingData(company1, 'SGA %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA %', selectedCompany2, selectedYear2)} />
+        <TableRow label="Operating profit margin percentage (Op.Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Operating Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit Margin %', selectedCompany2, selectedYear2)} />
+        <TableRow label="Net profit margin percentage (Net Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Net Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit Margin %', selectedCompany2, selectedYear2)} />
+        <TableRow label="Inventory turnover (COGS/Inventory)" value1={formatValueWithMissingData(company1, 'Inventory Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory Turnover', selectedCompany2, selectedYear2)} />
+        <TableRow label="Current Ratio (Current Assets/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Current Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Current Ratio', selectedCompany2, selectedYear2)} />
+        <TableRow label="Quick Ratio ((Cash + AR)/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Quick Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Quick Ratio', selectedCompany2, selectedYear2)} />
+        <TableRow label="Debt-to-Equity Ratio (Total Debt/Total Equity)" value1={formatValueWithMissingData(company1, 'Debt to Equity', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Debt to Equity', selectedCompany2, selectedYear2)} />
+        <TableRow label="Asset turnover (Net Sales/Total Assets)" value1={formatValueWithMissingData(company1, 'Asset Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Asset Turnover', selectedCompany2, selectedYear2)} />
+        <TableRow label="Return on assets (ROA)" value1={formatValueWithMissingData(company1, 'Return on Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Return on Assets', selectedCompany2, selectedYear2)} />
+        <TableRow label="3-Year Revenue CAGR" value1={formatValueWithMissingData(company1, 'Three Year Revenue CAGR', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Three Year Revenue CAGR', selectedCompany2, selectedYear2)} isLast />
       </div>
       )}
 
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
         <p className="text-xs">
-          Sources: {company1?.company} {company1?.year}: SEC report | {company2?.company} {company2?.year}: SEC report
+          Sources: {company1 ? `${company1.company} ${company1.year}: SEC report` : `${selectedCompany1} ${selectedYear1}: No data available`} | {company2 ? `${company2.company} ${company2.year}: SEC report` : `${selectedCompany2} ${selectedYear2}: No data available`}
         </p>
         <p className="text-xs">
           Fashion Institute of Technology Professors: Dr. Calvin Williamson, Shelley E. Kohan

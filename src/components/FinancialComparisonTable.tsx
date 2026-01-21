@@ -385,10 +385,62 @@ export function FinancialComparisonTable() {
       {loading && <div className="text-center py-8 text-neutral-500">Loading data...</div>}
 
       {!loading && (
-      /* Financial Comparison Table */
+      <>
+      {/* Mobile Selector Panel - visible only on mobile */}
+      <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-4">
+        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">Select Companies to Compare</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company 1</label>
+            <select
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={selectedCompany1}
+              onChange={(e) => setSelectedCompany1(e.target.value)}
+            >
+              {companies.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+            <select
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={selectedYear1}
+              onChange={(e) => setSelectedYear1(e.target.value)}
+            >
+              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+            </select>
+            {!company1Data && (
+              <div className="text-red-600 text-xs font-['Geist:Regular',sans-serif]">
+                No data available
+              </div>
+            )}
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company 2</label>
+            <select
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={selectedCompany2}
+              onChange={(e) => setSelectedCompany2(e.target.value)}
+            >
+              {companies.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+            <select
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={selectedYear2}
+              onChange={(e) => setSelectedYear2(e.target.value)}
+            >
+              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+            </select>
+            {!company2Data && (
+              <div className="text-red-600 text-xs font-['Geist:Regular',sans-serif]">
+                No data available
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Financial Comparison Table */}
       <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
-        {/* Section Header and Company Dropdowns */}
-        <div className="grid grid-cols-[2fr_1fr_1fr] bg-neutral-100 sticky top-0 z-10 shadow-sm">
+        {/* Desktop Header - with dropdowns */}
+        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] bg-neutral-100 sticky top-0 z-10 shadow-sm">
           <div className="px-6 py-4 flex items-center">
             <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
               Financial Numbers (in thousands)
@@ -438,36 +490,150 @@ export function FinancialComparisonTable() {
           </div>
         </div>
 
-        {/* Financial Numbers Section */}
-        <TableRow label="Total Revenue" value1={formatValueWithMissingData(company1, 'Net Revenue', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Revenue', selectedCompany2, selectedYear2)} />
-        <TableRow label="Cost of Goods" value1={formatValueWithMissingData(company1, 'Cost of Goods', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods', selectedCompany2, selectedYear2)} />
-        <TableRow label="Gross Margin" value1={formatValueWithMissingData(company1, 'Gross Margin', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin', selectedCompany2, selectedYear2)} />
-        <TableRow label="Selling, General & Administrative Expenses" value1={formatValueWithMissingData(company1, 'SGA', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA', selectedCompany2, selectedYear2)} />
-        <TableRow label="Operating Profit" value1={formatValueWithMissingData(company1, 'Operating Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit', selectedCompany2, selectedYear2)} />
-        <TableRow label="Net Profit" value1={formatValueWithMissingData(company1, 'Net Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit', selectedCompany2, selectedYear2)} />
-        <TableRow label="Inventory" value1={formatValueWithMissingData(company1, 'Inventory', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory', selectedCompany2, selectedYear2)} />
-        <TableRow label="Total Assets" value1={formatValueWithMissingData(company1, 'Total Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Total Assets', selectedCompany2, selectedYear2)} />
+        {/* Mobile: Unified grid for both sections */}
+        <div className="md:hidden grid grid-cols-[2fr_1fr_1fr]">
+          {/* Financial Numbers Header Row */}
+          <div className="px-3 py-4 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+            <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">
+              Financial Numbers (in thousands)
+            </h2>
+          </div>
+          <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+              {selectedCompany1} ({selectedYear1})
+            </span>
+          </div>
+          <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+              {selectedCompany2} ({selectedYear2})
+            </span>
+          </div>
 
-        {/* Financial Indicators Section */}
-        <div className="bg-neutral-50 px-6 py-3 border-b border-neutral-200 border-t border-neutral-200">
-          <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
-            Financial Indicators
-          </h2>
+          {/* Financial Numbers Data Rows */}
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Total Revenue</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Net Revenue', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Net Revenue', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Cost of Goods</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Cost of Goods', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Cost of Goods', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Gross Margin</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Gross Margin', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Gross Margin', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Selling, General & Administrative Expenses</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'SGA', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'SGA', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Operating Profit</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Operating Profit', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Operating Profit', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Net Profit</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Net Profit', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Net Profit', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Inventory</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Inventory', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Inventory', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Total Assets</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Total Assets', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Total Assets', selectedCompany2, selectedYear2)}</div>
+
+          {/* Financial Indicators Header */}
+          <div className="px-3 py-4 flex items-center bg-neutral-50 border-b border-neutral-200">
+            <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">
+              Financial Indicators
+            </h2>
+          </div>
+          <div className="px-3 py-4 border-l border-neutral-200 bg-neutral-50 border-b border-neutral-200"></div>
+          <div className="px-3 py-4 border-l border-neutral-200 bg-neutral-50 border-b border-neutral-200"></div>
+
+          {/* Financial Indicators Data Rows */}
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Cost of goods percentage (COGS/Net Sales)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Cost of Goods %', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Cost of Goods %', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Gross margin percentage (GM/Net Sales)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Gross Margin %', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Gross Margin %', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">SG&A expense percentage (SG&A/Net Sales)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'SGA %', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'SGA %', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Operating profit margin percentage (Op.Profit/Net Sales)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Operating Profit Margin %', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Operating Profit Margin %', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Net profit margin percentage (Net Profit/Net Sales)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Net Profit Margin %', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Net Profit Margin %', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Inventory turnover (COGS/Inventory)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Inventory Turnover', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Inventory Turnover', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Current Ratio (Current Assets/Current Liabilities)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Current Ratio', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Current Ratio', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Quick Ratio ((Cash + AR)/Current Liabilities)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Quick Ratio', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Quick Ratio', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Debt-to-Equity Ratio (Total Debt/Total Equity)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Debt to Equity', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Debt to Equity', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Asset turnover (Net Sales/Total Assets)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Asset Turnover', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Asset Turnover', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200">Return on assets (ROA)</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company1, 'Return on Assets', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right border-b border-neutral-200">{formatValueWithMissingData(company2, 'Return on Assets', selectedCompany2, selectedYear2)}</div>
+
+          <div className="px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">3-Year Revenue CAGR</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">{formatValueWithMissingData(company1, 'Three Year Revenue CAGR', selectedCompany1, selectedYear1)}</div>
+          <div className="px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">{formatValueWithMissingData(company2, 'Three Year Revenue CAGR', selectedCompany2, selectedYear2)}</div>
         </div>
 
-        <TableRow label="Cost of goods percentage (COGS/Net Sales)" value1={formatValueWithMissingData(company1, 'Cost of Goods %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods %', selectedCompany2, selectedYear2)} />
-        <TableRow label="Gross margin percentage (GM/Net Sales)" value1={formatValueWithMissingData(company1, 'Gross Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin %', selectedCompany2, selectedYear2)} />
-        <TableRow label="SG&A expense percentage (SG&A/Net Sales)" value1={formatValueWithMissingData(company1, 'SGA %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA %', selectedCompany2, selectedYear2)} />
-        <TableRow label="Operating profit margin percentage (Op.Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Operating Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit Margin %', selectedCompany2, selectedYear2)} />
-        <TableRow label="Net profit margin percentage (Net Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Net Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit Margin %', selectedCompany2, selectedYear2)} />
-        <TableRow label="Inventory turnover (COGS/Inventory)" value1={formatValueWithMissingData(company1, 'Inventory Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory Turnover', selectedCompany2, selectedYear2)} />
-        <TableRow label="Current Ratio (Current Assets/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Current Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Current Ratio', selectedCompany2, selectedYear2)} />
-        <TableRow label="Quick Ratio ((Cash + AR)/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Quick Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Quick Ratio', selectedCompany2, selectedYear2)} />
-        <TableRow label="Debt-to-Equity Ratio (Total Debt/Total Equity)" value1={formatValueWithMissingData(company1, 'Debt to Equity', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Debt to Equity', selectedCompany2, selectedYear2)} />
-        <TableRow label="Asset turnover (Net Sales/Total Assets)" value1={formatValueWithMissingData(company1, 'Asset Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Asset Turnover', selectedCompany2, selectedYear2)} />
-        <TableRow label="Return on assets (ROA)" value1={formatValueWithMissingData(company1, 'Return on Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Return on Assets', selectedCompany2, selectedYear2)} />
-        <TableRow label="3-Year Revenue CAGR" value1={formatValueWithMissingData(company1, 'Three Year Revenue CAGR', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Three Year Revenue CAGR', selectedCompany2, selectedYear2)} isLast />
+        {/* Desktop: Original structure */}
+        <div className="hidden md:block">
+          <TableRow label="Total Revenue" value1={formatValueWithMissingData(company1, 'Net Revenue', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Revenue', selectedCompany2, selectedYear2)} />
+          <TableRow label="Cost of Goods" value1={formatValueWithMissingData(company1, 'Cost of Goods', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods', selectedCompany2, selectedYear2)} />
+          <TableRow label="Gross Margin" value1={formatValueWithMissingData(company1, 'Gross Margin', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin', selectedCompany2, selectedYear2)} />
+          <TableRow label="Selling, General & Administrative Expenses" value1={formatValueWithMissingData(company1, 'SGA', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA', selectedCompany2, selectedYear2)} />
+          <TableRow label="Operating Profit" value1={formatValueWithMissingData(company1, 'Operating Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit', selectedCompany2, selectedYear2)} />
+          <TableRow label="Net Profit" value1={formatValueWithMissingData(company1, 'Net Profit', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit', selectedCompany2, selectedYear2)} />
+          <TableRow label="Inventory" value1={formatValueWithMissingData(company1, 'Inventory', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory', selectedCompany2, selectedYear2)} />
+          <TableRow label="Total Assets" value1={formatValueWithMissingData(company1, 'Total Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Total Assets', selectedCompany2, selectedYear2)} />
+
+          {/* Financial Indicators Section */}
+          <div className="bg-neutral-50 px-6 py-3 border-b border-neutral-200 border-t border-neutral-200">
+            <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
+              Financial Indicators
+            </h2>
+          </div>
+
+          <TableRow label="Cost of goods percentage (COGS/Net Sales)" value1={formatValueWithMissingData(company1, 'Cost of Goods %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Cost of Goods %', selectedCompany2, selectedYear2)} />
+          <TableRow label="Gross margin percentage (GM/Net Sales)" value1={formatValueWithMissingData(company1, 'Gross Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Gross Margin %', selectedCompany2, selectedYear2)} />
+          <TableRow label="SG&A expense percentage (SG&A/Net Sales)" value1={formatValueWithMissingData(company1, 'SGA %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'SGA %', selectedCompany2, selectedYear2)} />
+          <TableRow label="Operating profit margin percentage (Op.Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Operating Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Operating Profit Margin %', selectedCompany2, selectedYear2)} />
+          <TableRow label="Net profit margin percentage (Net Profit/Net Sales)" value1={formatValueWithMissingData(company1, 'Net Profit Margin %', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Net Profit Margin %', selectedCompany2, selectedYear2)} />
+          <TableRow label="Inventory turnover (COGS/Inventory)" value1={formatValueWithMissingData(company1, 'Inventory Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Inventory Turnover', selectedCompany2, selectedYear2)} />
+          <TableRow label="Current Ratio (Current Assets/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Current Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Current Ratio', selectedCompany2, selectedYear2)} />
+          <TableRow label="Quick Ratio ((Cash + AR)/Current Liabilities)" value1={formatValueWithMissingData(company1, 'Quick Ratio', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Quick Ratio', selectedCompany2, selectedYear2)} />
+          <TableRow label="Debt-to-Equity Ratio (Total Debt/Total Equity)" value1={formatValueWithMissingData(company1, 'Debt to Equity', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Debt to Equity', selectedCompany2, selectedYear2)} />
+          <TableRow label="Asset turnover (Net Sales/Total Assets)" value1={formatValueWithMissingData(company1, 'Asset Turnover', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Asset Turnover', selectedCompany2, selectedYear2)} />
+          <TableRow label="Return on assets (ROA)" value1={formatValueWithMissingData(company1, 'Return on Assets', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Return on Assets', selectedCompany2, selectedYear2)} />
+          <TableRow label="3-Year Revenue CAGR" value1={formatValueWithMissingData(company1, 'Three Year Revenue CAGR', selectedCompany1, selectedYear1)} value2={formatValueWithMissingData(company2, 'Three Year Revenue CAGR', selectedCompany2, selectedYear2)} isLast />
+        </div>
       </div>
+      </>
       )}
 
       {/* Footer */}
@@ -517,45 +683,31 @@ export function FinancialComparisonTable() {
           </div>
         </div>
 
-        {/* Row 2: Professors */}
-        <p className="text-xs px-6">
-          Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong>
-        </p>
-
-        {/* Row 3: Students */}
-        <p className="text-xs px-6">
-          Students: <strong>Diana Lee</strong> – AI Systems & Backend Developer (Claude Code) &nbsp;&nbsp;&nbsp;&nbsp; <strong>Souyen Park</strong> – Web Systems & Designer &nbsp;&nbsp;&nbsp;&nbsp; <strong>Jia Mei Lin</strong> - AI Systems Assistant (v1)
-        </p>
-
-        {/* Row 4: Made Through */}
-        <p className="text-xs px-6">
-          Made through SUNY IITG Business Management Course Development Grants
-        </p>
       </div>
     </div>
   );
 }
 
-function TableRow({ 
-  label, 
-  value1, 
-  value2, 
-  isLast = false 
-}: { 
-  label: string; 
-  value1: string; 
-  value2: string; 
+function TableRow({
+  label,
+  value1,
+  value2,
+  isLast = false
+}: {
+  label: string;
+  value1: string;
+  value2: string;
   isLast?: boolean;
 }) {
   return (
     <div className={`grid grid-cols-[2fr_1fr_1fr] ${!isLast ? 'border-b border-neutral-200' : ''}`}>
-      <div className="px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">
+      <div className="px-3 md:px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">
         {label}
       </div>
-      <div className="px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
+      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
         {value1}
       </div>
-      <div className="px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
+      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
         {value2}
       </div>
     </div>

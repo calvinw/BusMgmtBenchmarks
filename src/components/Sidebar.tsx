@@ -1,5 +1,5 @@
 import svgPaths from "../imports/svg-jmdr8vfty4";
-import { BarChart3, Building2, FileText } from 'lucide-react';
+import { BarChart3, Building2, FileText, X } from 'lucide-react';
 
 function Logo() {
   return (
@@ -31,10 +31,33 @@ function NavItem({ icon, label, active = false, onClick }: { icon: React.ReactNo
   );
 }
 
-export function Sidebar({ currentPage, onNavigate }: { currentPage: string; onNavigate: (page: string) => void }) {
+export function Sidebar({
+  currentPage,
+  onNavigate,
+  onClose
+}: {
+  currentPage: string;
+  onNavigate: (page: string) => void;
+  onClose?: () => void;
+}) {
+  const handleNavClick = (page: string) => {
+    onNavigate(page);
+    onClose?.();
+  };
+
   return (
     <div className="h-full bg-white border-r border-neutral-200 flex flex-col">
-      <Logo />
+      <div className="flex items-center justify-between">
+        <Logo />
+        {/* Close button - visible only on mobile */}
+        <button
+          onClick={onClose}
+          className="md:hidden mr-4 p-2 hover:bg-neutral-100 rounded-lg"
+          aria-label="Close menu"
+        >
+          <X className="size-5 text-neutral-600" />
+        </button>
+      </div>
       
       <div className="px-4 py-2">
         <p className="px-2 font-['Geist:Medium',sans-serif] text-neutral-500 text-xs uppercase tracking-wider">
@@ -43,23 +66,23 @@ export function Sidebar({ currentPage, onNavigate }: { currentPage: string; onNa
       </div>
       
       <nav className="flex-1">
-        <NavItem 
-          icon={<Building2 />} 
-          label="Company vs Company" 
-          active={currentPage === 'company-vs-company'} 
-          onClick={() => onNavigate('company-vs-company')}
+        <NavItem
+          icon={<Building2 />}
+          label="Company vs Company"
+          active={currentPage === 'company-vs-company'}
+          onClick={() => handleNavClick('company-vs-company')}
         />
-        <NavItem 
-          icon={<Building2 />} 
-          label="Company vs Segment" 
+        <NavItem
+          icon={<Building2 />}
+          label="Company vs Segment"
           active={currentPage === 'company-vs-segment'}
-          onClick={() => onNavigate('company-vs-segment')}
+          onClick={() => handleNavClick('company-vs-segment')}
         />
-        <NavItem 
-          icon={<FileText />} 
-          label="Reports" 
+        <NavItem
+          icon={<FileText />}
+          label="Reports"
           active={currentPage === 'reports'}
-          onClick={() => onNavigate('reports')}
+          onClick={() => handleNavClick('reports')}
         />
       </nav>
     </div>

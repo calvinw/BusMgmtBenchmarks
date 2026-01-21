@@ -485,9 +485,53 @@ export function ReportsPage() {
         </div>
       </div>
 
-      {/* Controls Row - Report Type & Year (left), Export to Excel (right) */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-6">
+      {/* Export Section - same for all sizes */}
+      <div className="flex items-center justify-end">
+        <button
+          onClick={handleExportToExcel}
+          disabled={loading || filteredData.length === 0}
+          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white border border-green-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <Download className="size-4" />
+          Export to Excel
+        </button>
+      </div>
+
+      {/* Mobile Selector Panel - visible only on mobile */}
+      <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-4">
+        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">Select Options</h3>
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Report Type</label>
+            <select
+              value={reportType}
+              onChange={(e) => setReportType(e.target.value)}
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {Object.entries(REPORT_TYPES).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Year</label>
+            <select
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {AVAILABLE_YEARS.map(y => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: Controls and Table together (no gap between) */}
+      <div className="hidden md:block bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
+        {/* Desktop Controls Row - Report Type & Year */}
+        <div className="flex items-center gap-6 bg-neutral-100 px-6 py-4 border-b border-neutral-200">
           {/* Report Type */}
           <div className="flex items-center gap-3">
             <span className="font-['Geist:Medium',sans-serif] text-neutral-950">Report Type:</span>
@@ -517,29 +561,9 @@ export function ReportsPage() {
           </div>
         </div>
 
-        {/* Export to Excel Button - Right Side */}
-        <button
-          onClick={handleExportToExcel}
-          disabled={loading || filteredData.length === 0}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white border border-green-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Download className="size-4" />
-          Export to Excel
-        </button>
-      </div>
-
-      {loading && (
-        <div className="text-center py-8 text-neutral-500">Loading data...</div>
-      )}
-
-      {!loading && filteredData.length === 0 && (
-        <div className="text-center py-8 text-neutral-500 italic">No data available for the selected filters.</div>
-      )}
-
-      {!loading && filteredData.length > 0 && (
-        /* Table Container */
+        {/* Desktop Table Container - attached to controls above */}
         <div
-          className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-auto w-full"
+          className="bg-white overflow-auto w-full"
           style={{ maxHeight: 'calc(100vh - 320px)' }}
         >
             <Table className="border-collapse" style={{ minWidth: '100%', width: 'max-content' }}>
@@ -605,20 +629,89 @@ export function ReportsPage() {
               </TableBody>
             </Table>
         </div>
+        </div>
+
+      {loading && (
+        <div className="text-center py-8 text-neutral-500">Loading data...</div>
       )}
 
-      {/* Footer */}
-      <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
-        <p className="text-xs">
-          Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong>
-        </p>
-        <p className="text-xs">
-          Students: <strong>Diana Lee</strong> – AI Systems & Backend Developer (Claude Code) &nbsp;&nbsp;&nbsp;&nbsp; <strong>Souyen Park</strong> – Web Systems & Designer &nbsp;&nbsp;&nbsp;&nbsp; <strong>Jia Mei Lin</strong> - AI Systems Assistant (v1)
-        </p>
-        <p className="text-xs">
-          Made through SUNY IITG Business Management Course Development Grants
-        </p>
-      </div>
+      {!loading && filteredData.length === 0 && (
+        <div className="text-center py-8 text-neutral-500 italic">No data available for the selected filters.</div>
+      )}
+
+      {!loading && filteredData.length > 0 && (
+        <>
+        {/* Mobile Table Container */}
+        <div
+          className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm overflow-auto w-full"
+          style={{ maxHeight: 'calc(100vh - 320px)' }}
+        >
+            <Table className="border-collapse" style={{ minWidth: '100%', width: 'max-content' }}>
+              <TableHeader>
+                {table.getHeaderGroups().map(headerGroup => (
+                  <TableRow key={headerGroup.id} className="bg-neutral-100 sticky top-0 z-20 hover:bg-neutral-100">
+                    {headerGroup.headers.map((header, index) => {
+                      const meta = header.column.columnDef.meta as ColumnMeta | undefined;
+                      const isSticky = meta?.isSticky;
+                      const stickyLeft = meta?.stickyLeft;
+                      const minWidth = meta?.minWidth || '160px';
+                      const align = meta?.align || 'right';
+
+                      return (
+                        <TableHead
+                          key={header.id}
+                          className={cn(
+                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap",
+                            index > 0 && "border-l",
+                            align === 'left' ? "text-left" : "text-right",
+                            isSticky && "sticky z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
+                          )}
+                          style={{
+                            minWidth,
+                            ...(isSticky ? { left: stickyLeft, top: 0 } : {})
+                          }}
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(header.column.columnDef.header, header.getContext())}
+                        </TableHead>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {table.getRowModel().rows.map(row => (
+                  <TableRow key={row.id} className="hover:bg-neutral-50 transition-colors">
+                    {row.getVisibleCells().map((cell, index) => {
+                      const meta = cell.column.columnDef.meta as ColumnMeta | undefined;
+                      const isSticky = meta?.isSticky;
+                      const stickyLeft = meta?.stickyLeft;
+                      const align = meta?.align || 'right';
+
+                      return (
+                        <TableCell
+                          key={cell.id}
+                          className={cn(
+                            "px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200 bg-white whitespace-nowrap",
+                            index > 0 && "border-l",
+                            align === 'left' ? "text-left" : "text-right",
+                            isSticky && "sticky z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
+                          )}
+                          style={isSticky ? { left: stickyLeft } : {}}
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+        </div>
+        </>
+      )}
+
     </div>
   );
 }

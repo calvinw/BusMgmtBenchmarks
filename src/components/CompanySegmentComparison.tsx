@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
 import { Download } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import fitLogo from 'figma:asset/fd6a1765252638a4eb759f6a240b8db3c878408d.png';
@@ -290,9 +291,58 @@ export function CompanySegmentComparison() {
       {loading && <div className="text-center py-8 text-neutral-500">Loading data...</div>}
 
       {!loading && (
+      <>
+      {/* Mobile Selector Panel - visible only on mobile */}
+      <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-4">
+        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">Select Options</h3>
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Year</label>
+            <select
+              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+            </select>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company</label>
+              <select
+                className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={selectedCompany}
+                onChange={(e) => setSelectedCompany(e.target.value)}
+              >
+                {filteredCompanies.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Segment</label>
+              <select
+                className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={selectedSegment}
+                onChange={(e) => handleSegmentChange(e.target.value)}
+              >
+                {uniqueSegments.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+              {isSpecialty && (
+                <select
+                  className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2"
+                  value={selectedSubsegment}
+                  onChange={(e) => handleSubsegmentChange(e.target.value)}
+                >
+                  {uniqueSubsegments.map(sub => <option key={sub} value={sub}>{sub}</option>)}
+                </select>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
-        {/* Title and Year Selector */}
-        <div className="bg-neutral-100 border-b border-neutral-200 px-6 py-4 flex items-center justify-between">
+        {/* Desktop Title and Year Selector */}
+        <div className="hidden md:flex bg-neutral-100 border-b border-neutral-200 px-6 py-4 items-center justify-between">
           <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
             Company and Segment Comparison
           </h2>
@@ -310,8 +360,8 @@ export function CompanySegmentComparison() {
           </div>
         </div>
 
-        {/* Financial Indicators Header with Dropdowns */}
-        <div className="grid grid-cols-[2fr_1fr_1fr] bg-neutral-100 border-b border-neutral-200">
+        {/* Desktop Header with Dropdowns */}
+        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] bg-neutral-100 border-b border-neutral-200">
           <div className="px-6 py-4 flex items-center">
             <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
               Financial Indicators
@@ -348,35 +398,58 @@ export function CompanySegmentComparison() {
 
         {/* Financial Indicators Rows */}
         {companyData && benchmarkData ? (
-          metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
-            <TableRow
-              key={index}
-              label={label}
-              value1={formatValue(companyData[companyField], isPct, isTurn, isRatio)}
-              value2={formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}
-              isLast={index === metrics.length - 1}
-            />
-          ))
+          <>
+            {/* Mobile: Unified grid */}
+            <div className="md:hidden grid grid-cols-[2fr_1fr_1fr]">
+              {/* Mobile Header Row */}
+              <div className="px-3 py-4 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">
+                  Financial Indicators
+                </h3>
+              </div>
+              <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+                  {selectedCompany}
+                </span>
+              </div>
+              <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+                  {benchmarkLabel} Avg
+                </span>
+              </div>
+
+              {/* Mobile Data Rows */}
+              {metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
+                <React.Fragment key={index}>
+                  <div className={`px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{label}</div>
+                  <div className={`px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(companyData[companyField], isPct, isTurn, isRatio)}</div>
+                  <div className={`px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}</div>
+                </React.Fragment>
+              ))}
+            </div>
+
+            {/* Desktop: Original structure */}
+            <div className="hidden md:block">
+              {metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
+                <TableRow
+                  key={index}
+                  label={label}
+                  value1={formatValue(companyData[companyField], isPct, isTurn, isRatio)}
+                  value2={formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}
+                  isLast={index === metrics.length - 1}
+                />
+              ))}
+            </div>
+          </>
         ) : (
           <div className="p-8 text-center text-neutral-500 italic">
             {selectedCompany && selectedSegment ? 'No data available for the selected combination.' : 'Please select a Company and Segment.'}
           </div>
         )}
       </div>
+      </>
       )}
 
-      {/* Footer */}
-      <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
-        <p className="text-xs">
-          Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong>
-        </p>
-        <p className="text-xs">
-          Students: <strong>Diana Lee</strong> – AI Systems & Backend Developer (Claude Code) &nbsp;&nbsp;&nbsp;&nbsp; <strong>Souyen Park</strong> – Web Systems & Designer &nbsp;&nbsp;&nbsp;&nbsp; <strong>Jia Mei Lin</strong> - AI Systems Assistant (v1)
-        </p>
-        <p className="text-xs">
-          Made through SUNY IITG Business Management Course Development Grants
-        </p>
-      </div>
     </div>
   );
 }
@@ -394,13 +467,13 @@ function TableRow({
 }) {
   return (
     <div className={`grid grid-cols-[2fr_1fr_1fr] ${!isLast ? 'border-b border-neutral-200' : ''}`}>
-      <div className="px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">
+      <div className="px-3 md:px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">
         {label}
       </div>
-      <div className="px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
+      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
         {value1}
       </div>
-      <div className="px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
+      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
         {value2}
       </div>
     </div>

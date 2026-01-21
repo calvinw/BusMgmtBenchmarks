@@ -400,20 +400,20 @@ export function CompanySegmentComparison() {
         {companyData && benchmarkData ? (
           <>
             {/* Mobile: Unified grid */}
-            <div className="md:hidden grid grid-cols-[2fr_1fr_1fr]">
+            <div className="md:hidden grid grid-cols-[1.2fr_1fr_1fr]">
               {/* Mobile Header Row */}
-              <div className="px-3 py-4 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
-                <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">
+              <div className="px-2 py-3 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-xs">
                   Financial Indicators
                 </h3>
               </div>
-              <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
-                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
                   {selectedCompany}
                 </span>
               </div>
-              <div className="px-3 py-4 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
-                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-xs text-center truncate">
+              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+                <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
                   {benchmarkLabel} Avg
                 </span>
               </div>
@@ -421,9 +421,9 @@ export function CompanySegmentComparison() {
               {/* Mobile Data Rows */}
               {metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
                 <React.Fragment key={index}>
-                  <div className={`px-3 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{label}</div>
-                  <div className={`px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(companyData[companyField], isPct, isTurn, isRatio)}</div>
-                  <div className={`px-3 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}</div>
+                  <div className={`px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{label}</div>
+                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(companyData[companyField], isPct, isTurn, isRatio)}</div>
+                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}</div>
                 </React.Fragment>
               ))}
             </div>

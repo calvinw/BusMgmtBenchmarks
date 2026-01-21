@@ -3,110 +3,16 @@ import React from 'react';
 import { Download } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import fitLogo from 'figma:asset/fd6a1765252638a4eb759f6a240b8db3c878408d.png';
-
-// Types
-interface CompanyInfo {
-  company: string;
-  segment: string;
-  subsegment: string | null;
-}
-
-interface BenchmarkData {
-  [key: string]: any;
-  segment?: string;
-  subsegment?: string;
-}
-
-interface APIResponse {
-  query_execution_status: string;
-  rows: any[];
-  schema?: Array<{ columnName: string; columnType: string }>;
-}
-
-// Constants
-const DB_URL = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main';
-const AVAILABLE_YEARS = ['2024', '2023', '2022', '2021', '2020', '2019'];
-
-// Helper function
-function formatValue(value: any, isPercentage = false, isTurnover = false, isRatio = false): string {
-  if (value === null || value === undefined || value === '') return 'N/A';
-  const num = Number(value);
-  if (isNaN(num)) return 'N/A';
-
-  if (isPercentage) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'percent',
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1
-    }).format(num / 100);
-  }
-
-  if (isTurnover || isRatio) {
-    return new Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1
-    }).format(num);
-  }
-
-  return num.toLocaleString(undefined, {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
-}
-
-// API Functions
-async function fetchCompanyList(year: string): Promise<CompanyInfo[]> {
-  try {
-    const response = await fetch(
-      DB_URL + `?q=SELECT+DISTINCT+company,+segment,+subsegment+FROM+%60benchmarks+${year}+view%60+ORDER+BY+company`
-    );
-    const data: APIResponse = await response.json();
-    return data.rows as CompanyInfo[];
-  } catch (error) {
-    console.error('Error fetching company list:', error);
-    return [];
-  }
-}
-
-async function fetchSegmentBenchmarks(year: string): Promise<BenchmarkData[]> {
-  try {
-    const response = await fetch(
-      DB_URL + `?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`
-    );
-    const data: APIResponse = await response.json();
-    return data.rows;
-  } catch (error) {
-    console.error('Error fetching segment benchmarks:', error);
-    return [];
-  }
-}
-
-async function fetchSubsegmentBenchmarks(year: string): Promise<BenchmarkData[]> {
-  try {
-    const response = await fetch(
-      DB_URL + `?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`
-    );
-    const data: APIResponse = await response.json();
-    return data.rows;
-  } catch (error) {
-    console.error('Error fetching subsegment benchmarks:', error);
-    return [];
-  }
-}
-
-async function fetchCompanyBenchmarkData(company: string, year: string): Promise<BenchmarkData | null> {
-  try {
-    const encodedCompany = encodeURIComponent(company);
-    const response = await fetch(
-      DB_URL + `?q=SELECT+*+FROM+%60benchmarks+${year}+view%60+WHERE+company=%22${encodedCompany}%22`
-    );
-    const data: APIResponse = await response.json();
-    return data.rows[0] || null;
-  } catch (error) {
-    console.error('Error fetching company benchmark data:', error);
-    return null;
-  }
-}
+import { AVAILABLE_YEARS } from '@/lib/constants';
+import { formatValue } from '@/lib/formatters';
+import {
+  fetchCompaniesWithSegments,
+  fetchSegmentBenchmarks,
+  fetchSubsegmentBenchmarks,
+  fetchCompanyBenchmark,
+  type CompanyInfo,
+  type BenchmarkData
+} from '@/lib/api';
 
 export function CompanySegmentComparison() {
   const [selectedYear, setSelectedYear] = useState('2023');
@@ -122,20 +28,20 @@ export function CompanySegmentComparison() {
   const [benchmarkData, setBenchmarkData] = useState<BenchmarkData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Metrics definition
+  // Metrics definition: [label, companyField, benchmarkField]
   const metrics = [
-    ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %', 'Cost_of_Goods_Percentage', true, false, false],
-    ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %', 'Gross_Margin_Percentage', true, false, false],
-    ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %', 'SGA_Percentage', true, false, false],
-    ['Operating profit margin percentage (Op.Profit/Net Sales)', 'Operating Profit Margin %', 'Operating_Profit_Margin_Percentage', true, false, false],
-    ['Net profit margin percentage (Net Profit/Net Sales)', 'Net Profit Margin %', 'Net_Profit_Margin_Percentage', true, false, false],
-    ['Inventory turnover (COGS/Inventory)', 'Inventory Turnover', 'Inventory_Turnover', false, true, false],
-    ['Current Ratio (Current Assets/Current Liabilities)', 'Current Ratio', 'Current_Ratio', false, false, true],
-    ['Quick Ratio ((Cash + AR)/Current Liabilities)', 'Quick Ratio', 'Quick_Ratio', false, false, true],
-    ['Debt-to-Equity Ratio (Total Debt/Total Equity)', 'Debt to Equity', 'Debt_to_Equity', false, false, true],
-    ['Asset turnover (Net Sales/Total Assets)', 'Asset Turnover', 'Asset_Turnover', false, true, false],
-    ['Return on assets (ROA)', 'Return on Assets', 'Return_on_Assets', true, false, false],
-    ['3-Year Revenue CAGR', 'Three Year Revenue CAGR', 'Three_Year_Revenue_CAGR', true, false, false]
+    ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %', 'Cost_of_Goods_Percentage'],
+    ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %', 'Gross_Margin_Percentage'],
+    ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %', 'SGA_Percentage'],
+    ['Operating profit margin percentage (Op.Profit/Net Sales)', 'Operating Profit Margin %', 'Operating_Profit_Margin_Percentage'],
+    ['Net profit margin percentage (Net Profit/Net Sales)', 'Net Profit Margin %', 'Net_Profit_Margin_Percentage'],
+    ['Inventory turnover (COGS/Inventory)', 'Inventory Turnover', 'Inventory_Turnover'],
+    ['Current Ratio (Current Assets/Current Liabilities)', 'Current Ratio', 'Current_Ratio'],
+    ['Quick Ratio ((Cash + AR)/Current Liabilities)', 'Quick Ratio', 'Quick_Ratio'],
+    ['Debt-to-Equity Ratio (Total Debt/Total Equity)', 'Debt to Equity', 'Debt_to_Equity'],
+    ['Asset turnover (Net Sales/Total Assets)', 'Asset Turnover', 'Asset_Turnover'],
+    ['Return on assets (ROA)', 'Return on Assets', 'Return_on_Assets'],
+    ['3-Year Revenue CAGR', 'Three Year Revenue CAGR', 'Three_Year_Revenue_CAGR']
   ] as const;
 
   // Load initial data for the year
@@ -143,7 +49,7 @@ export function CompanySegmentComparison() {
     const loadYearData = async () => {
       setLoading(true);
       const [companies, segments, subsegments] = await Promise.all([
-        fetchCompanyList(selectedYear),
+        fetchCompaniesWithSegments(selectedYear),
         fetchSegmentBenchmarks(selectedYear),
         fetchSubsegmentBenchmarks(selectedYear)
       ]);
@@ -160,7 +66,7 @@ export function CompanySegmentComparison() {
     const loadData = async () => {
       if (!selectedCompany) return;
 
-      const companyRow = await fetchCompanyBenchmarkData(selectedCompany, selectedYear);
+      const companyRow = await fetchCompanyBenchmark(selectedCompany, selectedYear);
       setCompanyData(companyRow);
 
       // Find benchmark data
@@ -253,9 +159,9 @@ export function CompanySegmentComparison() {
       benchmarkLabel
     ]);
 
-    metrics.forEach(([label, companyField, benchmarkField, isPct, isTurn, isRatio]) => {
-      const companyValue = formatValue(companyData[companyField], isPct, isTurn, isRatio);
-      const benchmarkValue = formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio);
+    metrics.forEach(([label, companyField, benchmarkField]) => {
+      const companyValue = formatValue(companyData[companyField], companyField);
+      const benchmarkValue = formatValue(benchmarkData[benchmarkField], benchmarkField);
       excelData.push([label, companyValue, benchmarkValue]);
     });
 
@@ -400,42 +306,42 @@ export function CompanySegmentComparison() {
         {companyData && benchmarkData ? (
           <>
             {/* Mobile: Unified grid */}
-            <div className="md:hidden grid grid-cols-[1.2fr_1fr_1fr]">
+            <div className="md:hidden grid grid-cols-3">
               {/* Mobile Header Row */}
-              <div className="px-2 py-3 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
-                <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-xs">
-                  Financial Indicators
+              <div className="px-2 py-3 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
+                <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-xs truncate">
+                  Indicators
                 </h3>
               </div>
-              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
                 <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
                   {selectedCompany}
                 </span>
               </div>
-              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200">
+              <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
                 <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
                   {benchmarkLabel} Avg
                 </span>
               </div>
 
               {/* Mobile Data Rows */}
-              {metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
+              {metrics.map(([label, companyField, benchmarkField], index) => (
                 <React.Fragment key={index}>
-                  <div className={`px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{label}</div>
-                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(companyData[companyField], isPct, isTurn, isRatio)}</div>
-                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}</div>
+                  <div className={`px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs min-w-0 truncate ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{label}</div>
+                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right min-w-0 ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(companyData[companyField], companyField)}</div>
+                  <div className={`px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right min-w-0 ${index !== metrics.length - 1 ? 'border-b border-neutral-200' : ''}`}>{formatValue(benchmarkData[benchmarkField], benchmarkField)}</div>
                 </React.Fragment>
               ))}
             </div>
 
             {/* Desktop: Original structure */}
             <div className="hidden md:block">
-              {metrics.map(([label, companyField, benchmarkField, isPct, isTurn, isRatio], index) => (
+              {metrics.map(([label, companyField, benchmarkField], index) => (
                 <TableRow
                   key={index}
                   label={label}
-                  value1={formatValue(companyData[companyField], isPct, isTurn, isRatio)}
-                  value2={formatValue(benchmarkData[benchmarkField], isPct, isTurn, isRatio)}
+                  value1={formatValue(companyData[companyField], companyField)}
+                  value2={formatValue(benchmarkData[benchmarkField], benchmarkField)}
                   isLast={index === metrics.length - 1}
                 />
               ))}

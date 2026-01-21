@@ -1,4 +1,3 @@
-import svgPaths from "../imports/svg-jmdr8vfty4";
 import { BarChart3, Building2, FileText, X } from 'lucide-react';
 
 function Logo() {

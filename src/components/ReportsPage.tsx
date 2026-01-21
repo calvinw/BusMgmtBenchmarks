@@ -17,97 +17,16 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/components/ui/utils';
+import { AVAILABLE_YEARS } from '@/lib/constants';
+import { formatValue, formatColumnHeader } from '@/lib/formatters';
+import { fetchReportData, REPORT_TYPES, type ReportType } from '@/lib/api';
 
 // Types
-interface APIResponse {
-  query_execution_status: string;
-  rows: any[];
-  schema?: Array<{ columnName: string; columnType: string }>;
-}
-
 interface ColumnMeta {
   isSticky?: boolean;
   stickyLeft?: string;
   minWidth?: string;
   align?: 'left' | 'right';
-}
-
-// Constants
-const DB_URL = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main';
-const AVAILABLE_YEARS = ['2024', '2023', '2022', '2021', '2020', '2019'];
-
-const REPORT_TYPES = {
-  'segments_and_benchmarks': 'Segment and Benchmark Reports',
-  'segments': 'Segment Reports',
-  'benchmarks': 'Benchmark Reports',
-  'subsegments': 'Subsegment Reports'
-};
-
-const REPORT_URLS = {
-  segments_and_benchmarks: (year: string) => DB_URL + `?q=SELECT+*+FROM+%60segment+and+company+benchmarks+${year}%60`,
-  benchmarks: (year: string) => DB_URL + `?q=SELECT+*+FROM+%60benchmarks+${year}+view%60`,
-  segments: (year: string) => DB_URL + `?q=SELECT+*+FROM+%60segment+benchmarks+${year}%60`,
-  subsegments: (year: string) => DB_URL + `?q=SELECT+*+FROM+%60subsegment+benchmarks+${year}%60`
-};
-
-// Helper function to format column headers
-function formatColumnHeader(header: string): string {
-  return header
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, char => char.toUpperCase());
-}
-
-// Helper function to format cell values
-function formatValue(value: any, columnName: string): string {
-  if (value === null || value === undefined) return 'N/A';
-
-  const num = Number(value);
-  if (isNaN(num)) return String(value);
-
-  // Percentage columns
-  if (columnName.includes('%') || columnName.includes('_Percentage')) {
-    return num.toLocaleString(undefined, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1
-    }) + '%';
-  }
-
-  // CAGR and ROA
-  if (columnName.includes('CAGR') || columnName.includes('Return_on_Assets')) {
-    return num.toLocaleString(undefined, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1
-    }) + '%';
-  }
-
-  // Turnover and ratio columns
-  if (columnName.includes('Turnover') || columnName.includes('Ratio')) {
-    return num.toLocaleString(undefined, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1
-    });
-  }
-
-  // Default number formatting
-  return num.toLocaleString(undefined, {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
-}
-
-// API fetch function
-async function fetchReportData(reportType: string, year: string): Promise<APIResponse | null> {
-  try {
-    const urlFn = REPORT_URLS[reportType as keyof typeof REPORT_URLS];
-    if (!urlFn) return null;
-
-    const response = await fetch(urlFn(year));
-    const data: APIResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching report data:', error);
-    return null;
-  }
 }
 
 export function ReportsPage() {

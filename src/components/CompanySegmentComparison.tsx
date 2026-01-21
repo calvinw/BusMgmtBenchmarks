@@ -268,7 +268,7 @@ export function CompanySegmentComparison() {
   const benchmarkLabel = isSpecialty && selectedSubsegment ? selectedSubsegment : selectedSegment;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2">
       {/* Sticky FIT Header */}
       <div className="sticky top-0 z-20 bg-neutral-50 py-6 shadow-sm">
         <div className="flex items-center justify-center">
@@ -368,13 +368,13 @@ export function CompanySegmentComparison() {
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
         <p className="text-xs">
-          Fashion Institute of Technology Professors: Dr. Calvin Williamson, Shelley E. Kohan
+          Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong>
         </p>
         <p className="text-xs">
-          AI Systems Assistant: Jia Mei Lin, Direct Marketing BS 2026
+          Students: <strong>Diana Lee</strong> – AI Systems & Backend Developer (Claude Code) &nbsp;&nbsp;&nbsp;&nbsp; <strong>Souyen Park</strong> – Web Systems & Designer &nbsp;&nbsp;&nbsp;&nbsp; <strong>Jia Mei Lin</strong> - AI Systems Assistant (v1)
         </p>
         <p className="text-xs">
-          Made through the SUNY IITG Business Management Course Development Grant
+          Made through SUNY IITG Business Management Course Development Grants
         </p>
       </div>
     </div>

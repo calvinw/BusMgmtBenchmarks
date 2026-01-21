@@ -53,6 +53,38 @@ const currencyMap: Record<string, string> = {
   'ASOS': '£'
 };
 
+// Non-American companies (no SEC filings)
+const NON_AMERICAN_COMPANIES = new Set([
+  'Louis Vuitton',
+  'Inditex/Zara',
+  'H&M',
+  'Adidas',
+  'Aritzia',
+  'Ahold Delhaize',
+  'ASOS'
+]);
+
+// Convert company name to URL-safe format for SEC filing links
+function toUrlSafeCompanyName(company: string): string {
+  return company
+    .toLowerCase()
+    .replace(/'/g, '')
+    .replace(/&/g, 'and')
+    .replace(/\//g, '-')
+    .replace(/ /g, '-');
+}
+
+// Get SEC filing URL for a company and fiscal year
+// HTML files use year+1 (e.g., fiscal 2024 data is in Amazon-2025.html)
+function getSecFilingUrl(company: string, fiscalYear: number): string | null {
+  if (NON_AMERICAN_COMPANIES.has(company)) {
+    return null;
+  }
+  const safeCompany = toUrlSafeCompanyName(company);
+  const fileYear = fiscalYear + 1;
+  return `/sec/${safeCompany}-${fileYear}.html`;
+}
+
 // Helper functions
 function roundToTenth(value: number): number {
   return Math.round(value * 10) / 10;
@@ -331,7 +363,7 @@ export function FinancialComparisonTable() {
   const company2 = company2Data;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2">
       {/* Sticky FIT Header */}
       <div className="sticky top-0 z-20 bg-neutral-50 py-6 shadow-sm">
         <div className="flex items-center justify-center">
@@ -440,17 +472,64 @@ export function FinancialComparisonTable() {
 
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
-        <p className="text-xs">
-          Sources: {company1 ? `${company1.company} ${company1.year}: SEC report` : `${selectedCompany1} ${selectedYear1}: No data available`} | {company2 ? `${company2.company} ${company2.year}: SEC report` : `${selectedCompany2} ${selectedYear2}: No data available`}
+        {/* Row 1: SEC report links aligned with table columns */}
+        <div className="grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
+          <span className="px-6"></span>
+          <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
+            {company1 ? (
+              getSecFilingUrl(company1.company, Number(company1.year)) ? (
+                <>
+                  Source: <a
+                    href={getSecFilingUrl(company1.company, Number(company1.year))!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {company1.company} {company1.year} SEC Report
+                  </a>
+                </>
+              ) : (
+                <span>{company1.company} {company1.year}: No SEC report</span>
+              )
+            ) : (
+              <span>{selectedCompany1} {selectedYear1}: No data available</span>
+            )}
+          </div>
+          <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
+            {company2 ? (
+              getSecFilingUrl(company2.company, Number(company2.year)) ? (
+                <>
+                  Source: <a
+                    href={getSecFilingUrl(company2.company, Number(company2.year))!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {company2.company} {company2.year} SEC Report
+                  </a>
+                </>
+              ) : (
+                <span>{company2.company} {company2.year}: No SEC report</span>
+              )
+            ) : (
+              <span>{selectedCompany2} {selectedYear2}: No data available</span>
+            )}
+          </div>
+        </div>
+
+        {/* Row 2: Professors */}
+        <p className="text-xs px-6">
+          Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong>
         </p>
-        <p className="text-xs">
-          Fashion Institute of Technology Professors: Dr. Calvin Williamson, Shelley E. Kohan
+
+        {/* Row 3: Students */}
+        <p className="text-xs px-6">
+          Students: <strong>Diana Lee</strong> – AI Systems & Backend Developer (Claude Code) &nbsp;&nbsp;&nbsp;&nbsp; <strong>Souyen Park</strong> – Web Systems & Designer &nbsp;&nbsp;&nbsp;&nbsp; <strong>Jia Mei Lin</strong> - AI Systems Assistant (v1)
         </p>
-        <p className="text-xs">
-          AI Systems Assistant: Jia Mei Lin, Direct Marketing BS 2026
-        </p>
-        <p className="text-xs">
-          Made through the SUNY IITG Business Management Course Development Grant
+
+        {/* Row 4: Made Through */}
+        <p className="text-xs px-6">
+          Made through SUNY IITG Business Management Course Development Grants
         </p>
       </div>
     </div>

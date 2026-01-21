@@ -15,7 +15,7 @@ export default function App() {
       </aside>
       
       {/* Main Content Area - remaining space */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8 min-w-0 overflow-hidden">
         {currentPage === 'company-vs-company' && <FinancialComparisonTable />}
         {currentPage === 'company-vs-segment' && <CompanySegmentComparison />}
         {currentPage === 'reports' && <ReportsPage />}

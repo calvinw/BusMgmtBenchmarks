@@ -431,47 +431,68 @@ export function FinancialComparisonTable() {
 
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
-        {/* Row 1: SEC report links aligned with table columns */}
-        <div className="grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
+        {/* Mobile: SEC report links aligned with mobile table (equal columns) */}
+        <div className="md:hidden grid grid-cols-3 text-xs items-start">
+          <span className="px-2"></span>
+          <div className="px-2 border-l border-neutral-200 text-right text-[10px]">
+            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
+              <a
+                href={getSecFilingUrl(company1.company, Number(company1.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC
+              </a>
+            ) : (
+              <span>No SEC report</span>
+            )}
+          </div>
+          <div className="px-2 border-l border-neutral-200 text-right text-[10px]">
+            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
+              <a
+                href={getSecFilingUrl(company2.company, Number(company2.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC
+              </a>
+            ) : (
+              <span>No SEC report</span>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop: SEC report links aligned with desktop table (2:1:1 ratio) */}
+        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
           <span className="px-6"></span>
           <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
-            {company1 ? (
-              getSecFilingUrl(company1.company, Number(company1.year)) ? (
-                <>
-                  Source: <a
-                    href={getSecFilingUrl(company1.company, Number(company1.year))!}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {company1.company} {company1.year} SEC Report
-                  </a>
-                </>
-              ) : (
-                <span>{company1.company} {company1.year}: No SEC report</span>
-              )
+            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
+              <a
+                href={getSecFilingUrl(company1.company, Number(company1.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC report
+              </a>
             ) : (
-              <span>{selectedCompany1} {selectedYear1}: No data available</span>
+              <span>No SEC report</span>
             )}
           </div>
           <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
-            {company2 ? (
-              getSecFilingUrl(company2.company, Number(company2.year)) ? (
-                <>
-                  Source: <a
-                    href={getSecFilingUrl(company2.company, Number(company2.year))!}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {company2.company} {company2.year} SEC Report
-                  </a>
-                </>
-              ) : (
-                <span>{company2.company} {company2.year}: No SEC report</span>
-              )
+            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
+              <a
+                href={getSecFilingUrl(company2.company, Number(company2.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC report
+              </a>
             ) : (
-              <span>{selectedCompany2} {selectedYear2}: No data available</span>
+              <span>No SEC report</span>
             )}
           </div>
         </div>

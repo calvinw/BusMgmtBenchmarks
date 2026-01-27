@@ -15,7 +15,7 @@ export default function App() {
       {!isMobileMenuOpen && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md border border-neutral-200"
+          className="md:hidden fixed top-3 left-2 z-50 p-2 bg-white rounded-lg shadow-md border border-neutral-200"
           aria-label="Open menu"
         >
           <Menu className="size-5 text-neutral-600" />

@@ -49,6 +49,7 @@
             "xlsx": "^0.18.5"
       },
       "devDependencies": {
+            "@tailwindcss/vite": "^4.1.18",
             "@types/node": "^20.10.0",
             "@vitejs/plugin-react-swc": "^3.10.2",
             "vite": "6.3.5"

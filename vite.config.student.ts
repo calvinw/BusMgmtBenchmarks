@@ -10,13 +10,7 @@ export default defineConfig({
     outDir: 'build',
     rollupOptions: {
       input: {
-        main: './index.html',
         student: './index-student.html',
-      },
-      output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
       },
     },
   },
@@ -66,8 +60,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
-    open: true,
+    port: 3001,
+    open: '/index-student.html',
     host: true,
     allowedHosts: ['.trycloudflare.com', 'localhost'],
     hmr: {

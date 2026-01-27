@@ -56,6 +56,8 @@
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build"
+            "dev:student": "vite --config vite.config.student.ts",
+            "build": "vite build",
+            "build:student": "vite build --mode student"
       }
 }

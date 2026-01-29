@@ -448,7 +448,7 @@ export function FinancialComparisonTable() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                source: SEC report
+                Source: SEC report
               </a>
             ) : (
               <span>No SEC report</span>
@@ -462,7 +462,7 @@ export function FinancialComparisonTable() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                source: SEC report
+                Source: SEC report
               </a>
             ) : (
               <span>No SEC report</span>
@@ -481,7 +481,7 @@ export function FinancialComparisonTable() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                source: SEC
+                Source: SEC
               </a>
             ) : (
               <span>No SEC report</span>
@@ -495,7 +495,7 @@ export function FinancialComparisonTable() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                source: SEC
+                Source: SEC
               </a>
             ) : (
               <span>No SEC report</span>

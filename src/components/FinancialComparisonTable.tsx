@@ -431,10 +431,49 @@ export function FinancialComparisonTable() {
 
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
+        {/* Desktop: SEC report links + Attribution aligned with desktop table (2:1:1 ratio) */}
+        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
+          <div className="px-6 text-[11px] space-y-1">
+            <p>Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong></p>
+            <p><strong>Diana Lee</strong> – AI Systems &amp; Backend Developer</p>
+            <p><strong>Souyen Park</strong> – Web Systems &amp; Designer</p>
+            <p><strong>Jia Mei Lin</strong> – AI Systems Assistant (v1)</p>
+            <p className="font-['Geist:Medium',sans-serif]">Made through SUNY IITG Business Management Course Development Grants</p>
+          </div>
+          <div className="px-6 border-l border-neutral-200 text-right text-[11px]">
+            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
+              <a
+                href={getSecFilingUrl(company1.company, Number(company1.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC report
+              </a>
+            ) : (
+              <span>No SEC report</span>
+            )}
+          </div>
+          <div className="px-6 border-l border-neutral-200 text-right text-[11px]">
+            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
+              <a
+                href={getSecFilingUrl(company2.company, Number(company2.year))!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                source: SEC report
+              </a>
+            ) : (
+              <span>No SEC report</span>
+            )}
+          </div>
+        </div>
+
         {/* Mobile: SEC report links aligned with mobile table (equal columns) */}
         <div className="md:hidden grid grid-cols-3 text-xs items-start">
           <span className="px-2"></span>
-          <div className="px-2 border-l border-neutral-200 text-right text-[10px]">
+          <div className="px-2 border-l border-neutral-200 text-right text-[11px]">
             {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
               <a
                 href={getSecFilingUrl(company1.company, Number(company1.year))!}
@@ -448,7 +487,7 @@ export function FinancialComparisonTable() {
               <span>No SEC report</span>
             )}
           </div>
-          <div className="px-2 border-l border-neutral-200 text-right text-[10px]">
+          <div className="px-2 border-l border-neutral-200 text-right text-[11px]">
             {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
               <a
                 href={getSecFilingUrl(company2.company, Number(company2.year))!}
@@ -464,39 +503,14 @@ export function FinancialComparisonTable() {
           </div>
         </div>
 
-        {/* Desktop: SEC report links aligned with desktop table (2:1:1 ratio) */}
-        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
-          <span className="px-6"></span>
-          <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
-            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
-              <a
-                href={getSecFilingUrl(company1.company, Number(company1.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                source: SEC report
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
-          <div className="px-6 border-l border-neutral-200 text-right text-[10px]">
-            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
-              <a
-                href={getSecFilingUrl(company2.company, Number(company2.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                source: SEC report
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
+        {/* Mobile: Attribution (appears below SEC links on mobile only) */}
+        <div className="md:hidden px-2 py-3 text-[11px] space-y-1 border-t border-neutral-200">
+          <p>Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong></p>
+          <p><strong>Diana Lee</strong> – AI Systems &amp; Backend Developer</p>
+          <p><strong>Souyen Park</strong> – Web Systems &amp; Designer</p>
+          <p><strong>Jia Mei Lin</strong> – AI Systems Assistant (v1)</p>
+          <p className="font-['Geist:Medium',sans-serif]">Made through SUNY IITG Business Management Course Development Grants</p>
         </div>
-
       </div>
     </div>
   );

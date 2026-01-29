@@ -435,7 +435,7 @@ export function FinancialComparisonTable() {
         <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
           <div className="px-6 text-[11px] space-y-1">
             <p>Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong></p>
-            <p><strong>Diana Lee</strong> – AI Systems &amp; Backend Developer</p>
+            <p><strong>Seonmin (Diana) Lee</strong> – AI Systems &amp; Backend Developer</p>
             <p><strong>Souyen Park</strong> – Web Systems &amp; Designer</p>
             <p><strong>Jia Mei Lin</strong> – AI Systems Assistant (v1)</p>
             <p className="font-['Geist:Medium',sans-serif]">Made through SUNY IITG Business Management Course Development Grants</p>
@@ -506,7 +506,7 @@ export function FinancialComparisonTable() {
         {/* Mobile: Attribution (appears below SEC links on mobile only) */}
         <div className="md:hidden px-2 py-3 text-[11px] space-y-1 border-t border-neutral-200">
           <p>Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong></p>
-          <p><strong>Diana Lee</strong> – AI Systems &amp; Backend Developer</p>
+          <p><strong>Seonmin (Diana) Lee</strong> – AI Systems &amp; Backend Developer</p>
           <p><strong>Souyen Park</strong> – Web Systems &amp; Designer</p>
           <p><strong>Jia Mei Lin</strong> – AI Systems Assistant (v1)</p>
           <p className="font-['Geist:Medium',sans-serif]">Made through SUNY IITG Business Management Course Development Grants</p>

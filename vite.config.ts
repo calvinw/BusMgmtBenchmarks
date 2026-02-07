@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     target: 'esnext',
-    outDir: 'build',
+    outDir: 'docs',
     rollupOptions: {
       input: {
         main: './company_to_company.html',

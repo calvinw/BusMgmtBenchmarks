@@ -1,0 +1,679 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Financial Statements</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+        <style>
+             body {
+                margin: 0;
+                padding: 20px;
+                font-family: Arial, sans-serif;
+            }
+            
+            .page-header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .page-header h1 {
+                margin: 0;
+                font-size: 24px;
+                color: #333;
+            }
+            
+            .tab-container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .tabs {
+                display: flex;
+                gap: 5px;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .tab-button {
+                padding: 12px 24px;
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-bottom: none;
+                cursor: pointer;
+                font-size: 16px;
+                color: #666;
+                margin-bottom: -1px;
+            }
+            
+            .tab-button:hover {
+                background: #e9ecef;
+            }
+            
+            .tab-button.active {
+                background: white;
+                color: #333;
+                border-bottom: 1px solid white;
+                font-weight: bold;
+            }
+            
+            .tab-content {
+                display: none;
+                padding: 20px;
+                border: 1px solid #dee2e6;
+                border-top: none;
+            }
+            
+            .tab-content.active {
+                display: block;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto;
+                max-width: 900px;
+                margin: 0 auto;
+                background-color: white;
+            }
+            
+            .table-wrapper table {
+                width: auto;
+                margin: 0 auto;
+                table-layout: fixed;
+                border-collapse: collapse;
+                line-height: 1.2;  /* Reduced line height */
+            }
+            
+            /* Column width adjustments */
+            .table-wrapper td:first-child,
+            .table-wrapper th:first-child {
+                width: 400px;
+            }
+            
+            .table-wrapper td:not(:first-child),
+            .table-wrapper th:not(:first-child) {
+                width: 120px;
+                text-align: right;
+            }
+            
+            /* Adjust table cell padding */
+            .table-wrapper td, 
+            .table-wrapper th {
+                padding: 4px 12px;  /* Reduced vertical padding */
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+            }
+            
+            /* Keep first column left-aligned */
+            .table-wrapper td:first-child,
+            .table-wrapper th:first-child {
+                text-align: left;
+            }
+            
+            /* Additional spacing adjustments */
+            .table-wrapper tr {
+                margin: 0;  /* Remove any margin between rows */
+            }
+            
+            /* Adjust spacing for header rows */
+            .table-wrapper tr.re,
+            .table-wrapper tr.ro {
+                line-height: 1.1;  /* Even more compact for regular rows */
+            }
+            
+            /* Slightly more space for section headers */
+            .table-wrapper tr.rh {
+                padding-top: 8px;
+            }
+            
+            /* Preserve some spacing for totals */
+            .table-wrapper tr.reu,
+            .table-wrapper tr.rou {
+                padding-top: 6px;
+                padding-bottom: 6px;
+            }
+        </style>
+        <script>
+            function openTab(evt, tabName) {
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].classList.remove("active");
+                }
+                
+                var tablinks = document.getElementsByClassName("tab-button");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].classList.remove("active");
+                }
+                
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+            }
+            
+            function toggleNextSibling(e) {
+                if (e.nextSibling.style.display=='none') {
+                    e.nextSibling.style.display='block';
+                } else {
+                    e.nextSibling.style.display='none';
+                }
+            }
+            
+            window.onload = function() {
+                document.getElementsByClassName("tab-button")[0].click();
+            }
+        </script>
+    </head>
+    <body>
+        <header class="page-header">
+            <h1>Target Corporation - Year 2020</h1>
+        </header>
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-button" onclick="openTab(event, 'income-statement')">Income Statement</button>
+                <button class="tab-button" onclick="openTab(event, 'balance-sheet')">Balance Sheet</button>
+            </div>
+    <div id="income-statement" class="tab-content"><div class="table-wrapper"><table border="0" cellspacing="2" class="report" id="idp6820511936">
+<tr>
+<th class="tl" colspan="1" rowspan="2"><div style="width: 200px;"><strong>Consolidated Statements of Operations - USD ($)<br/> shares in Millions, $ in Millions</strong></div></th>
+<th class="th" colspan="3">12 Months Ended</th>
+</tr>
+<tr>
+<th class="th"><div>Feb. 01, 2020</div></th>
+<th class="th"><div>Feb. 02, 2019</div></th>
+<th class="th"><div>Feb. 03, 2018</div></th>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax', window );">Total revenue</a></td>
+<td class="nump">$ 78,112<span></span>
+</td>
+<td class="nump">$ 75,356<span></span>
+</td>
+<td class="nump">$ 72,714<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_CostOfGoodsAndServicesSold', window );">Cost of sales</a></td>
+<td class="nump">54,864<span></span>
+</td>
+<td class="nump">53,299<span></span>
+</td>
+<td class="nump">51,125<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_SellingGeneralAndAdministrativeExpense', window );">Selling, general and administrative expenses</a></td>
+<td class="nump">16,233<span></span>
+</td>
+<td class="nump">15,723<span></span>
+</td>
+<td class="nump">15,140<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_DepreciationAndAmortization', window );">Depreciation and amortization (exclusive of depreciation included in cost of sales)</a></td>
+<td class="nump">2,357<span></span>
+</td>
+<td class="nump">2,224<span></span>
+</td>
+<td class="nump">2,225<span></span>
+</td>
+</tr>
+<tr class="reu">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OperatingIncomeLoss', window );">Operating income</a></td>
+<td class="nump">4,658<span></span>
+</td>
+<td class="nump">4,110<span></span>
+</td>
+<td class="nump">4,224<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_InterestExpense', window );">Net interest expense</a></td>
+<td class="nump">477<span></span>
+</td>
+<td class="nump">461<span></span>
+</td>
+<td class="nump">653<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OtherNonoperatingIncomeExpense', window );">Net other (income) / expense</a></td>
+<td class="num">(9)<span></span>
+</td>
+<td class="num">(27)<span></span>
+</td>
+<td class="num">(59)<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments', window );">Earnings from continuing operations before income taxes</a></td>
+<td class="nump">4,190<span></span>
+</td>
+<td class="nump">3,676<span></span>
+</td>
+<td class="nump">3,630<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeTaxExpenseBenefit', window );">Provision for income taxes</a></td>
+<td class="nump">921<span></span>
+</td>
+<td class="nump">746<span></span>
+</td>
+<td class="nump">722<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeLossFromContinuingOperations', window );">Net earnings from continuing operations</a></td>
+<td class="nump">3,269<span></span>
+</td>
+<td class="nump">2,930<span></span>
+</td>
+<td class="nump">2,908<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToReportingEntity', window );">Discontinued operations, net of tax</a></td>
+<td class="nump">12<span></span>
+</td>
+<td class="nump">7<span></span>
+</td>
+<td class="nump">6<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_NetIncomeLossAvailableToCommonStockholdersBasic', window );">Net earnings</a></td>
+<td class="nump">$ 3,281<span></span>
+</td>
+<td class="nump">$ 2,937<span></span>
+</td>
+<td class="nump">$ 2,914<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_EarningsPerShareBasicAbstract', window );"><strong>Basic earnings per share</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeLossFromContinuingOperationsPerBasicShare', window );">Continuing operations (in dollars per share)</a></td>
+<td class="nump">$ 6.39<span></span>
+</td>
+<td class="nump">$ 5.54<span></span>
+</td>
+<td class="nump">$ 5.32<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerBasicShare', window );">Discontinued operations (in dollars per share)</a></td>
+<td class="nump">0.02<span></span>
+</td>
+<td class="nump">0.01<span></span>
+</td>
+<td class="nump">0.01<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_EarningsPerShareBasic', window );">Net earnings per share (in dollars per share)</a></td>
+<td class="nump">6.42<span></span>
+</td>
+<td class="nump">5.55<span></span>
+</td>
+<td class="nump">5.32<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_EarningsPerShareDilutedAbstract', window );"><strong>Diluted earnings per share</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_IncomeLossFromContinuingOperationsPerDilutedShare', window );">Continuing operations (in dollars per share)</a></td>
+<td class="nump">6.34<span></span>
+</td>
+<td class="nump">5.50<span></span>
+</td>
+<td class="nump">5.29<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTaxPerDilutedShare', window );">Discontinued operations (in dollars per share)</a></td>
+<td class="nump">0.02<span></span>
+</td>
+<td class="nump">0.01<span></span>
+</td>
+<td class="nump">0.01<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_EarningsPerShareDiluted', window );">Net earnings per share (in dollars per share)</a></td>
+<td class="nump">$ 6.36<span></span>
+</td>
+<td class="nump">$ 5.51<span></span>
+</td>
+<td class="nump">$ 5.29<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_WeightedAverageNumberOfSharesOutstandingAbstract', window );"><strong>Weighted average common shares outstanding</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_WeightedAverageNumberOfSharesOutstandingBasic', window );">Basic (in shares)</a></td>
+<td class="nump">510.9<span></span>
+</td>
+<td class="nump">528.6<span></span>
+</td>
+<td class="nump">546.8<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_WeightedAverageNumberOfDilutedSharesOutstanding', window );">Diluted (in shares)</a></td>
+<td class="nump">515.6<span></span>
+</td>
+<td class="nump">533.2<span></span>
+</td>
+<td class="nump">550.3<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount', window );">Antidilutive shares (in shares)</a></td>
+<td class="nump">0.0<span></span>
+</td>
+<td class="nump">0.0<span></span>
+</td>
+<td class="nump">4.1<span></span>
+</td>
+</tr>
+<tr class="rh">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_srt_ProductOrServiceAxis=us-gaap_ProductMember', window );">Sales</a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax', window );">Total revenue</a></td>
+<td class="nump">$ 77,130<span></span>
+</td>
+<td class="nump">$ 74,433<span></span>
+</td>
+<td class="nump">$ 71,786<span></span>
+</td>
+</tr>
+<tr class="rh">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_srt_ProductOrServiceAxis=tgt_OtherProductsandServicesMember', window );">Other revenue</a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax', window );">Total revenue</a></td>
+<td class="nump">$ 982<span></span>
+</td>
+<td class="nump">$ 923<span></span>
+</td>
+<td class="nump">$ 928<span></span>
+</td>
+</tr>
+</table></div></div><div id="balance-sheet" class="tab-content"><div class="table-wrapper"><table border="0" cellspacing="2" class="report" id="idp6813947776">
+<tr>
+<th class="tl" colspan="1" rowspan="1"><div style="width: 200px;"><strong>Consolidated Statements of Financial Position - USD ($)<br/> $ in Millions</strong></div></th>
+<th class="th"><div>Feb. 01, 2020</div></th>
+<th class="th"><div>Feb. 02, 2019</div></th>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AssetsAbstract', window );"><strong>Assets</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_CashCashEquivalentsAndShortTermInvestments', window );">Cash and cash equivalents</a></td>
+<td class="nump">$ 2,577<span></span>
+</td>
+<td class="nump">$ 1,556<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_InventoryNet', window );">Inventory</a></td>
+<td class="nump">8,992<span></span>
+</td>
+<td class="nump">9,497<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OtherAssetsCurrent', window );">Other current assets</a></td>
+<td class="nump">1,333<span></span>
+</td>
+<td class="nump">1,466<span></span>
+</td>
+</tr>
+<tr class="reu">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AssetsCurrent', window );">Total current assets</a></td>
+<td class="nump">12,902<span></span>
+</td>
+<td class="nump">12,519<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_PropertyPlantAndEquipmentNetAbstract', window );"><strong>Property and equipment</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_Land', window );">Land</a></td>
+<td class="nump">6,036<span></span>
+</td>
+<td class="nump">6,064<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_BuildingsAndImprovementsGross', window );">Buildings and improvements</a></td>
+<td class="nump">30,603<span></span>
+</td>
+<td class="nump">29,240<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_FurnitureAndFixturesGross', window );">Fixtures and equipment</a></td>
+<td class="nump">6,083<span></span>
+</td>
+<td class="nump">5,912<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_CapitalizedComputerSoftwareGross', window );">Computer hardware and software</a></td>
+<td class="nump">2,692<span></span>
+</td>
+<td class="nump">2,544<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_ConstructionInProgressGross', window );">Construction-in-progress</a></td>
+<td class="nump">533<span></span>
+</td>
+<td class="nump">460<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment', window );">Accumulated depreciation</a></td>
+<td class="num">(19,664)<span></span>
+</td>
+<td class="num">(18,687)<span></span>
+</td>
+</tr>
+<tr class="reu">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_PropertyPlantAndEquipmentNet', window );">Property and equipment, net</a></td>
+<td class="nump">26,283<span></span>
+</td>
+<td class="nump">25,533<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OperatingLeaseRightOfUseAsset', window );">Operating lease assets</a></td>
+<td class="nump">2,236<span></span>
+</td>
+<td class="nump">1,965<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OtherAssetsNoncurrent', window );">Other noncurrent assets</a></td>
+<td class="nump">1,358<span></span>
+</td>
+<td class="nump">1,273<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_Assets', window );">Total assets</a></td>
+<td class="nump">42,779<span></span>
+</td>
+<td class="nump">41,290<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LiabilitiesAndStockholdersEquityAbstract', window );"><strong>Liabilities and shareholders' investment</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AccountsPayableCurrent', window );">Accounts payable</a></td>
+<td class="nump">9,920<span></span>
+</td>
+<td class="nump">9,761<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AccruedLiabilitiesCurrent', window );">Accrued and other current liabilities</a></td>
+<td class="nump">4,406<span></span>
+</td>
+<td class="nump">4,201<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LongTermDebtAndCapitalLeaseObligationsCurrent', window );">Current portion of long-term debt and other borrowings</a></td>
+<td class="nump">161<span></span>
+</td>
+<td class="nump">1,052<span></span>
+</td>
+</tr>
+<tr class="reu">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LiabilitiesCurrent', window );">Total current liabilities</a></td>
+<td class="nump">14,487<span></span>
+</td>
+<td class="nump">15,014<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LongTermDebtAndCapitalLeaseObligations', window );">Long-term debt and other borrowings</a></td>
+<td class="nump">11,338<span></span>
+</td>
+<td class="nump">10,223<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OperatingLeaseLiabilityNoncurrent', window );">Noncurrent operating lease liabilities</a></td>
+<td class="nump">2,275<span></span>
+</td>
+<td class="nump">2,004<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_DeferredTaxLiabilitiesNoncurrent', window );">Deferred income taxes</a></td>
+<td class="nump">1,122<span></span>
+</td>
+<td class="nump">972<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_OtherLiabilitiesNoncurrent', window );">Other noncurrent liabilities</a></td>
+<td class="nump">1,724<span></span>
+</td>
+<td class="nump">1,780<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LiabilitiesNoncurrent', window );">Total noncurrent liabilities</a></td>
+<td class="nump">16,459<span></span>
+</td>
+<td class="nump">14,979<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_StockholdersEquityAbstract', window );"><strong>Shareholders' investment</strong></a></td>
+<td class="text"> <span></span>
+</td>
+<td class="text"> <span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_CommonStockValue', window );">Common stock</a></td>
+<td class="nump">42<span></span>
+</td>
+<td class="nump">43<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AdditionalPaidInCapitalCommonStock', window );">Additional paid-in capital</a></td>
+<td class="nump">6,226<span></span>
+</td>
+<td class="nump">6,042<span></span>
+</td>
+</tr>
+<tr class="ro">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_RetainedEarningsAccumulatedDeficit', window );">Retained earnings</a></td>
+<td class="nump">6,433<span></span>
+</td>
+<td class="nump">6,017<span></span>
+</td>
+</tr>
+<tr class="re">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_AccumulatedOtherComprehensiveIncomeLossNetOfTax', window );">Accumulated other comprehensive loss</a></td>
+<td class="num">(868)<span></span>
+</td>
+<td class="num">(805)<span></span>
+</td>
+</tr>
+<tr class="rou">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_StockholdersEquity', window );">Total shareholders' investment</a></td>
+<td class="nump">11,833<span></span>
+</td>
+<td class="nump">11,297<span></span>
+</td>
+</tr>
+<tr class="reu">
+<td class="pl" style="border-bottom: 0px;" valign="top"><a class="a" href="javascript:void(0);" onclick="top.Show.showAR( this, 'defref_us-gaap_LiabilitiesAndStockholdersEquity', window );">Total liabilities and shareholders' investment</a></td>
+<td class="nump">$ 42,779<span></span>
+</td>
+<td class="nump">$ 41,290<span></span>
+</td>
+</tr>
+</table></div></div>
+        </div>
+    </body>
+    </html>
+    

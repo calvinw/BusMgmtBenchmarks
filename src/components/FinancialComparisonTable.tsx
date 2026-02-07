@@ -17,14 +17,12 @@ function toUrlSafeCompanyName(company: string): string {
 }
 
 // Get SEC filing URL for a company and fiscal year
-// HTML files use year+1 (e.g., fiscal 2024 data is in Amazon-2025.html)
 function getSecFilingUrl(company: string, fiscalYear: number): string | null {
   if (NON_AMERICAN_COMPANIES.has(company)) {
     return null;
   }
   const safeCompany = toUrlSafeCompanyName(company);
-  const fileYear = fiscalYear + 1;
-  return `/sec/${safeCompany}-${fileYear}.html`;
+  return `/sec/${safeCompany}-${fiscalYear}.html`;
 }
 
 // Helper to format a value from company data, returning dash if no data

@@ -4,29 +4,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-BusMgmtBenchmarks is an educational project for collecting and analyzing retail financial data from publicly traded companies. The project extracts financial metrics from SEC 10-K filings and provides both modern React-based applications and standalone HTML tools for comparing companies and retail segments.
+BusMgmtBenchmarks is an educational project for collecting and analyzing retail financial data from publicly traded companies. The project extracts financial metrics from SEC 10-K filings and provides a React-based single-page application for comparing companies and retail segments.
 
 ## Branch Structure
 
-- **main**: Production HTML applications with standalone JavaScript (GitHub Pages deployment)
-- **dev**: Modern React SPA with Figma-based design (Netlify deployment)
+- **main**: React SPA with production build committed in `docs/` (GitHub Pages + Netlify deployment)
+- **dev**: Development branch for the React SPA (Netlify deployment for testing)
+
+Both branches share the same React codebase. The `main` branch includes the `docs/` directory with built output for GitHub Pages.
 
 ## Technology Stack
 
-**Main Branch (Production HTML Apps):**
-- **Frontend**: Vanilla JavaScript + HTML
-- **Styling**: Tailwind CSS (CDN)
-- **Data Visualization**: Handsontable for reports
-- **Deployment**: GitHub Pages
-- **Data Source**: Dolt REST API with client-side calculations
-
-**Dev Branch (Modern React SPA):**
 - **Frontend**: React 18.3.1 + TypeScript
 - **Build Tool**: Vite 6.3.5
 - **Styling**: Tailwind CSS 4.1.3 (compiled)
 - **UI Components**: shadcn/ui with Radix UI primitives
 - **Icons**: Lucide React
-- **Deployment**: Netlify
+- **Deployment**: GitHub Pages (from `docs/` directory) + Netlify
 - **Data Source**: Dolt REST API with client-side calculations
 
 ## Core Data Pipeline
@@ -43,7 +37,13 @@ The main workflow follows this sequence:
    - `combine.py` - Combines income and balance sheets into single HTML files
    - `combine_all.sh` - Batch processes all companies and years
 
-3. **Web Application** (`src/` directory):
+3. **SEC Filing Pages** (`public/sec/` directory):
+   - URL-safe-named copies of SEC filing HTML files from `extract/html/`
+   - Naming convention: lowercase, spaces → hyphens, `&` → `and`, apostrophes removed
+   - Files use fiscal year (e.g., `dillards-2024.html` for fiscal year 2024)
+   - Two CSS files needed: `public/sec/report.css` and `public/sec/include/report.css`
+
+4. **Web Application** (`src/` directory):
    - React-based single-page application with component architecture
    - Interactive visualizations for company comparisons and segment analysis
    - Real-time data fetching from Dolt REST API
@@ -70,21 +70,11 @@ The main workflow follows this sequence:
 
 ## Key Development Commands
 
-**Dev Branch - React Application:**
 ```bash
 npm install          # Install dependencies
 npm run dev          # Start development server (http://localhost:3000)
-npm run build        # Build for production (outputs to build/)
-npm run preview      # Preview production build
+npm run build        # Build for production (outputs to docs/)
 npm run lint         # Run ESLint
-```
-
-**Main Branch - HTML Applications:**
-```bash
-# No build step needed - standalone HTML files
-# Test with any local HTTP server:
-python3 -m http.server 8000
-# Then visit http://localhost:8000/company_to_company.html
 ```
 
 **Data Extraction:**
@@ -101,47 +91,29 @@ cd extract/html/
 
 ## Deployment
 
-**Main Branch (GitHub Pages):**
+**GitHub Pages (main branch):**
+- Serves from the `docs/` directory
+- Live at: https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html
+- Student version: https://calvinw.github.io/BusMgmtBenchmarks/company_to_company_students.html
+- After code changes: rebuild with `npm run build`, commit `docs/`, push to main
+- **Important**: Vite `base` is set to `./` for relative paths (required for GitHub Pages subdirectory)
+- **Important**: SEC filing URLs in code use relative paths (`sec/...` not `/sec/...`) for the same reason
+
+**Netlify (dev branch):**
 ```bash
-# Automatic deployment on push to main
-# Live at: https://calvinw.github.io/BusMgmtBenchmarks/
+# Deploy workflow:
+npm run build && npx netlify-cli deploy --prod --dir=docs
 ```
+- Live at: https://busmgmtbenchmarksdev.netlify.app/company_to_company.html
+- Root URL redirects to company_to_company.html via `public/_redirects`
 
-**Dev Branch (Netlify):**
-
-Deploying a new version to Netlify:
-```bash
-# 1. Make your code changes in src/
-
-# 2. Test locally
-npm run dev
-
-# 3. Build the production version
-npm run build
-
-# 4. Deploy to Netlify
-netlify deploy --prod --dir=build
-```
-
-Quick deployment workflow:
-```bash
-npm run build && netlify deploy --prod --dir=build
-```
-
-Alternative - Netlify Drop (drag & drop):
-```bash
-# Build first
-npm run build
-
-# Then go to https://app.netlify.com/drop
-# and drag the build/ folder
-```
-
-**Note:** You don't need to commit/push to GitHub before deploying to Netlify - these are separate. But it's recommended to:
-1. Test locally (`npm run dev`)
-2. Build and deploy to Netlify
-3. Verify it works on the live site
-4. Then commit and push to GitHub
+**Full deployment workflow:**
+1. Make code changes in `src/`
+2. Test locally with `npm run dev`
+3. Build with `npm run build`
+4. Test built version: `npx serve docs -l 4000`
+5. Deploy to Netlify for testing: `npx netlify-cli deploy --prod --dir=docs`
+6. Commit everything including `docs/` and push
 
 ## Company and Segment Structure
 
@@ -153,59 +125,45 @@ Companies are organized into retail segments:
 
 Each company has ticker symbol, CIK number, and segment classification in `companies.csv` files.
 
-## File Structure Patterns
+## File Structure
 
-**Dev Branch - React Application:**
+- `company_to_company.html` - Main HTML entry point (React SPA)
+- `company_to_company_students.html` - Student version entry point
 - `src/` - React application source code
-- `src/components/` - Reusable React components
+- `src/components/` - React components
   - `FinancialComparisonTable.tsx` - Main comparison component with live data fetching
+  - `FinancialComparisonTableStudent.tsx` - Student version (financial indicators shown as dashes)
+  - `CompanySegmentComparison.tsx` - Company vs segment comparison
+  - `ReportsPage.tsx` - Interactive reports
   - `Sidebar.tsx` - Navigation sidebar
 - `src/lib/` - Utility functions and helpers
-- `public/` - Static assets
-- `public/images/` - Figma-exported icons and logos
-- `index.html` - Main HTML entry point
-- `vite.config.ts` - Vite configuration
-- `tailwind.config.js` - Tailwind CSS configuration
+  - `api.ts` - Dolt API data fetching
+  - `constants.ts` - Available years, non-American companies list
+  - `formatters.ts` - Value formatting utilities
+- `public/` - Static assets (copied to docs/ on build)
+- `public/sec/` - SEC filing HTML pages (URL-safe names, fiscal year)
+- `public/images/` - Icons and logos
+- `public/_redirects` - Netlify redirect rules
+- `docs/` - Production build output (served by GitHub Pages)
+- `vite.config.ts` - Vite configuration (base: './', outDir: 'docs')
+- `vite.config.student.ts` - Vite config for student-only builds
 - `components.json` - shadcn/ui configuration
-- `build/` - Production build output (created by `npm run build`)
-
-**Main Branch - HTML Applications:**
-- `company_to_company.html` - Compare two companies side-by-side
-- `company_to_company_students.html` - Student version with learning exercises
-- `company_to_segment.html` - Compare company vs segment/subsegment benchmarks
-- `reports.html` - Interactive reports with Handsontable
-- All files are standalone with inline JavaScript
-
-**Data Extraction:**
-- `extract/companies.csv` - Company master list with tickers and segments
-- `extract/html/[Company]-[Year].html` - Combined financial statements
-- `extract/mock_extracted_financial_data.csv` - Raw extracted financial data
+- `extract/` - Data extraction scripts and source HTML files
 
 ## Development Notes
 
-**Dev Branch - React SPA:**
 - Modern React application built with Vite for fast development and optimized production builds
 - TypeScript for type safety and better developer experience
 - Tailwind CSS 4 for utility-first styling
 - shadcn/ui provides accessible, customizable UI components built on Radix UI
-- Component-based architecture for maintainability and reusability
 - Hot Module Replacement (HMR) for instant feedback during development
 - Figma-based design with pixel-perfect implementation
 - Real-time data fetching from Dolt REST API
-- Client-side financial calculations (same logic as main branch)
-- Functional company/year dropdowns with live data updates
-
-**Main Branch - HTML Apps:**
-- Standalone HTML files with no build process required
-- Vanilla JavaScript for maximum compatibility
-- Tailwind CSS via CDN for styling
-- Direct queries to Dolt `financials` table
-- Client-side calculation of all financial indicators:
-  - Percentage metrics (Cost of Goods %, Gross Margin %, SG&A %, etc.)
-  - Financial ratios (Current Ratio, Quick Ratio, Debt-to-Equity)
-  - Efficiency metrics (Inventory Turnover, Asset Turnover, ROA)
-- Separate fetch for 3-Year Revenue CAGR from `financial_metrics` table
-- reports.html uses pre-computed database views for aggregate data
+- Client-side financial calculations
+- Default companies: Dillard's and Macy's (fiscal year 2024)
+- Non-American companies (Louis Vuitton, H&M, Adidas, etc.) are excluded from SEC filing links
+- SEC filing HTML files use fiscal year naming (e.g., `macys-2024.html` for fiscal year 2024)
+- The `pre-react-merge` git tag marks the last commit before the React SPA replaced the standalone HTML apps
 
 **Data Pipeline:**
 - LLM extraction uses OpenAI API (requires API key in environment)
@@ -223,4 +181,5 @@ Each company has ticker symbol, CIK number, and segment classification in `compa
 
 - [Companion SQL Database](https://www.dolthub.com/repositories/calvinw/BusMgmtBenchmarks)
 - [LLM Extraction Documentation](https://calvinw.github.io/BusMgmtBenchmarks/extract/llm_for_10K_financial_data.html)
-- [Live Web Applications](https://calvinw.github.io/BusMgmtBenchmarks/)
+- [Live Web Application](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html)
+- [Netlify Dev Version](https://busmgmtbenchmarksdev.netlify.app/company_to_company.html)

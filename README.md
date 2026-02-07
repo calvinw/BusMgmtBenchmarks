@@ -195,9 +195,7 @@ companies and the year to display side by side:
 
 This web page shows the data for companies against the segment or subsegment
 they belong to. The purpose of this page is to compare a company to a segment
-to see how it is doing: 
-
-[Company vs Segment Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_segment.html)
+to see how it is doing. It is accessible via the sidebar navigation in the main application.
 
 ### SEC Filings Display
 
@@ -209,9 +207,9 @@ see more details about the company or to further check the data.
 
 Here is an example of those displays:
 
-- [Costco 2024 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Costco-2024.html)
+- [Costco 2024 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/sec/costco-2024.html)
 
-- [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/extract/html/Target-2022.html)
+- [Target 2022 Income and Balance](https://calvinw.github.io/BusMgmtBenchmarks/sec/target-2022.html)
 
 These webpages are pulled directly from the submitted html pages of the public
 10-k filings of the companies with the SEC and are not changed in any way from
@@ -219,20 +217,18 @@ that filing. They are just provided here for convenience and further reference.
 
 ## Reports
 
-There are a number of downloadable data files created each year
+There are a number of downloadable data files created each year. Reports are accessible via the sidebar navigation in the main application.
 
-[Reports](https://calvinw.github.io/BusMgmtBenchmarks/reports.html)
-
-## Visualizations based on database 
+## Visualizations based on database
 
 It is possible to build visualizations and other webapps by vibe coding
-against the Dolt database. 
+against the Dolt database.
 
-Here is an example of a webapp that was produced with Sonnet 3.5 in one prompt: 
+Here is an example of a webapp that was produced with Sonnet 3.5 in one prompt:
 
-[Financial Dashbord ](https://calvinw.github.io/BusMgmtBenchmarks/financial-dashboard.html)
+[Financial Dashboard](https://calvinw.github.io/BusMgmtBenchmarks/financial-dashboard.html)
 
-We will be building an additional set of these as part of a SUNY IITG award. 
+We will be building an additional set of these as part of a SUNY IITG award.
 
 ## Data Collection (Extraction) Techniques
 

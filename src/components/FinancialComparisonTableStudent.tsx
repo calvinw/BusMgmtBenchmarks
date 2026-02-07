@@ -22,7 +22,7 @@ function getSecFilingUrl(company: string, fiscalYear: number): string | null {
     return null;
   }
   const safeCompany = toUrlSafeCompanyName(company);
-  return `/sec/${safeCompany}-${fiscalYear}.html`;
+  return `sec/${safeCompany}-${fiscalYear}.html`;
 }
 
 // Financial Indicator fields that should show dashes in student version

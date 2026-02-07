@@ -10,7 +10,7 @@ export default defineConfig({
     outDir: 'build',
     rollupOptions: {
       input: {
-        student: './index-student.html',
+        student: './company_to_company_students.html',
       },
     },
   },
@@ -61,7 +61,7 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    open: '/index-student.html',
+    open: '/company_to_company_students.html',
     host: true,
     allowedHosts: ['.trycloudflare.com', 'localhost'],
     hmr: {

@@ -71,8 +71,8 @@ export function FinancialComparisonTableStudent() {
       const companyList = await fetchCompanyNames();
       setCompanies(companyList);
       if (companyList.length >= 2) {
-        setSelectedCompany1(companyList[0]);
-        setSelectedCompany2(companyList[1]);
+        setSelectedCompany1(companyList.includes("Dillard's") ? "Dillard's" : companyList[0]);
+        setSelectedCompany2(companyList.includes("Macy's") ? "Macy's" : companyList[1]);
       } else {
         setLoading(false);
       }

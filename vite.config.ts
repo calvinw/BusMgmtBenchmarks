@@ -10,8 +10,8 @@ export default defineConfig({
     outDir: 'build',
     rollupOptions: {
       input: {
-        main: './index.html',
-        student: './index-student.html',
+        main: './company_to_company.html',
+        student: './company_to_company_students.html',
       },
       output: {
         entryFileNames: '[name].js',

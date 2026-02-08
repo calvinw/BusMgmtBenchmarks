@@ -37,3 +37,6 @@ BusMgmtFigmaMake/
 # Local scripts and data
 install_shadcn_mcp_claude.sh
 scripts/
+
+# Build output (deployed via GitHub Actions)
+docs/

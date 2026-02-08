@@ -8,19 +8,19 @@ BusMgmtBenchmarks is an educational project for collecting and analyzing retail 
 
 ## Branch Structure
 
-- **main**: React SPA with production build committed in `docs/` (GitHub Pages + Netlify deployment)
+- **main**: React SPA deployed to GitHub Pages via GitHub Actions (build output is NOT committed)
 - **dev**: Development branch for the React SPA (Netlify deployment for testing)
 
-Both branches share the same React codebase. The `main` branch includes the `docs/` directory with built output for GitHub Pages.
+Both branches share the same React codebase. GitHub Actions builds and deploys to GitHub Pages automatically on push to main.
 
 ## Technology Stack
 
 - **Frontend**: React 18.3.1 + TypeScript
 - **Build Tool**: Vite 6.3.5
-- **Styling**: Tailwind CSS 4.1.3 (compiled)
+- **Styling**: Tailwind CSS 4.1.18 (via @tailwindcss/vite plugin)
 - **UI Components**: shadcn/ui with Radix UI primitives
 - **Icons**: Lucide React
-- **Deployment**: GitHub Pages (from `docs/` directory) + Netlify
+- **Deployment**: GitHub Pages (via GitHub Actions) + Netlify
 - **Data Source**: Dolt REST API with client-side calculations
 
 ## Core Data Pipeline
@@ -28,14 +28,14 @@ Both branches share the same React codebase. The `main` branch includes the `doc
 The main workflow follows this sequence:
 
 1. **Data Extraction** (`extract/` directory):
-   - `edgar_extract_all_filings.py` - Main script to extract financial data from all company 10-K filings
-   - `edgar_extract_one_filing.py` - Process individual company filing using LLM to extract financial metrics
-   - Output: `mock_extracted_financial_data.csv` with raw financial metrics
+   - `batch_generate_financials.py` - Main script to extract financial data from all company 10-K filings
+   - `get_financials_html.py` - Process individual company filing using LLM to extract financial metrics
 
 2. **HTML Generation** (`extract/html/` directory):
-   - `download_income_and_balance_html.py` - Downloads SEC filing HTML pages
-   - `combine.py` - Combines income and balance sheets into single HTML files
-   - `combine_all.sh` - Batch processes all companies and years
+   - `gen_html.py` - Generates SEC filing HTML pages
+   - `rename_files.py` - Renames files to URL-safe format
+   - `combine_all.sh` - Batch processes all companies and years (calls `combine.py`)
+   - Note: `combine.py` must be created from one of the backup versions (`combine.py.good`, `combine.py.responsive`, etc.)
 
 3. **SEC Filing Pages** (`public/sec/` directory):
    - URL-safe-named copies of SEC filing HTML files from `extract/html/`
@@ -66,21 +66,22 @@ The main workflow follows this sequence:
 
 - **Primary Database**: Dolt database hosted at DoltHub (calvinw/BusMgmtBenchmarks)
 - **API Endpoint**: `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main`
-- **Company Coverage**: 60+ retail companies across 8 segments (Discount, Warehouse Clubs, Off Price, Department Stores, Online, Grocery, Health & Pharmacy, Home Improvement, Specialty)
+- **Company Coverage**: 50+ retail companies across 9 segments (Discount, Warehouse Clubs, Off Price, Department Stores, Online, Grocery, Health & Pharmacy, Home Improvement, Specialty)
 
 ## Key Development Commands
 
 ```bash
 npm install          # Install dependencies
 npm run dev          # Start development server (http://localhost:3000)
+npm run dev:student  # Start dev server for student version
 npm run build        # Build for production (outputs to docs/)
-npm run lint         # Run ESLint
+npm run build:student # Build student version only
 ```
 
 **Data Extraction:**
 ```bash
 cd extract/
-python edgar_extract_all_filings.py  # Extract all company financial data
+python batch_generate_financials.py  # Extract all company financial data
 ```
 
 **HTML Processing:**
@@ -91,13 +92,15 @@ cd extract/html/
 
 ## Deployment
 
-**GitHub Pages (main branch):**
-- Serves from the `docs/` directory
+**GitHub Pages (main branch — automated via GitHub Actions):**
+- On push to `main`, GitHub Actions runs `npm run build` and deploys `docs/` to GitHub Pages
+- The `docs/` directory is in `.gitignore` — build output is NOT committed to the repo
+- Workflow file: `.github/workflows/deploy.yml`
 - Live at: https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html
 - Student version: https://calvinw.github.io/BusMgmtBenchmarks/company_to_company_students.html
-- After code changes: rebuild with `npm run build`, commit `docs/`, push to main
 - **Important**: Vite `base` is set to `./` for relative paths (required for GitHub Pages subdirectory)
 - **Important**: SEC filing URLs in code use relative paths (`sec/...` not `/sec/...`) for the same reason
+- **Repo setting**: Pages source must be set to "GitHub Actions" (Settings → Pages → Source)
 
 **Netlify (dev branch):**
 ```bash
@@ -110,45 +113,59 @@ npm run build && npx netlify-cli deploy --prod --dir=docs
 **Full deployment workflow:**
 1. Make code changes in `src/`
 2. Test locally with `npm run dev`
-3. Build with `npm run build`
-4. Test built version: `npx serve docs -l 4000`
-5. Deploy to Netlify for testing: `npx netlify-cli deploy --prod --dir=docs`
-6. Commit everything including `docs/` and push
+3. Build locally with `npm run build` and test: `npx serve docs -l 4000`
+4. Commit and push to `main` — GitHub Actions builds and deploys automatically
+5. (Optional) Deploy to Netlify for testing: `npx netlify-cli deploy --prod --dir=docs`
 
 ## Company and Segment Structure
 
 Companies are organized into retail segments:
 - **Discount**: Walmart, Target, Dollar General, Dollar Tree, Five Below
 - **Warehouse Clubs**: Costco, BJ's
+- **Off Price**: TJ Maxx, Ross, Burlington
+- **Department Stores**: Macy's, Nordstrom, Dillard's, Kohl's
 - **Online**: Amazon, Wayfair, Chewy
-- **Specialty**: Divided into subsegments (Beauty, Apparel, Home, etc.)
+- **Grocery**: Kroger, Albertsons
+- **Health & Pharmacy**: Walgreens, CVS, Rite Aid
+- **Home Improvement**: Home Depot, Lowe's, Tractor Supply
+- **Specialty**: Divided into subsegments (Beauty, Apparel, Accessories & Shoes, Category Killer, Home)
 
-Each company has ticker symbol, CIK number, and segment classification in `companies.csv` files.
+Additional non-US companies (Louis Vuitton, H&M, Adidas, Inditex/Zara, Aritzia, Ahold Delhaize, ASOS) are included but excluded from SEC filing links.
+
+Each company has ticker symbol, CIK number, and segment classification in `extract/companies.csv`.
 
 ## File Structure
 
 - `company_to_company.html` - Main HTML entry point (React SPA)
 - `company_to_company_students.html` - Student version entry point
 - `src/` - React application source code
+  - `App.tsx` - Main application component
+  - `StudentApp.tsx` - Student version application component
+  - `main.tsx` - Main entry point
+  - `student-main.tsx` - Student entry point
 - `src/components/` - React components
   - `FinancialComparisonTable.tsx` - Main comparison component with live data fetching
   - `FinancialComparisonTableStudent.tsx` - Student version (financial indicators shown as dashes)
   - `CompanySegmentComparison.tsx` - Company vs segment comparison
   - `ReportsPage.tsx` - Interactive reports
   - `Sidebar.tsx` - Navigation sidebar
+  - `ui/` - shadcn/ui component library (50+ components)
+  - `figma/ImageWithFallback.tsx` - Image component with fallback
 - `src/lib/` - Utility functions and helpers
   - `api.ts` - Dolt API data fetching
   - `constants.ts` - Available years, non-American companies list
   - `formatters.ts` - Value formatting utilities
 - `public/` - Static assets (copied to docs/ on build)
-- `public/sec/` - SEC filing HTML pages (URL-safe names, fiscal year)
-- `public/images/` - Icons and logos
-- `public/_redirects` - Netlify redirect rules
-- `docs/` - Production build output (served by GitHub Pages)
+  - `sec/` - SEC filing HTML pages (URL-safe names, fiscal year)
+  - `images/` - Icons and logos
+  - `financial-dashboard.html` - Standalone financial dashboard (Chart.js-based)
+  - `_redirects` - Netlify redirect rules
+- `docs/` - Production build output (generated by `npm run build`, not committed — deployed via GitHub Actions)
 - `vite.config.ts` - Vite configuration (base: './', outDir: 'docs')
 - `vite.config.student.ts` - Vite config for student-only builds
 - `components.json` - shadcn/ui configuration
 - `extract/` - Data extraction scripts and source HTML files
+  - `companies.csv` - Company names, tickers, CIK numbers, segment classifications
 
 ## Development Notes
 
@@ -167,7 +184,7 @@ Each company has ticker symbol, CIK number, and segment classification in `compa
 
 **Data Pipeline:**
 - LLM extraction uses OpenAI API (requires API key in environment)
-- Financial data follows specific sign conventions (see `rules_for_metrics.txt`)
+- Financial data follows specific sign conventions
 - Years covered: 2019-2024
 - Database tables:
   - `financials` - Raw financial data by company and year

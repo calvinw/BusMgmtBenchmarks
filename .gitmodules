@@ -1,0 +1,4 @@
+[submodule "integrations/llm-chat-wrapper"]
+	path = integrations/llm-chat-wrapper
+	url = https://github.com/calvinw/llm-chat-bus-dev.git
+	branch = main

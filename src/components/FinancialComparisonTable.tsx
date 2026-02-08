@@ -40,6 +40,102 @@ function formatCompanyValue(
   );
 }
 
+const BRIDGE_REQUEST_TYPE = 'busmgmt.bridge.request';
+const BRIDGE_RESPONSE_TYPE = 'busmgmt.bridge.response';
+
+const FINANCIAL_SECTIONS: Record<string, Array<[string, string]>> = {
+  'Financial Numbers (in thousands)': [
+    ['Total Revenue', 'Net Revenue'],
+    ['Cost of Goods', 'Cost of Goods'],
+    ['Gross Margin', 'Gross Margin'],
+    ['Selling, General & Administrative Expenses', 'SGA'],
+    ['Operating Profit', 'Operating Profit'],
+    ['Net Profit', 'Net Profit'],
+    ['Inventory', 'Inventory'],
+    ['Total Assets', 'Total Assets']
+  ],
+  'Financial Indicators': [
+    ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %'],
+    ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %'],
+    ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %'],
+    ['Operating profit margin percentage (Op.Profit/Net Sales)', 'Operating Profit Margin %'],
+    ['Net profit margin percentage (Net Profit/Net Sales)', 'Net Profit Margin %'],
+    ['Inventory turnover (COGS/Inventory)', 'Inventory Turnover'],
+    ['Current Ratio (Current Assets/Current Liabilities)', 'Current Ratio'],
+    ['Quick Ratio ((Cash + AR)/Current Liabilities)', 'Quick Ratio'],
+    ['Debt-to-Equity Ratio (Total Debt/Total Equity)', 'Debt to Equity'],
+    ['Asset turnover (Net Sales/Total Assets)', 'Asset Turnover'],
+    ['Return on assets (ROA)', 'Return on Assets'],
+    ['3-Year Revenue CAGR', 'Three Year Revenue CAGR']
+  ]
+};
+
+type BridgeAction = 'get_selection' | 'set_selection' | 'get_financial_data';
+
+interface BridgeRequestMessage {
+  type: typeof BRIDGE_REQUEST_TYPE;
+  requestId: string;
+  action: BridgeAction;
+  payload?: {
+    company1?: string;
+    year1?: string;
+    company2?: string;
+    year2?: string;
+  };
+}
+
+function buildBridgeFinancialData(
+  company1Data: CompanyFinancials | null,
+  company2Data: CompanyFinancials | null,
+  selectedCompany1: string,
+  selectedYear1: string,
+  selectedCompany2: string,
+  selectedYear2: string
+) {
+  const company1Label = company1Data
+    ? `${company1Data.company} (${company1Data.year})`
+    : `${selectedCompany1} (${selectedYear1}) - No Data`;
+  const company2Label = company2Data
+    ? `${company2Data.company} (${company2Data.year})`
+    : `${selectedCompany2} (${selectedYear2}) - No Data`;
+
+  const formatMetric = (companyData: CompanyFinancials | null, fieldName: string) => {
+    if (!companyData) {
+      return '-';
+    }
+    return formatValue(
+      companyData[fieldName as keyof CompanyFinancials] as number,
+      fieldName,
+      companyData.company
+    );
+  };
+
+  const numbers: Record<string, { company1: string; company2: string }> = {};
+  const indicators: Record<string, { company1: string; company2: string }> = {};
+
+  for (const [label, fieldName] of FINANCIAL_SECTIONS['Financial Numbers (in thousands)']) {
+    numbers[label] = {
+      company1: formatMetric(company1Data, fieldName),
+      company2: formatMetric(company2Data, fieldName)
+    };
+  }
+
+  for (const [label, fieldName] of FINANCIAL_SECTIONS['Financial Indicators']) {
+    indicators[label] = {
+      company1: formatMetric(company1Data, fieldName),
+      company2: formatMetric(company2Data, fieldName)
+    };
+  }
+
+  return {
+    company1: company1Label,
+    company2: company2Label,
+    financial_numbers: numbers,
+    financial_indicators: indicators,
+    note: 'Values are formatted as shown in the UI, with financial numbers in thousands.'
+  };
+}
+
 export function FinancialComparisonTable() {
   const [companies, setCompanies] = useState<string[]>([]);
   const [selectedCompany1, setSelectedCompany1] = useState<string>('');
@@ -84,39 +180,145 @@ export function FinancialComparisonTable() {
     loadData();
   }, [selectedCompany1, selectedYear1, selectedCompany2, selectedYear2]);
 
+  useEffect(() => {
+    const isBridgeRequest = (value: unknown): value is BridgeRequestMessage => {
+      if (!value || typeof value !== 'object') {
+        return false;
+      }
+      const data = value as Record<string, unknown>;
+      return (
+        data.type === BRIDGE_REQUEST_TYPE &&
+        typeof data.requestId === 'string' &&
+        typeof data.action === 'string'
+      );
+    };
+
+    const postBridgeResponse = (
+      source: MessageEventSource | null,
+      origin: string,
+      requestId: string,
+      action: BridgeAction,
+      success: boolean,
+      payload: unknown
+    ) => {
+      if (!source || typeof (source as Window).postMessage !== 'function') {
+        return;
+      }
+
+      (source as Window).postMessage(
+        {
+          type: BRIDGE_RESPONSE_TYPE,
+          requestId,
+          action,
+          success,
+          ...(success ? { result: payload } : { error: payload })
+        },
+        origin || '*'
+      );
+    };
+
+    const onMessage = (event: MessageEvent) => {
+      if (!isBridgeRequest(event.data)) {
+        return;
+      }
+
+      const { requestId, action, payload } = event.data;
+
+      if (action === 'get_selection') {
+        postBridgeResponse(event.source, event.origin, requestId, action, true, {
+          company1: selectedCompany1,
+          year1: selectedYear1,
+          company2: selectedCompany2,
+          year2: selectedYear2
+        });
+        return;
+      }
+
+      if (action === 'set_selection') {
+        const updates: Record<string, string> = {};
+        const warnings: string[] = [];
+
+        if (payload?.company1) {
+          if (companies.includes(payload.company1)) {
+            setSelectedCompany1(payload.company1);
+            updates.company1 = payload.company1;
+          } else {
+            warnings.push(`Unknown company1 value: ${payload.company1}`);
+          }
+        }
+
+        if (payload?.company2) {
+          if (companies.includes(payload.company2)) {
+            setSelectedCompany2(payload.company2);
+            updates.company2 = payload.company2;
+          } else {
+            warnings.push(`Unknown company2 value: ${payload.company2}`);
+          }
+        }
+
+        if (payload?.year1) {
+          if (AVAILABLE_YEARS.includes(payload.year1)) {
+            setSelectedYear1(payload.year1);
+            updates.year1 = payload.year1;
+          } else {
+            warnings.push(`Unsupported year1 value: ${payload.year1}`);
+          }
+        }
+
+        if (payload?.year2) {
+          if (AVAILABLE_YEARS.includes(payload.year2)) {
+            setSelectedYear2(payload.year2);
+            updates.year2 = payload.year2;
+          } else {
+            warnings.push(`Unsupported year2 value: ${payload.year2}`);
+          }
+        }
+
+        postBridgeResponse(event.source, event.origin, requestId, action, true, {
+          updates,
+          warnings,
+          selection: {
+            company1: payload?.company1 && companies.includes(payload.company1) ? payload.company1 : selectedCompany1,
+            year1: payload?.year1 && AVAILABLE_YEARS.includes(payload.year1) ? payload.year1 : selectedYear1,
+            company2: payload?.company2 && companies.includes(payload.company2) ? payload.company2 : selectedCompany2,
+            year2: payload?.year2 && AVAILABLE_YEARS.includes(payload.year2) ? payload.year2 : selectedYear2
+          }
+        });
+        return;
+      }
+
+      if (action === 'get_financial_data') {
+        postBridgeResponse(event.source, event.origin, requestId, action, true, buildBridgeFinancialData(
+          company1Data,
+          company2Data,
+          selectedCompany1,
+          selectedYear1,
+          selectedCompany2,
+          selectedYear2
+        ));
+        return;
+      }
+
+      postBridgeResponse(event.source, event.origin, requestId, action, false, `Unsupported bridge action: ${action}`);
+    };
+
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [
+    companies,
+    company1Data,
+    company2Data,
+    selectedCompany1,
+    selectedCompany2,
+    selectedYear1,
+    selectedYear2
+  ]);
+
   const handleExportToExcel = () => {
     if (!company1Data && !company2Data) {
       alert('No data available to export. Please select companies and years that have data.');
       return;
     }
-
-    // Define the sections and their fields
-    const sections = {
-      'Financial Numbers (in thousands)': [
-        ['Total Revenue', 'Net Revenue'],
-        ['Cost of Goods', 'Cost of Goods'],
-        ['Gross Margin', 'Gross Margin'],
-        ['Selling, General & Administrative Expenses', 'SGA'],
-        ['Operating Profit', 'Operating Profit'],
-        ['Net Profit', 'Net Profit'],
-        ['Inventory', 'Inventory'],
-        ['Total Assets', 'Total Assets']
-      ],
-      'Financial Indicators': [
-        ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %'],
-        ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %'],
-        ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %'],
-        ['Operating profit margin percentage (Op.Profit/Net Sales)', 'Operating Profit Margin %'],
-        ['Net profit margin percentage (Net Profit/Net Sales)', 'Net Profit Margin %'],
-        ['Inventory turnover (COGS/Inventory)', 'Inventory Turnover'],
-        ['Current Ratio (Current Assets/Current Liabilities)', 'Current Ratio'],
-        ['Quick Ratio ((Cash + AR)/Current Liabilities)', 'Quick Ratio'],
-        ['Debt-to-Equity Ratio (Total Debt/Total Equity)', 'Debt to Equity'],
-        ['Asset turnover (Net Sales/Total Assets)', 'Asset Turnover'],
-        ['Return on assets (ROA)', 'Return on Assets'],
-        ['3-Year Revenue CAGR', 'Three Year Revenue CAGR']
-      ]
-    };
 
     // Build the data array for Excel
     const excelData: any[][] = [];
@@ -129,7 +331,7 @@ export function FinancialComparisonTable() {
     ]);
 
     // Add each section
-    for (const [sectionName, fields] of Object.entries(sections)) {
+    for (const [sectionName, fields] of Object.entries(FINANCIAL_SECTIONS)) {
       // Add section header
       excelData.push([sectionName, '', '']);
 

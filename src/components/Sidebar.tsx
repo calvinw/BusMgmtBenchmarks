@@ -33,11 +33,13 @@ function NavItem({ icon, label, active = false, onClick }: { icon: React.ReactNo
 export function Sidebar({
   currentPage,
   onNavigate,
-  onClose
+  onClose,
+  isIframe = false
 }: {
   currentPage: string;
   onNavigate: (page: string) => void;
   onClose?: () => void;
+  isIframe?: boolean;
 }) {
   const handleNavClick = (page: string) => {
     onNavigate(page);
@@ -48,10 +50,10 @@ export function Sidebar({
     <div className="h-full bg-white border-r border-neutral-200 flex flex-col">
       <div className="flex items-center justify-between">
         <Logo />
-        {/* Close button - visible only on mobile */}
+        {/* Close button - visible only on mobile (or always when in iframe) */}
         <button
           onClick={onClose}
-          className="md:hidden mr-4 p-2 hover:bg-neutral-100 rounded-lg"
+          className={`${isIframe ? '' : 'md:hidden '}mr-4 p-2 hover:bg-neutral-100 rounded-lg`}
           aria-label="Close menu"
         >
           <X className="size-5 text-neutral-600" />

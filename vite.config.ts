@@ -70,7 +70,7 @@ export default defineConfig({
     port: 3000,
     open: true,
     host: true,
-    allowedHosts: ['.trycloudflare.com', 'localhost'],
+    allowedHosts: ['.trycloudflare.com', '.app.github.dev', 'localhost'],
     hmr: {
       clientPort: 443,
     },

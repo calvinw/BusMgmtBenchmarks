@@ -4,7 +4,7 @@
   "portsAttributes": {
     "3000": {
       "label": "BusMgmt App",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "notify"
     }
   },
   "remoteEnv": {

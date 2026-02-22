@@ -48,7 +48,7 @@ echo "┌───────────────────────�
 echo "│     ✓ Ready!                         │"
 echo "└──────────────────────────────────────┘"
 echo ""
-echo "  App : https://${CODESPACE_NAME}-3000.${DOMAIN}"
+echo "  App : https://${CODESPACE_NAME}-3000.${DOMAIN}/company_to_company.html"
 echo ""
 echo "  Log:"
 echo "    tail -f $SERVER_LOG"

@@ -11,6 +11,7 @@ export default defineConfig({
     outDir: 'docs',
     rollupOptions: {
       input: {
+        index: './index.html',
         main: './company_to_company.html',
         student: './company_to_company_students.html',
       },

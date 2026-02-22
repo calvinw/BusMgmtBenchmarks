@@ -1,6 +1,6 @@
 #!/bin/bash
-# start_servers.sh — Run this once after your Codespace opens.
-# It installs dependencies and starts the dev server.
+# start_servers.sh — Install dependencies and start the dev server.
+# Works in GitHub Codespaces and local environments.
 # Safe to re-run at any time to restart the server.
 
 set -e
@@ -48,7 +48,11 @@ echo "┌───────────────────────�
 echo "│     ✓ Ready!                         │"
 echo "└──────────────────────────────────────┘"
 echo ""
-echo "  App : https://${CODESPACE_NAME}-3000.${DOMAIN}"
+if [ -n "$CODESPACE_NAME" ]; then
+  echo "  App : https://${CODESPACE_NAME}-3000.${DOMAIN}"
+else
+  echo "  App : http://localhost:3000"
+fi
 echo ""
 echo "  Log:"
 echo "    tail -f $SERVER_LOG"

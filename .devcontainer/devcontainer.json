@@ -1,0 +1,13 @@
+{
+  "name": "BusMgmtBenchmarks",
+  "postCreateCommand": "echo 'Run: bash start_servers.sh'",
+  "portsAttributes": {
+    "3000": {
+      "label": "BusMgmt App",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "remoteEnv": {
+    "CLAUDE_CODE_DISABLE_VSCODE_EXTENSION": "1"
+  }
+}

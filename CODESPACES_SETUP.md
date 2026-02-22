@@ -59,6 +59,14 @@ upterm allows instructors to share a terminal session for live help:
 bash install_upterm.sh
 ```
 
+Then start a shared session:
+
+```bash
+upterm host --accept
+```
+
+Share the connection string it prints with whoever needs access.
+
 ---
 
 ## App URL

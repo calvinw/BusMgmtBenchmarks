@@ -34,3 +34,7 @@ else
   echo "✓ upterm installed."
 fi
 echo ""
+echo "To share your terminal with the instructor, run:"
+echo ""
+echo "  upterm host --accept"
+echo ""

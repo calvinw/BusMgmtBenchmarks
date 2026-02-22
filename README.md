@@ -189,7 +189,7 @@ There are two main web page displays for the data and analyses.
 This web page shows the data for two companies side by side. You can pick two
 companies and the year to display side by side:
 
-[Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks/company_to_company.html)
+[Company Side By Side Analysis](https://calvinw.github.io/BusMgmtBenchmarks)
 
 ### Side By Side Company and Segment
 

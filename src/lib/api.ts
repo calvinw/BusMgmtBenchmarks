@@ -189,7 +189,7 @@ export async function fetchCompanyFinancials(
  */
 export async function fetchCompanyNames(): Promise<string[]> {
   try {
-    const query = 'SELECT DISTINCT company_name FROM financials ORDER BY company_name';
+    const query = 'SELECT DISTINCT company_name FROM financials ORDER BY LOWER(company_name)';
     const data = await executeQuery<{ company_name: string }>(query);
 
     if (data.query_execution_status === 'Success') {

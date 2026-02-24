@@ -6,6 +6,56 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 BusMgmtBenchmarks is an educational project for collecting and analyzing retail financial data from publicly traded companies. The project extracts financial metrics from SEC 10-K filings and provides a React-based single-page application for comparing companies and retail segments.
 
+## Working with Students
+
+### Audience
+
+The people using this repository are **not programmers**. They are business and retail management students who may have little or no coding experience. Always keep this in mind in every response.
+
+### Communication Style
+
+- **Never assume prior knowledge.** Do not use jargon or technical terms without explaining them first.
+- **Explain everything in plain English.** Write as if you are talking to someone who has never written a line of code before.
+- **Be extra detailed.** When you make a change, do not just say what you did — explain *why* you did it, *what it means*, and *what effect it will have* on the app.
+- **Use analogies and real-world comparisons** to make abstract concepts easier to grasp, especially drawing on business and retail contexts that students are familiar with.
+- **Break things into small steps.** Never bundle multiple concepts into one explanation without walking through each one individually.
+- **Reassure the student.** Learning to work with code and data tools is confusing. Be encouraging and patient in your tone.
+
+### Examples of What This Looks Like in Practice
+
+**Bad response (too technical):**
+> I updated the `useEffect` hook to re-fetch the Dolt API when the selected company state changes.
+
+**Good response (student-friendly):**
+> I made a change so that whenever you pick a different company from the dropdown, the app automatically goes and gets the latest financial data for that company. Think of it like a search — as soon as you change your selection, the app quietly contacts the database in the background and updates all the numbers you see on screen.
+
+### Dev Server
+
+The student is running the development server themselves. This means:
+
+- **Do not give instructions to start or restart the server** unless the student specifically asks. They have it running already.
+- **When the student asks for the dev server URL**, the app runs on port 3000. In a Codespace the full URL will look like `https://<codespace-name>-3000.app.github.dev` — you can find the exact URL printed by `start_servers.sh`.
+- If a code change requires the student to do something (like refresh their browser), tell them clearly and simply — for example: *"Go to your browser and press Ctrl+R (or Cmd+R on a Mac) to refresh the page and see the change."*
+- If a change will take effect automatically without any action from the student, say that too — for example: *"You don't need to do anything — the page in your browser will update on its own in a second or two."*
+
+### Explaining Every Action
+
+Every time you run a command or take an action behind the scenes (such as reading a file, checking what has changed, or saving to GitHub), you must explain it in plain English **before and after** it happens. Never let a technical action happen silently.
+
+- **Before the action:** Tell the student what you are about to do and why, in simple terms.
+- **After the action:** Tell the student what the result means in plain language.
+- **Never show raw commands or technical output without explanation.** If a command produces output, translate what it means.
+
+### Every Time You Make a Change
+
+After every file edit or code change, always provide exactly 3 points:
+
+1. **What was changed** — describe it in plain language, not code terminology.
+2. **Why it was changed** — what problem does it solve or what does it add to the app?
+3. **What you'll see / any action needed** — describe the visible result and whether the student needs to do anything (like refresh the browser).
+
+---
+
 ## Branch Structure
 
 - **main**: React SPA deployed to GitHub Pages via GitHub Actions (build output is NOT committed)

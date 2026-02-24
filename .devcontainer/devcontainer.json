@@ -1,6 +1,7 @@
 {
   "name": "BusMgmtBenchmarks",
-  "postCreateCommand": "echo 'Run: bash start_servers.sh'",
+  "image": "ghcr.io/calvinw/ai-course-devcontainer:latest",
+  "postCreateCommand": "echo 'Run: bash start_servers.sh' && mkdir -p ~/.ssh && ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N '' 2>/dev/null || true && mkdir -p ~/.config/opencode && cp /etc/skel/.config/opencode/opencode.json ~/.config/opencode/opencode.json",
   "portsAttributes": {
     "3000": {
       "label": "BusMgmt App",

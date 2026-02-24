@@ -109,7 +109,7 @@ export function calculateFinancialIndicators(
   indicators['Net Profit Margin %'] = roundToTenth((nums.netProfit / nums.netRevenue) * 100);
 
   // Turnover and ratio metrics
-  indicators['Inventory Turnover'] = roundToTenth(nums.costOfGoods / nums.inventory);
+  indicators['Inventory Turnover'] = nums.inventory > 0 ? roundToTenth(nums.costOfGoods / nums.inventory) : null;
   indicators['Current Ratio'] = roundToTenth(nums.currentAssets / nums.currentLiabilities);
   indicators['Quick Ratio'] = roundToTenth((nums.currentAssets - nums.inventory) / nums.currentLiabilities);
 

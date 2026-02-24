@@ -24,24 +24,7 @@ bash start_servers.sh
 
 ---
 
-## 3. Install an AI Coding Assistant (optional)
-
-```bash
-bash install_agent_tool.sh
-```
-
-Choose from:
-
-1. **Claude Code** — Anthropic's CLI coding assistant
-2. **Opencode** — open-source alternative
-3. **Gemini CLI** — Google's CLI coding assistant
-4. **Codex CLI** — OpenAI's CLI coding assistant
-
-Follow the authentication prompts after installation.
-
----
-
-## 4. Install the Figma MCP for Claude Code (optional)
+## 3. Install the Figma MCP for Claude Code (optional)
 
 If you installed Claude Code and want Figma integration:
 
@@ -51,15 +34,9 @@ bash mcp/install_figma_mcp_claude.sh
 
 ---
 
-## 5. Install upterm for Terminal Sharing (optional)
+## 4. Share Your Terminal with upterm (optional)
 
-upterm allows instructors to share a terminal session for live help:
-
-```bash
-bash install_upterm.sh
-```
-
-Then start a shared session:
+upterm is pre-installed in the container. To start a shared session for live help from an instructor:
 
 ```bash
 upterm host --accept

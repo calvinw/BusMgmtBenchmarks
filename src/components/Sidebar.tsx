@@ -1,4 +1,4 @@
-import { BarChart3, Building2, FileText, X } from 'lucide-react';
+import { BarChart3, Building2, FileText, Users, X } from 'lucide-react';
 
 function Logo() {
   return (
@@ -84,6 +84,12 @@ export function Sidebar({
           label="Reports"
           active={currentPage === 'reports'}
           onClick={() => handleNavClick('reports')}
+        />
+        <NavItem
+          icon={<Users />}
+          label="Contributors"
+          active={currentPage === 'contributors'}
+          onClick={() => handleNavClick('contributors')}
         />
       </nav>
     </div>

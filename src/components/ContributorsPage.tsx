@@ -15,6 +15,17 @@ export function ContributorsPage() {
               @calvinw
             </a>
           </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Souyen Park</span>{" "}
+            <a
+              href="https://github.com/souyen-bit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @souyen-bit
+            </a>
+          </li>
         </ul>
       </div>
     </div>

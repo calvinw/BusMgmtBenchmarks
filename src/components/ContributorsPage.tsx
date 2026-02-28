@@ -26,6 +26,17 @@ export function ContributorsPage() {
               @souyen-bit
             </a>
           </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Vanyaa Khandelwal</span>{" "}
+            <a
+              href="https://github.com/vinni045"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @vinni045
+            </a>
+          </li>
         </ul>
       </div>
     </div>

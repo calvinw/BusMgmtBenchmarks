@@ -1,6 +1,11 @@
 {
   "name": "BusMgmtBenchmarks",
   "image": "ghcr.io/calvinw/ai-course-devcontainer:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
   "postCreateCommand": "echo 'Run: bash start_servers.sh' && mkdir -p ~/.ssh && ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N '' 2>/dev/null || true && mkdir -p ~/.config/opencode && cp /etc/skel/.config/opencode/opencode.json ~/.config/opencode/opencode.json",
   "portsAttributes": {
     "3000": {

@@ -25,13 +25,18 @@ This script will:
 - Start the web server on port 3000
 - Print the app's web address
 
-**The terminal will print a URL** that looks something like `https://codespace-name-3000.app.github.dev`. Leave this terminal running—do not close it.
+**The terminal will print a URL** that looks something like `https://codespace-name-3000.app.github.dev`. The server runs in the background, so the terminal is free to use for other things — you do not need to leave it open.
 
 ---
 
 ## 3. Start Claude Code or Copilot
 
-In a **new terminal tab** (keep your first terminal running the server), type one of these commands:
+In a **new terminal tab**, type one of these commands:
+
+For pi:
+```
+# pi
+```
 
 For Claude Code:
 ```

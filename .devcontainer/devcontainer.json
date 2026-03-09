@@ -15,5 +15,15 @@
   },
   "remoteEnv": {
     "CLAUDE_CODE_DISABLE_VSCODE_EXTENSION": "1"
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
+    "vscode": {
+      "settings": {
+        "chat.agent.enabled": false
+      }
+    }
   }
 }

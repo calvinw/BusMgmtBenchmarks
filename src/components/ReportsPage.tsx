@@ -409,7 +409,7 @@ export function ReportsPage() {
         <button
           onClick={handleExportToExcel}
           disabled={loading || filteredData.length === 0}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white border border-green-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white border border-red-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-red-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Download className="size-4" />
           Export to Excel

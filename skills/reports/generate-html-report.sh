@@ -41,8 +41,6 @@ if ! command -v pandoc &>/dev/null; then
   exit 1
 fi
 
-eval "$(/usr/libexec/path_helper)" 2>/dev/null || true
-
 pandoc "$MD_FILE" \
   -o "$HTML_FILE" \
   --standalone \
@@ -51,4 +49,10 @@ pandoc "$MD_FILE" \
 
 echo "HTML report saved to: skills/reports/${TICKER}-${YEAR}.html"
 echo "Commit and push to publish at: https://calvinw.github.io/BusMgmtBenchmarks/reports/${TICKER}-${YEAR}.html"
-open "$HTML_FILE"
+
+# Open in browser (cross-platform)
+if command -v xdg-open &>/dev/null; then
+  xdg-open "$HTML_FILE"
+elif command -v open &>/dev/null; then
+  open "$HTML_FILE"
+fi

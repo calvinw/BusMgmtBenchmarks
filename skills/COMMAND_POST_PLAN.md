@@ -139,12 +139,14 @@ skills/
 │   ├── {TICKER}-{YEAR}.html         ← committed; published via GitHub Pages build
 │   ├── {TICKER}-{YEAR}.md           ← gitignored (local working file)
 │   └── {TICKER}-{YEAR}.pdf          ← gitignored (local only)
-├── setup.sh                         ← ONE script: installs skills + registers MCPs
+├── setup.sh                         ← Claude setup: installs skills + registers MCPs
+├── setup-codex.sh                   ← Codex setup: installs skills + registers MCPs
 ├── FINANCIAL_MCP_SETUP.md           ← MCP setup documentation
 └── COMMAND_POST_PLAN.md             ← this file
 ```
 
 `~/.claude/commands/` is where Claude Code looks for slash commands. `setup.sh` copies everything from `skills/commands/` there.
+`~/.codex/skills/` is where Codex looks for local skills. `setup-codex.sh` copies everything from `skills/commands/` there and registers the same remote MCP servers for Codex.
 
 ---
 
@@ -163,16 +165,18 @@ Any collaborator who clones the repo runs a single command from the repo root:
 
 ```bash
 bash skills/setup.sh
+bash skills/setup-codex.sh
 ```
 
-This script does three things in order:
-1. **Copies skill directories** from `skills/commands/` → `~/.claude/commands/` (creates dir if needed)
-2. **Registers MCP servers** — `mcp-yfinance-10ks` and `mcp-sec-10ks` via SSE
-3. **Verifies** Claude Code can see both MCP servers and prints confirmation
+Each script does the setup appropriate for its target client:
+1. **Copies skill directories** into the client-specific skills folder
+2. **Registers MCP servers for Claude directly** — `mcp-yfinance-10ks`, `mcp-sec-10ks`, and `mcp-dolt-database`
+3. **Registers MCP servers for Codex through `supergateway`** because those servers are legacy SSE endpoints
+4. **Verifies** the installed skills and prints confirmation
 
-After running it, the collaborator opens Claude Code and `/analyze-financials` and `/insert-financials` are immediately available.
+After running it, the collaborator opens Claude Code or Codex and the skills are available. In Codex, the financial MCP tools are reached through the local `supergateway` SSE-to-stdio bridge.
 
-**To update skills** (e.g. after a `git pull` that adds new anomaly rules): re-run `bash skills/setup.sh` — it overwrites the installed copies with the latest from the repo.
+**To update skills** (e.g. after a `git pull` that adds new anomaly rules): re-run the matching setup script. It overwrites the installed copies with the latest from the repo.
 
 ---
 
@@ -190,8 +194,8 @@ After running it, the collaborator opens Claude Code and `/analyze-financials` a
 ## Current Status
 
 - `/analyze-financials` and `/insert-financials` skills fully built and working
-- Remote MCPs registered: `mcp-yfinance-10ks` and `mcp-sec-10ks` (SSE)
-- `setup.sh` installs skills and registers MCPs in one command
+- Remote MCPs registered in Claude/Codex setup: `mcp-yfinance-10ks`, `mcp-sec-10ks`, and `mcp-dolt-database`
+- `setup.sh` installs skills and registers MCPs for Claude; `setup-codex.sh` installs Codex skills and registers proxy-backed MCP entries
 - Report pipeline working: markdown → HTML via pandoc + report.css → GitHub Pages
 - TheRealReal FY2023 and FY2024 validated and reports published
 - Daloopa planned as Source D but not yet connected (requires authentication)

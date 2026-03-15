@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>M-2021</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+*, *::before, *::after { box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.6;
+color: #1a1a2e;
+background: #ffffff;
+max-width: 100%;
+margin: 0 auto;
+padding: 48px 56px;
+}
+
+h1 {
+font-size: 24px;
+font-weight: 700;
+color: #0f3460;
+border-bottom: 3px solid #0f3460;
+padding-bottom: 12px;
+margin-bottom: 6px;
+}
+h2 {
+font-size: 16px;
+font-weight: 700;
+color: #0f3460;
+background: #eef2f7;
+padding: 8px 14px;
+border-left: 4px solid #0f3460;
+border-radius: 0 4px 4px 0;
+margin-top: 36px;
+margin-bottom: 12px;
+}
+h3 {
+font-size: 14px;
+font-weight: 600;
+color: #333;
+margin-top: 20px;
+}
+
+p strong + br, body > p:first-of-type {
+color: #555;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 16px 0 24px 0;
+font-size: 13px;
+}
+thead tr {
+background: #0f3460;
+color: #ffffff;
+}
+thead th {
+padding: 9px 12px;
+text-align: left;
+font-weight: 600;
+white-space: nowrap;
+}
+tbody tr:nth-child(even) {
+background: #f4f7fb;
+}
+tbody tr:hover {
+background: #e8f0fe;
+}
+tbody td {
+padding: 8px 12px;
+border-bottom: 1px solid #dde3ec;
+vertical-align: top;
+}
+
+tbody td:last-child {
+font-weight: 600;
+color: #0f3460;
+}
+
+code {
+font-size: 12px;
+background: #f0f0f0;
+border-radius: 3px;
+padding: 1px 5px;
+font-family: "SF Mono", "Fira Code", monospace;
+}
+
+td:contains("[WARNING]"), p:contains("[WARNING]") { color: #b45309; }
+
+blockquote {
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 0 6px 6px 0;
+margin: 24px 0;
+padding: 14px 18px;
+color: #065f46;
+font-weight: 500;
+}
+blockquote p { margin: 0; }
+
+hr {
+border: none;
+border-top: 1px solid #dde3ec;
+margin: 28px 0;
+}
+
+@media print {
+body { padding: 20px; font-size: 12px; }
+h2 { break-after: avoid; }
+table { break-inside: avoid; font-size: 11px; }
+blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<h1 id="macys-m-fy2021-financial-analysis">Macy’s (M) — FY2021 Financial
+Analysis</h1>
+<p><strong>Generated:</strong> 2026-03-15 <strong>Source:</strong>
+/analyze-financials skill</p>
+<hr />
+<h2 id="anomaly-detection">Anomaly Detection</h2>
+<p><strong>Company:</strong> Macy’s (M) | <strong>Fiscal Year:</strong>
+2021 (ends Jan 29, 2022) | <strong>Segment:</strong> Department
+Stores</p>
+<p><strong>Key finding:</strong> Dolt currently shows Net Revenue =
+$24,460M — this is only the contract/merchandise revenue. It is
+<strong>missing the $832M credit card revenues</strong> that should be
+included, just as they were correctly included in the FY2020 entry
+($17,346M + $751M = $18,097M).</p>
+<blockquote>
+<p><strong>[ERROR]</strong> Dolt Net Revenue is $24,460M but should be
+$25,292M. Missing $832M credit card revenues. Must fix before using this
+row.</p>
+</blockquote>
+<blockquote>
+<p><strong>[ERROR]</strong> Dolt Gross Margin is $9,504M but should be
+$10,336M ($25,292M − $14,956M). Derived from wrong Net Revenue.</p>
+</blockquote>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SGA composite (Rule 1–4)</td>
+<td>Single combined
+<code>us-gaap_SellingGeneralAndAdministrativeExpense</code> = $8,047M.
+Use directly. ✅</td>
+</tr>
+<tr class="even">
+<td>Restructuring charges in SGA</td>
+<td>$30M restructuring excluded. ✅</td>
+</tr>
+<tr class="odd">
+<td>Balance sheet identity</td>
+<td>Total Assets $17,590M = Total L+SE $17,590M. ✅ PASSES</td>
+</tr>
+<tr class="even">
+<td>Gross Margin % (corrected)</td>
+<td>$10,336M / $25,292M = <strong>40.9%</strong> — within 35–45%
+Department Store range. ✅</td>
+</tr>
+<tr class="odd">
+<td>Inventory</td>
+<td>$4,383M — healthy positive value. ✅</td>
+</tr>
+<tr class="even">
+<td>Yahoo SGA (Rule 3)</td>
+<td>Yahoo SGA $8,154M vs SEC $8,047M. Not equal to total operating
+expenses. Rule 3 does not trigger. Use SEC.</td>
+</tr>
+<tr class="odd">
+<td>Credit card revenues</td>
+<td>Yahoo “Operating Revenue” ($24,460M) excludes credit card revenue.
+Yahoo “Total Revenue” ($25,399M) is $107M above SEC total ($25,292M).
+Use SEC.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>All values in <strong>thousands of dollars (000s)</strong>.
+<code>*</code> = source disagrees with SEC.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 23%" />
+<col style="width: 26%" />
+<col style="width: 22%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>SEC (2022-01-29)</th>
+<th>Yahoo (2022-01-31)</th>
+<th>Dolt (current)</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reportDate</td>
+<td>2022-01-29</td>
+<td>2022-01-31</td>
+<td>2022-01-29</td>
+<td><strong>2022-01-29</strong></td>
+</tr>
+<tr class="even">
+<td>Net Revenue</td>
+<td><strong>25,292,000</strong></td>
+<td>25,399,000 *</td>
+<td>24,460,000 *</td>
+<td><strong>25,292,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Cost of Goods</td>
+<td>14,956,000</td>
+<td>14,956,000</td>
+<td>14,956,000</td>
+<td><strong>14,956,000</strong></td>
+</tr>
+<tr class="even">
+<td>Gross Margin</td>
+<td><strong>10,336,000</strong></td>
+<td>10,443,000 *</td>
+<td>9,504,000 *</td>
+<td><strong>10,336,000</strong></td>
+</tr>
+<tr class="odd">
+<td>SGA</td>
+<td>8,047,000</td>
+<td>8,154,000 *</td>
+<td>8,047,000</td>
+<td><strong>8,047,000</strong></td>
+</tr>
+<tr class="even">
+<td>Operating Profit</td>
+<td>2,350,000</td>
+<td>2,350,000</td>
+<td>2,350,000</td>
+<td><strong>2,350,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Net Profit</td>
+<td>1,430,000</td>
+<td>1,430,000</td>
+<td>1,430,000</td>
+<td><strong>1,430,000</strong></td>
+</tr>
+<tr class="even">
+<td>Inventory</td>
+<td>4,383,000</td>
+<td>4,383,000</td>
+<td>4,383,000</td>
+<td><strong>4,383,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Assets</td>
+<td>6,758,000</td>
+<td>6,758,000</td>
+<td>6,758,000</td>
+<td><strong>6,758,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total Assets</td>
+<td>17,590,000</td>
+<td>17,590,000</td>
+<td>17,590,000</td>
+<td><strong>17,590,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Liabilities</td>
+<td>5,416,000</td>
+<td>5,416,000</td>
+<td>5,416,000</td>
+<td><strong>5,416,000</strong></td>
+</tr>
+<tr class="even">
+<td>Liabilities</td>
+<td>13,969,000</td>
+<td>13,969,000</td>
+<td>13,969,000</td>
+<td><strong>13,969,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Total Shareholder Equity</td>
+<td>3,621,000</td>
+<td>3,621,000</td>
+<td>3,621,000</td>
+<td><strong>3,621,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total L+SE</td>
+<td>17,590,000</td>
+<td>17,590,000</td>
+<td>17,590,000</td>
+<td><strong>17,590,000</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="reconciled-recommendation">Reconciled Recommendation</h2>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 45%" />
+<col style="width: 20%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Recommended Value</th>
+<th>Source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reportDate</td>
+<td>2022-01-29</td>
+<td>SEC</td>
+<td>Fiscal year end per statement headers</td>
+</tr>
+<tr class="even">
+<td>Net Revenue</td>
+<td><strong>25,292,000</strong></td>
+<td>SEC</td>
+<td>Contract Revenue $24,460M + Credit Card $832M — <strong>changes
+Dolt</strong></td>
+</tr>
+<tr class="odd">
+<td>Cost of Goods</td>
+<td>14,956,000</td>
+<td>SEC/Yahoo/Dolt agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="even">
+<td>Gross Margin</td>
+<td><strong>10,336,000</strong></td>
+<td>Calculated</td>
+<td>$25,292M − $14,956M — <strong>changes Dolt</strong> (was
+$9,504M)</td>
+</tr>
+<tr class="odd">
+<td>SGA</td>
+<td>8,047,000</td>
+<td>SEC</td>
+<td>Single combined line; matches Dolt. ✅ No change</td>
+</tr>
+<tr class="even">
+<td>Operating Profit</td>
+<td>2,350,000</td>
+<td>SEC/Dolt agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="odd">
+<td>Net Profit</td>
+<td>1,430,000</td>
+<td>SEC/Dolt agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="even">
+<td>Inventory</td>
+<td>4,383,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="odd">
+<td>Current Assets</td>
+<td>6,758,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="even">
+<td>Total Assets</td>
+<td>17,590,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="odd">
+<td>Current Liabilities</td>
+<td>5,416,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="even">
+<td>Liabilities</td>
+<td>13,969,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="odd">
+<td>Total Shareholder Equity</td>
+<td>3,621,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+<tr class="even">
+<td>Total L+SE</td>
+<td>17,590,000</td>
+<td>All agree</td>
+<td>✅ No change</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two fields will be overwritten in Dolt:</strong> Net Revenue
+($24,460,000 → $25,292,000) and Gross Margin ($9,504,000 →
+$10,336,000).</p>
+<hr />
+<h2 id="readiness-signal">Readiness Signal</h2>
+<blockquote>
+<p><strong>Analysis complete.</strong> Run
+<code>/insert-financials M 2021</code> to write these values to the
+database.</p>
+</blockquote>
+<p><strong>Flags to resolve before inserting:</strong></p>
+<ol type="1">
+<li><code>[ERROR]</code> Dolt Net Revenue ($24,460M) is missing $832M
+credit card revenues — will be corrected to $25,292M.</li>
+<li><code>[ERROR]</code> Dolt Gross Margin ($9,504M) derived from wrong
+Net Revenue — will be corrected to $10,336M.</li>
+</ol>
+<p>Both errors share the same root cause (missing credit card revenue)
+and are resolved by the recommended values. Safe to insert.</p>
+</body>
+</html>

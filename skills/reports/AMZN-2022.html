@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AMZN-2022</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+*, *::before, *::after { box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.6;
+color: #1a1a2e;
+background: #ffffff;
+max-width: 100%;
+margin: 0 auto;
+padding: 48px 56px;
+}
+
+h1 {
+font-size: 24px;
+font-weight: 700;
+color: #0f3460;
+border-bottom: 3px solid #0f3460;
+padding-bottom: 12px;
+margin-bottom: 6px;
+}
+h2 {
+font-size: 16px;
+font-weight: 700;
+color: #0f3460;
+background: #eef2f7;
+padding: 8px 14px;
+border-left: 4px solid #0f3460;
+border-radius: 0 4px 4px 0;
+margin-top: 36px;
+margin-bottom: 12px;
+}
+h3 {
+font-size: 14px;
+font-weight: 600;
+color: #333;
+margin-top: 20px;
+}
+
+p strong + br, body > p:first-of-type {
+color: #555;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 16px 0 24px 0;
+font-size: 13px;
+}
+thead tr {
+background: #0f3460;
+color: #ffffff;
+}
+thead th {
+padding: 9px 12px;
+text-align: left;
+font-weight: 600;
+white-space: nowrap;
+}
+tbody tr:nth-child(even) {
+background: #f4f7fb;
+}
+tbody tr:hover {
+background: #e8f0fe;
+}
+tbody td {
+padding: 8px 12px;
+border-bottom: 1px solid #dde3ec;
+vertical-align: top;
+}
+
+tbody td:last-child {
+font-weight: 600;
+color: #0f3460;
+}
+
+code {
+font-size: 12px;
+background: #f0f0f0;
+border-radius: 3px;
+padding: 1px 5px;
+font-family: "SF Mono", "Fira Code", monospace;
+}
+
+td:contains("[WARNING]"), p:contains("[WARNING]") { color: #b45309; }
+
+blockquote {
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 0 6px 6px 0;
+margin: 24px 0;
+padding: 14px 18px;
+color: #065f46;
+font-weight: 500;
+}
+blockquote p { margin: 0; }
+
+hr {
+border: none;
+border-top: 1px solid #dde3ec;
+margin: 28px 0;
+}
+
+@media print {
+body { padding: 20px; font-size: 12px; }
+h2 { break-after: avoid; }
+table { break-inside: avoid; font-size: 11px; }
+blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<h1 id="amazon-amzn-fy2022-financial-analysis">Amazon (AMZN) — FY2022
+Financial Analysis</h1>
+<p><strong>Generated:</strong> 2026-03-15 <strong>Source:</strong>
+/analyze-financials skill</p>
+<hr />
+<h2 id="step-4-anomaly-detection">Step 4 — Anomaly Detection</h2>
+<h3 id="sga-construction">SGA Construction</h3>
+<p>Amazon’s SEC filing has <strong>no single SGA line tag</strong>. The
+operating expense components are:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>SEC Line Item</th>
+<th>Amount (thousands)</th>
+<th>Include in SGA?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fulfillment (<code>amzn_FulfillmentExpense</code>)</td>
+<td>$84,299,000</td>
+<td>No — logistics/ops cost</td>
+</tr>
+<tr class="even">
+<td>Technology and content
+(<code>amzn_TechnologyAndContentExpense</code>)</td>
+<td>$73,213,000</td>
+<td><strong>No — platform cost (per company notes)</strong></td>
+</tr>
+<tr class="odd">
+<td>Marketing (<code>us-gaap_MarketingExpense</code>)</td>
+<td>$42,238,000</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>G&amp;A (<code>us-gaap_GeneralAndAdministrativeExpense</code>)</td>
+<td>$11,891,000</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Other operating expense
+(<code>us-gaap_OtherOperatingIncomeExpenseNet</code>)</td>
+<td>$1,263,000</td>
+<td>No — per anomaly rules</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SEC-derived SGA = Marketing + G&amp;A = $42,238,000 +
+$11,891,000 = $54,129,000K</strong></p>
+<blockquote>
+<p><strong>[WARNING]</strong> Current Dolt SGA is
+<strong>$55,392,000K</strong>, which equals Marketing + G&amp;A + Other
+operating expense ($42,238 + $11,891 + $1,263 = $55,392). The “Other
+operating expense, net” line should be excluded from SGA per the anomaly
+rules (“Never Include in SGA → Other operating expenses unless it is the
+only remaining SGA-type line”). Recommend correcting to
+<strong>$54,129,000K</strong>.</p>
+</blockquote>
+<h3 id="rule-3-check-yahoo-sga-vs-total-operating-expenses">Rule 3 Check
+— Yahoo SGA vs Total Operating Expenses</h3>
+<ul>
+<li>Yahoo SGA: $54,129,000K</li>
+<li>Total Operating Expenses (SEC): $501,735,000K</li>
+<li>Ratio: 10.8% → <strong>No trigger.</strong> Yahoo SGA is not
+inflated to match total operating expenses.</li>
+</ul>
+<h3 id="gross-margin-sanity-check">Gross Margin Sanity Check</h3>
+<ul>
+<li>Gross Margin = $513,983,000 − $288,831,000 =
+<strong>$225,152,000K</strong></li>
+<li>Gross Margin % = 225,152 / 513,983 = <strong>43.8%</strong></li>
+<li>Expected for Online segment: 25–35%</li>
+</ul>
+<blockquote>
+<p><strong>[WARNING]</strong> Amazon’s gross margin of ~43.8% exceeds
+the 25–35% benchmark for the Online segment. This is expected given
+Amazon’s blended business model — AWS cloud services and advertising
+(both high-margin) are included in total revenue and pull the blended
+gross margin above pure-retail peers. This is a known structural
+characteristic, not an error.</p>
+</blockquote>
+<h3 id="balance-sheet-identity-check">Balance Sheet Identity Check</h3>
+<ul>
+<li>Total Assets: $462,675,000K</li>
+<li>Total Liabilities and Shareholder Equity: $462,675,000K</li>
+<li><strong>[PASS]</strong> Balance sheet identity holds exactly.</li>
+</ul>
+<h3 id="other-checks">Other Checks</h3>
+<ul>
+<li>Net Profit is <strong>negative (−$2,722,000K)</strong> — Amazon had
+a net loss in FY2022 driven by large unrealized investment losses
+(Rivian stake). This is well-documented and valid.</li>
+<li>Inventory: $34,405,000K — present and plausible for Amazon’s retail
+segment. <strong>[PASS]</strong></li>
+<li>Total Shareholder Equity: $146,043,000K — positive.
+<strong>[PASS]</strong></li>
+</ul>
+<hr />
+<h2 id="step-5-side-by-side-comparison-table">Step 5 — Side-by-Side
+Comparison Table</h2>
+<p>All values in <strong>thousands of dollars</strong>. <code>*</code>
+marks cells where this source differs from the recommended value.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>SEC</th>
+<th>Yahoo</th>
+<th>Dolt (current)</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reportDate</td>
+<td>2022-12-31</td>
+<td>2022-12-31</td>
+<td>2022-12-31</td>
+<td>2022-12-31</td>
+</tr>
+<tr class="even">
+<td>Net Revenue</td>
+<td>513,983,000</td>
+<td>513,983,000</td>
+<td>513,983,000</td>
+<td><strong>513,983,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Cost of Goods</td>
+<td>288,831,000</td>
+<td>288,831,000</td>
+<td>288,831,000</td>
+<td><strong>288,831,000</strong></td>
+</tr>
+<tr class="even">
+<td>Gross Margin</td>
+<td>225,152,000</td>
+<td>225,152,000</td>
+<td>225,152,000</td>
+<td><strong>225,152,000</strong></td>
+</tr>
+<tr class="odd">
+<td>SGA</td>
+<td>54,129,000</td>
+<td>54,129,000</td>
+<td>55,392,000 *</td>
+<td><strong>54,129,000</strong></td>
+</tr>
+<tr class="even">
+<td>Operating Profit</td>
+<td>12,248,000</td>
+<td>12,248,000</td>
+<td>12,248,000</td>
+<td><strong>12,248,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Net Profit</td>
+<td>−2,722,000</td>
+<td>−2,722,000</td>
+<td>−2,722,000</td>
+<td><strong>−2,722,000</strong></td>
+</tr>
+<tr class="even">
+<td>Inventory</td>
+<td>34,405,000</td>
+<td>34,405,000</td>
+<td>34,405,000</td>
+<td><strong>34,405,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Assets</td>
+<td>146,791,000</td>
+<td>146,791,000</td>
+<td>146,791,000</td>
+<td><strong>146,791,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total Assets</td>
+<td>462,675,000</td>
+<td>462,675,000</td>
+<td>462,675,000</td>
+<td><strong>462,675,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Liabilities</td>
+<td>155,393,000</td>
+<td>155,393,000</td>
+<td>155,393,000</td>
+<td><strong>155,393,000</strong></td>
+</tr>
+<tr class="even">
+<td>Liabilities</td>
+<td>316,632,000</td>
+<td>316,632,000</td>
+<td>316,632,000</td>
+<td><strong>316,632,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Total Shareholder Equity</td>
+<td>146,043,000</td>
+<td>146,043,000</td>
+<td>146,043,000</td>
+<td><strong>146,043,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total L&amp;SE</td>
+<td>462,675,000</td>
+<td>462,675,000</td>
+<td>462,675,000</td>
+<td><strong>462,675,000</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="step-6-reconciled-recommendation">Step 6 — Reconciled
+Recommendation</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Recommended Value</th>
+<th>Source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Net Revenue</td>
+<td>513,983,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="even">
+<td>Cost of Goods</td>
+<td>288,831,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="odd">
+<td>Gross Margin</td>
+<td>225,152,000</td>
+<td>Calculated</td>
+<td>Net Revenue − COGS</td>
+</tr>
+<tr class="even">
+<td><strong>SGA</strong></td>
+<td><strong>54,129,000</strong></td>
+<td><strong>SEC-derived = Yahoo</strong></td>
+<td><strong>Marketing ($42,238K) + G&amp;A ($11,891K). Excludes Tech
+&amp; Content (platform cost) and Other operating expense. Current Dolt
+value ($55,392K) is incorrect — includes Other operating
+expense.</strong></td>
+</tr>
+<tr class="odd">
+<td>Operating Profit</td>
+<td>12,248,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="even">
+<td>Net Profit</td>
+<td>−2,722,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree; net loss due to Rivian investment losses</td>
+</tr>
+<tr class="odd">
+<td>Inventory</td>
+<td>34,405,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="even">
+<td>Current Assets</td>
+<td>146,791,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="odd">
+<td>Total Assets</td>
+<td>462,675,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="even">
+<td>Current Liabilities</td>
+<td>155,393,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="odd">
+<td>Liabilities</td>
+<td>316,632,000</td>
+<td>Calculated</td>
+<td>Total Assets − Total SE</td>
+</tr>
+<tr class="even">
+<td>Total Shareholder Equity</td>
+<td>146,043,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+<tr class="odd">
+<td>Total L&amp;SE</td>
+<td>462,675,000</td>
+<td>SEC = Yahoo = Dolt</td>
+<td>All three agree</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Only one field would change in the database:</strong> SGA
+from $55,392,000K → $54,129,000K.</p>
+<hr />
+<p><strong>Analysis complete.</strong> Run
+<code>/insert-financials AMZN 2022</code> to write these values to the
+database.</p>
+<p><strong>Unresolved flags to review before inserting:</strong></p>
+<ol type="1">
+<li><code>[WARNING]</code> <strong>SGA correction needed</strong> —
+Current Dolt SGA ($55,392,000K) incorrectly includes “Other operating
+expense, net.” Recommend $54,129,000K (Marketing + G&amp;A only). This
+is a $1,263,000K difference.</li>
+<li><code>[WARNING]</code> <strong>Gross margin above benchmark</strong>
+— 43.8% vs. 25–35% expected for Online. Accepted as structural (AWS +
+advertising revenue); not an error.</li>
+</ol>
+</body>
+</html>

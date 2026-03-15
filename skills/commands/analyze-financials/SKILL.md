@@ -96,7 +96,7 @@ List any unresolved flags for the user to review before inserting.
 
 After displaying the full analysis to the user, write the complete report as a markdown file:
 
-**Path:** `/Users/calvinw/BusMgmtBenchmarks/skills/reports/{TICKER}-{YEAR}.md`
+**Path:** `reports/{TICKER}-{YEAR}.md`
 
 The report file must contain:
 

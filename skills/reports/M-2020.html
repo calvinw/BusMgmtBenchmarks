@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>M-2020</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+*, *::before, *::after { box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.6;
+color: #1a1a2e;
+background: #ffffff;
+max-width: 100%;
+margin: 0 auto;
+padding: 48px 56px;
+}
+
+h1 {
+font-size: 24px;
+font-weight: 700;
+color: #0f3460;
+border-bottom: 3px solid #0f3460;
+padding-bottom: 12px;
+margin-bottom: 6px;
+}
+h2 {
+font-size: 16px;
+font-weight: 700;
+color: #0f3460;
+background: #eef2f7;
+padding: 8px 14px;
+border-left: 4px solid #0f3460;
+border-radius: 0 4px 4px 0;
+margin-top: 36px;
+margin-bottom: 12px;
+}
+h3 {
+font-size: 14px;
+font-weight: 600;
+color: #333;
+margin-top: 20px;
+}
+
+p strong + br, body > p:first-of-type {
+color: #555;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 16px 0 24px 0;
+font-size: 13px;
+}
+thead tr {
+background: #0f3460;
+color: #ffffff;
+}
+thead th {
+padding: 9px 12px;
+text-align: left;
+font-weight: 600;
+white-space: nowrap;
+}
+tbody tr:nth-child(even) {
+background: #f4f7fb;
+}
+tbody tr:hover {
+background: #e8f0fe;
+}
+tbody td {
+padding: 8px 12px;
+border-bottom: 1px solid #dde3ec;
+vertical-align: top;
+}
+
+tbody td:last-child {
+font-weight: 600;
+color: #0f3460;
+}
+
+code {
+font-size: 12px;
+background: #f0f0f0;
+border-radius: 3px;
+padding: 1px 5px;
+font-family: "SF Mono", "Fira Code", monospace;
+}
+
+td:contains("[WARNING]"), p:contains("[WARNING]") { color: #b45309; }
+
+blockquote {
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 0 6px 6px 0;
+margin: 24px 0;
+padding: 14px 18px;
+color: #065f46;
+font-weight: 500;
+}
+blockquote p { margin: 0; }
+
+hr {
+border: none;
+border-top: 1px solid #dde3ec;
+margin: 28px 0;
+}
+
+@media print {
+body { padding: 20px; font-size: 12px; }
+h2 { break-after: avoid; }
+table { break-inside: avoid; font-size: 11px; }
+blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<h1 id="macys-m-fy2020-financial-analysis">Macy’s (M) — FY2020 Financial
+Analysis</h1>
+<p><strong>Generated:</strong> 2026-03-15 <strong>Source:</strong>
+/analyze-financials skill</p>
+<hr />
+<h2 id="anomaly-detection">Anomaly Detection</h2>
+<p><strong>Company:</strong> Macy’s (M) | <strong>Fiscal Year:</strong>
+2020 (ends Jan 30, 2021) | <strong>Segment:</strong> Department
+Stores</p>
+<blockquote>
+<p><strong>Note:</strong> Yahoo Finance only provides ~4 years of
+history. The most recent available is FY2022 (2022-01-31). FY2020 data
+is <strong>not available from Yahoo</strong> — SEC and Dolt only.</p>
+</blockquote>
+<h3 id="anomaly-checks">Anomaly Checks</h3>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SGA composite (Rule 1–4)</td>
+<td>Single combined
+<code>us-gaap_SellingGeneralAndAdministrativeExpense</code> = $6,767M.
+No separate marketing or ops-tech lines. Use directly. ✅</td>
+</tr>
+<tr class="even">
+<td>Restructuring charges in SGA</td>
+<td><code>us-gaap_RestructuringSettlementAndImpairmentProvisions</code>
+= $3,579M. Excluded from SGA — one-time COVID restructuring. ✅</td>
+</tr>
+<tr class="odd">
+<td>Balance sheet identity</td>
+<td>Total Assets $17,706M = Total L+SE $17,706M. ✅ PASSES</td>
+</tr>
+<tr class="even">
+<td>Gross Margin %</td>
+<td>$5,811M / $18,097M = <strong>32.1%</strong> — below expected 35–45%
+for Department Stores.</td>
+</tr>
+<tr class="odd">
+<td>Inventory</td>
+<td>$3,774M — large positive value, appropriate for department store.
+✅</td>
+</tr>
+<tr class="even">
+<td>Equity</td>
+<td>$2,553M positive. ✅</td>
+</tr>
+<tr class="odd">
+<td>Yahoo SGA Rule 3</td>
+<td>N/A — Yahoo data unavailable for FY2020.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>[WARNING]</strong> Gross Margin of 32.1% falls below the
+35–45% Department Store benchmark. This is <strong>expected for
+FY2020</strong> — Macy’s took heavy markdowns and inventory write-downs
+during COVID-19 store closures. The massive $3,579M
+restructuring/impairment charge confirms the pandemic impact. Acceptable
+with this context noted.</p>
+</blockquote>
+<blockquote>
+<p><strong>[WARNING]</strong> Net Profit = <strong>−$3,944M</strong>
+(large loss) and Operating Profit = <strong>−$4,475M</strong>. Both are
+negative due to COVID impacts and goodwill impairments. Valid for
+FY2020.</p>
+</blockquote>
+<hr />
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>All values in <strong>thousands of dollars (000s)</strong>.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 23%" />
+<col style="width: 12%" />
+<col style="width: 28%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>SEC (FY2020)</th>
+<th>Yahoo</th>
+<th>Dolt (current)</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reportDate</td>
+<td>2021-01-30</td>
+<td>N/A</td>
+<td>2021-01-30</td>
+<td><strong>2021-01-30</strong></td>
+</tr>
+<tr class="even">
+<td>Net Revenue</td>
+<td>18,097,000</td>
+<td>N/A</td>
+<td>18,097,000</td>
+<td><strong>18,097,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Cost of Goods</td>
+<td>12,286,000</td>
+<td>N/A</td>
+<td>12,286,000</td>
+<td><strong>12,286,000</strong></td>
+</tr>
+<tr class="even">
+<td>Gross Margin</td>
+<td>5,811,000</td>
+<td>N/A</td>
+<td>5,811,000</td>
+<td><strong>5,811,000</strong></td>
+</tr>
+<tr class="odd">
+<td>SGA</td>
+<td>6,767,000</td>
+<td>N/A</td>
+<td>6,767,000</td>
+<td><strong>6,767,000</strong></td>
+</tr>
+<tr class="even">
+<td>Operating Profit</td>
+<td>−4,475,000</td>
+<td>N/A</td>
+<td>−4,475,000</td>
+<td><strong>−4,475,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Net Profit</td>
+<td>−3,944,000</td>
+<td>N/A</td>
+<td>−3,944,000</td>
+<td><strong>−3,944,000</strong></td>
+</tr>
+<tr class="even">
+<td>Inventory</td>
+<td>3,774,000</td>
+<td>N/A</td>
+<td>3,774,000</td>
+<td><strong>3,774,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Assets</td>
+<td>6,184,000</td>
+<td>N/A</td>
+<td>6,184,000</td>
+<td><strong>6,184,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total Assets</td>
+<td>17,706,000</td>
+<td>N/A</td>
+<td>17,706,000</td>
+<td><strong>17,706,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Current Liabilities</td>
+<td>5,357,000</td>
+<td>N/A</td>
+<td>5,357,000</td>
+<td><strong>5,357,000</strong></td>
+</tr>
+<tr class="even">
+<td>Liabilities</td>
+<td>15,153,000</td>
+<td>N/A</td>
+<td>15,153,000</td>
+<td><strong>15,153,000</strong></td>
+</tr>
+<tr class="odd">
+<td>Total Shareholder Equity</td>
+<td>2,553,000</td>
+<td>N/A</td>
+<td>2,553,000</td>
+<td><strong>2,553,000</strong></td>
+</tr>
+<tr class="even">
+<td>Total L+SE</td>
+<td>17,706,000</td>
+<td>N/A</td>
+<td>17,706,000</td>
+<td><strong>17,706,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>No discrepancies — all available sources agree exactly.</p>
+<hr />
+<h2 id="reconciled-recommendation">Reconciled Recommendation</h2>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 45%" />
+<col style="width: 20%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Recommended Value</th>
+<th>Source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reportDate</td>
+<td>2021-01-30</td>
+<td>SEC</td>
+<td>Fiscal year end per income statement header</td>
+</tr>
+<tr class="even">
+<td>Net Revenue</td>
+<td>18,097,000</td>
+<td>SEC</td>
+<td>Contract Revenue ($17,346M) + Credit card revenues ($751M)</td>
+</tr>
+<tr class="odd">
+<td>Cost of Goods</td>
+<td>12,286,000</td>
+<td>SEC</td>
+<td>Absolute value of negative COGS line</td>
+</tr>
+<tr class="even">
+<td>Gross Margin</td>
+<td>5,811,000</td>
+<td>Calculated</td>
+<td>Revenue − COGS</td>
+</tr>
+<tr class="odd">
+<td>SGA</td>
+<td>6,767,000</td>
+<td>SEC</td>
+<td>Single combined SGA line; no adjustments needed</td>
+</tr>
+<tr class="even">
+<td>Operating Profit</td>
+<td>−4,475,000</td>
+<td>SEC</td>
+<td>Negative due to COVID restructuring/impairment</td>
+</tr>
+<tr class="odd">
+<td>Net Profit</td>
+<td>−3,944,000</td>
+<td>SEC</td>
+<td>Large loss; COVID year</td>
+</tr>
+<tr class="even">
+<td>Inventory</td>
+<td>3,774,000</td>
+<td>SEC</td>
+<td>Normal for department store</td>
+</tr>
+<tr class="odd">
+<td>Current Assets</td>
+<td>6,184,000</td>
+<td>SEC</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Total Assets</td>
+<td>17,706,000</td>
+<td>SEC</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Current Liabilities</td>
+<td>5,357,000</td>
+<td>SEC</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Liabilities</td>
+<td>15,153,000</td>
+<td>Calculated</td>
+<td>Total Assets − TSE</td>
+</tr>
+<tr class="odd">
+<td>Total Shareholder Equity</td>
+<td>2,553,000</td>
+<td>SEC</td>
+<td>Positive ✅</td>
+</tr>
+<tr class="even">
+<td>Total L+SE</td>
+<td>17,706,000</td>
+<td>SEC</td>
+<td>Matches Total Assets ✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current Dolt values match SEC exactly — no changes
+needed.</strong></p>
+<hr />
+<h2 id="readiness-signal">Readiness Signal</h2>
+<blockquote>
+<p><strong>Analysis complete.</strong> Run
+<code>/insert-financials M 2020</code> to write these values to the
+database.</p>
+</blockquote>
+<p><strong>Unresolved flags to review before inserting:</strong></p>
+<ol type="1">
+<li><code>[WARNING]</code> Gross Margin 32.1% is below the 35–45%
+Department Store benchmark — <strong>context-explained</strong>
+(COVID-19 FY2020 markdowns and write-downs). Safe to proceed.</li>
+<li><code>[WARNING]</code> Negative Operating Profit (−$4,475M) and Net
+Profit (−$3,944M) — <strong>context-explained</strong> (COVID impact +
+$3.58B restructuring/impairment charge). Safe to proceed.</li>
+<li>Yahoo Finance data unavailable for FY2020 — only SEC and Dolt
+compared. No reconciliation discrepancies.</li>
+</ol>
+</body>
+</html>

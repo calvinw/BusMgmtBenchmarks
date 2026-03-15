@@ -40,3 +40,12 @@ scripts/
 
 # Build output (deployed via GitHub Actions)
 docs/
+
+# Financial MCP setup
+skills/.venv/
+skills/.env
+
+# Generated analysis reports (local only — script and CSS are tracked)
+skills/reports/*.md
+skills/reports/*.html
+skills/reports/*.pdf

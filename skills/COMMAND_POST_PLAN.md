@@ -12,7 +12,7 @@ The BusMgmtBenchmarks project tracks financial data for 50+ retail companies in 
 
 We discovered that pulling data from different sources (SEC filings, Yahoo Finance) produces inconsistent values for the same fields — especially SGA — because companies report line items differently. For example, TheRealReal reports SGA, Marketing, and Operations & Technology as three separate lines, while Walmart rolls everything into one SGA line. A naive extraction picks up the wrong number.
 
-The old `/fetch-financials` command (which used a local Python XBRL pipeline) has been deleted. We are replacing it with two smarter skills built around remote MCP servers.
+The old `/fetch-financials` command (which used a local Python XBRL pipeline) has been deleted. We replaced it with two smarter skills built around remote MCP servers.
 
 ---
 
@@ -36,13 +36,14 @@ Both MCP servers are already registered and show as Connected in `claude mcp lis
 The main command post. Does everything except write to the database.
 
 **Workflow:**
-1. Look up company name and CIK from `extract/2026/companies_years.csv` or Dolt DB
+1. Query Dolt `company_info` table by `ticker_symbol` to get `company` (exact DB name) and `CIK`
 2. Fetch from SEC and Yahoo in parallel; also query existing Dolt row
 3. Extract the 13 standard fields from each source
 4. Run anomaly detection (see rules below)
 5. Build side-by-side comparison table across all sources
 6. Produce reconciled recommendation with reasoning for each field
 7. Signal ready for `/insert-financials`
+8. Save markdown report to `skills/reports/{TICKER}-{YEAR}.md` (gitignored)
 
 **Key anomaly detection rules:**
 
@@ -113,6 +114,8 @@ Table: `financials` in `calvinw/BusMgmtBenchmarks/main`
 
 **All values stored in thousands of dollars.**
 
+Company metadata (name, CIK, ticker, segment) is in the `company_info` table.
+
 ---
 
 ## Skill File Structure
@@ -129,20 +132,28 @@ skills/
 │   │       └── company-notes.md    ← Known quirks per company (grows over time)
 │   └── insert-financials/
 │       └── SKILL.md
+├── reports/                         ← report tooling + generated output
+│   ├── README.md                    ← naming conventions + PDF export instructions
+│   ├── report.css                   ← stylesheet for HTML reports
+│   ├── generate-html-report.sh      ← converts .md → styled .html
+│   ├── {TICKER}-{YEAR}.html         ← committed; published via GitHub Pages build
+│   ├── {TICKER}-{YEAR}.md           ← gitignored (local working file)
+│   └── {TICKER}-{YEAR}.pdf          ← gitignored (local only)
 ├── setup.sh                         ← ONE script: installs skills + registers MCPs
-├── setup-financial-mcp.sh           ← legacy; superseded by setup.sh
-└── COMMAND_POST_PLAN.md
+├── FINANCIAL_MCP_SETUP.md           ← MCP setup documentation
+└── COMMAND_POST_PLAN.md             ← this file
 ```
 
 `~/.claude/commands/` is where Claude Code looks for slash commands. `setup.sh` copies everything from `skills/commands/` there.
 
-SKILL.md frontmatter format (name + description only):
-```yaml
 ---
-name: analyze-financials
-description: Fetch financial statements from SEC 10-K filings, Yahoo Finance, and Daloopa for a retail company, compare all sources side by side, detect anomalies including SGA composite line items, restatements, and revenue recognition differences, and produce reconciled values ready for the BusMgmtBenchmarks Dolt database. Use when validating or adding financial data for companies in the BusMgmtBenchmarks project.
----
-```
+
+## Report Publishing Workflow
+
+1. `/analyze-financials TICKER YEAR` → saves `skills/reports/{TICKER}-{YEAR}.md` (local, gitignored)
+2. `bash skills/reports/generate-html-report.sh TICKER YEAR` → creates `skills/reports/{TICKER}-{YEAR}.html`
+3. Commit and push the HTML → GitHub Actions copies it to `docs/reports/` during build
+4. Published at: `https://calvinw.github.io/BusMgmtBenchmarks/reports/{TICKER}-{YEAR}.html`
 
 ---
 
@@ -156,7 +167,7 @@ bash skills/setup.sh
 
 This script does three things in order:
 1. **Copies skill directories** from `skills/commands/` → `~/.claude/commands/` (creates dir if needed)
-2. **Registers MCP servers** — same logic as the old `setup-financial-mcp.sh`
+2. **Registers MCP servers** — `mcp-yfinance-10ks` and `mcp-sec-10ks` via SSE
 3. **Verifies** Claude Code can see both MCP servers and prints confirmation
 
 After running it, the collaborator opens Claude Code and `/analyze-financials` and `/insert-financials` are immediately available.
@@ -171,30 +182,16 @@ After running it, the collaborator opens Claude Code and `/analyze-financials` a
 - **Anomaly rules grow over time** — Every new company pattern discovered gets added to `skills/commands/analyze-financials/references/anomaly-rules.md` and committed to the repo
 - **Human review always required before DB write** — `/insert-financials` is always a separate step with explicit confirmation
 - **Skills chain within a session** — Run `/analyze-financials` then `/insert-financials` in the same Claude Code session; context carries forward
-- **Official plugin stays separate** — `/comps`, `/dcf`, `/one-pager` from financial-analysis plugin are for analysis/reporting, not data extraction
-- **Skills travel with the repo** — skill files are plain text committed to git; any collaborator gets the same version
+- **Skills travel with the repo** — skill files are plain text committed to git; any collaborator gets the same version after running `setup.sh`
+- **Reports are publishable** — HTML reports committed to `skills/reports/` are automatically published to GitHub Pages on push
 
 ---
 
-## How to Build These Skills
+## Current Status
 
-Use `/skill-creator` (just installed from `anthropics/skills` via `example-skills@anthropic-agent-skills` marketplace).
-
-In a new Claude Code session:
-1. Read this file: `skills/COMMAND_POST_PLAN.md`
-2. Run `/skill-creator`
-3. Tell it: "I want to build two skills: `analyze-financials` and `insert-financials`. Read skills/COMMAND_POST_PLAN.md for the full spec. Also build `skills/setup.sh`."
-
----
-
-## What Has Already Been Done
-
-- Old `/fetch-financials` command deleted
-- Two remote MCP servers registered and verified Connected:
-  - `mcp-yfinance-10ks` → `https://bus-mgmt-databases.mcp.mathplosion.com/mcp-yfinance-10ks/sse`
-  - `mcp-sec-10ks` → `https://bus-mgmt-databases.mcp.mathplosion.com/mcp-sec-10ks/sse`
-- `skills/setup-financial-mcp.sh` exists (will be superseded by `skills/setup.sh`)
-- `skills/FINANCIAL_MCP_SETUP.md` updated to match
-- `example-skills@anthropic-agent-skills` plugin installed (includes `/skill-creator`)
-- TheRealReal data validated against Dolt DB — SGA composite issue documented above
-- Macy's and Walmart multi-year data pulled and verified from both sources
+- `/analyze-financials` and `/insert-financials` skills fully built and working
+- Remote MCPs registered: `mcp-yfinance-10ks` and `mcp-sec-10ks` (SSE)
+- `setup.sh` installs skills and registers MCPs in one command
+- Report pipeline working: markdown → HTML via pandoc + report.css → GitHub Pages
+- TheRealReal FY2023 and FY2024 validated and reports published
+- Daloopa planned as Source D but not yet connected (requires authentication)

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TRR-2023</title>
+  <style>
+
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+*, *::before, *::after { box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.6;
+color: #1a1a2e;
+background: #ffffff;
+max-width: 100%;
+margin: 0 auto;
+padding: 48px 56px;
+}
+
+h1 {
+font-size: 24px;
+font-weight: 700;
+color: #0f3460;
+border-bottom: 3px solid #0f3460;
+padding-bottom: 12px;
+margin-bottom: 6px;
+}
+h2 {
+font-size: 16px;
+font-weight: 700;
+color: #0f3460;
+background: #eef2f7;
+padding: 8px 14px;
+border-left: 4px solid #0f3460;
+border-radius: 0 4px 4px 0;
+margin-top: 36px;
+margin-bottom: 12px;
+}
+h3 {
+font-size: 14px;
+font-weight: 600;
+color: #333;
+margin-top: 20px;
+}
+
+p strong + br, body > p:first-of-type {
+color: #555;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 16px 0 24px 0;
+font-size: 13px;
+}
+thead tr {
+background: #0f3460;
+color: #ffffff;
+}
+thead th {
+padding: 9px 12px;
+text-align: left;
+font-weight: 600;
+white-space: nowrap;
+}
+tbody tr:nth-child(even) {
+background: #f4f7fb;
+}
+tbody tr:hover {
+background: #e8f0fe;
+}
+tbody td {
+padding: 8px 12px;
+border-bottom: 1px solid #dde3ec;
+vertical-align: top;
+}
+
+tbody td:last-child {
+font-weight: 600;
+color: #0f3460;
+}
+
+code {
+font-size: 12px;
+background: #f0f0f0;
+border-radius: 3px;
+padding: 1px 5px;
+font-family: "SF Mono", "Fira Code", monospace;
+}
+
+td:contains("[WARNING]"), p:contains("[WARNING]") { color: #b45309; }
+
+blockquote {
+background: #ecfdf5;
+border-left: 4px solid #10b981;
+border-radius: 0 6px 6px 0;
+margin: 24px 0;
+padding: 14px 18px;
+color: #065f46;
+font-weight: 500;
+}
+blockquote p { margin: 0; }
+
+hr {
+border: none;
+border-top: 1px solid #dde3ec;
+margin: 28px 0;
+}
+
+@media print {
+body { padding: 20px; font-size: 12px; }
+h2 { break-after: avoid; }
+table { break-inside: avoid; font-size: 11px; }
+blockquote { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<h1 id="the-realreal-trr-fy2023-financial-analysis">The RealReal (TRR) —
+FY2023 Financial Analysis</h1>
+<p><strong>Generated:</strong> 2026-03-15 <strong>Source:</strong>
+/analyze-financials skill</p>
+<hr />
+<h2 id="anomaly-detection">Anomaly Detection</h2>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 25%" />
+<col style="width: 37%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Rule</th>
+<th>Finding</th>
+<th>Flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SGA Composite (Rule 2)</td>
+<td><code>real_OperationsAndTechnologyExpense</code> ($257,041K)
+excluded. Marketing $58,275K included. Restructuring $43,462K and Legal
+settlements $1,340K both excluded.</td>
+<td>✓ Handled</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Restatement</td>
+<td>FY2024 10-K restated FY2023 SGA: $182,453K → $183,793K (+$1,340K
+legal settlement absorbed into SGA line). Current Dolt uses older value
+$240,728K. Restated correct value: <strong>$242,068K</strong>.</td>
+<td>[WARNING] Dolt SGA needs updating — $240,728K → $242,068K</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Rule 3 — Yahoo SGA inflated?</td>
+<td>Yahoo SGA $242,068K vs Total Operating Expenses $542,571K — large
+difference; Rule 3 does not trigger. Yahoo reflects the restated value
+correctly.</td>
+<td>✓ OK</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Operating Profit — Yahoo vs SEC</td>
+<td>Yahoo <code>Operating Income</code> = −$122,831K vs SEC =
+−$166,293K. Delta = $43,462K = restructuring charges. Yahoo excludes
+restructuring. <code>Total Operating Income As Reported</code> in Yahoo
+= −$166,293K. Use SEC.</td>
+<td>[WARNING] Minor — use SEC value.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Balance sheet identity</td>
+<td>Total Assets $446,923K = Total L+SE $446,923K</td>
+<td>✓ OK</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Liabilities derived</td>
+<td>$446,923K − (−$303,299K) = $750,222K — matches SEC Total
+Liabilities</td>
+<td>✓ OK</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Negative equity</td>
+<td>Total SE = −$303,299K</td>
+<td>[WARNING] Expected per company-notes — valid.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Gross margin</td>
+<td>$376,278K / $549,304K = 68.5% — within 60–80% consignment range</td>
+<td>✓ OK</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Inventory</td>
+<td>$22,246K reported — Direct segment justifies non-zero value</td>
+<td>[WARNING] Company-notes says NULL but Direct segment requires
+inventory. Carrying actual value.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>All values in <strong>$thousands</strong>. <code>*</code> = sources
+disagree.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 23%" />
+<col style="width: 28%" />
+<col style="width: 7%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>SEC (FY2023 filing)</th>
+<th>SEC (restated in FY2024)</th>
+<th>Yahoo</th>
+<th>Dolt (current)</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reportDate</td>
+<td>2023-12-31</td>
+<td>2023-12-31</td>
+<td>2023-12-31</td>
+<td>2023-12-31</td>
+<td><strong>2023-12-31</strong></td>
+</tr>
+<tr>
+<td>Net Revenue</td>
+<td>549,304</td>
+<td>549,304</td>
+<td>549,304</td>
+<td>549,304</td>
+<td><strong>549,304</strong></td>
+</tr>
+<tr>
+<td>Cost of Goods</td>
+<td>173,026</td>
+<td>173,026</td>
+<td>173,026</td>
+<td>173,026</td>
+<td><strong>173,026</strong></td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>376,278</td>
+<td>376,278</td>
+<td>376,278</td>
+<td>376,278</td>
+<td><strong>376,278</strong></td>
+</tr>
+<tr>
+<td>SGA</td>
+<td>240,728 *</td>
+<td>242,068 *</td>
+<td>242,068 *</td>
+<td>240,728 *</td>
+<td><strong>242,068</strong> (restated FY2024)</td>
+</tr>
+<tr>
+<td>Operating Profit</td>
+<td>−166,293</td>
+<td>−166,293</td>
+<td>−166,293†</td>
+<td>−166,293</td>
+<td><strong>−166,293</strong></td>
+</tr>
+<tr>
+<td>Net Profit</td>
+<td>−168,472</td>
+<td>−168,472</td>
+<td>−168,472</td>
+<td>−168,472</td>
+<td><strong>−168,472</strong></td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>22,246</td>
+<td>—</td>
+<td>22,246</td>
+<td>22,246</td>
+<td><strong>22,246</strong></td>
+</tr>
+<tr>
+<td>Current Assets</td>
+<td>235,947</td>
+<td>—</td>
+<td>235,947</td>
+<td>235,947</td>
+<td><strong>235,947</strong></td>
+</tr>
+<tr>
+<td>Total Assets</td>
+<td>446,923</td>
+<td>—</td>
+<td>446,923</td>
+<td>446,923</td>
+<td><strong>446,923</strong></td>
+</tr>
+<tr>
+<td>Current Liabilities</td>
+<td>188,862</td>
+<td>—</td>
+<td>188,862</td>
+<td>188,862</td>
+<td><strong>188,862</strong></td>
+</tr>
+<tr>
+<td>Liabilities</td>
+<td>750,222</td>
+<td>—</td>
+<td>750,222</td>
+<td>750,222</td>
+<td><strong>750,222</strong></td>
+</tr>
+<tr>
+<td>Total SE</td>
+<td>−303,299</td>
+<td>—</td>
+<td>−303,299</td>
+<td>−303,299</td>
+<td><strong>−303,299</strong></td>
+</tr>
+<tr>
+<td>Total L+SE</td>
+<td>446,923</td>
+<td>—</td>
+<td>446,923</td>
+<td>446,923</td>
+<td><strong>446,923</strong></td>
+</tr>
+</tbody>
+</table>
+<p>† Yahoo’s <code>Operating Income</code> = −$122,831K (excludes
+restructuring $43,462K); <code>Total Operating Income As Reported</code>
+= −$166,293K matches SEC.</p>
+<hr />
+<h2 id="reconciled-recommendation">Reconciled Recommendation</h2>
+<p>One field needs updating in the Dolt DB:</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 31%" />
+<col style="width: 31%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Current Dolt</th>
+<th>Recommended</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SGA</td>
+<td>240,728</td>
+<td><strong>242,068</strong></td>
+<td>+$1,340K (legal settlement absorbed into SGA per FY2024
+restatement)</td>
+</tr>
+</tbody>
+</table>
+<p>All other fields are correct and would not change.</p>
+<p><strong>Field-by-field notes:</strong> - <strong>SGA
+$242,068K</strong> — Restatement from FY2024 filing absorbed the $1,340K
+legal settlement into the SGA base ($182,453K → $183,793K). Plus
+Marketing $58,275K. Ops &amp; Tech $257,041K excluded. -
+<strong>Operating Profit −$166,293K</strong> — SEC value used (includes
+$43,462K restructuring). Yahoo’s plain “Operating Income” figure
+misleadingly excludes it. - <strong>Inventory $22,246K</strong> —
+Retained; Direct revenue segment justifies. - <strong>Negative equity
+−$303,299K</strong> — Expected and valid.</p>
+<hr />
+<h2 id="unresolved-flags">Unresolved Flags</h2>
+<ol type="1">
+<li>[WARNING] <strong>SGA restatement</strong> — Dolt has $240,728K;
+correct restated value is $242,068K. <strong>Will be
+overwritten</strong> on insert.</li>
+<li>[WARNING] <strong>Negative equity</strong> — Expected per
+company-notes.</li>
+<li>[WARNING] <strong>Inventory nullability</strong> — Same note as
+FY2024; Direct segment justifies $22,246K.</li>
+</ol>
+<hr />
+<p><strong>Analysis complete.</strong> Run
+<code>/insert-financials TRR 2023</code> to write these values to the
+database. The only change from the current Dolt row is <strong>SGA:
+$240,728K → $242,068K</strong> (restatement correction).</p>
+</body>
+</html>

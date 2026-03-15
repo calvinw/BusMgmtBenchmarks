@@ -45,7 +45,6 @@ docs/
 skills/.venv/
 skills/.env
 
-# Generated analysis reports (local only — script and CSS are tracked)
+# Generated analysis reports — markdown and PDF are local only; HTML is committed
 skills/reports/*.md
-skills/reports/*.html
 skills/reports/*.pdf

@@ -31,6 +31,13 @@ jobs:
 
       - run: npm run build
 
+      - name: Copy analysis reports to docs
+        run: |
+          mkdir -p docs/reports
+          if ls skills/reports/*.html 1>/dev/null 2>&1; then
+            cp skills/reports/*.html docs/reports/
+          fi
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3

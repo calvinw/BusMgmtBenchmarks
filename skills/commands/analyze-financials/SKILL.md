@@ -16,13 +16,22 @@ Fetch, compare, and reconcile financial data for a BusMgmtBenchmarks retail comp
 
 ## Step 1 — Look up company metadata
 
-Check `extract/2026/companies_years.csv` for the row matching TICKER to get:
-- Full `company_name` (exactly as stored in the Dolt DB)
-- `CIK` number (needed for SEC fetch)
+Query the Dolt database to get company metadata by ticker symbol:
 
-If unavailable, query Dolt: `SELECT DISTINCT company_name FROM financials LIMIT 100` to confirm spelling.
+```sql
+SELECT company, CIK, display_name, ticker_symbol
+FROM company_info
+WHERE ticker_symbol = '{TICKER}'
+```
 
-If CIK is unknown, ask the user.
+Use `db_string: calvinw/BusMgmtBenchmarks/main`.
+
+From the result, use:
+- `company` — the exact `company_name` as stored in the DB (needed for financials query)
+- `CIK` — needed for the SEC fetch
+- `display_name` — for display in the report header
+
+If no row is returned, ask the user to confirm the ticker. If CIK is NULL, the company has no SEC filing (non-US company) — skip the SEC fetch and use Yahoo only.
 
 ## Step 2 — Fetch all sources in parallel
 
@@ -102,8 +111,12 @@ The report file must contain:
 
 Followed by all content from Steps 4–7 in full: anomaly detection table, side-by-side comparison table, reconciled recommendation, and the readiness signal (including any unresolved flags).
 
-After writing the file, tell the user:
-> Report saved to `reports/{TICKER}-{YEAR}.md`. Open it in VS Code or any markdown viewer, or export to PDF via *File → Print → Save as PDF*.
+After writing the markdown file, tell the user:
+> Report saved to `skills/reports/{TICKER}-{YEAR}.md`.
+> To generate a styled HTML version for sharing, run:
+> `bash skills/reports/generate-html-report.sh {TICKER} {YEAR}`
+> After committing and pushing the HTML, it will be published at:
+> `https://calvinw.github.io/BusMgmtBenchmarks/reports/{TICKER}-{YEAR}.html`
 
 ## References
 

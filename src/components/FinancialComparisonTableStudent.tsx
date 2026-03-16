@@ -190,7 +190,7 @@ export function FinancialComparisonTableStudent() {
       <div className="flex items-center justify-end">
         <button
           onClick={handleExportToExcel}
-          className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white border border-orange-500 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-orange-600 transition-colors shadow-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white border border-pink-500 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-pink-600 transition-colors shadow-sm"
         >
           <Download className="size-4" />
           Export to Excel

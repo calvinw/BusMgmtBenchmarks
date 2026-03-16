@@ -12,9 +12,9 @@
 #   bash skills/setup-codex.sh --symlink
 #
 # What it does:
-#   1. Installs supergateway so Codex can proxy legacy SSE MCP servers over stdio
-#   2. Copies skill directories from skills/commands/ -> ~/.codex/skills/
+#   1. Copies skill directories from skills/commands/ -> ~/.codex/skills/
 #      or creates symlinks with --symlink
+#   2. Installs supergateway if needed
 #   3. Registers mcp-yfinance-10ks, mcp-sec-10ks, and mcp-dolt-database for Codex via supergateway
 #   4. Verifies installed skills contain SKILL.md
 #   5. Prints restart instructions for Codex
@@ -50,7 +50,7 @@ fi
 if ! command -v npm &> /dev/null; then
   echo "ERROR: npm is required for the Codex MCP proxy setup."
   echo ""
-  echo "Install Node.js/npm so the script can install supergateway."
+  echo "Install Node.js/npm so the script can install and launch supergateway."
   exit 1
 fi
 
@@ -63,13 +63,22 @@ fi
 echo "✓ Codex found: $(codex --version)"
 echo ""
 
-echo "Installing supergateway"
 if command -v supergateway &> /dev/null; then
-  echo "  supergateway already available: $(supergateway --version 2>/dev/null || echo installed)"
+  echo "✓ supergateway found: $(command -v supergateway)"
 else
+  echo "Installing supergateway via npm"
+  echo ""
   npm install -g supergateway
-  echo "  ✓ supergateway installed"
 fi
+
+if ! command -v supergateway &> /dev/null; then
+  echo "ERROR: supergateway installation failed."
+  echo ""
+  echo "Verify your npm global bin directory is on PATH, then re-run this script."
+  exit 1
+fi
+
+echo "✓ supergateway ready: $(command -v supergateway)"
 echo ""
 
 mkdir -p "$CODEX_SKILLS_DIR"

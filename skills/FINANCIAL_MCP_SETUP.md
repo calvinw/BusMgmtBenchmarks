@@ -34,7 +34,7 @@ bash skills/setup-codex.sh
 ```
 
 `setup.sh` installs the Claude slash commands and registers the remote MCP servers for Claude.
-`setup-codex.sh` installs the Codex skills and registers the MCP servers through a local `supergateway` bridge.
+`setup-codex.sh` installs the Codex skills, installs `supergateway` if needed, and registers the MCP servers through that local `supergateway` binary.
 
 Current Codex CLI supports direct remote MCP registration only for streamable HTTP via `codex mcp add --url`. These financial servers are legacy SSE endpoints, so Codex connects through a local stdio proxy instead.
 
@@ -54,7 +54,7 @@ All three servers:
 - Require no API keys or authentication
 
 Claude Code can register them directly.
-Codex uses a local `npx -y supergateway --sse ...` bridge so the SSE servers appear as stdio MCP servers to Codex.
+Codex uses a local `supergateway --sse ...` bridge so the SSE servers appear as stdio MCP servers to Codex.
 
 ---
 
@@ -101,8 +101,8 @@ Then re-run:
 bash skills/setup-codex.sh
 ```
 
-**Codex says `npx` or `supergateway` is missing:**
-Install Node.js/npm. `setup-codex.sh` uses `npx -y supergateway` as the bridge command.
+**Codex says `npm` or `supergateway` is missing:**
+Install Node.js/npm. `setup-codex.sh` installs `supergateway` and then registers the MCP entries against the `supergateway` binary directly.
 
 **Servers show as Failed to connect in Claude:**
 Check your internet connection. All MCPs require outbound HTTPS to `bus-mgmt-databases.mcp.mathplosion.com`.

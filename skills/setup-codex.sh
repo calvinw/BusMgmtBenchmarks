@@ -12,11 +12,12 @@
 #   bash skills/setup-codex.sh --symlink
 #
 # What it does:
-#   1. Copies skill directories from skills/commands/ -> ~/.codex/skills/
+#   1. Installs supergateway so Codex can proxy legacy SSE MCP servers over stdio
+#   2. Copies skill directories from skills/commands/ -> ~/.codex/skills/
 #      or creates symlinks with --symlink
-#   2. Registers mcp-yfinance-10ks, mcp-sec-10ks, and mcp-dolt-database for Codex via supergateway
-#   3. Verifies installed skills contain SKILL.md
-#   4. Prints restart instructions for Codex
+#   3. Registers mcp-yfinance-10ks, mcp-sec-10ks, and mcp-dolt-database for Codex via supergateway
+#   4. Verifies installed skills contain SKILL.md
+#   5. Prints restart instructions for Codex
 #
 # Safe to re-run after git pull.
 
@@ -46,10 +47,10 @@ if ! command -v codex &> /dev/null; then
   exit 1
 fi
 
-if ! command -v npx &> /dev/null; then
-  echo "ERROR: npx is required for the Codex MCP proxy setup."
+if ! command -v npm &> /dev/null; then
+  echo "ERROR: npm is required for the Codex MCP proxy setup."
   echo ""
-  echo "Install Node.js/npm so the script can launch supergateway."
+  echo "Install Node.js/npm so the script can install supergateway."
   exit 1
 fi
 
@@ -60,6 +61,15 @@ if [[ ! -d "$SKILLS_SRC" ]]; then
 fi
 
 echo "✓ Codex found: $(codex --version)"
+echo ""
+
+echo "Installing supergateway"
+if command -v supergateway &> /dev/null; then
+  echo "  supergateway already available: $(supergateway --version 2>/dev/null || echo installed)"
+else
+  npm install -g supergateway
+  echo "  ✓ supergateway installed"
+fi
 echo ""
 
 mkdir -p "$CODEX_SKILLS_DIR"
@@ -124,19 +134,19 @@ for server in mcp-yfinance-10ks mcp-sec-10ks mcp-dolt-database; do
 done
 
 codex mcp add mcp-yfinance-10ks -- \
-  npx -y supergateway \
+  supergateway \
   --sse https://bus-mgmt-databases.mcp.mathplosion.com/mcp-yfinance-10ks/sse \
   --logLevel none
 echo "  ✓ mcp-yfinance-10ks registered via supergateway"
 
 codex mcp add mcp-sec-10ks -- \
-  npx -y supergateway \
+  supergateway \
   --sse https://bus-mgmt-databases.mcp.mathplosion.com/mcp-sec-10ks/sse \
   --logLevel none
 echo "  ✓ mcp-sec-10ks registered via supergateway"
 
 codex mcp add mcp-dolt-database -- \
-  npx -y supergateway \
+  supergateway \
   --sse https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse \
   --logLevel none
 echo "  ✓ mcp-dolt-database registered via supergateway"

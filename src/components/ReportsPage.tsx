@@ -9,7 +9,6 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table';
 import {
-  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -448,9 +447,9 @@ export function ReportsPage() {
       </div>
 
       {/* Desktop: Controls and Table together (no gap between) */}
-      <div className="hidden md:block bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
+      <div className="hidden md:block bg-white rounded-xl border border-neutral-200 shadow-sm">
         {/* Desktop Controls Row - Report Type & Year */}
-        <div className="flex items-center gap-6 bg-neutral-100 px-6 py-4 border-b border-neutral-200">
+        <div className="sticky top-0 z-10 flex items-center gap-6 bg-neutral-100 px-6 py-4 border-b border-neutral-200 rounded-t-xl">
           {/* Report Type */}
           <div className="flex items-center gap-3">
             <span className="font-['Geist:Medium',sans-serif] text-neutral-950">Report Type:</span>
@@ -485,10 +484,10 @@ export function ReportsPage() {
           className="bg-white overflow-auto w-full"
           style={{ maxHeight: 'calc(100vh - 320px)' }}
         >
-            <Table className="border-collapse" style={{ minWidth: '100%', width: 'max-content' }}>
+            <table className="border-collapse w-full caption-bottom text-sm" style={{ minWidth: '100%', width: 'max-content' }}>
               <TableHeader>
                 {table.getHeaderGroups().map(headerGroup => (
-                  <TableRow key={headerGroup.id} className="bg-neutral-100 sticky top-0 z-20 hover:bg-neutral-100">
+                  <TableRow key={headerGroup.id} className="bg-neutral-100 hover:bg-neutral-100">
                     {headerGroup.headers.map((header, index) => {
                       const meta = header.column.columnDef.meta as ColumnMeta | undefined;
                       const isSticky = meta?.isSticky;
@@ -500,10 +499,10 @@ export function ReportsPage() {
                         <TableHead
                           key={header.id}
                           className={cn(
-                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap",
+                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap sticky top-0",
                             index > 0 && "border-l",
                             align === 'left' ? "text-left" : "text-right",
-                            isSticky && "sticky z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
+                            isSticky ? "z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]" : "z-20"
                           )}
                           style={{
                             minWidth,
@@ -546,7 +545,7 @@ export function ReportsPage() {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
+            </table>
         </div>
         </div>
 
@@ -565,10 +564,10 @@ export function ReportsPage() {
           className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm overflow-auto w-full"
           style={{ maxHeight: 'calc(100vh - 320px)' }}
         >
-            <Table className="border-collapse" style={{ minWidth: '100%', width: 'max-content' }}>
+            <table className="border-collapse w-full caption-bottom text-sm" style={{ minWidth: '100%', width: 'max-content' }}>
               <TableHeader>
                 {table.getHeaderGroups().map(headerGroup => (
-                  <TableRow key={headerGroup.id} className="bg-neutral-100 sticky top-0 z-20 hover:bg-neutral-100">
+                  <TableRow key={headerGroup.id} className="bg-neutral-100 hover:bg-neutral-100">
                     {headerGroup.headers.map((header, index) => {
                       const meta = header.column.columnDef.meta as ColumnMeta | undefined;
                       const isSticky = meta?.isSticky;
@@ -580,10 +579,10 @@ export function ReportsPage() {
                         <TableHead
                           key={header.id}
                           className={cn(
-                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap",
+                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap sticky top-0",
                             index > 0 && "border-l",
                             align === 'left' ? "text-left" : "text-right",
-                            isSticky && "sticky z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
+                            isSticky ? "z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]" : "z-20"
                           )}
                           style={{
                             minWidth,
@@ -626,7 +625,7 @@ export function ReportsPage() {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
+            </table>
         </div>
         </>
       )}

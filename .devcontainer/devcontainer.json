@@ -6,14 +6,14 @@
       "version": "latest"
     }
   },
-  "postCreateCommand": "echo 'Run: bash start_servers.sh' && mkdir -p ~/.ssh && ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N '' 2>/dev/null || true && mkdir -p ~/.config/opencode && cp /etc/skel/.config/opencode/opencode.json ~/.config/opencode/opencode.json",
+  "postCreateCommand": "echo 'Run: bash start_servers.sh' && bash .devcontainer/post-create.sh",
   "portsAttributes": {
     "3000": {
       "label": "BusMgmt App",
       "onAutoForward": "openBrowser"
     }
   },
-  "remoteEnv": {
+  "containerEnv": {
     "CLAUDE_CODE_DISABLE_VSCODE_EXTENSION": "1"
   },
   "customizations": {
@@ -21,8 +21,15 @@
       "openFiles": []
     },
     "vscode": {
+      "extensions": [],
       "settings": {
-        "chat.agent.enabled": false
+        "extensions.allowed": {
+          "anthropic.claude-code": false,
+          "*": true
+        },
+        "chat.agent.enabled": false,
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.rightClickBehavior": "paste"
       }
     }
   }

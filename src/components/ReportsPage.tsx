@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { ChevronDown, Search, Download } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import fitLogo from 'figma:asset/fd6a1765252638a4eb759f6a240b8db3c878408d.png';
@@ -7,6 +7,7 @@ import {
   getCoreRowModel,
   flexRender,
   type ColumnDef,
+  type ColumnSizingState,
 } from '@tanstack/react-table';
 import {
   TableBody,
@@ -23,8 +24,6 @@ import { fetchReportData, REPORT_TYPES, type ReportType } from '@/lib/api';
 // Types
 interface ColumnMeta {
   isSticky?: boolean;
-  stickyLeft?: string;
-  minWidth?: string;
   align?: 'left' | 'right';
 }
 
@@ -34,6 +33,10 @@ export function ReportsPage() {
   const [data, setData] = useState<any[]>([]);
   const [schema, setSchema] = useState<Array<{ columnName: string; columnType: string }>>([]);
   const [loading, setLoading] = useState(true);
+
+  // Column resizing
+  const [columnSizing, setColumnSizing] = useState<ColumnSizingState>({});
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // Filters
   const [segmentFilterOpen, setSegmentFilterOpen] = useState(false);
@@ -99,6 +102,50 @@ export function ReportsPage() {
     });
     return mapping;
   }, [data]);
+
+  // Auto-size columns to fill the container width when schema changes
+  const initializeColumnSizes = useCallback((containerWidth: number, cols: typeof schema) => {
+    if (cols.length === 0) return;
+    const hasSegment = cols.some(c => c.columnName === 'segment');
+    const hasCompany = cols.some(c => c.columnName === 'company');
+    const segW = 120, compW = 180, minDataW = 90;
+    const fixedW = (hasSegment ? segW : 0) + (hasCompany ? compW : 0);
+    const dataCols = cols.filter(c => c.columnName !== 'segment' && c.columnName !== 'company');
+    const dataW = dataCols.length > 0
+      ? Math.max(minDataW, Math.floor((containerWidth - fixedW) / dataCols.length))
+      : minDataW;
+    const sizing: ColumnSizingState = {};
+    cols.forEach(col => {
+      if (col.columnName === 'segment') sizing[col.columnName] = segW;
+      else if (col.columnName === 'company') sizing[col.columnName] = compW;
+      else sizing[col.columnName] = dataW;
+    });
+    setColumnSizing(sizing);
+  }, []);
+
+  useEffect(() => {
+    if (schema.length === 0) return;
+    const el = tableContainerRef.current;
+    if (!el) {
+      initializeColumnSizes(window.innerWidth - 64, schema);
+      return;
+    }
+
+    // Initial distribution
+    initializeColumnSizes(el.clientWidth, schema);
+
+    // Re-distribute whenever the container width changes (window resize, sidebar toggle, etc.)
+    let lastWidth = el.clientWidth;
+    const ro = new ResizeObserver(entries => {
+      const width = entries[0]?.contentRect.width ?? 0;
+      if (Math.abs(width - lastWidth) > 40) {
+        lastWidth = width;
+        initializeColumnSizes(width, schema);
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [schema, initializeColumnSizes]);
 
   // Filter data - when a segment is deselected, also filter out all companies in that segment
   const filteredData = useMemo(() =>
@@ -198,24 +245,21 @@ export function ReportsPage() {
       const isSubsegment = col.columnName === 'subsegment';
 
       // Only make segment/company sticky if they are at the beginning of the table
-      // Segment should be first (index 0), Company should be first or second (after segment)
       const isSegmentSticky = isSegment && segmentIndex === 0;
       const isCompanySticky = isCompany && (companyIndex === 0 || (hasSegmentColumn && companyIndex === 1));
       const isSticky = isSegmentSticky || isCompanySticky;
 
-      // Position company at 180px only if segment column exists and is first, otherwise at 0
-      const companyStickyLeft = (hasSegmentColumn && segmentIndex === 0) ? '180px' : '0';
-
       const meta: ColumnMeta = {
         isSticky,
-        stickyLeft: isSegmentSticky ? '0' : isCompanySticky ? companyStickyLeft : undefined,
-        minWidth: isSegment ? '180px' : isCompany ? '200px' : '160px',
         align: (isSticky || isSubsegment) ? 'left' : 'right',
       };
 
       return {
         id: col.columnName,
         accessorKey: col.columnName,
+        size: isSegment ? 120 : isCompany ? 180 : 100,
+        minSize: isSegment ? 60 : isCompany ? 140 : 80,
+        enableResizing: true,
         header: () => {
           if (isSegment) {
             return (
@@ -375,12 +419,31 @@ export function ReportsPage() {
 
           return formatColumnHeader(col.columnName);
         },
-        cell: ({ getValue }) => {
+        cell: ({ getValue, row: tableRow }) => {
           const value = getValue();
-          if (isSticky || isSubsegment) {
+
+          if (isSegment) {
+            // Company rows have no segment value — leave cell empty to let row styling speak
+            if (tableRow.original.company) return null;
             return value;
           }
-          return formatValue(value, col.columnName);
+
+          if (isCompany) {
+            if (!value) return null;
+            // Align company names flush with the Company column header
+            return value;
+          }
+
+          if (isSubsegment) return value;
+
+          // Numeric cell — highlight negatives in red
+          const rawNum = typeof value === 'number' ? value : Number(value);
+          const isNegative = !isNaN(rawNum) && rawNum < 0;
+          const formatted = formatValue(value, col.columnName);
+          if (isNegative) {
+            return <span className="text-red-600">{formatted}</span>;
+          }
+          return formatted;
         },
         meta,
       };
@@ -392,71 +455,79 @@ export function ReportsPage() {
     data: filteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    columnResizeMode: 'onChange',
+    state: { columnSizing },
+    onColumnSizingChange: setColumnSizing,
+    defaultColumn: { minSize: 60 },
   });
+
+  // Compute cumulative left offset for sticky columns (updates as user resizes)
+  const stickyLeftMap = useMemo(() => {
+    const map: Record<string, number> = {};
+    let left = 0;
+    table.getAllLeafColumns().forEach(col => {
+      map[col.id] = left;
+      left += col.getSize();
+    });
+    return map;
+  }, [columnSizing, schema]);
 
   return (
     <div className="space-y-2">
-      {/* Sticky FIT Header */}
-      <div className="sticky top-0 z-20 bg-neutral-50 py-6 shadow-sm">
+      {/* Sticky FIT Header — scales down on mobile */}
+      <div className="sticky top-0 z-20 bg-neutral-50 py-3 md:py-6 shadow-sm">
         <div className="flex items-center justify-center">
-          <img src={fitLogo} alt="FIT Retail Index Report" className="h-16" />
+          <img src={fitLogo} alt="FIT Retail Index Report" className="h-10 md:h-16" />
         </div>
       </div>
 
-      {/* Export Section - same for all sizes */}
-      <div className="flex items-center justify-end">
+      {/* Mobile-only controls — stacked, full-width, 44px touch targets */}
+      <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-3">
+        <div className="space-y-1.5">
+          <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Report Type</label>
+          <select
+            value={reportType}
+            onChange={(e) => setReportType(e.target.value)}
+            className="w-full px-3 py-2 min-h-[44px] bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {Object.entries(REPORT_TYPES).map(([value, label]) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Year</label>
+          <select
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            className="w-full px-3 py-2 min-h-[44px] bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {AVAILABLE_YEARS.map(y => (
+              <option key={y} value={y}>{y}</option>
+            ))}
+          </select>
+        </div>
         <button
           onClick={handleExportToExcel}
           disabled={loading || filteredData.length === 0}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white border border-purple-500 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-purple-600 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center gap-2 min-h-[44px] px-4 py-2 bg-purple-500 text-white border border-purple-500 rounded-lg font-['Geist:Medium',sans-serif] text-sm hover:bg-purple-600 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Download className="size-4" />
           Export to Excel
         </button>
       </div>
 
-      {/* Mobile Selector Panel - visible only on mobile */}
-      <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-4">
-        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">Select Options</h3>
-        <div className="space-y-3">
-          <div className="space-y-2">
-            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Report Type</label>
-            <select
-              value={reportType}
-              onChange={(e) => setReportType(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {Object.entries(REPORT_TYPES).map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Year</label>
-            <select
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {AVAILABLE_YEARS.map(y => (
-                <option key={y} value={y}>{y}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
-
       {/* Desktop: Controls and Table together (no gap between) */}
       <div className="hidden md:block bg-white rounded-xl border border-neutral-200 shadow-sm">
-        {/* Desktop Controls Row - Report Type & Year */}
-        <div className="sticky top-0 z-10 flex items-center gap-6 bg-neutral-100 px-6 py-4 border-b border-neutral-200 rounded-t-xl">
+        {/* Desktop/Tablet Controls Row — Report Type, Year, Export */}
+        <div className="sticky top-0 z-10 flex items-center flex-wrap gap-3 lg:gap-6 bg-neutral-100 px-4 lg:px-6 py-3 lg:py-4 border-b border-neutral-200 rounded-t-xl">
           {/* Report Type */}
-          <div className="flex items-center gap-3">
-            <span className="font-['Geist:Medium',sans-serif] text-neutral-950">Report Type:</span>
+          <div className="flex items-center gap-2 lg:gap-3">
+            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-sm lg:text-base whitespace-nowrap">Report Type:</span>
             <select
               value={reportType}
               onChange={(e) => setReportType(e.target.value)}
-              className="px-4 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[320px]"
+              className="px-3 lg:px-4 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[180px] lg:min-w-[320px]"
             >
               {Object.entries(REPORT_TYPES).map(([value, label]) => (
                 <option key={value} value={value}>{label}</option>
@@ -465,53 +536,81 @@ export function ReportsPage() {
           </div>
 
           {/* Year */}
-          <div className="flex items-center gap-3">
-            <span className="font-['Geist:Medium',sans-serif] text-neutral-950">Year:</span>
+          <div className="flex items-center gap-2 lg:gap-3">
+            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-sm lg:text-base whitespace-nowrap">Year:</span>
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="px-4 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 lg:px-4 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {AVAILABLE_YEARS.map(y => (
                 <option key={y} value={y}>{y}</option>
               ))}
             </select>
           </div>
+
+          {/* Export button — right-aligned */}
+          <button
+            onClick={handleExportToExcel}
+            disabled={loading || filteredData.length === 0}
+            className="ml-auto flex items-center gap-2 px-4 py-2 bg-purple-500 text-white border border-purple-500 rounded-lg font-['Geist:Medium',sans-serif] text-sm hover:bg-purple-600 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Download className="size-4" />
+            Export to Excel
+          </button>
         </div>
 
         {/* Desktop Table Container - attached to controls above */}
         <div
+          ref={tableContainerRef}
           className="bg-white overflow-auto w-full"
-          style={{ maxHeight: 'calc(100vh - 320px)' }}
+          style={{ maxHeight: 'calc(100vh - 210px)' }}
         >
-            <table className="border-collapse w-full caption-bottom text-sm" style={{ minWidth: '100%', width: 'max-content' }}>
+            <table
+              className="border-collapse caption-bottom text-sm"
+              style={{ tableLayout: 'fixed', width: table.getTotalSize() }}
+            >
               <TableHeader>
                 {table.getHeaderGroups().map(headerGroup => (
                   <TableRow key={headerGroup.id} className="bg-neutral-100 hover:bg-neutral-100">
                     {headerGroup.headers.map((header, index) => {
                       const meta = header.column.columnDef.meta as ColumnMeta | undefined;
                       const isSticky = meta?.isSticky;
-                      const stickyLeft = meta?.stickyLeft;
-                      const minWidth = meta?.minWidth || '160px';
                       const align = meta?.align || 'right';
 
                       return (
                         <TableHead
                           key={header.id}
                           className={cn(
-                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap sticky top-0",
+                            "px-3 py-3 text-xs leading-tight font-['Geist:Medium',sans-serif] text-neutral-600 border-b border-neutral-200 bg-neutral-100 sticky top-0 select-none",
                             index > 0 && "border-l",
                             align === 'left' ? "text-left" : "text-right",
                             isSticky ? "z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]" : "z-20"
                           )}
                           style={{
-                            minWidth,
-                            ...(isSticky ? { left: stickyLeft, top: 0 } : {})
+                            width: header.getSize(),
+                            position: 'relative',
+                            ...(isSticky ? { left: stickyLeftMap[header.column.id] ?? 0, top: 0 } : {})
                           }}
                         >
                           {header.isPlaceholder
                             ? null
                             : flexRender(header.column.columnDef.header, header.getContext())}
+                          {/* Drag-to-resize handle */}
+                          {header.column.getCanResize() && (
+                            <div
+                              onMouseDown={header.getResizeHandler()}
+                              onTouchStart={header.getResizeHandler()}
+                              className="absolute right-0 top-0 h-full w-2 cursor-col-resize touch-none group/resize flex items-center justify-center"
+                              style={{ userSelect: 'none' }}
+                            >
+                              <div className={`w-0.5 h-4/5 rounded-full transition-colors ${
+                                header.column.getIsResizing()
+                                  ? 'bg-blue-500'
+                                  : 'bg-neutral-300 group-hover/resize:bg-blue-400'
+                              }`} />
+                            </div>
+                          )}
                         </TableHead>
                       );
                     })}
@@ -519,31 +618,59 @@ export function ReportsPage() {
                 ))}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows.map(row => (
-                  <TableRow key={row.id} className="hover:bg-neutral-50 transition-colors">
-                    {row.getVisibleCells().map((cell, index) => {
-                      const meta = cell.column.columnDef.meta as ColumnMeta | undefined;
-                      const isSticky = meta?.isSticky;
-                      const stickyLeft = meta?.stickyLeft;
-                      const align = meta?.align || 'right';
+                {(() => {
+                  let companyRowIdx = -1;
+                  return table.getRowModel().rows.map(row => {
+                    const isSegmentRow = !!row.original.segment && !row.original.company;
+                    if (!isSegmentRow) companyRowIdx++;
+                    const isAltRow = !isSegmentRow && companyRowIdx % 2 === 1;
+                    const stickyBg = isSegmentRow ? 'bg-slate-50' : isAltRow ? 'bg-neutral-50' : 'bg-white';
 
-                      return (
-                        <TableCell
-                          key={cell.id}
-                          className={cn(
-                            "px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200 bg-white whitespace-nowrap",
-                            index > 0 && "border-l",
-                            align === 'left' ? "text-left" : "text-right",
-                            isSticky && "sticky z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
-                          )}
-                          style={isSticky ? { left: stickyLeft } : {}}
-                        >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                    return (
+                      <TableRow
+                        key={row.id}
+                        className={cn(
+                          "transition-colors",
+                          isSegmentRow
+                            ? "bg-slate-50 hover:bg-slate-50 border-t-2 border-neutral-200"
+                            : isAltRow
+                            ? "bg-neutral-50/60 hover:bg-blue-50/30"
+                            : "bg-white hover:bg-blue-50/30"
+                        )}
+                      >
+                        {row.getVisibleCells().map((cell, index) => {
+                          const meta = cell.column.columnDef.meta as ColumnMeta | undefined;
+                          const isSticky = meta?.isSticky;
+                          const align = meta?.align || 'right';
+                          const isTextCol = isSticky || cell.column.id === 'subsegment';
+
+                          return (
+                            <TableCell
+                              key={cell.id}
+                              className={cn(
+                                "px-3 py-2.5 font-['Geist:Regular',sans-serif] border-b border-neutral-200",
+                                index > 0 && "border-l border-neutral-100",
+                                align === 'left' ? "text-left" : "text-right",
+                                isSticky && cn("sticky z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]", stickyBg),
+                                isSegmentRow
+                                  ? "font-semibold text-neutral-800"
+                                  : "text-neutral-950"
+                              )}
+                              style={{
+                                width: cell.column.getSize(),
+                                maxWidth: cell.column.getSize(),
+                                fontVariantNumeric: !isTextCol ? 'tabular-nums' : undefined,
+                                ...(isSticky ? { left: stickyLeftMap[cell.column.id] ?? 0 } : {})
+                              }}
+                            >
+                              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  });
+                })()}
               </TableBody>
             </table>
         </div>
@@ -558,76 +685,85 @@ export function ReportsPage() {
       )}
 
       {!loading && filteredData.length > 0 && (
-        <>
-        {/* Mobile Table Container */}
-        <div
-          className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm overflow-auto w-full"
-          style={{ maxHeight: 'calc(100vh - 320px)' }}
-        >
-            <table className="border-collapse w-full caption-bottom text-sm" style={{ minWidth: '100%', width: 'max-content' }}>
-              <TableHeader>
-                {table.getHeaderGroups().map(headerGroup => (
-                  <TableRow key={headerGroup.id} className="bg-neutral-100 hover:bg-neutral-100">
-                    {headerGroup.headers.map((header, index) => {
-                      const meta = header.column.columnDef.meta as ColumnMeta | undefined;
-                      const isSticky = meta?.isSticky;
-                      const stickyLeft = meta?.stickyLeft;
-                      const minWidth = meta?.minWidth || '160px';
-                      const align = meta?.align || 'right';
+        /* Mobile card view (hidden on md+) — one card per row, grouped under segment headings */
+        <div className="md:hidden space-y-2 pb-4">
+          {(() => {
+            // Derive metric columns for the cards (exclude name/grouping columns)
+            const metricCols = schema.filter(c =>
+              c.columnName !== 'segment' && c.columnName !== 'company' && c.columnName !== 'subsegment'
+            );
 
+            return filteredData.map((row, i) => {
+              const isSegmentRow = !!row.segment && !row.company;
+
+              if (isSegmentRow) {
+                return (
+                  <div key={i} className={i === 0 ? '' : 'pt-2'}>
+                    {/* Segment group label */}
+                    <div className="px-1 pb-1.5 text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                      {row.segment}
+                    </div>
+                    {/* Segment aggregate card */}
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm">
+                      <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wide mb-3">
+                        Segment Average
+                      </div>
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                        {metricCols.map(col => {
+                          const val = row[col.columnName];
+                          const rawNum = typeof val === 'number' ? val : Number(val);
+                          const isNeg = !isNaN(rawNum) && rawNum < 0;
+                          return (
+                            <div key={col.columnName}>
+                              <div className="text-[10px] leading-tight text-neutral-400 mb-0.5">
+                                {formatColumnHeader(col.columnName)}
+                              </div>
+                              <div
+                                className={cn('text-sm font-semibold', isNeg ? 'text-red-600' : 'text-neutral-800')}
+                                style={{ fontVariantNumeric: 'tabular-nums' }}
+                              >
+                                {formatValue(val, col.columnName)}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Company card
+              return (
+                <div key={i} className="bg-white border border-neutral-200 rounded-xl p-4 shadow-sm">
+                  <div className="text-sm font-semibold text-neutral-900 mb-3">
+                    {row.company}
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                    {metricCols.map(col => {
+                      const val = row[col.columnName];
+                      const rawNum = typeof val === 'number' ? val : Number(val);
+                      const isNeg = !isNaN(rawNum) && rawNum < 0;
                       return (
-                        <TableHead
-                          key={header.id}
-                          className={cn(
-                            "px-6 py-4 font-['Geist:Medium',sans-serif] text-neutral-950 border-b border-neutral-200 bg-neutral-100 whitespace-nowrap sticky top-0",
-                            index > 0 && "border-l",
-                            align === 'left' ? "text-left" : "text-right",
-                            isSticky ? "z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]" : "z-20"
-                          )}
-                          style={{
-                            minWidth,
-                            ...(isSticky ? { left: stickyLeft, top: 0 } : {})
-                          }}
-                        >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(header.column.columnDef.header, header.getContext())}
-                        </TableHead>
+                        <div key={col.columnName}>
+                          <div className="text-[10px] leading-tight text-neutral-400 mb-0.5">
+                            {formatColumnHeader(col.columnName)}
+                          </div>
+                          <div
+                            className={cn('text-sm', isNeg ? 'text-red-600 font-medium' : 'text-neutral-900')}
+                            style={{ fontVariantNumeric: 'tabular-nums' }}
+                          >
+                            {formatValue(val, col.columnName)}
+                          </div>
+                        </div>
                       );
                     })}
-                  </TableRow>
-                ))}
-              </TableHeader>
-              <TableBody>
-                {table.getRowModel().rows.map(row => (
-                  <TableRow key={row.id} className="hover:bg-neutral-50 transition-colors">
-                    {row.getVisibleCells().map((cell, index) => {
-                      const meta = cell.column.columnDef.meta as ColumnMeta | undefined;
-                      const isSticky = meta?.isSticky;
-                      const stickyLeft = meta?.stickyLeft;
-                      const align = meta?.align || 'right';
-
-                      return (
-                        <TableCell
-                          key={cell.id}
-                          className={cn(
-                            "px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950 border-b border-neutral-200 bg-white whitespace-nowrap",
-                            index > 0 && "border-l",
-                            align === 'left' ? "text-left" : "text-right",
-                            isSticky && "sticky z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]"
-                          )}
-                          style={isSticky ? { left: stickyLeft } : {}}
-                        >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </table>
+                  </div>
+                </div>
+              );
+            });
+          })()}
         </div>
-        </>
       )}
 
     </div>

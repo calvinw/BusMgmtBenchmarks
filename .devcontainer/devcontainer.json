@@ -6,7 +6,7 @@
       "version": "latest"
     }
   },
-  "postCreateCommand": "echo 'Run: bash start_servers.sh' && bash .devcontainer/post-create.sh",
+  "postCreateCommand": "echo 'Run: bash start_servers.sh' && bash .devcontainer/post-create.sh && mkdir -p ~/.claude && echo '{\"hasCompletedOnboarding\":true,\"installMethod\":\"native\"}' > ~/.claude/.claude.json",
   "portsAttributes": {
     "3000": {
       "label": "BusMgmt App",

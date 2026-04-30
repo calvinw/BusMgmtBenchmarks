@@ -187,7 +187,7 @@ export function CompanySegmentComparison() {
       <div className="flex items-center justify-end">
         <button
           onClick={handleExportToExcel}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white border border-green-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-700 transition-colors shadow-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white border border-yellow-500 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-yellow-600 transition-colors shadow-sm"
         >
           <Download className="size-4" />
           Export to Excel

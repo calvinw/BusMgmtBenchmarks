@@ -48,6 +48,17 @@ export function ContributorsPage() {
               @elenachoi1
             </a>
           </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Jessie You</span>{" "}
+            <a
+              href="https://github.com/j3ssc0des"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @j3ssc0des
+            </a>
+          </li>
         </ul>
       </div>
     </div>

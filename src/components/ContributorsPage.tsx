@@ -59,6 +59,28 @@ export function ContributorsPage() {
               @j3ssc0des
             </a>
           </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Catie He</span>{" "}
+            <a
+              href="https://github.com/catiehe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @catiehe
+            </a>
+          </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Diana Lee</span>{" "}
+            <a
+              href="https://github.com/dianalee3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @dianalee3
+            </a>
+          </li>
         </ul>
       </div>
     </div>

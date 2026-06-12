@@ -139,9 +139,9 @@ function buildBridgeFinancialData(
 export function FinancialComparisonTable() {
   const [companies, setCompanies] = useState<string[]>([]);
   const [selectedCompany1, setSelectedCompany1] = useState<string>('');
-  const [selectedYear1, setSelectedYear1] = useState<string>('2024');
+  const [selectedYear1, setSelectedYear1] = useState<string>('2025');
   const [selectedCompany2, setSelectedCompany2] = useState<string>('');
-  const [selectedYear2, setSelectedYear2] = useState<string>('2024');
+  const [selectedYear2, setSelectedYear2] = useState<string>('2025');
   const [company1Data, setCompany1Data] = useState<CompanyFinancials | null>(null);
   const [company2Data, setCompany2Data] = useState<CompanyFinancials | null>(null);
   const [loading, setLoading] = useState(true);

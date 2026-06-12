@@ -30,7 +30,7 @@ interface ColumnMeta {
 
 export function ReportsPage() {
   const [reportType, setReportType] = useState('segments_and_benchmarks');
-  const [year, setYear] = useState('2024');
+  const [year, setYear] = useState('2025');
   const [data, setData] = useState<any[]>([]);
   const [schema, setSchema] = useState<Array<{ columnName: string; columnType: string }>>([]);
   const [loading, setLoading] = useState(true);

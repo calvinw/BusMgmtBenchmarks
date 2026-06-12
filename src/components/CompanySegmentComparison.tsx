@@ -15,7 +15,7 @@ import {
 } from '@/lib/api';
 
 export function CompanySegmentComparison() {
-  const [selectedYear, setSelectedYear] = useState('2023');
+  const [selectedYear, setSelectedYear] = useState('2025');
   const [selectedCompany, setSelectedCompany] = useState("Dillard's");
   const [selectedSegment, setSelectedSegment] = useState('Department Store');
   const [selectedSubsegment, setSelectedSubsegment] = useState('');

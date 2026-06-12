@@ -18,10 +18,10 @@ export default function App() {
   return (
     <div className="flex min-h-screen bg-neutral-50">
       {/* Mobile menu button - visible only on mobile when menu is closed (or always when in iframe) */}
-      {!isMobileMenuOpen && (
+      {!isMobileMenuOpen && !isIframe && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className={`${isIframe ? '' : 'md:hidden '}fixed top-3 left-2 z-50 p-2 bg-white rounded-lg shadow-md border border-neutral-200`}
+          className="md:hidden fixed top-3 left-2 z-50 p-2 bg-white rounded-lg shadow-md border border-neutral-200"
           aria-label="Open menu"
         >
           <Menu className="size-5 text-neutral-600" />

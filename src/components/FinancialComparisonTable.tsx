@@ -352,20 +352,22 @@ export function FinancialComparisonTable() {
     XLSX.writeFile(wb, 'company_comparison.xlsx');
   };
 
+  const isIframe = new URLSearchParams(window.location.search).get('iframe') === 'true';
+
   const company1 = company1Data;
   const company2 = company2Data;
 
   return (
     <div className="space-y-2">
-      {/* Sticky FIT Header */}
-      <div className="sticky top-0 z-20 bg-neutral-50 py-6 shadow-sm">
+      {/* Sticky FIT Header — hidden at narrow widths when embedded in the chat wrapper */}
+      <div className={`sticky top-0 z-20 bg-neutral-50 py-6 shadow-sm${isIframe ? ' hidden md:block' : ''}`}>
         <div className="flex items-center justify-center">
           <img src={fitLogo} alt="FIT Retail Index Report" className="h-16" />
         </div>
       </div>
 
-      {/* Export Section */}
-      <div className="flex items-center justify-end">
+      {/* Export Section — hidden at narrow widths when embedded in the chat wrapper */}
+      <div className={`flex items-center justify-end${isIframe ? ' hidden md:flex' : ''}`}>
         <button
           onClick={handleExportToExcel}
           className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white border border-green-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-700 transition-colors shadow-sm"

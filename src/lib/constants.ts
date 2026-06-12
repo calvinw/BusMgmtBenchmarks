@@ -2,7 +2,7 @@
 export const DB_URL = 'https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main';
 
 // Available fiscal years for data selection
-export const AVAILABLE_YEARS = ['2024', '2023', '2022', '2021', '2020', '2019'];
+export const AVAILABLE_YEARS = ['2025', '2024', '2023', '2022', '2021', '2020', '2019'];
 
 // Currency symbols for non-USD companies
 export const CURRENCY_MAP: Record<string, string> = {

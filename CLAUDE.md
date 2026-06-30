@@ -116,7 +116,7 @@ The main workflow follows this sequence:
 
 - **Primary Database**: Dolt database hosted at DoltHub (calvinw/BusMgmtBenchmarks)
 - **API Endpoint**: `https://www.dolthub.com/api/v1alpha1/calvinw/BusMgmtBenchmarks/main`
-- **Company Coverage**: 50+ retail companies across 9 segments (Discount, Warehouse Clubs, Off Price, Department Stores, Online, Grocery, Health & Pharmacy, Home Improvement, Specialty)
+- **Company Coverage**: 50+ retail companies across 10 segments (Discount, Warehouse Clubs, Off Price, Department Stores, Online, Grocery, Health & Pharmacy, Home Improvement, Specialty, Resale)
 
 ## Key Development Commands
 
@@ -179,6 +179,7 @@ Companies are organized into retail segments:
 - **Health & Pharmacy**: Walgreens, CVS, Rite Aid
 - **Home Improvement**: Home Depot, Lowe's, Tractor Supply
 - **Specialty**: Divided into subsegments (Beauty, Apparel, Accessories & Shoes, Category Killer, Home)
+- **Resale**: Etsy, eBay, TheRealReal, Alibaba
 
 Additional non-US companies (Louis Vuitton, H&M, Adidas, Inditex/Zara, Aritzia, Ahold Delhaize, ASOS) are included but excluded from SEC filing links.
 

@@ -81,6 +81,17 @@ export function ContributorsPage() {
               @dianalee3
             </a>
           </li>
+          <li className="text-neutral-800">
+            <span className="font-medium">Drithi Abbineni</span>{" "}
+            <a
+              href="https://github.com/drithiabbineni-stack"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              @drithiabbineni-stack
+            </a>
+          </li>
         </ul>
       </div>
     </div>

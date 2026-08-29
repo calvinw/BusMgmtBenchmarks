@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ChevronDown, Search, Download } from 'lucide-react';
-import * as XLSX from 'xlsx';
+import ExcelJS from 'exceljs';
 import fitLogo from 'figma:asset/fd6a1765252638a4eb759f6a240b8db3c878408d.png';
 import {
   useReactTable,
@@ -146,37 +146,139 @@ export function ReportsPage() {
     comp.toLowerCase().includes(companySearch.toLowerCase())
   );
 
-  const handleExportToExcel = () => {
+  const handleExportToExcel = async () => {
     if (filteredData.length === 0) {
       alert('No data to export');
       return;
     }
 
     try {
-      // Create headers from schema
-      const headers = schema.map(col => formatColumnHeader(col.columnName));
+      const preferredColumns = [
+        'segment',
+        'company',
+        'Three_Year_Revenue_CAGR',
+        'Sales_Current_Year_vs_LY',
+        'Return_on_Assets',
+        'Gross_Margin_Percentage',
+        'Cost_of_Goods_Percentage',
+        'SGA_Percentage',
+        'Operating_Profit_Margin_Percentage',
+        'Net_Profit_Margin_Percentage',
+        'Inventory_Turnover',
+        'Asset_Turnover',
+        'Return_on_Assets',
+        'Current_Ratio',
+        'Quick_Ratio',
+        'Debt_to_Equity',
+      ];
+      const schemaColumns = new Set(schema.map(col => col.columnName));
+      const isBenchmarkReport = reportType === 'segments_and_benchmarks';
+      const exportColumns = isBenchmarkReport
+        ? preferredColumns.filter(columnName => schemaColumns.has(columnName))
+        : schema.map(col => col.columnName);
 
-      // Create data rows
-      const excelData = filteredData.map(row =>
-        schema.map(col => {
-          const value = row[col.columnName];
-          if (value === null || value === undefined) return '';
-          if (typeof value === 'number') return value;
-          return value;
-        })
-      );
+      const workbook = new ExcelJS.Workbook();
+      workbook.creator = 'FIT Retail Index';
+      workbook.created = new Date();
 
-      // Combine headers and data
-      const worksheetData = [headers, ...excelData];
+      const worksheet = workbook.addWorksheet('Report', {
+        views: [{ state: 'frozen', xSplit: 2, ySplit: 1 }],
+        pageSetup: {
+          orientation: 'landscape',
+          paperSize: 1,
+          fitToPage: true,
+          fitToWidth: 1,
+          fitToHeight: 0,
+          horizontalCentered: true,
+          margins: {
+            left: 0.2,
+            right: 0.2,
+            top: 0.3,
+            bottom: 0.3,
+            header: 0.1,
+            footer: 0.1,
+          },
+        },
+        properties: { defaultRowHeight: 18 },
+      });
 
-      // Create worksheet and workbook
-      const ws = XLSX.utils.aoa_to_sheet(worksheetData);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Report');
+      worksheet.headerFooter.oddFooter = '&L FIT Retail Index&C Page &P of &N&R' + year;
+      worksheet.autoFilter = {
+        from: { row: 1, column: 1 },
+        to: { row: 1, column: exportColumns.length },
+      };
 
-      // Download file
-      const filename = `${reportType}_${year}.xlsx`;
-      XLSX.writeFile(wb, filename);
+      const headerRow = worksheet.addRow(exportColumns.map(formatColumnHeader));
+      headerRow.height = 44;
+      headerRow.eachCell(cell => {
+        cell.font = { name: 'Arial', size: 9, bold: true, color: { argb: 'FFFFFFFF' } };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1F4E78' } };
+        cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+        cell.border = { bottom: { style: 'medium', color: { argb: 'FF17365D' } } };
+        cell.protection = { locked: false };
+      });
+
+      filteredData.forEach((item, index) => {
+        const row = worksheet.addRow(exportColumns.map(columnName => {
+          const value = item[columnName];
+          if (value === null || value === undefined || value === '') return null;
+          const numericValue = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
+          return typeof numericValue === 'number' && Number.isFinite(numericValue) ? numericValue : value;
+        }));
+        const isSegmentRow = Boolean(item.segment && !item.company);
+        row.height = 17;
+
+        row.eachCell({ includeEmpty: true }, (cell, columnNumber) => {
+          const columnName = exportColumns[columnNumber - 1];
+          cell.font = { name: 'Arial', size: 9, bold: isSegmentRow };
+          cell.alignment = {
+            vertical: 'middle',
+            horizontal: columnNumber <= 2 ? 'left' : 'right',
+          };
+          cell.protection = { locked: false };
+          cell.border = {
+            bottom: { style: 'hair', color: { argb: 'FFD9E2F3' } },
+          };
+
+          if (isSegmentRow) {
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD9EAF7' } };
+          } else if (index % 2 === 1) {
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF7F9FC' } };
+          }
+
+          const normalizedColumnName = columnName.toLowerCase();
+          if (normalizedColumnName.includes('percentage') || normalizedColumnName.includes('margin') ||
+              normalizedColumnName === 'return_on_assets' || normalizedColumnName === 'three_year_revenue_cagr' ||
+              normalizedColumnName === 'sales_current_year_vs_ly') {
+            cell.numFmt = '0.0"%";[Red]-0.0"%";-';
+          } else if (columnNumber > 2) {
+            cell.numFmt = '0.0;[Red]-0.0;-';
+          }
+        });
+      });
+
+      exportColumns.forEach((columnName, index) => {
+        worksheet.getColumn(index + 1).width = columnName === 'segment'
+          ? 22
+          : columnName === 'company'
+            ? 24
+            : 13;
+      });
+      worksheet.pageSetup.printTitlesRow = '1:1';
+      worksheet.pageSetup.printArea = 'A1:' + worksheet.getColumn(exportColumns.length).letter + worksheet.rowCount;
+
+      const output = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([output], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = reportType + '_' + year + '.xlsx';
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error exporting to Excel:', error);
       alert('Error exporting to Excel. Please try again.');

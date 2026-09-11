@@ -28,6 +28,7 @@ export const NON_AMERICAN_COMPANIES = new Set([
 
 // Field names that should be formatted as currency
 export const CURRENCY_FIELDS = new Set([
+  'Total_Revenue',
   'Net Revenue',
   'Cost of Goods',
   'Gross Margin',

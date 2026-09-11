@@ -289,7 +289,47 @@ export async function fetchReportData(
     const query = queries[reportType];
     if (!query) return null;
 
-    return await executeQuery(query);
+    const report = await executeQuery(query);
+
+    if (reportType !== 'segments_and_benchmarks' || report.query_execution_status !== 'Success') {
+      return report;
+    }
+
+    const revenueQuery = `
+      SELECT ci.segment, f.company_name AS company, f.\`Net Revenue\` AS Total_Revenue
+      FROM financials f
+      JOIN company_info ci ON ci.company = f.company_name
+      WHERE f.year = ${year}
+    `;
+    const revenues = await executeQuery<{
+      segment: string;
+      company: string;
+      Total_Revenue: number;
+    }>(revenueQuery);
+
+    if (revenues.query_execution_status !== 'Success') {
+      return report;
+    }
+
+    const companyRevenue = new Map<string, number>();
+    const segmentRevenue = new Map<string, number>();
+
+    revenues.rows.forEach(row => {
+      const revenue = Number(row.Total_Revenue);
+      companyRevenue.set(row.company, revenue);
+      segmentRevenue.set(row.segment, (segmentRevenue.get(row.segment) ?? 0) + revenue);
+    });
+
+    const rows = report.rows.map(row => ({
+      ...row,
+      Total_Revenue: row.company
+        ? companyRevenue.get(String(row.company)) ?? null
+        : segmentRevenue.get(String(row.segment)) ?? null
+    }));
+    const schema = [...(report.schema ?? [])];
+    schema.splice(2, 0, { columnName: 'Total_Revenue', columnType: 'bigint' });
+
+    return { ...report, rows, schema };
   } catch (error) {
     console.error('Error fetching report data:', error);
     return null;

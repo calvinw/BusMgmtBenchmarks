@@ -156,6 +156,7 @@ export function ReportsPage() {
       const preferredColumns = [
         'segment',
         'company',
+        'Total_Revenue',
         'Three_Year_Revenue_CAGR',
         'Sales_Current_Year_vs_LY',
         'Return_on_Assets',
@@ -251,6 +252,8 @@ export function ReportsPage() {
               normalizedColumnName === 'return_on_assets' || normalizedColumnName === 'three_year_revenue_cagr' ||
               normalizedColumnName === 'sales_current_year_vs_ly') {
             cell.numFmt = '0.0"%";[Red]-0.0"%";-';
+          } else if (columnName === 'Total_Revenue') {
+            cell.numFmt = '$#,##0;[Red]-$#,##0;-';
           } else if (columnNumber > 2) {
             cell.numFmt = '0.0;[Red]-0.0;-';
           }

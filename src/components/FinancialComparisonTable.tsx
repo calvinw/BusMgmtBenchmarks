@@ -370,7 +370,7 @@ export function FinancialComparisonTable() {
       <div className={`flex items-center justify-end${isIframe ? ' hidden md:flex' : ''}`}>
         <button
           onClick={handleExportToExcel}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white border border-purple-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-purple-700 transition-colors shadow-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white border border-blue-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-blue-700 transition-colors shadow-sm"
         >
           <Download className="size-4" />
           Export to Excel

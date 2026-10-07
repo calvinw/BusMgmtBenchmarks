@@ -47,7 +47,7 @@ export function Sidebar({
   };
 
   return (
-    <div className="h-full bg-white border-r border-neutral-200 flex flex-col">
+    <div className="h-full bg-white border-l border-neutral-200 flex flex-col">
       <div className="flex items-center justify-between">
         <Logo />
         {/* Close button - visible only on mobile (or always when in iframe) */}

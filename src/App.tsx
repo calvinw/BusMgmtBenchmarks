@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { FinancialComparisonTable } from './components/FinancialComparisonTable';
 import { CompanySegmentComparison } from './components/CompanySegmentComparison';
 import { ReportsPage } from './components/ReportsPage';
+import { PositioningMapPage } from './components/PositioningMapPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('company-vs-company');
@@ -53,6 +54,7 @@ export default function App() {
       <main className={`flex-1 p-4 pt-16 ${isIframe ? '' : 'md:p-8 md:pt-8 '}min-w-0 overflow-hidden`}>
         {currentPage === 'company-vs-company' && <FinancialComparisonTable />}
         {currentPage === 'company-vs-segment' && <CompanySegmentComparison />}
+        {currentPage === 'positioning-map' && <PositioningMapPage />}
         {currentPage === 'reports' && <ReportsPage />}
       </main>
     </div>

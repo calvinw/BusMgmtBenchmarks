@@ -184,6 +184,56 @@ export async function fetchCompanyFinancials(
   }
 }
 
+// One company's data for a single year, with its segment (used by the Positioning Map)
+export type CompanySnapshot = CompanyFinancials & {
+  segment: string | null;
+  subsegment: string | null;
+};
+
+/**
+ * Fetches financial data (with calculated indicators) and segment info
+ * for every company in a given year.
+ */
+export async function fetchYearSnapshot(year: string): Promise<CompanySnapshot[]> {
+  try {
+    const [financials, metrics] = await Promise.all([
+      executeQuery<Record<string, number>>(
+        `SELECT f.*, ci.segment, ci.subsegment FROM financials f
+         LEFT JOIN company_info ci ON ci.company = f.company_name
+         WHERE f.year = ${Number(year)} ORDER BY f.company_name`
+      ),
+      executeQuery<{ company_name: string; Three_Year_Revenue_CAGR: number | null }>(
+        `SELECT company_name, Three_Year_Revenue_CAGR FROM financial_metrics WHERE year = ${Number(year)}`
+      )
+    ]);
+
+    if (financials.query_execution_status !== 'Success') return [];
+
+    const cagrByCompany = new Map<string, number | null>();
+    if (metrics.query_execution_status === 'Success') {
+      metrics.rows.forEach(row => cagrByCompany.set(row.company_name, row.Three_Year_Revenue_CAGR ?? null));
+    }
+
+    return financials.rows.map(row => {
+      const company = String(row.company_name);
+      const cagr = cagrByCompany.get(company);
+      const info = row as unknown as Record<string, string | null>;
+      return {
+        ...row,
+        ...calculateFinancialIndicators(row),
+        company,
+        year: Number(year),
+        segment: info.segment ?? null,
+        subsegment: info.subsegment ?? null,
+        'Three Year Revenue CAGR': cagr === undefined || cagr === null ? null : Number(cagr)
+      } as CompanySnapshot;
+    });
+  } catch (error) {
+    console.error('Error fetching year snapshot:', error);
+    return [];
+  }
+}
+
 /**
  * Fetches list of all company names from the financials table.
  */

@@ -1,4 +1,4 @@
-import { BarChart3, Building2, FileText, X } from 'lucide-react';
+import { BarChart3, Building2, ChartScatter, FileText, X } from 'lucide-react';
 
 function Logo() {
   return (
@@ -78,6 +78,12 @@ export function Sidebar({
           label="Company vs Segment"
           active={currentPage === 'company-vs-segment'}
           onClick={() => handleNavClick('company-vs-segment')}
+        />
+        <NavItem
+          icon={<ChartScatter />}
+          label="Positioning Map"
+          active={currentPage === 'positioning-map'}
+          onClick={() => handleNavClick('positioning-map')}
         />
         <NavItem
           icon={<FileText />}

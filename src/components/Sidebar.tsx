@@ -1,4 +1,4 @@
-import { BarChart3, Building2, FileText, TrendingUp, X } from 'lucide-react';
+import { BarChart3, Building2, ChartScatter, FileText, TrendingUp, X } from 'lucide-react';
 
 function Logo() {
   return (
@@ -84,6 +84,12 @@ export function Sidebar({
           label="Trends Over Time"
           active={currentPage === 'trends'}
           onClick={() => handleNavClick('trends')}
+        />
+        <NavItem
+          icon={<ChartScatter />}
+          label="Positioning Map"
+          active={currentPage === 'positioning-map'}
+          onClick={() => handleNavClick('positioning-map')}
         />
         <NavItem
           icon={<FileText />}

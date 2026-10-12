@@ -5,6 +5,7 @@ import { FinancialComparisonTable } from './components/FinancialComparisonTable'
 import { CompanySegmentComparison } from './components/CompanySegmentComparison';
 import { ReportsPage } from './components/ReportsPage';
 import { TrendsPage } from './components/TrendsPage';
+import { PositioningMapPage } from './components/PositioningMapPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('company-vs-company');
@@ -55,6 +56,7 @@ export default function App() {
         {currentPage === 'company-vs-company' && <FinancialComparisonTable />}
         {currentPage === 'company-vs-segment' && <CompanySegmentComparison />}
         {currentPage === 'trends' && <TrendsPage />}
+        {currentPage === 'positioning-map' && <PositioningMapPage />}
         {currentPage === 'reports' && <ReportsPage />}
       </main>
     </div>

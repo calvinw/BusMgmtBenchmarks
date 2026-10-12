@@ -185,6 +185,55 @@ export async function fetchCompanyFinancials(
 }
 
 /**
+ * Fetches every available year of financial data (with calculated indicators)
+ * for a set of companies. Returns a map of company name -> rows sorted by year.
+ */
+export async function fetchCompanyHistory(
+  companies: string[]
+): Promise<Record<string, CompanyFinancials[]>> {
+  const history: Record<string, CompanyFinancials[]> = {};
+  companies.forEach(company => { history[company] = []; });
+  if (companies.length === 0) return history;
+
+  try {
+    const inList = companies.map(c => `'${escapeForSQL(c)}'`).join(', ');
+    const [financials, metrics] = await Promise.all([
+      executeQuery<Record<string, number>>(
+        `SELECT * FROM financials WHERE company_name IN (${inList}) ORDER BY year`
+      ),
+      executeQuery<{ company_name: string; year: number; Three_Year_Revenue_CAGR: number | null }>(
+        `SELECT company_name, year, Three_Year_Revenue_CAGR FROM financial_metrics WHERE company_name IN (${inList})`
+      )
+    ]);
+
+    const cagrByKey = new Map<string, number | null>();
+    if (metrics.query_execution_status === 'Success') {
+      metrics.rows.forEach(row => {
+        cagrByKey.set(`${row.company_name}|${row.year}`, row.Three_Year_Revenue_CAGR ?? null);
+      });
+    }
+
+    if (financials.query_execution_status === 'Success') {
+      financials.rows.forEach(row => {
+        const company = String(row.company_name);
+        const year = Number(row.year);
+        const cagr = cagrByKey.get(`${company}|${year}`);
+        history[company]?.push({
+          ...row,
+          ...calculateFinancialIndicators(row),
+          company,
+          year,
+          'Three Year Revenue CAGR': cagr === undefined || cagr === null ? null : Number(cagr)
+        } as CompanyFinancials);
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching company history:', error);
+  }
+  return history;
+}
+
+/**
  * Fetches list of all company names from the financials table.
  */
 export async function fetchCompanyNames(): Promise<string[]> {

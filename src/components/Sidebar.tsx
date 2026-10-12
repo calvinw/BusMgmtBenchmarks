@@ -1,4 +1,4 @@
-import { BarChart3, Building2, FileText, X } from 'lucide-react';
+import { BarChart3, Building2, FileText, TrendingUp, X } from 'lucide-react';
 
 function Logo() {
   return (
@@ -78,6 +78,12 @@ export function Sidebar({
           label="Company vs Segment"
           active={currentPage === 'company-vs-segment'}
           onClick={() => handleNavClick('company-vs-segment')}
+        />
+        <NavItem
+          icon={<TrendingUp />}
+          label="Trends Over Time"
+          active={currentPage === 'trends'}
+          onClick={() => handleNavClick('trends')}
         />
         <NavItem
           icon={<FileText />}

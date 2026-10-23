@@ -43,8 +43,11 @@ function formatCompanyValue(
 const BRIDGE_REQUEST_TYPE = 'busmgmt.bridge.request';
 const BRIDGE_RESPONSE_TYPE = 'busmgmt.bridge.response';
 
+const NUMBERS_SECTION = 'Financial Numbers (in thousands)';
+const INDICATORS_SECTION = 'Financial Indicators';
+
 const FINANCIAL_SECTIONS: Record<string, Array<[string, string]>> = {
-  'Financial Numbers (in thousands)': [
+  [NUMBERS_SECTION]: [
     ['Total Revenue', 'Net Revenue'],
     ['Cost of Goods', 'Cost of Goods'],
     ['Gross Margin', 'Gross Margin'],
@@ -54,7 +57,7 @@ const FINANCIAL_SECTIONS: Record<string, Array<[string, string]>> = {
     ['Inventory', 'Inventory'],
     ['Total Assets', 'Total Assets']
   ],
-  'Financial Indicators': [
+  [INDICATORS_SECTION]: [
     ['Cost of goods percentage (COGS/Net Sales)', 'Cost of Goods %'],
     ['Gross margin percentage (GM/Net Sales)', 'Gross Margin %'],
     ['SG&A expense percentage (SG&A/Net Sales)', 'SGA %'],
@@ -70,6 +73,34 @@ const FINANCIAL_SECTIONS: Record<string, Array<[string, string]>> = {
   ]
 };
 
+// Shorter row labels used in the narrow mobile table
+const MOBILE_LABELS: Record<string, string> = {
+  'Net Revenue': 'Revenue',
+  'Cost of Goods': 'COGS',
+  'Gross Margin': 'Gross Margin',
+  'SGA': 'SG&A',
+  'Operating Profit': 'Op. Profit',
+  'Net Profit': 'Net Profit',
+  'Inventory': 'Inventory',
+  'Total Assets': 'Total Assets',
+  'Cost of Goods %': 'COGS %',
+  'Gross Margin %': 'Gross %',
+  'SGA %': 'SG&A %',
+  'Operating Profit Margin %': 'Op. Margin %',
+  'Net Profit Margin %': 'Net Margin %',
+  'Inventory Turnover': 'Inv. Turn',
+  'Current Ratio': 'Current',
+  'Quick Ratio': 'Quick',
+  'Debt to Equity': 'D/E',
+  'Asset Turnover': 'Asset Turn',
+  'Return on Assets': 'ROA',
+  'Three Year Revenue CAGR': '3Y CAGR'
+};
+
+// Column layouts: label column + one column per company (3 companies)
+const DESKTOP_GRID = 'grid-cols-[2fr_1fr_1fr_1fr]';
+const MOBILE_GRID = 'grid-cols-4';
+
 type BridgeAction = 'get_selection' | 'set_selection' | 'get_financial_data';
 
 interface BridgeRequestMessage {
@@ -81,24 +112,29 @@ interface BridgeRequestMessage {
     year1?: string;
     company2?: string;
     year2?: string;
+    company3?: string;
+    year3?: string;
   };
 }
 
-function buildBridgeFinancialData(
-  company1Data: CompanyFinancials | null,
-  company2Data: CompanyFinancials | null,
-  selectedCompany1: string,
-  selectedYear1: string,
-  selectedCompany2: string,
-  selectedYear2: string
-) {
-  const company1Label = company1Data
-    ? `${company1Data.company} (${company1Data.year})`
-    : `${selectedCompany1} (${selectedYear1}) - No Data`;
-  const company2Label = company2Data
-    ? `${company2Data.company} (${company2Data.year})`
-    : `${selectedCompany2} (${selectedYear2}) - No Data`;
+type CompareMode = 'companies' | 'years';
 
+// One selected company column: which company/year is picked and its loaded data
+interface CompanySlot {
+  company: string;
+  year: string;
+  data: CompanyFinancials | null;
+  setCompany: (company: string) => void;
+  setYear: (year: string) => void;
+}
+
+function slotLabel(slot: CompanySlot): string {
+  return slot.data
+    ? `${slot.data.company} (${slot.data.year})`
+    : `${slot.company} (${slot.year}) - No Data`;
+}
+
+function buildBridgeFinancialData(slots: CompanySlot[]) {
   const formatMetric = (companyData: CompanyFinancials | null, fieldName: string) => {
     if (!companyData) {
       return '-';
@@ -110,28 +146,26 @@ function buildBridgeFinancialData(
     );
   };
 
-  const numbers: Record<string, { company1: string; company2: string }> = {};
-  const indicators: Record<string, { company1: string; company2: string }> = {};
+  const buildSection = (sectionName: string) => {
+    const section: Record<string, Record<string, string>> = {};
+    for (const [label, fieldName] of FINANCIAL_SECTIONS[sectionName]) {
+      section[label] = {};
+      slots.forEach((slot, i) => {
+        section[label][`company${i + 1}`] = formatMetric(slot.data, fieldName);
+      });
+    }
+    return section;
+  };
 
-  for (const [label, fieldName] of FINANCIAL_SECTIONS['Financial Numbers (in thousands)']) {
-    numbers[label] = {
-      company1: formatMetric(company1Data, fieldName),
-      company2: formatMetric(company2Data, fieldName)
-    };
-  }
-
-  for (const [label, fieldName] of FINANCIAL_SECTIONS['Financial Indicators']) {
-    indicators[label] = {
-      company1: formatMetric(company1Data, fieldName),
-      company2: formatMetric(company2Data, fieldName)
-    };
-  }
+  const labels: Record<string, string> = {};
+  slots.forEach((slot, i) => {
+    labels[`company${i + 1}`] = slotLabel(slot);
+  });
 
   return {
-    company1: company1Label,
-    company2: company2Label,
-    financial_numbers: numbers,
-    financial_indicators: indicators,
+    ...labels,
+    financial_numbers: buildSection(NUMBERS_SECTION),
+    financial_indicators: buildSection(INDICATORS_SECTION),
     note: 'Values are formatted as shown in the UI, with financial numbers in thousands.'
   };
 }
@@ -142,9 +176,36 @@ export function FinancialComparisonTable() {
   const [selectedYear1, setSelectedYear1] = useState<string>('2025');
   const [selectedCompany2, setSelectedCompany2] = useState<string>('');
   const [selectedYear2, setSelectedYear2] = useState<string>('2025');
-  const [company1Data, setCompany1Data] = useState<CompanyFinancials | null>(null);
-  const [company2Data, setCompany2Data] = useState<CompanyFinancials | null>(null);
+  const [selectedCompany3, setSelectedCompany3] = useState<string>('');
+  const [selectedYear3, setSelectedYear3] = useState<string>('2025');
+  // 'companies' = three different companies; 'years' = one company across three years
+  const [mode, setMode] = useState<CompareMode>('companies');
+  const [trendCompany, setTrendCompany] = useState<string>('');
+  const [trendYears, setTrendYears] = useState<string[]>(['2023', '2024', '2025']);
+  const [columnData, setColumnData] = useState<Array<CompanyFinancials | null>>([null, null, null]);
   const [loading, setLoading] = useState(true);
+
+  const isYearsMode = mode === 'years';
+
+  const setTrendYear = (index: number) => (year: string) =>
+    setTrendYears(prev => prev.map((y, i) => (i === index ? year : y)));
+
+  const slots: CompanySlot[] = isYearsMode
+    ? trendYears.map((year, i) => ({
+        company: trendCompany,
+        year,
+        data: columnData[i],
+        setCompany: setTrendCompany,
+        setYear: setTrendYear(i)
+      }))
+    : [
+        { company: selectedCompany1, year: selectedYear1, data: columnData[0], setCompany: setSelectedCompany1, setYear: setSelectedYear1 },
+        { company: selectedCompany2, year: selectedYear2, data: columnData[1], setCompany: setSelectedCompany2, setYear: setSelectedYear2 },
+        { company: selectedCompany3, year: selectedYear3, data: columnData[2], setCompany: setSelectedCompany3, setYear: setSelectedYear3 }
+      ];
+
+  // Changes whenever any visible column's company or year changes
+  const selectionKey = slots.map(slot => `${slot.company}|${slot.year}`).join(',');
 
   // Fetch company list on mount
   useEffect(() => {
@@ -154,6 +215,8 @@ export function FinancialComparisonTable() {
       if (companyList.length >= 2) {
         setSelectedCompany1(companyList.includes("Dillard's") ? "Dillard's" : companyList[0]);
         setSelectedCompany2(companyList.includes("Macy's") ? "Macy's" : companyList[1]);
+        setSelectedCompany3(companyList.includes("Kohl's") ? "Kohl's" : companyList[Math.min(2, companyList.length - 1)]);
+        setTrendCompany(companyList.includes("Macy's") ? "Macy's" : companyList[0]);
       } else {
         setLoading(false);
       }
@@ -161,24 +224,29 @@ export function FinancialComparisonTable() {
     loadCompanies();
   }, []);
 
-  // Fetch company data when selections change
+  // Fetch data for the visible columns when selections or mode change
   useEffect(() => {
+    let cancelled = false;
     const loadData = async () => {
-      if (!selectedCompany1 || !selectedCompany2) {
+      if (slots.some(slot => !slot.company)) {
         return;
       }
 
       setLoading(true);
-      const [data1, data2] = await Promise.all([
-        fetchCompanyFinancials(selectedCompany1, selectedYear1),
-        fetchCompanyFinancials(selectedCompany2, selectedYear2)
-      ]);
-      setCompany1Data(data1);
-      setCompany2Data(data2);
-      setLoading(false);
+      const results = await Promise.all(
+        slots.map(slot => fetchCompanyFinancials(slot.company, slot.year))
+      );
+      // Ignore results if the selection changed while this request was in flight
+      if (!cancelled) {
+        setColumnData(results);
+        setLoading(false);
+      }
     };
     loadData();
-  }, [selectedCompany1, selectedYear1, selectedCompany2, selectedYear2]);
+    return () => {
+      cancelled = true;
+    };
+  }, [selectionKey]);
 
   useEffect(() => {
     const isBridgeRequest = (value: unknown): value is BridgeRequestMessage => {
@@ -225,77 +293,60 @@ export function FinancialComparisonTable() {
       const { requestId, action, payload } = event.data;
 
       if (action === 'get_selection') {
-        postBridgeResponse(event.source, event.origin, requestId, action, true, {
-          company1: selectedCompany1,
-          year1: selectedYear1,
-          company2: selectedCompany2,
-          year2: selectedYear2
+        const selection: Record<string, string> = { mode };
+        slots.forEach((slot, i) => {
+          selection[`company${i + 1}`] = slot.company;
+          selection[`year${i + 1}`] = slot.year;
         });
+        postBridgeResponse(event.source, event.origin, requestId, action, true, selection);
         return;
       }
 
       if (action === 'set_selection') {
         const updates: Record<string, string> = {};
         const warnings: string[] = [];
+        const selection: Record<string, string> = {};
 
-        if (payload?.company1) {
-          if (companies.includes(payload.company1)) {
-            setSelectedCompany1(payload.company1);
-            updates.company1 = payload.company1;
-          } else {
-            warnings.push(`Unknown company1 value: ${payload.company1}`);
-          }
-        }
+        slots.forEach((slot, i) => {
+          const companyKey = `company${i + 1}` as 'company1' | 'company2' | 'company3';
+          const yearKey = `year${i + 1}` as 'year1' | 'year2' | 'year3';
+          const requestedCompany = payload?.[companyKey];
+          const requestedYear = payload?.[yearKey];
 
-        if (payload?.company2) {
-          if (companies.includes(payload.company2)) {
-            setSelectedCompany2(payload.company2);
-            updates.company2 = payload.company2;
-          } else {
-            warnings.push(`Unknown company2 value: ${payload.company2}`);
-          }
-        }
+          selection[companyKey] = slot.company;
+          selection[yearKey] = slot.year;
 
-        if (payload?.year1) {
-          if (AVAILABLE_YEARS.includes(payload.year1)) {
-            setSelectedYear1(payload.year1);
-            updates.year1 = payload.year1;
-          } else {
-            warnings.push(`Unsupported year1 value: ${payload.year1}`);
+          if (requestedCompany) {
+            if (companies.includes(requestedCompany)) {
+              slot.setCompany(requestedCompany);
+              updates[companyKey] = requestedCompany;
+              selection[companyKey] = requestedCompany;
+            } else {
+              warnings.push(`Unknown ${companyKey} value: ${requestedCompany}`);
+            }
           }
-        }
 
-        if (payload?.year2) {
-          if (AVAILABLE_YEARS.includes(payload.year2)) {
-            setSelectedYear2(payload.year2);
-            updates.year2 = payload.year2;
-          } else {
-            warnings.push(`Unsupported year2 value: ${payload.year2}`);
+          if (requestedYear) {
+            if (AVAILABLE_YEARS.includes(requestedYear)) {
+              slot.setYear(requestedYear);
+              updates[yearKey] = requestedYear;
+              selection[yearKey] = requestedYear;
+            } else {
+              warnings.push(`Unsupported ${yearKey} value: ${requestedYear}`);
+            }
           }
-        }
+        });
 
         postBridgeResponse(event.source, event.origin, requestId, action, true, {
           updates,
           warnings,
-          selection: {
-            company1: payload?.company1 && companies.includes(payload.company1) ? payload.company1 : selectedCompany1,
-            year1: payload?.year1 && AVAILABLE_YEARS.includes(payload.year1) ? payload.year1 : selectedYear1,
-            company2: payload?.company2 && companies.includes(payload.company2) ? payload.company2 : selectedCompany2,
-            year2: payload?.year2 && AVAILABLE_YEARS.includes(payload.year2) ? payload.year2 : selectedYear2
-          }
+          selection
         });
         return;
       }
 
       if (action === 'get_financial_data') {
-        postBridgeResponse(event.source, event.origin, requestId, action, true, buildBridgeFinancialData(
-          company1Data,
-          company2Data,
-          selectedCompany1,
-          selectedYear1,
-          selectedCompany2,
-          selectedYear2
-        ));
+        postBridgeResponse(event.source, event.origin, requestId, action, true, buildBridgeFinancialData(slots));
         return;
       }
 
@@ -304,18 +355,10 @@ export function FinancialComparisonTable() {
 
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [
-    companies,
-    company1Data,
-    company2Data,
-    selectedCompany1,
-    selectedCompany2,
-    selectedYear1,
-    selectedYear2
-  ]);
+  }, [companies, columnData, mode, selectionKey]);
 
   const handleExportToExcel = () => {
-    if (!company1Data && !company2Data) {
+    if (slots.every(slot => !slot.data)) {
       alert('No data available to export. Please select companies and years that have data.');
       return;
     }
@@ -324,22 +367,21 @@ export function FinancialComparisonTable() {
     const excelData: any[][] = [];
 
     // Add header row
-    excelData.push([
-      '',
-      company1Data ? `${company1Data.company} (${company1Data.year})` : `${selectedCompany1} (${selectedYear1}) - No Data`,
-      company2Data ? `${company2Data.company} (${company2Data.year})` : `${selectedCompany2} (${selectedYear2}) - No Data`
-    ]);
+    excelData.push(['', ...slots.map(slotLabel)]);
 
     // Add each section
     for (const [sectionName, fields] of Object.entries(FINANCIAL_SECTIONS)) {
       // Add section header
-      excelData.push([sectionName, '', '']);
+      excelData.push([sectionName, ...slots.map(() => '')]);
 
       // Add data rows
       for (const [label, fieldName] of fields) {
-        const value1 = company1Data ? formatValue(company1Data[fieldName as keyof CompanyFinancials] as number, fieldName, company1Data.company) : '-';
-        const value2 = company2Data ? formatValue(company2Data[fieldName as keyof CompanyFinancials] as number, fieldName, company2Data.company) : '-';
-        excelData.push([label, value1, value2]);
+        excelData.push([
+          label,
+          ...slots.map(slot =>
+            slot.data ? formatValue(slot.data[fieldName as keyof CompanyFinancials] as number, fieldName, slot.data.company) : '-'
+          )
+        ]);
       }
     }
 
@@ -349,13 +391,74 @@ export function FinancialComparisonTable() {
     XLSX.utils.book_append_sheet(wb, ws, 'Company Comparison');
 
     // Download the file
-    XLSX.writeFile(wb, 'company_comparison.xlsx');
+    XLSX.writeFile(wb, isYearsMode ? 'company_year_comparison.xlsx' : 'company_comparison.xlsx');
   };
 
   const isIframe = new URLSearchParams(window.location.search).get('iframe') === 'true';
 
-  const company1 = company1Data;
-  const company2 = company2Data;
+  const mobileCell = "px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right min-w-0";
+  const mobileLabelCell = "px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs min-w-0 truncate";
+  const indicatorFields = FINANCIAL_SECTIONS[INDICATORS_SECTION];
+
+  const renderMobileRows = (fields: Array<[string, string]>, isLastSection: boolean) =>
+    fields.map(([, fieldName], rowIndex) => {
+      const isLastRow = isLastSection && rowIndex === fields.length - 1;
+      const border = isLastRow ? '' : ' border-b border-neutral-200';
+      return (
+        <div key={fieldName} className="contents">
+          <div className={mobileLabelCell + border}>{MOBILE_LABELS[fieldName] ?? fieldName}</div>
+          {slots.map((slot, i) => (
+            <div key={i} className={mobileCell + border}>{formatCompanyValue(slot.data, fieldName)}</div>
+          ))}
+        </div>
+      );
+    });
+
+  // Column heading text for the narrow mobile table
+  const columnTitle = (slot: CompanySlot) => (isYearsMode ? slot.year : `${slot.company} (${slot.year})`);
+
+  const companySelect = (value: string, onChange: (company: string) => void, sizeClass = '') => (
+    <select
+      className={`w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${sizeClass}`}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {companies.map(c => <option key={c} value={c}>{c}</option>)}
+    </select>
+  );
+
+  const yearSelect = (value: string, onChange: (year: string) => void, sizeClass = '') => (
+    <select
+      className={`w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${sizeClass}`}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+    </select>
+  );
+
+  const modeButton = (value: CompareMode, label: string) => (
+    <button
+      onClick={() => setMode(value)}
+      aria-pressed={mode === value}
+      className={`px-3 py-1.5 rounded-md text-sm font-['Geist:Medium',sans-serif] transition-colors ${
+        mode === value ? 'bg-white text-neutral-950 shadow-sm' : 'text-neutral-600 hover:text-neutral-950'
+      }`}
+    >
+      {label}
+    </button>
+  );
+
+  const renderSecLink =(slot: CompanySlot, linkText: string) => {
+    const url = slot.data ? getSecFilingUrl(slot.data.company, Number(slot.data.year)) : null;
+    return url ? (
+      <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        {linkText}
+      </a>
+    ) : (
+      <span>No SEC report</span>
+    );
+  };
 
   return (
     <div className="space-y-2">
@@ -366,11 +469,15 @@ export function FinancialComparisonTable() {
         </div>
       </div>
 
-      {/* Export Section — hidden at narrow widths when embedded in the chat wrapper */}
-      <div className={`flex items-center justify-end${isIframe ? ' hidden md:flex' : ''}`}>
+      {/* Mode switch + Export Section — hidden at narrow widths when embedded in the chat wrapper */}
+      <div className={`flex flex-wrap items-center justify-between gap-2${isIframe ? ' hidden md:flex' : ''}`}>
+        <div className="inline-flex p-1 bg-neutral-200 rounded-lg" role="group" aria-label="Comparison mode">
+          {modeButton('companies', 'Compare Companies')}
+          {modeButton('years', 'Compare Years')}
+        </div>
         <button
           onClick={handleExportToExcel}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white border border-blue-600 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-blue-700 transition-colors shadow-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-green-700 text-white border border-green-700 rounded-lg font-['Geist:Medium',sans-serif] hover:bg-green-800 transition-colors shadow-sm"
         >
           <Download className="size-4" />
           Export to Excel
@@ -383,159 +490,78 @@ export function FinancialComparisonTable() {
       <>
       {/* Mobile Selector Panel - visible only on mobile */}
       <div className="md:hidden bg-white rounded-xl border border-neutral-200 shadow-sm p-4 space-y-4">
-        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">Select Companies to Compare</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <h3 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-sm">
+          {isYearsMode ? 'Select a Company and Years to Compare' : 'Select Companies to Compare'}
+        </h3>
+        {isYearsMode && (
           <div className="space-y-2">
-            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company 1</label>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedCompany1}
-              onChange={(e) => setSelectedCompany1(e.target.value)}
-            >
-              {companies.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedYear1}
-              onChange={(e) => setSelectedYear1(e.target.value)}
-            >
-              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-            </select>
-            {!company1Data && (
-              <div className="text-red-600 text-xs font-['Geist:Regular',sans-serif]">
-                No data available
-              </div>
-            )}
+            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company</label>
+            {companySelect(trendCompany, setTrendCompany, 'text-sm')}
           </div>
-          <div className="space-y-2">
-            <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">Company 2</label>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedCompany2}
-              onChange={(e) => setSelectedCompany2(e.target.value)}
-            >
-              {companies.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedYear2}
-              onChange={(e) => setSelectedYear2(e.target.value)}
-            >
-              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-            </select>
-            {!company2Data && (
-              <div className="text-red-600 text-xs font-['Geist:Regular',sans-serif]">
-                No data available
-              </div>
-            )}
-          </div>
+        )}
+        <div className="grid grid-cols-3 gap-2">
+          {slots.map((slot, i) => (
+            <div key={i} className="space-y-2 min-w-0">
+              <label className="text-xs text-neutral-500 font-['Geist:Medium',sans-serif]">
+                {isYearsMode ? `Year ${i + 1}` : `Company ${i + 1}`}
+              </label>
+              {!isYearsMode && companySelect(slot.company, slot.setCompany, 'px-2 text-sm')}
+              {yearSelect(slot.year, slot.setYear, 'px-2 text-sm')}
+              {!slot.data && (
+                <div className="text-red-600 text-xs font-['Geist:Regular',sans-serif]">
+                  No data available
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Financial Comparison Table */}
       <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
         {/* Desktop Header - with dropdowns */}
-        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] bg-neutral-100 sticky top-0 z-10 shadow-sm">
-          <div className="px-6 py-4 flex items-center">
+        <div className={`hidden md:grid ${DESKTOP_GRID} bg-neutral-100 sticky top-0 z-10 shadow-sm`}>
+          <div className="px-6 py-4 flex flex-col justify-center gap-2">
+            {isYearsMode && (
+              <div className="max-w-xs">
+                {companySelect(trendCompany, setTrendCompany)}
+              </div>
+            )}
             <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
-              Financial Numbers (in thousands)
+              {NUMBERS_SECTION}
             </h2>
           </div>
-          <div className="px-6 py-4 border-l border-neutral-200 space-y-2">
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedCompany1}
-              onChange={(e) => setSelectedCompany1(e.target.value)}
-            >
-              {companies.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedYear1}
-              onChange={(e) => setSelectedYear1(e.target.value)}
-            >
-              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-            </select>
-            {!company1Data && (
-              <div className="text-red-600 text-sm font-['Geist:Regular',sans-serif] mt-2">
-                {selectedCompany1} {selectedYear1}: No data available
-              </div>
-            )}
-          </div>
-          <div className="px-6 py-4 border-l border-neutral-200 space-y-2">
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Medium',sans-serif] text-neutral-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedCompany2}
-              onChange={(e) => setSelectedCompany2(e.target.value)}
-            >
-              {companies.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <select
-              className="w-full px-3 py-2 bg-white border border-neutral-300 rounded-lg font-['Geist:Regular',sans-serif] text-neutral-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedYear2}
-              onChange={(e) => setSelectedYear2(e.target.value)}
-            >
-              {AVAILABLE_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-            </select>
-            {!company2Data && (
-              <div className="text-red-600 text-sm font-['Geist:Regular',sans-serif] mt-2">
-                {selectedCompany2} {selectedYear2}: No data available
-              </div>
-            )}
-          </div>
+          {slots.map((slot, i) => (
+            <div key={i} className="px-4 py-4 border-l border-neutral-200 space-y-2 min-w-0 flex flex-col justify-center">
+              {!isYearsMode && companySelect(slot.company, slot.setCompany)}
+              {yearSelect(slot.year, slot.setYear)}
+              {!slot.data && (
+                <div className="text-red-600 text-sm font-['Geist:Regular',sans-serif] mt-2">
+                  {slot.company} {slot.year}: No data available
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Mobile: Unified grid for both sections */}
-        <div className="md:hidden grid grid-cols-3">
+        <div className={`md:hidden grid ${MOBILE_GRID}`}>
           {/* Financial Numbers Header Row */}
           <div className="px-2 py-3 flex items-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
             <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950 text-xs truncate">
               Financials (000s)
             </h2>
           </div>
-          <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
-            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
-              {selectedCompany1} ({selectedYear1})
-            </span>
-          </div>
-          <div className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
-            <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
-              {selectedCompany2} ({selectedYear2})
-            </span>
-          </div>
+          {slots.map((slot, i) => (
+            <div key={i} className="px-2 py-3 border-l border-neutral-200 flex items-center justify-center bg-neutral-100 sticky top-0 z-10 border-b border-neutral-200 min-w-0">
+              <span className="font-['Geist:Medium',sans-serif] text-neutral-950 text-[10px] text-center truncate">
+                {columnTitle(slot)}
+              </span>
+            </div>
+          ))}
 
           {/* Financial Numbers Data Rows */}
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Revenue</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Net Revenue')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Net Revenue')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">COGS</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Cost of Goods')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Cost of Goods')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Gross Margin</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Gross Margin')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Gross Margin')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">SG&A</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'SGA')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'SGA')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Op. Profit</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Operating Profit')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Operating Profit')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Net Profit</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Net Profit')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Net Profit')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Inventory</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Inventory')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Inventory')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Total Assets</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Total Assets')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Total Assets')}</div>
+          {renderMobileRows(FINANCIAL_SECTIONS[NUMBERS_SECTION], false)}
 
           {/* Financial Indicators Header */}
           <div className="px-2 py-3 flex items-center bg-neutral-50 border-b border-neutral-200 min-w-0">
@@ -543,89 +569,35 @@ export function FinancialComparisonTable() {
               Indicators
             </h2>
           </div>
-          <div className="px-2 py-3 border-l border-neutral-200 bg-neutral-50 border-b border-neutral-200 min-w-0"></div>
-          <div className="px-2 py-3 border-l border-neutral-200 bg-neutral-50 border-b border-neutral-200 min-w-0"></div>
+          {slots.map((_, i) => (
+            <div key={i} className="px-2 py-3 border-l border-neutral-200 bg-neutral-50 border-b border-neutral-200 min-w-0"></div>
+          ))}
 
           {/* Financial Indicators Data Rows */}
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">COGS %</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Cost of Goods %')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Cost of Goods %')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Gross %</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Gross Margin %')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Gross Margin %')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">SG&A %</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'SGA %')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'SGA %')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Op. Margin %</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Operating Profit Margin %')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Operating Profit Margin %')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Net Margin %</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Net Profit Margin %')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Net Profit Margin %')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Inv. Turn</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Inventory Turnover')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Inventory Turnover')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Current</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Current Ratio')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Current Ratio')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Quick</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Quick Ratio')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Quick Ratio')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">D/E</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Debt to Equity')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Debt to Equity')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">Asset Turn</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Asset Turnover')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Asset Turnover')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs border-b border-neutral-200 min-w-0 truncate">ROA</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company1, 'Return on Assets')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right border-b border-neutral-200 min-w-0">{formatCompanyValue(company2, 'Return on Assets')}</div>
-
-          <div className="px-2 py-3 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs min-w-0 truncate">3Y CAGR</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right min-w-0">{formatCompanyValue(company1, 'Three Year Revenue CAGR')}</div>
-          <div className="px-2 py-3 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-xs text-right min-w-0">{formatCompanyValue(company2, 'Three Year Revenue CAGR')}</div>
+          {renderMobileRows(indicatorFields, true)}
         </div>
 
         {/* Desktop: Original structure */}
         <div className="hidden md:block">
-          <TableRow label="Total Revenue" value1={formatCompanyValue(company1, 'Net Revenue')} value2={formatCompanyValue(company2, 'Net Revenue')} />
-          <TableRow label="Cost of Goods" value1={formatCompanyValue(company1, 'Cost of Goods')} value2={formatCompanyValue(company2, 'Cost of Goods')} />
-          <TableRow label="Gross Margin" value1={formatCompanyValue(company1, 'Gross Margin')} value2={formatCompanyValue(company2, 'Gross Margin')} />
-          <TableRow label="Selling, General & Administrative Expenses" value1={formatCompanyValue(company1, 'SGA')} value2={formatCompanyValue(company2, 'SGA')} />
-          <TableRow label="Operating Profit" value1={formatCompanyValue(company1, 'Operating Profit')} value2={formatCompanyValue(company2, 'Operating Profit')} />
-          <TableRow label="Net Profit" value1={formatCompanyValue(company1, 'Net Profit')} value2={formatCompanyValue(company2, 'Net Profit')} />
-          <TableRow label="Inventory" value1={formatCompanyValue(company1, 'Inventory')} value2={formatCompanyValue(company2, 'Inventory')} />
-          <TableRow label="Total Assets" value1={formatCompanyValue(company1, 'Total Assets')} value2={formatCompanyValue(company2, 'Total Assets')} />
+          {FINANCIAL_SECTIONS[NUMBERS_SECTION].map(([label, fieldName]) => (
+            <TableRow key={fieldName} label={label} values={slots.map(slot => formatCompanyValue(slot.data, fieldName))} />
+          ))}
 
           {/* Financial Indicators Section */}
           <div className="bg-neutral-50 px-6 py-3 border-b border-neutral-200 border-t border-neutral-200">
             <h2 className="font-['Geist:Medium',sans-serif] font-medium text-neutral-950">
-              Financial Indicators
+              {INDICATORS_SECTION}
             </h2>
           </div>
 
-          <TableRow label="Cost of goods percentage (COGS/Net Sales)" value1={formatCompanyValue(company1, 'Cost of Goods %')} value2={formatCompanyValue(company2, 'Cost of Goods %')} />
-          <TableRow label="Gross margin percentage (GM/Net Sales)" value1={formatCompanyValue(company1, 'Gross Margin %')} value2={formatCompanyValue(company2, 'Gross Margin %')} />
-          <TableRow label="SG&A expense percentage (SG&A/Net Sales)" value1={formatCompanyValue(company1, 'SGA %')} value2={formatCompanyValue(company2, 'SGA %')} />
-          <TableRow label="Operating profit margin percentage (Op.Profit/Net Sales)" value1={formatCompanyValue(company1, 'Operating Profit Margin %')} value2={formatCompanyValue(company2, 'Operating Profit Margin %')} />
-          <TableRow label="Net profit margin percentage (Net Profit/Net Sales)" value1={formatCompanyValue(company1, 'Net Profit Margin %')} value2={formatCompanyValue(company2, 'Net Profit Margin %')} />
-          <TableRow label="Inventory turnover (COGS/Inventory)" value1={formatCompanyValue(company1, 'Inventory Turnover')} value2={formatCompanyValue(company2, 'Inventory Turnover')} />
-          <TableRow label="Current Ratio (Current Assets/Current Liabilities)" value1={formatCompanyValue(company1, 'Current Ratio')} value2={formatCompanyValue(company2, 'Current Ratio')} />
-          <TableRow label="Quick Ratio ((Cash + AR)/Current Liabilities)" value1={formatCompanyValue(company1, 'Quick Ratio')} value2={formatCompanyValue(company2, 'Quick Ratio')} />
-          <TableRow label="Debt-to-Equity Ratio (Total Debt/Total Equity)" value1={formatCompanyValue(company1, 'Debt to Equity')} value2={formatCompanyValue(company2, 'Debt to Equity')} />
-          <TableRow label="Asset turnover (Net Sales/Total Assets)" value1={formatCompanyValue(company1, 'Asset Turnover')} value2={formatCompanyValue(company2, 'Asset Turnover')} />
-          <TableRow label="Return on assets (ROA)" value1={formatCompanyValue(company1, 'Return on Assets')} value2={formatCompanyValue(company2, 'Return on Assets')} />
-          <TableRow label="3-Year Revenue CAGR" value1={formatCompanyValue(company1, 'Three Year Revenue CAGR')} value2={formatCompanyValue(company2, 'Three Year Revenue CAGR')} isLast />
+          {indicatorFields.map(([label, fieldName], rowIndex) => (
+            <TableRow
+              key={fieldName}
+              label={label}
+              values={slots.map(slot => formatCompanyValue(slot.data, fieldName))}
+              isLast={rowIndex === indicatorFields.length - 1}
+            />
+          ))}
         </div>
       </div>
       </>
@@ -633,8 +605,8 @@ export function FinancialComparisonTable() {
 
       {/* Footer */}
       <div className="text-neutral-500 font-['Geist:Regular',sans-serif] space-y-1">
-        {/* Desktop: SEC report links + Attribution aligned with desktop table (2:1:1 ratio) */}
-        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-xs items-start">
+        {/* Desktop: SEC report links + Attribution aligned with desktop table (2:1:1:1 ratio) */}
+        <div className={`hidden md:grid ${DESKTOP_GRID} text-xs items-start`}>
           <div className="px-6 text-[11px] space-y-1">
             <p>Fashion Institute of Technology Professors: <strong>Dr. Calvin Williamson</strong>, <strong>Shelley E. Kohan</strong></p>
             <p><strong>Seonmin (Diana) Lee</strong> – AI Systems &amp; Backend Developer</p>
@@ -642,67 +614,21 @@ export function FinancialComparisonTable() {
             <p><strong>Jia Mei Lin</strong> – AI Systems Assistant (v1)</p>
             <p className="font-['Geist:Medium',sans-serif]">Made through SUNY IITG Business Management Course Development Grants</p>
           </div>
-          <div className="px-6 border-l border-neutral-200 text-right text-[11px]">
-            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
-              <a
-                href={getSecFilingUrl(company1.company, Number(company1.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Source: SEC report
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
-          <div className="px-6 border-l border-neutral-200 text-right text-[11px]">
-            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
-              <a
-                href={getSecFilingUrl(company2.company, Number(company2.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Source: SEC report
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
+          {slots.map((slot, i) => (
+            <div key={i} className="px-6 border-l border-neutral-200 text-right text-[11px]">
+              {renderSecLink(slot, 'Source: SEC report')}
+            </div>
+          ))}
         </div>
 
         {/* Mobile: SEC report links aligned with mobile table (equal columns) */}
-        <div className="md:hidden grid grid-cols-3 text-xs items-start">
+        <div className={`md:hidden grid ${MOBILE_GRID} text-xs items-start`}>
           <span className="px-2"></span>
-          <div className="px-2 border-l border-neutral-200 text-right text-[11px]">
-            {company1 && getSecFilingUrl(company1.company, Number(company1.year)) ? (
-              <a
-                href={getSecFilingUrl(company1.company, Number(company1.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Source: SEC
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
-          <div className="px-2 border-l border-neutral-200 text-right text-[11px]">
-            {company2 && getSecFilingUrl(company2.company, Number(company2.year)) ? (
-              <a
-                href={getSecFilingUrl(company2.company, Number(company2.year))!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Source: SEC
-              </a>
-            ) : (
-              <span>No SEC report</span>
-            )}
-          </div>
+          {slots.map((slot, i) => (
+            <div key={i} className="px-2 border-l border-neutral-200 text-right text-[11px]">
+              {renderSecLink(slot, 'Source: SEC')}
+            </div>
+          ))}
         </div>
 
         {/* Mobile: Attribution (appears below SEC links on mobile only) */}
@@ -720,26 +646,23 @@ export function FinancialComparisonTable() {
 
 function TableRow({
   label,
-  value1,
-  value2,
+  values,
   isLast = false
 }: {
   label: string;
-  value1: string;
-  value2: string;
+  values: string[];
   isLast?: boolean;
 }) {
   return (
-    <div className={`grid grid-cols-[2fr_1fr_1fr] ${!isLast ? 'border-b border-neutral-200' : ''}`}>
+    <div className={`grid ${DESKTOP_GRID} ${!isLast ? 'border-b border-neutral-200' : ''}`}>
       <div className="px-3 md:px-6 py-4 font-['Geist:Regular',sans-serif] text-neutral-950">
         {label}
       </div>
-      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
-        {value1}
-      </div>
-      <div className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
-        {value2}
-      </div>
+      {values.map((value, i) => (
+        <div key={i} className="px-3 md:px-6 py-4 border-l border-neutral-200 font-['Geist:Regular',sans-serif] text-neutral-950 text-right">
+          {value}
+        </div>
+      ))}
     </div>
   );
 }
